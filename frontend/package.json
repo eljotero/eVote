@@ -10,18 +10,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.4"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/jest": "^27",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-transition-group": "^4.4.10",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "jest": "^27",
-    "@types/jest": "^27"
+    "typescript": "^5"
   }
 }
