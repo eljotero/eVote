@@ -20,6 +20,11 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
+    - name: Start Docker containers with docker-compose
+      run: docker-compose up -d
+      working-directory: docker
+
     - name: Build backend with Maven
       run: mvn clean install --file backend/pom.xml
     
@@ -36,3 +41,7 @@ jobs:
     - name: Build frontend
       run: npm run build
       working-directory: frontend
+
+    - name: Stop Docker containers with docker-compose
+      run: docker-compose down
+      working-directory: docker
