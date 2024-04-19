@@ -1,12 +1,11 @@
 package org.evote.backend.services;
 
 import org.evote.backend.users.user.entity.User;
-import org.evote.backend.users.user.exceptions.UserNotDeletedException;
+import org.evote.backend.users.user.exceptions.UserAuthenticationException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
-import org.evote.backend.users.user.exceptions.UserNotCreatedException;
+import org.evote.backend.users.user.exceptions.UserAlreadyExistsException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,46 +22,29 @@ public class UserService {
     }
 
     public User getUserById(UUID uuid) {
-        Optional<User> user = userRepository.findById(uuid);
-        if (user.isPresent()) {
-            return user.get();
-        } else {
-            throw new UserNotFoundException("User with id " + uuid + " not found", HttpStatus.NOT_FOUND);
-        }
+        return userRepository.findById(uuid)
+                .orElseThrow(() -> new UserNotFoundException("User with id " + uuid + " not found"));
     }
 
     public User addUser(User user) {
-        if (userRepository.existsByPersonalIdNumber(user.getPersonalIdNumber())) {
-            throw new UserNotCreatedException("This user already exists", HttpStatus.CONFLICT);
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new UserAlreadyExistsException("User with email " + user.getEmail() + " already exists");
         }
-        try {
-            return userRepository.save(user);
-        } catch (Exception e) {
-            throw new UserNotCreatedException("User could not be created", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return userRepository.save(user);
     }
 
     public void deleteUserById(UUID uuid) {
-        if (userRepository.existsById(uuid)) {
-            try {
-                userRepository.deleteById(uuid);
-            } catch (Exception e) {
-                throw new UserNotDeletedException("User with id " + uuid + " could not be deleted", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } else {
-            throw new UserNotDeletedException("User with id " + uuid + " does not exist", HttpStatus.NOT_FOUND);
-        }
+        userRepository.deleteById(uuid);
     }
 
     public User authenticateUser(String email, String password) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
-            throw new UserNotFoundException("User with email " + email + " not found", HttpStatus.NOT_FOUND);
+            throw new UserAuthenticationException("User with email " + email + " not found");
         }
         if (!user.getPassword().equals(password)) {
-            throw new UserNotFoundException("Wrong password", HttpStatus.UNAUTHORIZED);
+            throw new UserAuthenticationException("Invalid password");
         }
         return user;
     }
-
 }
