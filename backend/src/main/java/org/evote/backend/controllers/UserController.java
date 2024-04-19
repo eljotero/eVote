@@ -1,7 +1,6 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.UserDTO;
-import org.evote.backend.dtos.user.UserMapper;
+import org.evote.backend.dtos.user.*;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.services.UserService;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
@@ -24,53 +23,50 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/all")
-    public List<UserDTO> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<User> users = userService.getAllUsers();
-        return users.stream().map(UserMapper::toUserDTO).collect(Collectors.toList());
+        List<UserDTO> userDTOs = users.stream().map(UserMapper::toUserDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(userDTOs);
     }
 
     @PostMapping("/add")
-    public UserDTO addUser(@RequestBody UserDTO userDTO) {
-        User user = userService.addUser(UserMapper.toUser(userDTO));
-        return UserMapper.toUserDTO(user);
+    public ResponseEntity<UserDTO> addUser(@RequestBody UserCreateDTO userCreateDTO) {
+        User user = userService.addUser(UserMapper.toUser(userCreateDTO));
+        return ResponseEntity.ok(UserMapper.toUserDTO(user));
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUserById(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteUserById(@PathVariable UUID id) {
         userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public UserDTO getUserById(@PathVariable UUID id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable UUID id) {
         User user = userService.getUserById(id);
-        return UserMapper.toUserDTO(user);
+        return ResponseEntity.ok(UserMapper.toUserDTO(user));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginResponseDTO> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
+        User user = userService.authenticateUser(userLoginDTO.getEmail(), userLoginDTO.getPassword());
+        return ResponseEntity.ok(UserMapper.toUserLoginResponseDTO(user));
+    }
+
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
     }
 
     @ExceptionHandler(UserNotCreatedException.class)
     public ResponseEntity<String> handleUserNotCreatedException(UserNotCreatedException ex) {
-        if ("CREATE_ERROR".equals(ex.getErrorCode())) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        } else if ("DUPLICATE".equals(ex.getErrorCode())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
     }
 
     @ExceptionHandler(UserNotDeletedException.class)
     public ResponseEntity<String> handleUserNotDeletedException(UserNotDeletedException ex) {
-        if ("DELETE_ERROR".equals(ex.getErrorCode())) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        } else if ("NOT_FOUND".equals(ex.getErrorCode())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
     }
 
 }

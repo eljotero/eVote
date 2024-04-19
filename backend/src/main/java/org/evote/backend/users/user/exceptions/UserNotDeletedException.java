@@ -1,14 +1,14 @@
 package org.evote.backend.users.user.exceptions;
 
+import org.springframework.http.HttpStatus;
+
 public class UserNotDeletedException extends RuntimeException {
-    private String errorCode;
-
-    public UserNotDeletedException(String message, String errorCode) {
+    private HttpStatus httpStatus;
+    public UserNotDeletedException(String message, HttpStatus httpStatus) {
         super(message);
-        this.errorCode = errorCode;
+        this.httpStatus = httpStatus;
     }
-
-    public String getErrorCode() {
-        return errorCode;
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 }

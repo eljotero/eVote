@@ -1,12 +1,14 @@
 package org.evote.backend.users.user.exceptions;
 
+import org.springframework.http.HttpStatus;
+
 public class UserNotFoundException extends RuntimeException {
-    private String errorCode;
-    public UserNotFoundException(String message, String errorCode) {
+    private HttpStatus httpStatus;
+    public UserNotFoundException(String message, HttpStatus httpStatus) {
         super(message);
-        this.errorCode = errorCode;
+        this.httpStatus = httpStatus;
     }
-    public String getErrorCode() {
-        return errorCode;
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 }
