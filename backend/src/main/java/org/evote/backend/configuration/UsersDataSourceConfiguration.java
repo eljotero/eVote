@@ -50,4 +50,5 @@ public class UsersDataSourceConfiguration {
         return new JpaTransactionManager(usersEntityManagerFactory.getObject());
     }
 
+
 }

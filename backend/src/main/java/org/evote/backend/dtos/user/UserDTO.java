@@ -1,4 +1,4 @@
-package org.evote.backend.dtos;
+package org.evote.backend.dtos.user;
 import org.evote.backend.users.enums.CityType;
 import java.util.Date;
 import java.util.UUID;
