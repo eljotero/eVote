@@ -20,4 +20,5 @@ public class Precinct {
     @Enumerated(EnumType.ORDINAL)
     private ElectionType electionType;
 
+
 }
