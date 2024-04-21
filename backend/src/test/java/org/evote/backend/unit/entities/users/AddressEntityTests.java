@@ -203,7 +203,7 @@ public class AddressEntityTests {
     }
 
     @Test
-public void testAddressEntityEqualsWithPrecinct() {
+    public void testAddressEntityEqualsWithPrecinct() {
         Address address1 = new Address();
         Address address2 = new Address();
         Precinct precinct = new Precinct();
