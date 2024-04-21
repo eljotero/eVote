@@ -1,5 +1,6 @@
-package org.evote.backend.unit.entities.users;
+package org.evote.backend.unit.entities.users.user;
 
+import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
 import org.evote.backend.users.precinct.entity.Precinct;
@@ -52,26 +53,6 @@ public class UserEntityTests {
     }
 
     @Test
-    public void testUserEntityWithEmail() {
-        User user = new User();
-        String email = "test@test.com";
-
-        assertNotNull(user);
-        user.setEmail(email);
-        assertEquals(email, user.getEmail());
-    }
-
-    @Test
-    public void testUserEntityWithPassword() {
-        User user = new User();
-        String password = "password";
-
-        assertNotNull(user);
-        user.setPassword("password");
-        assertEquals(password, user.getPassword());
-    }
-
-    @Test
     public void testUserEntityWithPersonalIdNumber() {
         User user = new User();
         Number personalIdNumber = 123456789;
@@ -89,16 +70,6 @@ public class UserEntityTests {
         assertNotNull(user);
         user.setCode(code);
         assertEquals(code, user.getCode());
-    }
-
-    @Test
-    public void testUserEntityWithHasVoted() {
-        User user = new User();
-        Boolean hasVoted = false;
-
-        assertNotNull(user);
-        user.setHasVoted(hasVoted);
-        assertEquals(hasVoted, user.getHasVoted());
     }
 
     @Test
@@ -200,26 +171,6 @@ public class UserEntityTests {
     }
 
     @Test
-    public void testUserEntityHashCodeEmail() {
-        User user1 = new User();
-        User user2 = new User();
-
-        user1.setEmail("test@test.com");
-        user2.setEmail("test@test.com");
-        assertEquals(user1.hashCode(), user2.hashCode());
-    }
-
-    @Test
-    public void testUserEntityHashCodePassword() {
-        User user1 = new User();
-        User user2 = new User();
-
-        user1.setPassword("password");
-        user2.setPassword("password");
-        assertEquals(user1.hashCode(), user2.hashCode());
-    }
-
-    @Test
     public void testUserEntityHashCodePersonalIdNumber() {
         User user1 = new User();
         User user2 = new User();
@@ -239,15 +190,6 @@ public class UserEntityTests {
         assertEquals(user1.hashCode(), user2.hashCode());
     }
 
-    @Test
-    public void testUserEntityHashCodeVoted() {
-        User user1 = new User();
-        User user2 = new User();
-
-        user1.setHasVoted(false);
-        user2.setHasVoted(false);
-        assertEquals(user1.hashCode(), user2.hashCode());
-    }
 
     @Test
     public void testUserEntityHashCodeBirthDate() {
@@ -339,7 +281,6 @@ public class UserEntityTests {
         user2.setName("Jane");
         assertNotEquals(user1, user2);
         user2.setName("John");
-
     }
 
     @Test
@@ -354,30 +295,6 @@ public class UserEntityTests {
         user2.setSurname("Doe");
     }
 
-    @Test
-    public void testUserEntityEqualsEmail() {
-        User user1 = new User();
-        User user2 = new User();
-        user1.setEmail("test@test.com");
-        user2.setEmail("test@test.com");
-        assertEquals(user1, user2);
-        user2.setEmail("differenttest@test.com");
-        assertNotEquals(user1, user2);
-        user2.setEmail("test@test.com");
-    }
-
-    @Test
-    public void testUserEntityEqualsPassword() {
-        User user1 = new User();
-        User user2 = new User();
-
-        user1.setPassword("password");
-        user2.setPassword("password");
-        assertEquals(user1, user2);
-        user2.setPassword("differentpassword");
-        assertNotEquals(user1, user2);
-        user2.setPassword("password");
-    }
 
     @Test
     public void testUserEntityEqualsPersonalIdNumber() {
@@ -402,19 +319,6 @@ public class UserEntityTests {
         user2.setCode("90-645");
         assertNotEquals(user1, user2);
         user2.setCode("90-644");
-    }
-
-    @Test
-    public void testUserEntityEqualsVoted() {
-        User user1 = new User();
-        User user2 = new User();
-
-        user1.setHasVoted(false);
-        user2.setHasVoted(false);
-        assertEquals(user1, user2);
-        user2.setHasVoted(true);
-        assertNotEquals(user1, user2);
-        user2.setHasVoted(false);
     }
 
     @Test
@@ -545,7 +449,8 @@ public class UserEntityTests {
     @Test
     public void testUserEntityToString() {
         User user = new User();
-        String expectedString = "User(user_id=null, name=null, surname=null, email=null, password=null, personalIdNumber=null, code=null, hasVoted=null, birthDate=null, education=null, profession=null, sex=null, precincts=null, address=null, cityType=null)";
+        Account account = new Account();
+        String expectedString = "User(user_id=null, name=null, surname=null, sex=null, personalIdNumber=null, code=null, birthDate=null, education=null, profession=null, precincts=null, address=null, cityType=null, account=null)";
         String actualString = user.toString();
         assertEquals(expectedString, user.toString());
     }
