@@ -1,3 +1,7 @@
+/**
+ * For a detailed explanation regarding each configuration property, visit:
+ * https://jestjs.io/docs/configuration
+ */
 
 /** @type {import('jest').Config} */
 const config = {
@@ -70,7 +74,7 @@ const config = {
   // An array of directory names to be searched recursively up from the requiring module's location
   moduleDirectories: [
     "node_modules",
-     "<rootDir>/"
+    "<rootDir>/"
   ],
 
   // An array of file extensions your modules use

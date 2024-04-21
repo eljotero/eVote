@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {usePathname} from "next/navigation";
-import {FaBars, FaTimes} from "react-icons/fa";
+import { FaVoteYea } from "react-icons/fa";
 
 export default function Navbar() {
     const paths = ['/'];
@@ -16,14 +16,17 @@ export default function Navbar() {
 
     return (
         <nav>
-            <div className="max-w-screen-xl flex flex-wrap justify-between items-center mx-auto px-20 py-10 ">
-                <h1 className="text-xl">
-                    <Link href="/">eVote</Link>
+            <div className="max-w-screen-xl flex flex-wrap justify-between items-center mx-auto px-10 py-2 ">
+                <h1 className="text-xl font-bold">
+                    <Link href="/">
+                        <FaVoteYea/>
+                        eVote
+                    </Link>
                 </h1>
                 <div className="flex items-center">
-                    <ul className="flex items-center space-x-6">
+                    <ul className="flex items-center space-x-6 font-semibold">
                         <li>
-                            <Link className="nav-link" href="/login">LOGIN</Link>
+                            <Link className="nav-link" href="/login">Login</Link>
                         </li>
                     </ul>
                 </div>
