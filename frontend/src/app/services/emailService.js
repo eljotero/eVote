@@ -5,13 +5,11 @@ export async function checkEmail(email) {
         const response = await axios.get(`https://disify.com/api/email/${email}`);
 
         if (response.data.format === true && response.data.disposable === false) {
-            console.log('E-mail address is valid.');
             return true;
         } else {
-            console.log('E-mail address is not valid.');
             return false;
         }
     } catch (error) {
-        console.error('An error occurred', error);
+        console.error('An error with Disify API occurred', error);
     }
 }
