@@ -1,4 +1,4 @@
-package org.evote.backend.unit.entities.users;
+package org.evote.backend.unit.entities.users.address;
 
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.precinct.entity.Precinct;
