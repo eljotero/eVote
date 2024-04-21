@@ -9,7 +9,7 @@ export default function RegisterForm() {
         e.preventDefault();
         const isEmailValid = checkEmail(email);
         if (!isEmailValid) {
-            console.log('Email is not valid');
+            console.log('Form not submitted');
         }
     }
 

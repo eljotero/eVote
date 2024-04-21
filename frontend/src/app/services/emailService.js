@@ -4,7 +4,7 @@ export async function checkEmail(email) {
     try {
         const response = await axios.get(`https://disify.com/api/email/${email}`);
 
-        if (response.data.format === true) {
+        if (response.data.format === true && response.data.disposable === false) {
             console.log('E-mail address is valid.');
             return true;
         } else {
@@ -12,6 +12,6 @@ export async function checkEmail(email) {
             return false;
         }
     } catch (error) {
-        console.error('An error occured', error);
+        console.error('An error occurred', error);
     }
 }

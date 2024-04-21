@@ -9,14 +9,14 @@ export default function LoginForm() {
         e.preventDefault();
         const isEmailValid = checkEmail(email);
         if (!isEmailValid) {
-            console.log('Email is not valid');
+            console.log('Form not submitted');
         }
     }
 
 
     return (
         <div className="absolute max-w-md w-full p-6">
-            <h1 className="text-3xl font-semibold mb-6 text-black text-center">Login</h1>
+            <h1 className="text-3xl font-semibold mb-6 text-black text-center">Login to Your Account</h1>
             <form action="#" method="POST" onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
