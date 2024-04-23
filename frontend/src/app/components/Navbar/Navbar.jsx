@@ -57,6 +57,14 @@ export default function Navbar() {
                                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
                     </li>
+                    <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="/candidates" aria-label="Candidates">Candidates</Link></li>
+                    <li className="text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                             className="w-4 h-4 current-fill" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                  d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                        </svg>
+                    </li>
                     <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="#" aria-label="Services">Services</Link></li>
                     <li className="text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -68,7 +76,7 @@ export default function Navbar() {
                     <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="#" aria-label="Contact">Contact</Link></li>
                 </ul>
                 <Link className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
-                   href="/login" aria-label="Login">Login</Link>
+                      href="/login" aria-label="Login">Login</Link>
             </nav>
             <div className={`navbar-menu relative z-50 ${isMenuOpen ? '' : 'hidden'}`} aria-label="Mobile Menu">
                 <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -97,26 +105,30 @@ export default function Navbar() {
                         <ul aria-label="Mobile Menu Items">
                             <li className="mb-1">
                                 <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                                   href="#" aria-label="Home">Home</Link>
+                                      href="#" aria-label="Home">Home</Link>
                             </li>
                             <li className="mb-1">
                                 <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                                   href="#" aria-label="About Us">About Us</Link>
+                                      href="#" aria-label="About Us">About Us</Link>
                             </li>
                             <li className="mb-1">
                                 <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                                   href="#" aria-label="Services">Services</Link>
+                                      href="/candidates" aria-label="Candidates">Candidates</Link>
                             </li>
                             <li className="mb-1">
                                 <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                                   href="#" aria-label="Contact">Contact</Link>
+                                      href="#" aria-label="Services">Services</Link>
+                            </li>
+                            <li className="mb-1">
+                                <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                                      href="#" aria-label="Contact">Contact</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="mt-auto">
                         <div className="pt-6">
                             <Link className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl"
-                               href="/login" aria-label="Login">Login</Link>
+                                  href="/login" aria-label="Login">Login</Link>
                         </div>
                     </div>
                 </nav>
