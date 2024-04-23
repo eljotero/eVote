@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import kandydat1 from './kandydat1.jpg';
 import CandidateForm from '../components/CandidateForm/CandidateForm';
+
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
 
@@ -10,7 +11,8 @@ export default function Candidates() {
         const fetchCandidates = async () => {
             try {
                 const response = await axios.get('/api/candidates');
-                setCandidates(response.data);
+                const candidatesWithShowPlan = response.data.map(candidate => ({ ...candidate, showPlan: false }));
+                setCandidates(candidatesWithShowPlan);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
             }
@@ -21,32 +23,24 @@ export default function Candidates() {
 
     const addSampleCandidate = () => {
         const sampleCandidate = {
-            candidate_id: 'sample_id',
+            candidate_id: 1,
             name: 'John',
             surname: 'Doe',
             birthDate: '2000-01-01',
             education: "Bachelor's Degree",
             profession: 'Software Engineer',
-            votes: 0,
+            political_party: 'Prawo i Sprawiedliwość',
             image: kandydat1,
+            showPlan: false,
         };
         setCandidates(prevCandidates => [...prevCandidates, sampleCandidate]);
     };
 
-    const vote = async (candidateId) => {
-        try {
-            const response = await axios.post(`/api/candidates/${candidateId}/vote`);
-            if (response.status === 200) {
-                const updatedCandidates = candidates.map(candidate =>
-                    candidate.candidate_id === candidateId ? { ...candidate, votes: candidate.votes + 1 } : candidate
-                );
-                setCandidates(updatedCandidates);
-            } else {
-                throw new Error('Failed to vote');
-            }
-        } catch (error) {
-            console.error('Error voting:', error);
-        }
+    const handleShowPlan = (candidateId) => {
+        const updatedCandidates = candidates.map(candidate =>
+            candidate.candidate_id === candidateId ? { ...candidate, showPlan: !candidate.showPlan } : candidate
+        );
+        setCandidates(updatedCandidates);
     };
 
     return (
@@ -59,7 +53,7 @@ export default function Candidates() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {candidates.map(candidate => (
-                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={vote} />
+                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
                 ))}
             </div>
         </div>

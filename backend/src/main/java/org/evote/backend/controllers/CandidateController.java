@@ -1,30 +1,29 @@
 package org.evote.backend.controllers;
 
+import org.evote.backend.services.CandidateService;
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/candidates")
 public class CandidateController {
 
     @Autowired
-    private CandidateRepository candidateRepository;
+    private CandidateService candidateService;
 
-    @GetMapping
-    public List<Candidate> getAllCandidates() {
-        return candidateRepository.findAll();
-    }
-    @PostMapping
-    public ResponseEntity<Candidate> addCandidate(@RequestBody Candidate candidate) {
-        Candidate savedCandidate = candidateRepository.save(candidate);
-        return new ResponseEntity<>(savedCandidate, HttpStatus.CREATED);
+    @GetMapping("/all")
+    public ResponseEntity<List<CandidateDTO>> getAllCandidates() {
+        List<Candidate> candidates = candidateService.getAllCandidates();
+        List<CandidateDTO> candidateDTOs = candidates.stream().map(CandidateMapper::toCandidateDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(candidateDTOs);
     }
 
 }

@@ -1,5 +1,9 @@
 package org.evote.backend.votes.candidate.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.evote.backend.votes.election.entity.Election;
@@ -12,6 +16,7 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "candidate")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,6 +34,7 @@ public class Candidate {
 
     @ManyToOne
     @JoinColumn(name = "political_party_id")
+    @JsonManagedReference
     private PoliticalParty politicalParty;
 
     @ManyToOne
