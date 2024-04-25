@@ -4,7 +4,6 @@ import org.evote.backend.services.CandidateService;
 import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
 import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
-import org.evote.backend.votes.candidate.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/candidates")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CandidateController {
 
     @Autowired

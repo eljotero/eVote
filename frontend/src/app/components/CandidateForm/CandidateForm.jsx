@@ -5,9 +5,6 @@ export default function CandidateForm({ candidate, onVote }) {
     const { candidate_id, name, surname, birthDate, education, profession, political_party ,image } = candidate;
     const [showPlan, setShowPlan] = useState(false);
 
-    const handleVote = () => {
-        onVote(candidate_id);
-    };
 
     const handleShowPlan = () => {
         setShowPlan(!showPlan);

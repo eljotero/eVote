@@ -6,11 +6,12 @@ import CandidateForm from '../components/CandidateForm/CandidateForm';
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
+    const [electionType, setElectionType] = useState('parliamentary');
 
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get('/api/candidates');
+                const response = await axios.get('http://localhost:8080/api/candidates/all');
                 const candidatesWithShowPlan = response.data.map(candidate => ({ ...candidate, showPlan: false }));
                 setCandidates(candidatesWithShowPlan);
             } catch (error) {
@@ -45,7 +46,19 @@ export default function Candidates() {
 
     return (
         <div className="container mx-auto mt-10">
-            <h1 className="text-4xl font-bold text-center mb-8">Get to know your candidates!</h1>
+            <div className="bg-blue-500 text-white text-center py-4 mb-8">
+                <h1 className="text-4xl font-bold">Poznaj swoich kandydatów!</h1>
+            </div>
+            <div className="bg-blue-500 text-white text-center py-4 mb-8">
+                <h1 className="text-1xl font-bold">Najbliższe wybory to: </h1>
+            </div>
+            <div className="flex justify-center mb-4">
+                <select onChange={(e) => setElectionType(e.target.value)} className="form-select block w-full mt-1">
+                    <option value="parliamentary">Parliamentary Elections</option>
+                    <option value="presidential">Presidential Elections</option>
+                    <option value="local">Local Elections</option>
+                </select>
+            </div>
             <div className="flex justify-center mb-4">
                 <button onClick={addSampleCandidate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Add Sample Candidate
