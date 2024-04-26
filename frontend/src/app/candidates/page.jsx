@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import kandydat1 from './kandydat1.jpg';
 import CandidateForm from '../components/CandidateForm/CandidateForm';
+import { ReactComponent as Okregi } from './okregi.svg';
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
+    const [elections, setElections] = useState([]);
     const [electionType, setElectionType] = useState('parliamentary');
 
     useEffect(() => {
@@ -19,7 +21,17 @@ export default function Candidates() {
             }
         };
 
+        const fetchElections = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/elections/all');
+                setElections(response.data);
+            } catch (error) {
+                console.error('Error fetching elections:', error);
+            }
+        };
+
         fetchCandidates();
+        fetchElections();
     }, []);
 
     const addSampleCandidate = () => {
@@ -44,13 +56,28 @@ export default function Candidates() {
         setCandidates(updatedCandidates);
     };
 
+    const upcomingElections = elections.filter(election => {
+        const today = new Date();
+        const electionDate = new Date(election.startDate);
+        return electionDate >= today;
+    });
+
+    const closestDate = Math.min(...upcomingElections.map(election => new Date(election.startDate)));
+
+    const closestElections = upcomingElections.filter(election => {
+        const electionDate = new Date(election.startDate);
+        return electionDate.getTime() === closestDate;
+    });
+
+    const closestElectionNames = closestElections.map(election => election.election_name).join(', ');
+
     return (
         <div className="container mx-auto mt-10">
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
                 <h1 className="text-4xl font-bold">Poznaj swoich kandydatów!</h1>
             </div>
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
-                <h1 className="text-1xl font-bold">Najbliższe wybory to: </h1>
+                <h1 className="text-1xl font-bold">Najbliższe wybory to: {closestElectionNames ? closestElectionNames : 'Brak nadchodzących wyborów'}</h1>
             </div>
             <div className="flex justify-center mb-4">
                 <select onChange={(e) => setElectionType(e.target.value)} className="form-select block w-full mt-1">

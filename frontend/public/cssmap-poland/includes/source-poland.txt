@@ -1,0 +1,20 @@
+<div id="map-poland">
+ <ul class="poland">
+  <li class="pl1"><a href="#dolnoslaskie">Dolnośląskie</a></li>
+  <li class="pl2"><a href="#kujawsko-pomorskie">Kujawsko-pomorskie</a></li>
+  <li class="pl3"><a href="#lubelskie">Lubelskie</a></li>
+  <li class="pl4"><a href="#lubuskie">Lubuskie</a></li>
+  <li class="pl5"><a href="#lodzkie">Łódzkie</a></li>
+  <li class="pl6"><a href="#malopolskie">Małopolskie</a></li>
+  <li class="pl7"><a href="#mazowieckie">Mazowieckie</a></li>
+  <li class="pl8"><a href="#opolskie">Opolskie</a></li>
+  <li class="pl9"><a href="#podkarpackie">Podkarpackie</a></li>
+  <li class="pl10"><a href="#podlaskie">Podlaskie</a></li>
+  <li class="pl11"><a href="#pomorskie">Pomorskie</a></li>
+  <li class="pl12"><a href="#slaskie">Śląskie</a></li>
+  <li class="pl13"><a href="#swietokrzyskie">Świętokrzyskie</a></li>
+  <li class="pl14"><a href="#warminsko-mazurskie">Warmińsko-mazurskie</a></li>
+  <li class="pl15"><a href="#wielkopolskie">Wielkopolskie</a></li>
+  <li class="pl16"><a href="#zachodniopomorskie">Zachodniopomorskie</a></li>
+ </ul>
+</div>

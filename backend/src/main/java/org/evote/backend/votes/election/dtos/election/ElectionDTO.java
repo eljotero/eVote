@@ -4,18 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElectionDTO {
-    private Long election_id;
+    private Integer election_id;
     private String election_name;
     private Date startDate;
     private Date endDate;
-    private String type; // ElectionType is converted to String
-    private Long candidate_id; // Assuming Candidate's id is of type Long
+    private SmallIntJdbcType type;
+    private UUID candidate_id;
+
 }
