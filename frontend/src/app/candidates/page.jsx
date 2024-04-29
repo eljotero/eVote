@@ -16,14 +16,16 @@ export default function Candidates() {
         const woj = urlParams.get('woj');
         setSelectedRegion(woj || '');
         const fetchCandidates = async () => {
-            try {
-                const responseSejm = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${1}&precinctId=${getDistrictNumber(selectedDistrict)}`);
-                const responseSenate = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${2}&precinctId=${getDistrictNumber2(selectedDistrict2)}`);
-                const candidatesWithShowPlanSejm = responseSejm.data.map(candidate => ({ ...candidate, showPlan: false }));
-                const candidatesWithShowPlanSenate = responseSenate.data.map(candidate => ({ ...candidate, showPlan: false }));
-                setCandidates([...candidatesWithShowPlanSejm, ...candidatesWithShowPlanSenate]);
-            } catch (error) {
-                console.error('Error fetching candidates:', error);
+            if (selectedDistrict && selectedDistrict2) {
+                try {
+                    const responseSejm = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${1}&precinctId=${getDistrictNumber(selectedDistrict)}`);
+                    const responseSenate = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${2}&precinctId=${getDistrictNumber2(selectedDistrict2)}`);
+                    const candidatesWithShowPlanSejm = responseSejm.data.map(candidate => ({ ...candidate, showPlan: false }));
+                    const candidatesWithShowPlanSenate = responseSenate.data.map(candidate => ({ ...candidate, showPlan: false }));
+                    setCandidates([...candidatesWithShowPlanSejm, ...candidatesWithShowPlanSenate]);
+                } catch (error) {
+                    console.error('Error fetching candidates:', error);
+                }
             }
         };
 
@@ -102,7 +104,6 @@ export default function Candidates() {
     const senateCandidates = candidates.filter(candidate => candidate.election_id === 2);
     const closestElectionNames = elections.map(election => election.election_name).join(', ');
 
-
     return (
         <div className="container mx-auto mt-10">
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
@@ -110,7 +111,13 @@ export default function Candidates() {
                 <h2 className="text-2xl">Region: {selectedRegion} </h2> {}
             </div>
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
-                <h1 className="text-1xl font-bold">Najbliższe wybory to: {closestElectionNames ? closestElectionNames : 'Brak nadchodzących wyborów'}</h1>
+                <h1 className="text-1xl font-bold">Najbliższe wybory: {closestElectionNames ? closestElectionNames : 'No upcoming elections'}</h1>
+            </div>
+            <h2 className="text-2xl font-bold mb-4">Kandydaci do sejmu</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {sejmCandidates.map(candidate => (
+                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
+                ))}
             </div>
             <div className="flex justify-center mb-4">
                 <select onChange={(e) => setSelectedDistrict(e.target.value)} className="form-select block w-full mt-1">
@@ -120,16 +127,10 @@ export default function Candidates() {
                     ))}
                 </select>
             </div>
-            <h2>Kandydaci do Sejmu</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {sejmCandidates.map(candidate => (
-                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
-                ))}
-            </div>
-            <h2>Kandydaci do Senatu</h2>
+            <h2 className="text-2xl font-bold mb-4">Kandydaci do senatu</h2>
             <div className="flex justify-center mb-4">
                 <select onChange={(e) => setSelectedDistrict2(e.target.value)} className="form-select block w-full mt-1">
-                    {selectedRegion && districtsByRegion2[selectedRegion] && districtsByRegion2[selectedRegion].map(district => (
+                    {selectedRegion && districtsByRegion2[selectedRegion].map(district => (
                         // eslint-disable-next-line react/jsx-key
                         <option value={district}>{district}</option>
                     ))}

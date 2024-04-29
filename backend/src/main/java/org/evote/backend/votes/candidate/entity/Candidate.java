@@ -52,4 +52,5 @@ public class Candidate {
     public int getPrecinct_id() {
         return precinct.getPrecinct_id();
     }
+
 }
