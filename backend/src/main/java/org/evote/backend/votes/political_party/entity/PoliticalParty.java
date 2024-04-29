@@ -27,4 +27,8 @@ public class PoliticalParty {
     public Long getId() {
         return political_party_id;
     }
+
+    public void setId(long l) {
+        this.political_party_id = l;
+    }
 }

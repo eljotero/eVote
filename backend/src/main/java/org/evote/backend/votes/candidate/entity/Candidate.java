@@ -53,4 +53,11 @@ public class Candidate {
         return precinct.getPrecinct_id();
     }
 
+    public void setElection_id(int i) {
+        election.setElection_id((long) i);
+    }
+
+    public void setPrecinct_id(int i) {
+        precinct.setPrecinct_id(i);
+    }
 }

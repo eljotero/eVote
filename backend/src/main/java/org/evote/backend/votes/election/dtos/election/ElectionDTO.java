@@ -21,4 +21,5 @@ public class ElectionDTO {
     private SmallIntJdbcType type;
     private UUID candidate_id;
 
+
 }

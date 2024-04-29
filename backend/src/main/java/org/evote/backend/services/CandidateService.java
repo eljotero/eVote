@@ -24,15 +24,7 @@ public class CandidateService {
                 .filter(candidate -> candidate.getElection_id() == electionId && candidate.getPrecinct_id() == precinctId)
                 .collect(Collectors.toList());
     }
-    private int getDistrictNumber(String districtLabel) {
-        String districtNumber = districtLabel.split(" ")[3];
-        return Integer.parseInt(districtNumber);
-    }
 
-    private int getDistrictNumber2(String districtLabel) {
-        String districtNumber = districtLabel.split(" ")[3];
-        return Integer.parseInt(districtNumber) + 41;
-    }
     public Candidate getCandidateById(UUID id) {
         return candidateRepository.findById(id)
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
