@@ -11,33 +11,33 @@
 <body id="demo-page-poland">
   <header class="page-header">
    <div class="wrapper">
-    <h1><span>Wybierz swój region!</span></h1>
+    <h1><span>Wybierz swój region i poznaj swoich kandydatów!</span></h1>
    </div>
   </header>
   <article class="page-content">
     <section id="section-demo">
      <hr />
       <div id="display-map" class="display-demo-map">
-<div id="map-poland">
- <ul class="poland">
-  <li class="pl1"><a href="/candidates">Dolnośląskie</a></li>
-  <li class="pl2"><a href="/candidates">Kujawsko-pomorskie</a></li>
-  <li class="pl3"><a href="/candidates">Lubelskie</a></li>
-  <li class="pl4"><a href="/candidates">Lubuskie</a></li>
-  <li class="pl5"><a href="/candidates">Łódzkie</a></li>
-  <li class="pl6"><a href="/candidates">Małopolskie</a></li>
-  <li class="pl7"><a href="/candidates">Mazowieckie</a></li>
-  <li class="pl8"><a href="/candidates">Opolskie</a></li>
-  <li class="pl9"><a href="/candidates">Podkarpackie</a></li>
-  <li class="pl10"><a href="/candidates">Podlaskie</a></li>
-  <li class="pl11"><a href="/candidates">Pomorskie</a></li>
-  <li class="pl12"><a href="/candidates">Śląskie</a></li>
-  <li class="pl13"><a href="/candidates">Świętokrzyskie</a></li>
-  <li class="pl14"><a href="/candidates">Warmińsko-mazurskie</a></li>
-  <li class="pl15"><a href="/candidates">Wielkopolskie</a></li>
-  <li class="pl16"><a href="/candidates">Zachodniopomorskie</a></li>
- </ul>
-</div>
+          <div id="map-poland">
+              <ul class="poland">
+                  <li class="pl1"><a href="/candidates?woj=Dolnośląskie">Dolnośląskie</a></li>
+                  <li class="pl2"><a href="/candidates?woj=Kujawsko-pomorskie">Kujawsko-pomorskie</a></li>
+                  <li class="pl3"><a href="/candidates?woj=Lubelskie">Lubelskie</a></li>
+                  <li class="pl4"><a href="/candidates?woj=Lubuskie">Lubuskie</a></li>
+                  <li class="pl5"><a href="/candidates?woj=Łódzkie">Łódzkie</a></li>
+                  <li class="pl6"><a href="/candidates?woj=Małopolskie">Małopolskie</a></li>
+                  <li class="pl7"><a href="/candidates?woj=Mazowieckie">Mazowieckie</a></li>
+                  <li class="pl8"><a href="/candidates?woj=Opolskie">Opolskie</a></li>
+                  <li class="pl9"><a href="/candidates?woj=Podkarpackie">Podkarpackie</a></li>
+                  <li class="pl10"><a href="/candidates?woj=Podlaskie">Podlaskie</a></li>
+                  <li class="pl11"><a href="/candidates?woj=Pomorskie">Pomorskie</a></li>
+                  <li class="pl12"><a href="/candidates?woj=Śląskie">Śląskie</a></li>
+                  <li class="pl13"><a href="/candidates?woj=Świętokrzyskie">Świętokrzyskie</a></li>
+                  <li class="pl14"><a href="/candidates?woj=Warmińsko-mazurskie">Warmińsko-mazurskie</a></li>
+                  <li class="pl15"><a href="/candidates?woj=Wielkopolskie">Wielkopolskie</a></li>
+                  <li class="pl16"><a href="/candidates?woj=Zachodniopomorskie">Zachodniopomorskie</a></li>
+              </ul>
+          </div>
         <div id="demo-form-fields" class="demo-form-fields">
         </div>
 <div id="demo-agents" class="demo-agents-list wrapper">
@@ -76,5 +76,17 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
 <script type="text/javascript" src="includes/script.js"></script>
+
+  <script>
+      function saveData(woj) {
+          console.log("Zapisuję do localStorage:", woj);
+          var storage = window.localStorage;
+          storage.setItem('wojewodztwo', woj);
+          var retrievedData = storage.getItem('wojewodztwo');
+          console.log("Pobrane z localStorage:", retrievedData);
+          alert('Dane zostały zapisane.');
+      }
+
+  </script>
 </body>
 </html>

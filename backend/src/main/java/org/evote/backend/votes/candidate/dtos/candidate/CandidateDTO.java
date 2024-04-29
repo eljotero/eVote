@@ -1,5 +1,6 @@
 package org.evote.backend.votes.candidate.dtos.candidate;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,8 @@ public class CandidateDTO {
     private Date birthDate;
     private String education;
     private String profession;
-    private UUID political_party_id;
-    private UUID precinct_id;
-    private UUID election_id;
+    private Long political_party_id;
+    private Integer precinct_id;
+    private Long election_id;
 
 }

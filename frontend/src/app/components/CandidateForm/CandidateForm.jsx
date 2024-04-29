@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from "next/image";
 
 export default function CandidateForm({ candidate, onVote }) {
-    const { candidate_id, name, surname, birthDate, education, profession, political_party ,image } = candidate;
+    const { candidate_id, name, surname, birthDate, education, profession, political_party ,image, precinct_id, election_id } = candidate;
     const [showPlan, setShowPlan] = useState(false);
 
 

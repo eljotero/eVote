@@ -3,14 +3,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import kandydat1 from './kandydat1.jpg';
 import CandidateForm from '../components/CandidateForm/CandidateForm';
-import { ReactComponent as Okregi } from './okregi.svg';
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
     const [elections, setElections] = useState([]);
     const [electionType, setElectionType] = useState('parliamentary');
+    const [selectedRegion, setSelectedRegion] = useState('');
+
 
     useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const woj = urlParams.get('woj');
+        setSelectedRegion(woj || '');
         const fetchCandidates = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/candidates/all');
@@ -32,6 +36,7 @@ export default function Candidates() {
 
         fetchCandidates();
         fetchElections();
+
     }, []);
 
     const addSampleCandidate = () => {
@@ -44,6 +49,8 @@ export default function Candidates() {
             profession: 'Software Engineer',
             political_party: 'Prawo i Sprawiedliwość',
             image: kandydat1,
+            precinct_id: 1,
+            election_id: 2,
             showPlan: false,
         };
         setCandidates(prevCandidates => [...prevCandidates, sampleCandidate]);
@@ -68,13 +75,15 @@ export default function Candidates() {
         const electionDate = new Date(election.startDate);
         return electionDate.getTime() === closestDate;
     });
-
+    const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1);
+    const senateCandidates = candidates.filter(candidate => candidate.election_id === 2);
     const closestElectionNames = closestElections.map(election => election.election_name).join(', ');
 
     return (
         <div className="container mx-auto mt-10">
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
                 <h1 className="text-4xl font-bold">Poznaj swoich kandydatów!</h1>
+                <h2 className="text-2xl">Region: {selectedRegion} </h2> {}
             </div>
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
                 <h1 className="text-1xl font-bold">Najbliższe wybory to: {closestElectionNames ? closestElectionNames : 'Brak nadchodzących wyborów'}</h1>
@@ -91,8 +100,15 @@ export default function Candidates() {
                     Add Sample Candidate
                 </button>
             </div>
+            <h2>Kandydaci do Sejmu</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {candidates.map(candidate => (
+                {sejmCandidates.map(candidate => (
+                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
+                ))}
+            </div>
+            <h2>Kandydaci do Senatu</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {senateCandidates.map(candidate => (
                     <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
                 ))}
             </div>

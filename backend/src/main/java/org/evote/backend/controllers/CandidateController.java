@@ -5,9 +5,12 @@ import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
 import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 

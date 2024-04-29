@@ -20,4 +20,7 @@ public class Precinct {
     @Enumerated(EnumType.ORDINAL)
     private ElectionType electionType;
 
+    public Integer getId() {
+        return precinct_id;
+    }
 }

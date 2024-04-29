@@ -8,5 +8,4 @@ function MapPage() {
         </div>
     );
 }
-
 export default MapPage;
