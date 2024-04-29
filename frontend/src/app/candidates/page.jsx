@@ -1,13 +1,11 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import kandydat1 from './kandydat1.jpg';
 import CandidateForm from '../components/CandidateForm/CandidateForm';
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
     const [elections, setElections] = useState([]);
-    const [electionType, setElectionType] = useState('parliamentary');
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedDistrict2, setSelectedDistrict2] = useState('');
@@ -19,9 +17,11 @@ export default function Candidates() {
         setSelectedRegion(woj || '');
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/candidates/all');
-                const candidatesWithShowPlan = response.data.map(candidate => ({ ...candidate, showPlan: false }));
-                setCandidates(candidatesWithShowPlan);
+                const responseSejm = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${1}&precinctId=${getDistrictNumber(selectedDistrict)}`);
+                const responseSenate = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${2}&precinctId=${getDistrictNumber2(selectedDistrict2)}`);
+                const candidatesWithShowPlanSejm = responseSejm.data.map(candidate => ({ ...candidate, showPlan: false }));
+                const candidatesWithShowPlanSenate = responseSenate.data.map(candidate => ({ ...candidate, showPlan: false }));
+                setCandidates([...candidatesWithShowPlanSejm, ...candidatesWithShowPlanSenate]);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
             }
@@ -29,7 +29,7 @@ export default function Candidates() {
 
         const fetchElections = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/elections/all');
+                const response = await axios.get('http://localhost:8080/api/elections/upcoming');
                 setElections(response.data);
             } catch (error) {
                 console.error('Error fetching elections:', error);
@@ -39,24 +39,8 @@ export default function Candidates() {
         fetchCandidates();
         fetchElections();
 
-    }, []);
+    }, [selectedDistrict, selectedDistrict2]);
 
-    const addSampleCandidate = () => {
-        const sampleCandidate = {
-            candidate_id: 1,
-            name: 'John',
-            surname: 'Doe',
-            birthDate: '2000-01-01',
-            education: "Bachelor's Degree",
-            profession: 'Software Engineer',
-            political_party: 'Prawo i Sprawiedliwość',
-            image: kandydat1,
-            precinct_id: 1,
-            election_id: 2,
-            showPlan: false,
-        };
-        setCandidates(prevCandidates => [...prevCandidates, sampleCandidate]);
-    };
 
     const handleShowPlan = (candidateId) => {
         const updatedCandidates = candidates.map(candidate =>
@@ -65,11 +49,6 @@ export default function Candidates() {
         setCandidates(updatedCandidates);
     };
 
-    const upcomingElections = elections.filter(election => {
-        const today = new Date();
-        const electionDate = new Date(election.startDate);
-        return electionDate >= today;
-    });
     const districtsByRegion = {
         'Dolnośląskie': ['Okręg wyborczy nr 1 - Legnica', 'Okręg wyborczy nr 2 - Wałbrzych', 'Okręg wyborczy nr 3 - Wrocław'],
         'Kujawsko-pomorskie': ['Okręg wyborczy nr 4 - Bydgoszcz', 'Okręg wyborczy nr 5 - Toruń'],
@@ -107,6 +86,7 @@ export default function Candidates() {
         'Zachodniopomorskie': ['Okręg wyborczy nr 97 - Szczecin', 'Okręg wyborczy nr 98 - Stargard', 'Okręg wyborczy nr 99 - Kołobrzeg', 'Okręg wyborczy nr 100 - Koszalin']
 
     }
+
     function getDistrictNumber(districtLabel) {
         const districtNumber = districtLabel.split(' ')[3];
         return parseInt(districtNumber);
@@ -118,15 +98,10 @@ export default function Candidates() {
         return districtNumber;
     }
 
-    const closestDate = Math.min(...upcomingElections.map(election => new Date(election.startDate)));
+    const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1);
+    const senateCandidates = candidates.filter(candidate => candidate.election_id === 2);
+    const closestElectionNames = elections.map(election => election.election_name).join(', ');
 
-    const closestElections = upcomingElections.filter(election => {
-        const electionDate = new Date(election.startDate);
-        return electionDate.getTime() === closestDate;
-    });
-    const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1 && candidate.precinct_id === getDistrictNumber(selectedDistrict));
-    const senateCandidates = candidates.filter(candidate => candidate.election_id === 2 && candidate.precinct_id === getDistrictNumber2(selectedDistrict2));
-    const closestElectionNames = closestElections.map(election => election.election_name).join(', ');
 
     return (
         <div className="container mx-auto mt-10">

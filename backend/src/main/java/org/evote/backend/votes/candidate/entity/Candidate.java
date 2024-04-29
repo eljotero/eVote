@@ -45,4 +45,11 @@ public class Candidate {
     @JoinColumn(name = "election_id")
     private Election election;
 
+    public int getElection_id() {
+        return Math.toIntExact(election.getElection_id());
+    }
+
+    public int getPrecinct_id() {
+        return precinct.getPrecinct_id();
+    }
 }

@@ -25,5 +25,11 @@ public class ElectionController {
         List<ElectionDTO> electionDTOs = elections.stream().map(ElectionMapper::toElectionDTO).collect(Collectors.toList());
         return ResponseEntity.ok(electionDTOs);
     }
+    @GetMapping("/upcoming")
+    public ResponseEntity<List<ElectionDTO>> getUpcomingElections() {
+        List<Election> elections = electionService.getUpcomingElections();
+        List<ElectionDTO> electionDTOs = elections.stream().map(ElectionMapper::toElectionDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(electionDTOs);
+    }
 
 }
