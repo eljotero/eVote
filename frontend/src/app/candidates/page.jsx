@@ -9,6 +9,7 @@ export default function Candidates() {
     const [elections, setElections] = useState([]);
     const [electionType, setElectionType] = useState('parliamentary');
     const [selectedRegion, setSelectedRegion] = useState('');
+    const [selectedDistrict, setSelectedDistrict] = useState('');
 
 
     useEffect(() => {
@@ -68,6 +69,28 @@ export default function Candidates() {
         const electionDate = new Date(election.startDate);
         return electionDate >= today;
     });
+    const districtsByRegion = {
+        'Dolnośląskie': ['Okręg wyborczy nr 1 - Legnica', 'Okręg wyborczy nr 2 - Wałbrzych', 'Okręg wyborczy nr 3 - Wrocław'],
+        'Kujawsko-Pomorskie': ['Okręg wyborczy nr 4 - Bydgoszcz', 'Okręg wyborczy nr 5 - Toruń'],
+        'Lubelskie': ['Okręg wyborczy nr 6 - Lublin', 'Okręg wyborczy nr 7 - Chełm'],
+        'Lubuskie': ['Okręg wyborczy nr 8 - Zielona Góra'],
+        'Łódzkie': ['Okręg wyborczy nr 9 - Łódź', 'Okręg wyborczy nr 10 - Piotrków Trybunalskich', 'Okręg wyborczy nr 11 - Sieradz'],
+        'Małopolskie': ['Okręg wyborczy nr 12 - Chrzanów', 'Okręg wyborczy nr 13 - Kraków', 'Okręg wyborczy nr 14 - Nowy Sącz', 'Okręg wyborczy nr 15 - Tarnów'],
+        'Mazowieckie': ['Okręg wyborczy nr 16 - Płock', 'Okręg wyborczy nr 17 - Radom', 'Okręg wyborczy nr 18 - Siedlice', 'Okręg wyborczy nr 19 - Warszawa I', 'Okręg wyborczy nr 20 - Warszawa II'],
+        'Opolskie': ['Okręg wyborczy nr 21 - Opole'],
+        'Podkarpackie': ['Okręg wyborczy nr 22 - Krosno', 'Okręg wyborczy nr 23 - Rzeszów'],
+        'Podlaskie': ['Okręg wyborczy nr 24 - Białystok'],
+        'Pomorskie': ['Okręg wyborczy nr 25 - Gdańsk', 'Okręg wyborczy nr 26 - Słupsk'],
+        'Śląskie': ['Okręg wyborczy nr 27 - Bielsko-Biała', 'Okręg wyborczy nr 28 - Częstochowa', 'Okręg wyborczy nr 29 - Katowice', 'Okręg wyborczy nr 30 - Bielsko-Biała', 'Okręg wyborczy nr 31 - Katowice I', 'Okręg wyborczy nr 32 - Katowice II'],
+        'Świętokrzyskie': ['Okręg wyborczy nr 33 - Kielce'],
+        'Warmińsko-Mazurskie': ['Okręg wyborczy nr 34 - Elbląg', 'Okręg wyborczy nr 35 - Olsztyn'],
+        'Wielkopolskie': ['Okręg wyborczy nr 36 - Kalisz', 'Okręg wyborczy nr 37 - Konin', 'Okręg wyborczy nr 38 - Piła', 'Okręg wyborczy nr 39 - Poznań'],
+        'Zachodniopomorskie': ['Okręg wyborczy nr 40 - Koszalin', 'Okręg wyborczy nr 41 - Szczecin'],
+    };
+    function getDistrictNumber(districtLabel) {
+        const districtNumber = districtLabel.split(' ')[3];
+        return parseInt(districtNumber);
+    }
 
     const closestDate = Math.min(...upcomingElections.map(election => new Date(election.startDate)));
 
@@ -75,8 +98,8 @@ export default function Candidates() {
         const electionDate = new Date(election.startDate);
         return electionDate.getTime() === closestDate;
     });
-    const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1);
-    const senateCandidates = candidates.filter(candidate => candidate.election_id === 2);
+    const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1 && candidate.precinct_id === getDistrictNumber(selectedDistrict));
+    const senateCandidates = candidates.filter(candidate => candidate.election_id === 2 && candidate.precinct_id === getDistrictNumber(selectedDistrict));
     const closestElectionNames = closestElections.map(election => election.election_name).join(', ');
 
     return (
@@ -93,6 +116,14 @@ export default function Candidates() {
                     <option value="parliamentary">Parliamentary Elections</option>
                     <option value="presidential">Presidential Elections</option>
                     <option value="local">Local Elections</option>
+                </select>
+            </div>
+            <div className="flex justify-center mb-4">
+                <select onChange={(e) => setSelectedDistrict(e.target.value)} className="form-select block w-full mt-1">
+                    {selectedRegion && districtsByRegion[selectedRegion].map(district => (
+                        // eslint-disable-next-line react/jsx-key
+                        <option value={district}>{district}</option>
+                    ))}
                 </select>
             </div>
             <div className="flex justify-center mb-4">
