@@ -28,13 +28,21 @@ describe('CandidateForm', () => {
     });
 
     it('shows political plan when button is clicked', async () => {
-        const { getByText } = render(<CandidateForm candidate={mockCandidate} />);
+        const mockCandidateWithPlan = {
+            ...mockCandidate,
+            info: 'Political Plan',
+        };
+        const { getByText } = render(<CandidateForm candidate={mockCandidateWithPlan} />);
         fireEvent.click(getByText('Pokaz plan polityczny'));
         await waitFor(() => expect(getByText('Political Plan')).toBeInTheDocument());
     });
 
     it('hides political plan when close button is clicked', async () => {
-        const { getByText, queryByText } = render(<CandidateForm candidate={mockCandidate} />);
+        const mockCandidateWithPlan = {
+            ...mockCandidate,
+            info: 'Political Plan',
+        };
+        const { getByText, queryByText } = render(<CandidateForm candidate={mockCandidateWithPlan} />);
         fireEvent.click(getByText('Pokaz plan polityczny'));
         await waitFor(() => expect(getByText('Political Plan')).toBeInTheDocument());
         fireEvent.click(getByText('Zamknij'));
