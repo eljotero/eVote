@@ -11,6 +11,7 @@ public class CandidateMapper {
         candidateDTO.setBirthDate(candidate.getBirthDate());
         candidateDTO.setEducation(candidate.getEducation());
         candidateDTO.setProfession(candidate.getProfession());
+
         if (candidate.getPrecinct() != null) {
             candidateDTO.setPrecinct_id(candidate.getPrecinct().getPrecinct_id());
         }
@@ -20,6 +21,8 @@ public class CandidateMapper {
         if (candidate.getPoliticalParty() != null) {
             candidateDTO.setPolitical_party_id(candidate.getPoliticalParty().getId());
         }
+        candidateDTO.setInfo(candidate.getInfo());
+        candidateDTO.setImage(candidate.getImage());
         return candidateDTO;
     }
 }

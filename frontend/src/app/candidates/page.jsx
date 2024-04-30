@@ -103,7 +103,6 @@ export default function Candidates() {
     const sejmCandidates = candidates.filter(candidate => candidate.election_id === 1);
     const senateCandidates = candidates.filter(candidate => candidate.election_id === 2);
     const closestElectionNames = elections.map(election => election.election_name).join(', ');
-
     return (
         <div className="container mx-auto mt-10">
             <div className="bg-blue-500 text-white text-center py-4 mb-8">
@@ -114,11 +113,6 @@ export default function Candidates() {
                 <h1 className="text-1xl font-bold">Najbliższe wybory: {closestElectionNames ? closestElectionNames : 'No upcoming elections'}</h1>
             </div>
             <h2 className="text-2xl font-bold mb-4">Kandydaci do sejmu</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {sejmCandidates.map(candidate => (
-                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
-                ))}
-            </div>
             <div className="flex justify-center mb-4">
                 <select onChange={(e) => setSelectedDistrict(e.target.value)} className="form-select block w-full mt-1">
                     {selectedRegion && districtsByRegion[selectedRegion] && districtsByRegion[selectedRegion].map(district => (
@@ -126,6 +120,11 @@ export default function Candidates() {
                         <option value={district}>{district}</option>
                     ))}
                 </select>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {sejmCandidates.map(candidate => (
+                    <CandidateForm key={candidate.candidate_id} candidate={candidate} onVote={handleShowPlan} />
+                ))}
             </div>
             <h2 className="text-2xl font-bold mb-4">Kandydaci do senatu</h2>
             <div className="flex justify-center mb-4">

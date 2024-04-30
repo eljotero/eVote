@@ -9,6 +9,7 @@ import lombok.Data;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.precinct.entity.Precinct;
+import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.UUID;
@@ -31,6 +32,8 @@ public class Candidate {
     private String education;
 
     private String profession;
+    private String info;
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "political_party_id")
