@@ -374,7 +374,7 @@ public class CandidateEntityTests {
     public void testCandidateEntityToString() {
         Candidate candidate = new Candidate();
 
-        String expectedToString = "Candidate(candidate_id=null, name=null, surname=null, birthDate=null, education=null, profession=null, politicalParty=null, precinct=null, election=null)";
+        String expectedToString = "Candidate(candidate_id=null, name=null, surname=null, birthDate=null, education=null, profession=null, info=null, image=null, politicalParty=null, precinct=null, election=null)";
 
         assertNotNull(candidate);
         assertEquals(expectedToString, candidate.toString());
