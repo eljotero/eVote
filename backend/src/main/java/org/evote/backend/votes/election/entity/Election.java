@@ -27,4 +27,8 @@ public class Election {
     @ManyToOne
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
+
+    public Long getId() {
+        return election_id;
+    }
 }

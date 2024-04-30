@@ -1,0 +1,92 @@
+<!doctype html>
+ <html class="nie" lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="includes/style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="cssmap-poland/cssmap-poland.css" media="screen" />
+  <title>eVote</title>
+</head>
+<body id="demo-page-poland">
+  <header class="page-header">
+   <div class="wrapper">
+    <h1><span>Wybierz swój region i poznaj swoich kandydatów!</span></h1>
+   </div>
+  </header>
+  <article class="page-content">
+    <section id="section-demo">
+     <hr />
+      <div id="display-map" class="display-demo-map">
+          <div id="map-poland">
+              <ul class="poland">
+                  <li class="pl1"><a href="/candidates?woj=Dolnośląskie">Dolnośląskie</a></li>
+                  <li class="pl2"><a href="/candidates?woj=Kujawsko-pomorskie">Kujawsko-pomorskie</a></li>
+                  <li class="pl3"><a href="/candidates?woj=Lubelskie">Lubelskie</a></li>
+                  <li class="pl4"><a href="/candidates?woj=Lubuskie">Lubuskie</a></li>
+                  <li class="pl5"><a href="/candidates?woj=Łódzkie">Łódzkie</a></li>
+                  <li class="pl6"><a href="/candidates?woj=Małopolskie">Małopolskie</a></li>
+                  <li class="pl7"><a href="/candidates?woj=Mazowieckie">Mazowieckie</a></li>
+                  <li class="pl8"><a href="/candidates?woj=Opolskie">Opolskie</a></li>
+                  <li class="pl9"><a href="/candidates?woj=Podkarpackie">Podkarpackie</a></li>
+                  <li class="pl10"><a href="/candidates?woj=Podlaskie">Podlaskie</a></li>
+                  <li class="pl11"><a href="/candidates?woj=Pomorskie">Pomorskie</a></li>
+                  <li class="pl12"><a href="/candidates?woj=Śląskie">Śląskie</a></li>
+                  <li class="pl13"><a href="/candidates?woj=Świętokrzyskie">Świętokrzyskie</a></li>
+                  <li class="pl14"><a href="/candidates?woj=Warmińsko-mazurskie">Warmińsko-mazurskie</a></li>
+                  <li class="pl15"><a href="/candidates?woj=Wielkopolskie">Wielkopolskie</a></li>
+                  <li class="pl16"><a href="/candidates?woj=Zachodniopomorskie">Zachodniopomorskie</a></li>
+              </ul>
+          </div>
+        <div id="demo-form-fields" class="demo-form-fields">
+        </div>
+<div id="demo-agents" class="demo-agents-list wrapper">
+</div>
+<div id="demo-markers">
+</div>
+      </div>
+     <div class="wrapper">
+      <div id="map-settings" class="map-settings fixed-container">
+        <form id="map-settings-form" name="map-settings-form" action="#" method="post" novalidate>
+          <fieldset id="options-basic">
+            <ul>
+              <li class="inline-label">
+                <div class="select-field">
+                 <select id="map-set-size" name="map-set-size">
+<option value="960" selected></option>
+                 </select>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+        </form>
+      </div>
+     </div>
+        <style>
+            #map-settings {
+                display: none;
+            }
+        </style>
+    </section>
+  </article>
+  <footer class="page-footer">
+   <div class="wrapper">
+   </div>
+  </footer>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
+<script type="text/javascript" src="includes/script.js"></script>
+
+  <script>
+      function saveData(woj) {
+          console.log("Zapisuję do localStorage:", woj);
+          var storage = window.localStorage;
+          storage.setItem('wojewodztwo', woj);
+          var retrievedData = storage.getItem('wojewodztwo');
+          console.log("Pobrane z localStorage:", retrievedData);
+          alert('Dane zostały zapisane.');
+      }
+
+  </script>
+</body>
+</html>
