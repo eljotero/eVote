@@ -10,7 +10,6 @@ import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -37,6 +36,7 @@ public class AccountControllerTests {
     @InjectMocks
     private AccountController accountController;
     private Account account;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
@@ -103,7 +103,6 @@ public class AccountControllerTests {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
     }
-
 
 
 }

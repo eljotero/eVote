@@ -1,9 +1,13 @@
 package org.evote.backend.services;
 
 import org.evote.backend.config.JwtService;
+import org.evote.backend.dtos.user.AuthenticationResponseDTO;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
+import org.evote.backend.users.account.exceptions.PasswordTooShortException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,18 +28,25 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public AuthenticationResponse register(Account account) {
+    public String register(Account account) throws AccountAlreadyExistsException {
+        if (account.getPassword().length() < 8) {
+            throw new PasswordTooShortException("Password must be at least 8 characters long");
+        }
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        accountRepository.save(account);
-        return new AuthenticationResponse(jwtService.generateToken(account));
+        try {
+            accountRepository.save(account);
+        } catch (DataAccessException e) {
+            throw new AccountAlreadyExistsException("Account already exists");
+        }
+        return "Account created successfully";
     }
 
-    public AuthenticationResponse login(Account account) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
+    public AuthenticationResponseDTO login(Account account) {
         Account dbAccount = accountRepository.findByEmail(account.getUsername());
         if (dbAccount == null) {
             throw new AccountNotFoundException("Account not found");
         }
-        return new AuthenticationResponse(jwtService.generateToken(dbAccount));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
+        return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount));
     }
 }
