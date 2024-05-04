@@ -4,7 +4,7 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountAuthenticationException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
-import org.evote.backend.users.account.repositry.AccountRepository;
+import org.evote.backend.users.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

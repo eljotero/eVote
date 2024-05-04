@@ -242,7 +242,7 @@ public class AccountEntityTests {
     @Test
     public void testAccountEntityToString() {
         Account account = new Account();
-        String expected = "Account(account_id=null, email=null, password=null, role=null, hasVoted=null, isAccountActive=null, user=null)";
+        String expected = "Account(account_id=null, email=null, password=null, role=USER, hasVoted=false, isAccountActive=null, user=null)";
         assertEquals(expected, account.toString());
     }
 

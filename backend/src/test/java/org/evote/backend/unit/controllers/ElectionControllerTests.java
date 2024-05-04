@@ -1,8 +1,6 @@
 package org.evote.backend.unit.controllers;
 
-import org.evote.backend.controllers.ElectionController;
 import org.evote.backend.services.ElectionService;
-import org.evote.backend.votes.election.dtos.election.ElectionDTO;
 import org.evote.backend.votes.election.entity.Election;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +16,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
