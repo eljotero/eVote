@@ -1,4 +1,4 @@
-package org.evote.backend.users.account.repositry;
+package org.evote.backend.users.account.repository;
 
 import org.evote.backend.users.account.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
