@@ -70,8 +70,8 @@ export default function RegisterForm() {
           </label>
           <input
             type='text'
-            id='username'
-            name='username'
+            id='email'
+            name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'
@@ -125,7 +125,7 @@ export default function RegisterForm() {
             className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
           >
             {' '}
-            Zarejestruj się
+            Register
           </button>
         </div>
       </form>

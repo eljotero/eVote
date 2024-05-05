@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import axios from '../../../../lib/axios';
 
 export default function CandidateForm({ candidate, onVote }) {
   const {
@@ -20,14 +19,16 @@ export default function CandidateForm({ candidate, onVote }) {
   const [politicalPartyName, setPoliticalPartyName] = useState('');
 
   useEffect(() => {
-    axios.get('political_parties/all').then((response) => {
-      const politicalParty = response.data.find(
-        (party) => party.political_party_id === political_party_id
-      );
-      if (politicalParty) {
-        setPoliticalPartyName(politicalParty.name);
-      }
-    });
+    fetch('http://localhost:8080/api/political_parties/all')
+      .then((response) => response.json())
+      .then((data) => {
+        const politicalParty = data.find(
+          (party) => party.political_party_id === political_party_id
+        );
+        if (politicalParty) {
+          setPoliticalPartyName(politicalParty.name);
+        }
+      });
   }, [political_party_id]);
 
   const handleShowPlan = () => {
