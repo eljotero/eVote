@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/elections")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ElectionController {
 
     @Autowired
