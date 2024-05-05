@@ -1,5 +1,4 @@
 import { checkEmail } from '@/app/services/emailService';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from '../../../../lib/axios';
@@ -9,7 +8,6 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +26,6 @@ export default function LoginForm() {
       });
       if (response.status === 200) {
         dispatch(setToken(response.data.token));
-        router.push('/map');
         return;
       } else {
         alert('Błąd logowania. Spróbuj ponownie.');
@@ -93,7 +90,7 @@ export default function LoginForm() {
             aria-label='Submit Login Form'
             className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
           >
-            Zaloguj się
+            Login
           </button>
         </div>
       </form>
