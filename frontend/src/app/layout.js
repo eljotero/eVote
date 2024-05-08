@@ -1,24 +1,24 @@
-import { Inter } from 'next/font/google';
+import {Inter} from 'next/font/google';
+import {Toaster} from "react-hot-toast";
 import './globals.css';
-import Navbar from '@/app/components/Navbar/Navbar';
 import StoreProvider from '../store/StoreProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({subsets: ['latin']});
 
 export const metadata = {
-  title: 'eVote',
-  description: 'A simple voting app',
+    title: 'eVote',
+    description: 'Aplikacja do głosowania w wyborach online',
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <StoreProvider>
-      <html lang='en'>
-        <body className={inter.className}>
-          <Navbar />
-          {children}
-        </body>
-      </html>
-    </StoreProvider>
-  );
+export default function RootLayout({children}) {
+    return (
+        <StoreProvider>
+            <html lang='pl'>
+            <body className={inter.className}>
+            <Toaster position="top-center"/>
+            <main>{children}</main>
+            </body>
+            </html>
+        </StoreProvider>
+    );
 }
