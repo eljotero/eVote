@@ -1,24 +1,14 @@
 'use client'
-
 import React, {useState} from 'react';
 import Link from 'next/link';
-import {usePathname} from "next/navigation";
 import Image from 'next/image';
 
 export default function Navbar() {
-    const paths = ['/'];
-    const currentPath = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-    // a simple solution to display navbar only on specific pages - will work for now
-    // if (!paths.includes(currentPath)) {
-    //     return null;
-    // }
-
 
     return (
         <>
@@ -44,7 +34,7 @@ export default function Navbar() {
                     </button>
                 </div>
                 <ul className={`hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6 ${isMenuOpen ? '' : 'hidden'}`}>
-                    <li><Link className="text-sm text-blue-600 font-bold hover:text-gray-500" href="#"
+                    <li><Link className="text-sm font-semibold text-gray-400 hover:text-blue-600" href="/"
                               aria-label="Strona główna">Strona główna</Link></li>
                     <li className="text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -53,7 +43,7 @@ export default function Navbar() {
                                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
                     </li>
-                    <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="#"
+                    <li><Link className="text-sm font-semibold text-gray-400 hover:text-blue-600" href="#"
                               aria-label="Jak zagłosować">Jak zagłosować</Link></li>
                     <li className="text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -62,7 +52,7 @@ export default function Navbar() {
                                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
                     </li>
-                    <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="/map"
+                    <li><Link className="text-sm font-semibold text-gray-400 hover:text-blue-600" href="/map"
                               aria-label="Kandydaci">Kandydaci</Link></li>
                     <li className="text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -71,7 +61,7 @@ export default function Navbar() {
                                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
                     </li>
-                    <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="#"
+                    <li><Link className="text-sm font-semibold text-gray-400 hover:text-blue-600" href="#"
                               aria-label="Link">Link</Link></li>
                     <li className="text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -80,7 +70,7 @@ export default function Navbar() {
                                   d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
                     </li>
-                    <li><Link className="text-sm text-gray-400 hover:text-gray-500" href="#"
+                    <li><Link className="text-sm font-semibold text-gray-400 hover:text-blue-600" href="#"
                               aria-label="Kontakt">Kontakt</Link></li>
                 </ul>
                 <Link
@@ -116,7 +106,7 @@ export default function Navbar() {
                             <li className="mb-1">
                                 <Link
                                     className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                                    href="#" aria-label="Strona główna">Strona główna</Link>
+                                    href="/" aria-label="Strona główna">Strona główna</Link>
                             </li>
                             <li className="mb-1">
                                 <Link

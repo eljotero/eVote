@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import LoginForm from '../components/LoginForm/LoginForm';
-import RegisterForm from '../components/RegisterForm/RegisterForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import Image from 'next/image';
 import './page.css';
 
