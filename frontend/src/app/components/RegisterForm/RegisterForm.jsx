@@ -39,7 +39,7 @@ export default function RegisterForm() {
         password,
       });
       if (response.status === 200) {
-        toast.error('Konto zostało utworzone. Zaloguj się.');
+        toast.success('Konto zostało utworzone. Zaloguj się.');
         return;
       }
     } catch (error) {
@@ -119,7 +119,7 @@ export default function RegisterForm() {
             className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
           >
             {' '}
-            Zarejestruj się
+            Zarejestruj
           </button>
         </div>
       </form>

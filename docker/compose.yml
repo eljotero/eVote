@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     ports:
-      - 5433:5432
+      - 5432:5432
     volumes:
       - pg1:/var/lib/postgresql/data
   eVoteProjectVotes:

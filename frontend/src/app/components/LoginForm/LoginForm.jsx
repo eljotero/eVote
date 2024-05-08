@@ -87,7 +87,7 @@ export default function LoginForm() {
                         aria-label='Wyślij formularz logowania'
                         className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
                     >
-                        Zaloguj się
+                        Zaloguj
                     </button>
                 </div>
             </form>

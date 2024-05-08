@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../../../lib/axios';
 import CandidateForm from '../../components/CandidateForm/CandidateForm';
+import Dropdown from "@/app/components/Dropdown/Dropdown";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
@@ -285,18 +286,19 @@ export default function Candidates() {
     const closestElectionNames = elections
         .map((election) => election.election_name)
         .join(', ');
+
     return (
         <div className='container mx-auto mt-10'>
-            <div className='bg-blue-500 text-white text-center py-4 mb-8'>
+            <div className='bg-blue-500 rounded-md text-white text-center py-4 mb-8'>
                 <h1 className='text-4xl font-bold'>Poznaj swoich kandydatów!</h1>
                 <h2 className='text-2xl'>Region: {selectedRegion} </h2> {}
             </div>
-            <div className='bg-blue-500 text-white text-center py-4 mb-8'>
+            <div className='bg-blue-500 rounded-md text-white text-center py-4 mb-8'>
                 <h1 className='text-1xl font-bold'>
                     Najbliższe wybory:{' '}
                     {closestElectionNames
                         ? closestElectionNames
-                        : 'No upcoming elections'}
+                        : 'Brak najbliższych wyborów'}
                 </h1>
             </div>
             <h2 className='text-2xl font-bold mb-4'>Kandydaci do sejmu</h2>
