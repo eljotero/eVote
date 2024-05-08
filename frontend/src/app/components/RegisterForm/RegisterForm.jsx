@@ -1,5 +1,6 @@
 import { checkEmail } from '@/app/services/emailService';
 import { useState } from 'react';
+import {toast} from 'react-hot-toast';
 import axios from '../../../../lib/axios';
 
 export default function RegisterForm() {
@@ -10,27 +11,26 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-      username === '' ||
       email === '' ||
       password === '' ||
       confirmPassword === ''
     ) {
-      alert(
-        'Nie można zarejestrować. Wymagane jest podanie adresu email i hasła'
+      toast.error(
+        'Nie można zarejestrować konta. Wymagane jest podanie adresu email i hasła.'
       );
       return;
     }
     if (password !== confirmPassword) {
-      alert('Nie można zarejestrować. Hasła nie pasują do siebie.');
+      toast.error('Nie można zarejestrować konta. Hasła nie pasują do siebie.');
       return;
     }
     if (password.length < 8) {
-      alert('Nie można zarejestrować. Hasło musi mieć co najmniej 8 znaków.');
+      toast.error('Nie można zarejestrować konta. Hasło musi mieć co najmniej 8 znaków.');
       return;
     }
     const isEmailValid = await checkEmail(email);
     if (!isEmailValid) {
-      alert('Nie można zarejestrować. Nieprawidłowy adres email.');
+      toast.error('Nie można zarejestrować konta. Nieprawidłowy adres email.');
       return;
     }
     try {
@@ -39,11 +39,11 @@ export default function RegisterForm() {
         password,
       });
       if (response.status === 200) {
-        alert('Konto zostało utworzone. Zaloguj się.');
+        toast.error('Konto zostało utworzone. Zaloguj się.');
         return;
       }
     } catch (error) {
-      alert('Konto z takim adresem email już istnieje. Zaloguj się.');
+      toast.error('Konto z takim adresem email już istnieje. Zaloguj się.');
     }
   };
 
@@ -75,9 +75,7 @@ export default function RegisterForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'
-            aria-required='true'
             autoComplete='username'
-            required
           />
         </div>
         <div>
@@ -94,9 +92,7 @@ export default function RegisterForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'
-            aria-required='true'
             autoComplete='email'
-            required
           />
         </div>
         <div>
@@ -113,19 +109,17 @@ export default function RegisterForm() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'
-            aria-required='true'
             autoComplete='new-password'
-            required
           />
         </div>
         <div>
           <button
             type='submit'
-            aria-label='Submit Register Form'
+            aria-label='Wyślij formularz rejestracji'
             className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
           >
             {' '}
-            Register
+            Zarejestruj się
           </button>
         </div>
       </form>
