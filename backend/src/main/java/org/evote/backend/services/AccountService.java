@@ -38,14 +38,4 @@ public class AccountService {
         accountRepository.save(account);
     }
 
-    public Account authenticate(String email, String password) {
-        Account account = accountRepository.findByEmail(email);
-        if (account == null) {
-            throw new AccountAuthenticationException("Account with email " + email + " not found");
-        }
-        if (!account.getPassword().equals(password)) {
-            throw new AccountAuthenticationException("Invalid password");
-        }
-        return account;
-    }
 }

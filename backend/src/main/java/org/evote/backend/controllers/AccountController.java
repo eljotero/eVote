@@ -25,12 +25,6 @@ public class AccountController {
         return ResponseEntity.ok(accountDTOs);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<AccountDTO> addAccount(@RequestBody AccountCreateDTO accountCreateDTO) {
-        Account account = accountService.addAccount(AccountMapper.toAccount(accountCreateDTO));
-        return new ResponseEntity<>(AccountMapper.toAccountDTO(account), HttpStatus.CREATED);
-    }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> setAccountToInactive(@PathVariable Integer id) {
         accountService.setAccountToInactive(id);
@@ -41,13 +35,6 @@ public class AccountController {
     public ResponseEntity<AccountDTO> getAccountById(@PathVariable Integer id) {
         Account account = accountService.getAccountById(id);
         return ResponseEntity.ok(AccountMapper.toAccountDTO(account));
-    }
-
-    // Return only JWT token
-    @PostMapping("/login")
-    public ResponseEntity<AccountLoginResponseDTO> login(@RequestBody AccountLoginDTO accountLoginDTO) {
-        Account account = accountService.authenticate(accountLoginDTO.getEmail(), accountLoginDTO.getPassword());
-        return ResponseEntity.ok(AccountMapper.toAccountLoginResponseDTO(account));
     }
 
 }

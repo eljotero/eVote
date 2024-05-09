@@ -2,10 +2,7 @@ package org.evote.backend.unit.controllers;
 
 
 import org.evote.backend.controllers.AccountController;
-import org.evote.backend.dtos.user.AccountCreateDTO;
 import org.evote.backend.dtos.user.AccountDTO;
-import org.evote.backend.dtos.user.AccountLoginDTO;
-import org.evote.backend.dtos.user.AccountLoginResponseDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -56,19 +52,6 @@ public class AccountControllerTests {
         assertEquals(accounts.size(), responseEntity.getBody().size());
     }
 
-    @Test
-    public void testAddAccount() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password");
-
-        when(accountService.addAccount(any(Account.class))).thenReturn(account);
-
-        ResponseEntity<AccountDTO> responseEntity = accountController.addAccount(accountCreateDTO);
-
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
 
     @Test
     public void testSetAccountToInactiveAccountById() {
@@ -90,19 +73,5 @@ public class AccountControllerTests {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
     }
-
-    @Test
-    public void testLoginUser() {
-        AccountLoginDTO AccountLoginDTO = new AccountLoginDTO();
-        AccountLoginDTO.setEmail("test@test.com");
-        AccountLoginDTO.setPassword("password");
-
-        when(accountService.authenticate(AccountLoginDTO.getEmail(), AccountLoginDTO.getPassword())).thenReturn(account);
-
-        ResponseEntity<AccountLoginResponseDTO> responseEntity = accountController.login(AccountLoginDTO);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
-
 
 }
