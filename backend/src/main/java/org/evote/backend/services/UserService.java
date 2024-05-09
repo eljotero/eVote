@@ -1,6 +1,5 @@
 package org.evote.backend.services;
 
-import jakarta.transaction.Transactional;
 import org.evote.backend.dtos.user.UserUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -12,11 +11,12 @@ import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
-public class UsersService {
+public class UserService {
 
     private final UserRepository usersRepository;
 
@@ -24,7 +24,7 @@ public class UsersService {
 
     private final AccountRepository accountRepository;
 
-    public UsersService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository) {
+    public UserService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.accountRepository = accountRepository;
@@ -41,8 +41,25 @@ public class UsersService {
         if (userToUpdate == null) {
             throw new UserNotFoundException("User not found");
         }
+        Optional.ofNullable(userUpdateDTO.getName()).ifPresent(userToUpdate::setName);
+        Optional.ofNullable(userUpdateDTO.getSurname()).ifPresent(userToUpdate::setSurname);
+        Optional.ofNullable(userUpdateDTO.getPersonalIdNumber())
+                .map(Object::toString)
+                .map(passwordEncoder::encode)
+                .ifPresent(userToUpdate::setPersonalIdNumber);
+        Optional.ofNullable(userUpdateDTO.getSex()).ifPresent(userToUpdate::setSex);
+        Optional.ofNullable(userUpdateDTO.getBirthDate()).ifPresent(userToUpdate::setBirthDate);
+        Optional.ofNullable(userUpdateDTO.getEducation())
+                .map(String::toUpperCase)
+                .map(Education::valueOf)
+                .ifPresent(userToUpdate::setEducation);
+        Optional.ofNullable(userUpdateDTO.getCityType())
+                .map(String::toUpperCase)
+                .map(CityType::valueOf)
+                .ifPresent(userToUpdate::setCityType);
+        Optional.ofNullable(userUpdateDTO.getProfession()).ifPresent(userToUpdate::setProfession);
         try {
-            this.updateUser2(userToUpdate, userUpdateDTO);
+            usersRepository.save(userToUpdate);
         } catch (Exception e) {
             throw new RuntimeException("Error while updating user");
         }
@@ -51,32 +68,6 @@ public class UsersService {
         } catch (Exception e) {
             throw new AccountNotFoundException("Account with id " + id + " not found");
         }
-        return "Account updated successfully";
-    }
-
-    @Transactional
-    public void updateUser2(User user, UserUpdateDTO userUpdateDTO) {
-        Optional.ofNullable(userUpdateDTO.getName()).ifPresent(user::setName);
-        Optional.ofNullable(userUpdateDTO.getSurname()).ifPresent(user::setSurname);
-        Optional.ofNullable(userUpdateDTO.getPersonalIdNumber())
-                .map(Object::toString)
-                .map(passwordEncoder::encode)
-                .ifPresent(user::setPersonalIdNumber);
-        Optional.ofNullable(userUpdateDTO.getSex()).ifPresent(user::setSex);
-        Optional.ofNullable(userUpdateDTO.getBirthDate()).ifPresent(user::setBirthDate);
-        Optional.ofNullable(userUpdateDTO.getEducation())
-                .map(String::toUpperCase)
-                .map(Education::valueOf)
-                .ifPresent(user::setEducation);
-        Optional.ofNullable(userUpdateDTO.getCityType())
-                .map(String::toUpperCase)
-                .map(CityType::valueOf)
-                .ifPresent(user::setCityType);
-        Optional.ofNullable(userUpdateDTO.getProfession()).ifPresent(user::setProfession);
-        try {
-            usersRepository.save(user);
-        } catch (Exception e) {
-            throw new RuntimeException("Error while updating user");
-        }
+        return "User updated successfully";
     }
 }

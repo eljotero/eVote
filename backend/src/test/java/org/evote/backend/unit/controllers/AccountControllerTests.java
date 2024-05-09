@@ -3,8 +3,11 @@ package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.AccountController;
 import org.evote.backend.dtos.user.AccountDTO;
+import org.evote.backend.dtos.user.AccountMapper;
+import org.evote.backend.dtos.user.AccountUserDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.user.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -39,6 +42,10 @@ public class AccountControllerTests {
         account = new Account();
         account.setEmail("test@test.com");
         account.setPassword("password");
+        User user = new User();
+        user.setName("John");
+        user.setSurname("Doe");
+        account.setUser(user);
     }
 
     @Test
@@ -63,15 +70,20 @@ public class AccountControllerTests {
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
     }
 
-//    @Test
-//    public void testGetAccountById() {
-//        Integer accountId = 1;
-//
-//        when(accountService.getAccountById(accountId)).thenReturn(account);
-//
-//        ResponseEntity<AccountDTO> responseEntity = accountController.getAccountById(accountId);
-//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-//    }
+    @Test
+    public void testGetAccountById() {
+        Integer accountId = 1;
+
+        when(accountService.getAccountById(accountId)).thenReturn(account);
+        AccountUserDTO expectedAccountUserDTO = AccountMapper.toAccountUserDTO(account);
+        assertEquals(expectedAccountUserDTO.getUser_id(), accountController.getAccountById(accountId).getBody().getUser_id());
+        assertEquals(expectedAccountUserDTO.getEmail(), accountController.getAccountById(accountId).getBody().getEmail());
+        assertEquals(expectedAccountUserDTO.getName(), accountController.getAccountById(accountId).getBody().getName());
+        assertEquals(expectedAccountUserDTO.getSurname(), accountController.getAccountById(accountId).getBody().getSurname());
+        assertEquals(expectedAccountUserDTO.getSex(), accountController.getAccountById(accountId).getBody().getSex());
+        assertEquals(expectedAccountUserDTO.getBirthDate(), accountController.getAccountById(accountId).getBody().getBirthDate());
+        assertEquals(expectedAccountUserDTO.getEducation(), accountController.getAccountById(accountId).getBody().getEducation());
+        assertEquals(expectedAccountUserDTO.getProfession(), accountController.getAccountById(accountId).getBody().getProfession());
+    }
 
 }

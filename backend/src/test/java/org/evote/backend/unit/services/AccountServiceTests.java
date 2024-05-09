@@ -91,6 +91,14 @@ public class AccountServiceTests {
 
     }
 
+    @Test
+    public void testSetAccountToInactiveAccountNotFound() {
+        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.empty());
+
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> accountService.setAccountToInactive(account.getAccount_id()));
+        assertEquals("Account with id " + account.getAccount_id() + " not found", exception.getMessage());
+    }
+
 
     @Test
     public void testGetAllAccounts() {

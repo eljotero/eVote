@@ -8,6 +8,8 @@ import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.address.entity.Address;
+import org.evote.backend.users.address.repository.UserAddressRepository;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.dao.DataAccessException;
@@ -25,13 +27,15 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
+    private final UserAddressRepository userAddressRepository;
 
-    public AuthenticationService(AccountRepository accountRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userRepository) {
+    public AuthenticationService(AccountRepository accountRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userRepository, UserAddressRepository userAddressRepository) {
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
+        this.userAddressRepository = userAddressRepository;
     }
 
     @Transactional
@@ -44,7 +48,10 @@ public class AuthenticationService {
         }
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         User user = new User();
+        Address address = new Address();
         try {
+            Address savedAddress = userAddressRepository.save(address);
+            user.setAddress(savedAddress);
             User savedUser = userRepository.save(user);
             account.setUser(savedUser);
             accountRepository.save(account);
