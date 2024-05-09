@@ -7,6 +7,7 @@ import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,6 +26,8 @@ public class AuthenticationServiceTests {
     @Mock
     private AccountRepository accountRepository;
     @Mock
+    private UserRepository userRepository;
+    @Mock
     private PasswordEncoder passwordEncoder;
     @Mock
     private JwtService jwtService;
@@ -37,7 +40,7 @@ public class AuthenticationServiceTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        authenticationService = new AuthenticationService(accountRepository, passwordEncoder, jwtService, authenticationManager);
+        authenticationService = new AuthenticationService(accountRepository, passwordEncoder, jwtService, authenticationManager, userRepository);
     }
 
 
@@ -68,11 +71,11 @@ public class AuthenticationServiceTests {
     public void testRegisterAccountAlreadyExists() {
         Account account = new Account();
         account.setPassword("password123");
+        account.setEmail("test@mail.com");
 
         when(passwordEncoder.encode(account.getPassword())).thenReturn("encodedPassword");
-        when(accountRepository.save(account)).thenThrow(new DataAccessException("Database error") {
-        });
-
+        when(accountRepository.findByEmail(account.getEmail())).thenReturn(new Account());
+        when(accountRepository.save(account)).thenThrow(new DataAccessException("Database error") {});
 
         AccountAlreadyExistsException exception = assertThrows(AccountAlreadyExistsException.class, () -> authenticationService.register(account));
         assertEquals("Account already exists", exception.getMessage());

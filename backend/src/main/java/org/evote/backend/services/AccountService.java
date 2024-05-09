@@ -2,10 +2,8 @@ package org.evote.backend.services;
 
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
-import org.evote.backend.users.account.exceptions.AccountAuthenticationException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
-import org.evote.backend.users.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,8 @@ public class AccountService {
     }
 
     public Account getAccountById(Integer id) {
-//        return accountRepository.findById(id)
-//                .orElseThrow(() -> new AccountNotFoundException("Account with id " + id + " not found"));
-        Account account = accountRepository.findById(id).orElse(null);
-        User user = account.getUser();
-        return account;
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new AccountNotFoundException("Account with id " + id + " not found"));
     }
 
     public Account addAccount(Account account) {
