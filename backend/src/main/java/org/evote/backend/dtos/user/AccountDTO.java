@@ -16,5 +16,4 @@ public class AccountDTO {
     private Role role;
     private Boolean hasVoted;
     private Boolean isAccountActive;
-
 }

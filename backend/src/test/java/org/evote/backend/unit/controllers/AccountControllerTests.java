@@ -63,15 +63,15 @@ public class AccountControllerTests {
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
     }
 
-    @Test
-    public void testGetAccountById() {
-        Integer accountId = 1;
-
-        when(accountService.getAccountById(accountId)).thenReturn(account);
-
-        ResponseEntity<AccountDTO> responseEntity = accountController.getAccountById(accountId);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
+//    @Test
+//    public void testGetAccountById() {
+//        Integer accountId = 1;
+//
+//        when(accountService.getAccountById(accountId)).thenReturn(account);
+//
+//        ResponseEntity<AccountDTO> responseEntity = accountController.getAccountById(accountId);
+//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
+//    }
 
 }

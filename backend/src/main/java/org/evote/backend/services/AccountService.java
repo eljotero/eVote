@@ -1,16 +1,22 @@
 package org.evote.backend.services;
 
+import jakarta.transaction.Transactional;
+import org.evote.backend.dtos.user.UserUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -36,5 +42,4 @@ public class AccountService {
         account.setIsAccountActive(false);
         accountRepository.save(account);
     }
-
 }

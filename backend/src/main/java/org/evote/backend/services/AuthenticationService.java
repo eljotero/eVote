@@ -13,6 +13,7 @@ import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,14 @@ public class AuthenticationService {
         }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
         return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount));
+    }
+
+    public Boolean hasAccount(Integer ID) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account account = accountRepository.findByEmail(email);
+        if (account == null) {
+            return false;
+        }
+        return account.getAccount_id().equals(ID);
     }
 }
