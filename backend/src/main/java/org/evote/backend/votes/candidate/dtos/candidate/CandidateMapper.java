@@ -25,4 +25,17 @@ public class CandidateMapper {
         candidateDTO.setImage(candidate.getImage());
         return candidateDTO;
     }
+
+    public static Candidate toCandidate(CandidateDTO candidateDTO) {
+        Candidate candidate = new Candidate();
+        candidate.setCandidate_id(candidateDTO.getCandidate_id());
+        candidate.setName(candidateDTO.getName());
+        candidate.setSurname(candidateDTO.getSurname());
+        candidate.setBirthDate(candidateDTO.getBirthDate());
+        candidate.setEducation(candidateDTO.getEducation());
+        candidate.setProfession(candidateDTO.getProfession());
+        candidate.setInfo(candidateDTO.getInfo());
+        candidate.setImage(candidateDTO.getImage());
+        return candidate;
+    }
 }

@@ -30,4 +30,16 @@ public class Political_partyController {
         String politicalPartyName = politicalPartyService.getPoliticalPartyNameById(id);
         return ResponseEntity.ok(politicalPartyName);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<Political_partyDTO> addPoliticalParty(@RequestBody Political_partyDTO political_partyDTO) {
+        PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(Political_partyMapper.toPoliticalParty(political_partyDTO));
+        return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletePoliticalParty(@PathVariable Long id) {
+        politicalPartyService.deletePoliticalParty(id);
+        return ResponseEntity.noContent().build();
+    }
 }

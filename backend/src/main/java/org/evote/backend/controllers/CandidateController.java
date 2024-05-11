@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,6 +32,18 @@ public class CandidateController {
         List<Candidate> candidates = candidateService.getCandidatesByElectionIdAndPrecinctId(electionId, precinctId);
         List<CandidateDTO> candidateDTOs = candidates.stream().map(CandidateMapper::toCandidateDTO).collect(Collectors.toList());
         return ResponseEntity.ok(candidateDTOs);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<CandidateDTO> addCandidate(@RequestBody CandidateDTO candidateDTO) {
+        Candidate candidate = candidateService.addCandidate(CandidateMapper.toCandidate(candidateDTO));
+        return ResponseEntity.ok(CandidateMapper.toCandidateDTO(candidate));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCandidate(@PathVariable UUID id) {
+        candidateService.deleteCandidate(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

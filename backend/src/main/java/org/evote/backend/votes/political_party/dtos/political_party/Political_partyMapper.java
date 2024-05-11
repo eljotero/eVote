@@ -13,4 +13,12 @@ public class Political_partyMapper {
         return political_partyDTO;
     }
 
+    public static PoliticalParty toPoliticalParty(Political_partyDTO politicalPartyDTO) {
+        PoliticalParty politicalParty = new PoliticalParty();
+        politicalParty.setId(politicalPartyDTO.getPolitical_party_id());
+        politicalParty.setName(politicalPartyDTO.getName());
+        //politicalParty.setAddress_id(politicalPartyDTO.getAddress_id());
+
+        return politicalParty;
+    }
 }
