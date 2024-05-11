@@ -42,4 +42,14 @@ public class CandidateService {
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
         candidateRepository.delete(candidate);
     }
+
+
+    public Candidate updateCandidate(UUID id, Candidate candidate) {
+        Candidate candidateToUpdate = candidateRepository.findById(id)
+                .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
+        candidateToUpdate.setElection_id(candidate.getElection_id());
+        candidateToUpdate.setPrecinct_id(candidate.getPrecinct_id());
+        // do dodania reszta pól
+        return candidateRepository.save(candidateToUpdate);
+    }
 }

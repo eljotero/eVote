@@ -42,4 +42,10 @@ public class Political_partyController {
         politicalPartyService.deletePoliticalParty(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Political_partyDTO> updatePoliticalParty(@PathVariable Long id, @RequestBody Political_partyDTO political_partyDTO) {
+        PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, Political_partyMapper.toPoliticalParty(political_partyDTO));
+        return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
+    }
 }

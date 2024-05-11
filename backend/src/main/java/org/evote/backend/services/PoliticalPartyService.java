@@ -44,4 +44,11 @@ public class PoliticalPartyService {
                 .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
         politicalPartyRepository.delete(politicalParty);
     }
+
+    public PoliticalParty updatePoliticalParty(Long id, PoliticalParty politicalParty) {
+        PoliticalParty politicalPartyToUpdate = politicalPartyRepository.findById(Math.toIntExact(id))
+                .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
+        politicalPartyToUpdate.setName(politicalParty.getName());
+        return politicalPartyRepository.save(politicalPartyToUpdate);
+    }
 }

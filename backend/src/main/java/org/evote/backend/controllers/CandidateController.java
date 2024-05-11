@@ -46,4 +46,10 @@ public class CandidateController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CandidateDTO> updateCandidate(@PathVariable UUID id, @RequestBody CandidateDTO candidateDTO) {
+        Candidate candidate = candidateService.updateCandidate(id, CandidateMapper.toCandidate(candidateDTO));
+        return ResponseEntity.ok(CandidateMapper.toCandidateDTO(candidate));
+    }
+
 }
