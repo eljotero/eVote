@@ -9,7 +9,10 @@ public class AuthenticationResponseDTO {
 
     private String token;
 
-    public AuthenticationResponseDTO(String token) {
+    private Integer id;
+
+    public AuthenticationResponseDTO(String token, Integer id) {
         this.token = token;
+        this.id = id;
     }
 }

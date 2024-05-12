@@ -49,11 +49,13 @@ public class AuthenticationControllerTests {
         Account account = new Account();
         account.setEmail("test@mail.com");
         account.setPassword("password123");
-        when(authenticationService.login(account)).thenReturn(new AuthenticationResponseDTO("token"));
+        account.setAccount_id(1);
+        when(authenticationService.login(account)).thenReturn(new AuthenticationResponseDTO("token", account.getAccount_id()));
 
         AuthenticationResponseDTO response = (AuthenticationResponseDTO) authenticationController.login(account).getBody();
 
-        assertEquals(new AuthenticationResponseDTO("token").getToken(), response.getToken());
+        assertEquals("token", response.getToken());
+        assertEquals(1, response.getId());
     }
 
     @Test

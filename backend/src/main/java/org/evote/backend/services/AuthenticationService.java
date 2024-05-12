@@ -67,7 +67,7 @@ public class AuthenticationService {
             throw new AccountNotFoundException("Account not found");
         }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
-        return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount));
+        return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount), dbAccount.getAccount_id());
     }
 
     public Boolean hasAccount(Integer ID) {

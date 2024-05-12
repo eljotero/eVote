@@ -34,11 +34,13 @@ public class AccountControllerTests {
 
     @InjectMocks
     private AccountController accountController;
+
     private Account account;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+        accountController = new AccountController(accountService);
         account = new Account();
         account.setEmail("test@test.com");
         account.setPassword("password");

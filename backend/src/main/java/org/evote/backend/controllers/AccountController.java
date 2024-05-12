@@ -5,7 +5,6 @@ import org.evote.backend.dtos.user.AccountMapper;
 import org.evote.backend.dtos.user.AccountUserDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +16,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/account")
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
+
+    private final AccountService accountService;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
 
     @PreAuthorize("hasRole('ADMIN')")
