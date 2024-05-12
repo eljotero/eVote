@@ -50,7 +50,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testGetCandidateById() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
         candidate.setCandidate_id(id);
 
@@ -63,7 +63,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testAddCandidate() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
         candidate.setCandidate_id(id);
 
@@ -77,7 +77,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testDeleteCandidate() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
         candidate.setCandidate_id(id);
 
@@ -90,7 +90,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testAddCandidateAlreadyExists() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
         candidate.setCandidate_id(id);
 
@@ -101,7 +101,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testGetCandidateByIdNotFound() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
 
         when(candidateRepository.findById(id)).thenReturn(Optional.empty());
 
@@ -110,7 +110,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testDeleteCandidateNotFound() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
 
         when(candidateRepository.findById(id)).thenReturn(Optional.empty());
 

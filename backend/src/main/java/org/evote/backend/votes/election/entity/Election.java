@@ -13,7 +13,7 @@ import java.util.Date;
 public class Election {
     @Id
     @GeneratedValue
-    private Long election_id;
+    private Integer election_id;
 
     private String election_name;
 
@@ -21,14 +21,14 @@ public class Election {
 
     private Date endDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ElectionType type;
 
     @ManyToOne
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    public Long getId() {
+    public Integer getId() {
         return election_id;
     }
 }

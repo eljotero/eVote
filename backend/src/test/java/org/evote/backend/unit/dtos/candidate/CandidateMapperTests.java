@@ -1,6 +1,6 @@
 package org.evote.backend.unit.dtos.candidate;
 
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
 import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.junit.jupiter.api.Test;
@@ -15,16 +15,15 @@ public class CandidateMapperTests {
     @Test
     public void testToCandidateDTO() {
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(UUID.randomUUID());
+        candidate.setCandidate_id(1);
         candidate.setName("Test Name");
         candidate.setSurname("Test Surname");
         candidate.setBirthDate(new Date());
         candidate.setEducation("Test Education");
         candidate.setProfession("Test Profession");
 
-        CandidateDTO candidateDTO = CandidateMapper.toCandidateDTO(candidate);
+        CandidateCreateDTO candidateDTO = CandidateMapper.toCandidateCreateDTO(candidate);
 
-        assertEquals(candidate.getCandidate_id(), candidateDTO.getCandidate_id());
         assertEquals(candidate.getName(), candidateDTO.getName());
         assertEquals(candidate.getSurname(), candidateDTO.getSurname());
         assertEquals(candidate.getBirthDate(), candidateDTO.getBirthDate());

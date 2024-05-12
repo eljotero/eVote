@@ -20,17 +20,12 @@ import java.util.UUID;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID candidate_id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer candidate_id;
     private String name;
-
     private String surname;
-
     private Date birthDate;
-
     private String education;
-
     private String profession;
     private String info;
     private String image;
@@ -55,12 +50,20 @@ public class Candidate {
     public int getPrecinct_id() {
         return precinct.getPrecinct_id();
     }
+    public int getPolitical_party_id() {
+        return politicalParty.getId();
+    }
 
     public void setElection_id(int i) {
-        election.setElection_id((long) i);
+        election.setElection_id((Integer) i);
     }
 
     public void setPrecinct_id(int i) {
         precinct.setPrecinct_id(i);
     }
+
+    public void setPolitical_party_id(int i) {
+        politicalParty.setId(i);
+    }
+
 }

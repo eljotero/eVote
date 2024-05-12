@@ -3,9 +3,8 @@ package org.evote.backend.votes.candidate.dtos.candidate;
 import org.evote.backend.votes.candidate.entity.Candidate;
 
 public class CandidateMapper {
-    public static CandidateDTO toCandidateDTO(Candidate candidate) {
-        CandidateDTO candidateDTO = new CandidateDTO();
-        candidateDTO.setCandidate_id(candidate.getCandidate_id());
+    public static CandidateCreateDTO toCandidateCreateDTO(Candidate candidate) {
+        CandidateCreateDTO candidateDTO = new CandidateCreateDTO();
         candidateDTO.setName(candidate.getName());
         candidateDTO.setSurname(candidate.getSurname());
         candidateDTO.setBirthDate(candidate.getBirthDate());
@@ -26,16 +25,32 @@ public class CandidateMapper {
         return candidateDTO;
     }
 
-    public static Candidate toCandidate(CandidateDTO candidateDTO) {
+    public static Candidate toCandidate(CandidateCreateDTO candidateCreateDTO) {
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(candidateDTO.getCandidate_id());
-        candidate.setName(candidateDTO.getName());
-        candidate.setSurname(candidateDTO.getSurname());
-        candidate.setBirthDate(candidateDTO.getBirthDate());
-        candidate.setEducation(candidateDTO.getEducation());
-        candidate.setProfession(candidateDTO.getProfession());
-        candidate.setInfo(candidateDTO.getInfo());
-        candidate.setImage(candidateDTO.getImage());
+        candidate.setName(candidateCreateDTO.getName());
+        candidate.setSurname(candidateCreateDTO.getSurname());
+        candidate.setBirthDate(candidateCreateDTO.getBirthDate());
+        candidate.setEducation(candidateCreateDTO.getEducation());
+        candidate.setProfession(candidateCreateDTO.getProfession());
+        candidate.setInfo(candidateCreateDTO.getInfo());
+        candidate.setImage(candidateCreateDTO.getImage());
+        candidate.setPrecinct_id(candidateCreateDTO.getPrecinct_id());
+        candidate.setElection_id(candidateCreateDTO.getElection_id());
+        candidate.setPolitical_party_id(candidateCreateDTO.getPolitical_party_id());
         return candidate;
+    }
+
+    public static CandidateDTO toCandidateDTO(Candidate candidate) {
+        CandidateDTO candidateDTO = new CandidateDTO();
+        candidateDTO.setCandidate_id(candidate.getCandidate_id());
+        candidateDTO.setName(candidate.getName());
+        candidateDTO.setSurname(candidate.getSurname());
+        candidateDTO.setBirthDate(candidate.getBirthDate());
+        candidateDTO.setEducation(candidate.getEducation());
+        candidateDTO.setProfession(candidate.getProfession());
+        candidateDTO.setInfo(candidate.getInfo());
+        candidateDTO.setImage(candidate.getImage());
+        return candidateDTO;
+
     }
 }

@@ -11,8 +11,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CandidateDTO {
-    private Integer candidate_id;
+public class CandidateCreateDTO {
     private String name;
     private String surname;
     private Date birthDate;

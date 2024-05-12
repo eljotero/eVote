@@ -33,8 +33,8 @@ public class PoliticalPartyService {
     }
 
     public PoliticalParty addPoliticalParty(PoliticalParty politicalParty) {
-        if(politicalPartyRepository.findById(Math.toIntExact(politicalParty.getPolitical_party_id())).isPresent()) {
-            throw new PoliticalPartyAlreadyExistsException("Political party with id " + politicalParty.getPolitical_party_id() + " already exists");
+        if(politicalPartyRepository.findNameByName(politicalParty.getName()) != null) {
+            throw new PoliticalPartyAlreadyExistsException("Political party with name " + politicalParty.getName() + " already exists");
         }
         return politicalPartyRepository.save(politicalParty);
     }

@@ -19,7 +19,7 @@ public class ElectionDTO {
     private Date startDate;
     private Date endDate;
     private SmallIntJdbcType type;
-    private UUID candidate_id;
+    private Integer candidate_id;
 
 
 }

@@ -1,5 +1,6 @@
-package org.evote.backend.votes.candidate.dtos.candidate;
+package org.evote.backend.unit.dtos.candidate;
 
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,16 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CandidateDTOTests {
 
-    private CandidateDTO candidateDTO;
+    private CandidateCreateDTO candidateDTO;
 
     @BeforeEach
     public void setup() {
-        candidateDTO = new CandidateDTO();
+        candidateDTO = new CandidateCreateDTO();
     }
 
     @Test
     public void testGettersAndSetters() {
-        UUID candidate_id = UUID.randomUUID();
         String name = "Test Name";
         String surname = "Test Surname";
         Date birthDate = new Date();
@@ -29,7 +29,6 @@ public class CandidateDTOTests {
         Integer precinct_id = 1;
         Long election_id = 1L;
 
-        candidateDTO.setCandidate_id(candidate_id);
         candidateDTO.setName(name);
         candidateDTO.setSurname(surname);
         candidateDTO.setBirthDate(birthDate);
@@ -39,7 +38,6 @@ public class CandidateDTOTests {
         candidateDTO.setPrecinct_id(precinct_id);
         candidateDTO.setElection_id(election_id);
 
-        assertEquals(candidate_id, candidateDTO.getCandidate_id());
         assertEquals(name, candidateDTO.getName());
         assertEquals(surname, candidateDTO.getSurname());
         assertEquals(birthDate, candidateDTO.getBirthDate());

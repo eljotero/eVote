@@ -14,7 +14,7 @@ import java.util.UUID;
 public class PoliticalParty {
     @Id
     @GeneratedValue
-    private Long political_party_id;
+    private Integer political_party_id;
 
     private String name;
 
@@ -24,11 +24,14 @@ public class PoliticalParty {
 
     @OneToMany(mappedBy = "politicalParty")
     private List<Candidate> candidates;
-    public Long getId() {
+    public Integer getId() {
         return political_party_id;
     }
 
-    public void setId(long l) {
+    public void setId(Integer l) {
         this.political_party_id = l;
+    }
+
+    public void setAddress_id(Integer addressId) {
     }
 }

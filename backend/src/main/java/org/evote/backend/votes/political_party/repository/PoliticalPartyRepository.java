@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @org.springframework.stereotype.Repository
 public interface PoliticalPartyRepository extends JpaRepository<PoliticalParty, Integer> {
+    String findNameByName(String name);
     String findNameById(Integer id);
 }
