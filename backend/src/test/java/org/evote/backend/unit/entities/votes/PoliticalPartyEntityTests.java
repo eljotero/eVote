@@ -20,7 +20,7 @@ public class PoliticalPartyEntityTests {
     @Test
     public void testPoliticalPartyEntityWithId() {
         PoliticalParty politicalParty = new PoliticalParty();
-        Long id = 1L;
+        Integer id = 1;
 
         assertNotNull(politicalParty);
         politicalParty.setPoliticalPartyId(id);
@@ -113,10 +113,10 @@ public class PoliticalPartyEntityTests {
         PoliticalParty politicalParty1 = new PoliticalParty();
         PoliticalParty politicalParty2 = new PoliticalParty();
 
-        politicalParty1.setPoliticalPartyId(1L);
-        politicalParty2.setPoliticalPartyId(1L);
+        politicalParty1.setPoliticalPartyId(1);
+        politicalParty2.setPoliticalPartyId(1);
         assertEquals(politicalParty1.hashCode(), politicalParty2.hashCode());
-        politicalParty2.setPoliticalPartyId(2L);
+        politicalParty2.setPoliticalPartyId(2);
         assertNotEquals(politicalParty1.hashCode(), politicalParty2.hashCode());
     }
 

@@ -10,16 +10,12 @@ public class Political_partyDTOTests {
     @Test
     public void testGettersAndSetters() {
         Political_partyDTO political_partyDTO = new Political_partyDTO();
-
-        Long political_party_id = 1L;
         String name = "Test Party";
-        Long address_id = 1L;
+        Integer address_id = 1;
 
-        political_partyDTO.setPolitical_party_id(political_party_id);
         political_partyDTO.setName(name);
         political_partyDTO.setAddress_id(address_id);
 
-        assertEquals(political_party_id, political_partyDTO.getPolitical_party_id());
         assertEquals(name, political_partyDTO.getName());
         assertEquals(address_id, political_partyDTO.getAddress_id());
     }

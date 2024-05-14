@@ -10,6 +10,7 @@ import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundException;
+import org.evote.backend.votes.precinct.exception.PrecinctNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -65,6 +66,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value= PoliticalPartyNotFoundException.class)
         public ResponseEntity<ErrorResponse> handlePoliticalPartyNotFoundException(PoliticalPartyNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()));
+        }
+
+    @ExceptionHandler(value= PrecinctNotFoundException.class)
+        public ResponseEntity<ErrorResponse> handlePrecinctNotFoundException(PrecinctNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()));
         }
 }

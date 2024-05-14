@@ -46,7 +46,7 @@ public class PoliticalPartyServiceTests {
         Integer id = 1;
         PoliticalParty politicalParty1 = new PoliticalParty();
 
-        when(politicalPartyRepository.findNameById(id)).thenReturn(politicalParty1);
+        when(politicalPartyRepository.findByPoliticalPartyId(id)).thenReturn(politicalParty1);
 
         PoliticalParty result = politicalPartyService.getPoliticalPartyById(id);
 

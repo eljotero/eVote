@@ -23,11 +23,11 @@ public class CandidateEntityTests {
     @Test
     public void testCandidateEntityWithId() {
         Candidate candidate = new Candidate();
-        UUID uuid = UUID.randomUUID();
+        Integer id = 1;
 
         assertNotNull(candidate);
-        candidate.setCandidateId(uuid);
-        assertEquals(uuid, candidate.getCandidateId());
+        candidate.setCandidateId(id);
+        assertEquals(id, candidate.getCandidateId());
     }
 
     @Test
@@ -228,7 +228,7 @@ public class CandidateEntityTests {
         Candidate candidate1 = new Candidate();
         Candidate candidate2 = new Candidate();
         Election election = new Election();
-        election.setElectionId(1L);
+        election.setElectionId(1);
         candidate1.setElection(election);
         candidate2.setElection(election);
 
@@ -236,7 +236,7 @@ public class CandidateEntityTests {
         assertNotNull(candidate2);
         assertEquals(candidate1.hashCode(), candidate2.hashCode());
         Election election2 = new Election();
-        election2.setElectionId(2L);
+        election2.setElectionId(2);
         candidate2.setElection(election2);
         assertNotEquals(candidate1.hashCode(), candidate2.hashCode());
     }
@@ -357,7 +357,7 @@ public class CandidateEntityTests {
         Candidate candidate1 = new Candidate();
         Candidate candidate2 = new Candidate();
         Election election = new Election();
-        election.setElectionId(1L);
+        election.setElectionId(1);
         candidate1.setElection(election);
         candidate2.setElection(election);
 
@@ -365,7 +365,7 @@ public class CandidateEntityTests {
         assertNotNull(candidate2);
         assertEquals(candidate1, candidate2);
         Election election2 = new Election();
-        election2.setElectionId(2L);
+        election2.setElectionId(2);
         candidate2.setElection(election2);
         assertNotEquals(candidate1, candidate2);
     }

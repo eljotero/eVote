@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Political_partyDTO {
-    private Integer id;
+    private Integer politicalPartyId;
     private String name;
     private Integer address_id;
 }

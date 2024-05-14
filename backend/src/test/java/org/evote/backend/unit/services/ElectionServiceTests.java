@@ -45,7 +45,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testGetElectionById() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
         election.setElectionId(id);
 
@@ -58,7 +58,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testAddElection() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
         election.setElectionId(id);
 
@@ -72,7 +72,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testDeleteElection() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
         election.setElectionId(id);
 
@@ -85,7 +85,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testAddElectionAlreadyExists() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
         election.setElectionId(id);
 
@@ -96,7 +96,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testGetElectionByIdNotFound() {
-        Long id = 1L;
+        Integer id = 1;
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
 
@@ -105,7 +105,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testDeleteElectionNotFound() {
-        Long id = 1L;
+        Integer id = 1;
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
 

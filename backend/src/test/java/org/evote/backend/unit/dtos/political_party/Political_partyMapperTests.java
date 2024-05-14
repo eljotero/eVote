@@ -12,10 +12,10 @@ public class Political_partyMapperTests {
     @Test
     public void testToPolitical_partyDTO() {
         PoliticalParty politicalParty = new PoliticalParty();
-        politicalParty.setId(1L);
+        politicalParty.setPoliticalPartyId(1);
         politicalParty.setName("Test Party");
         Political_partyDTO political_partyDTO = Political_partyMapper.toPolitical_partyDTO(politicalParty);
-        assertEquals(politicalParty.getId(), political_partyDTO.getPolitical_party_id());
+        assertEquals(politicalParty.getPoliticalPartyId(), political_partyDTO.getPoliticalPartyId());
         assertEquals(politicalParty.getName(), political_partyDTO.getName());
     }
 }

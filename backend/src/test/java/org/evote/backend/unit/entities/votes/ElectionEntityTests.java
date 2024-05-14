@@ -21,7 +21,7 @@ public class ElectionEntityTests {
     @Test
     public void testElectionEntityWithId() {
         Election election = new Election();
-        Long id = 1L;
+        Integer id = 1;
 
         assertNotNull(election);
         election.setElectionId(id);
@@ -110,11 +110,11 @@ public class ElectionEntityTests {
         Election election1 = new Election();
         Election election2 = new Election();
 
-        Long id = 1L;
+        Integer id = 1;
         election1.setElectionId(id);
         election2.setElectionId(id);
         assertEquals(election1, election2);
-        election2.setElectionId(2L);
+        election2.setElectionId(2);
         assertNotEquals(election1, election2);
         election2.setElectionId(id);
     }
@@ -209,10 +209,10 @@ public class ElectionEntityTests {
         Election election1 = new Election();
         Election election2 = new Election();
 
-        election1.setElectionId(1L);
-        election2.setElectionId(1L);
+        election1.setElectionId(1);
+        election2.setElectionId(1);
         assertEquals(election1.hashCode(), election2.hashCode());
-        election2.setElectionId(2L);
+        election2.setElectionId(2);
         assertNotEquals(election1.hashCode(), election2.hashCode());
     }
 

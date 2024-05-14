@@ -14,7 +14,7 @@ public class ElectionMapperTests {
     @Test
     public void testToElectionDTO() {
         Election election = new Election();
-        election.setElectionId(1L);
+        election.setElectionId(1);
         election.setElectionName("Test Election");
         election.setStartDate(new Date());
         election.setEndDate(new Date());
