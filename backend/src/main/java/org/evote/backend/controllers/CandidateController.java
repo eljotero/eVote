@@ -50,7 +50,7 @@ public class CandidateController {
     @PostMapping("/add")
     public ResponseEntity<?> addCandidate(@RequestBody CandidateCreateDTO candidateDTO) {
         try {
-            Candidate candidate = candidateService.addCandidate(CandidateMapper.toCandidate(candidateDTO));
+            Candidate candidate = candidateService.addCandidate(candidateDTO);
             return new ResponseEntity<>(CandidateMapper.toCandidateDTO(candidate), HttpStatus.CREATED);
         }
         catch (Exception e) {

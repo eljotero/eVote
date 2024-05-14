@@ -9,10 +9,8 @@ import lombok.Data;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.precinct.entity.Precinct;
-import org.w3c.dom.Text;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -21,7 +19,7 @@ import java.util.UUID;
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer candidate_id;
+    private Integer candidateId;
     private String name;
     private String surname;
     private Date birthDate;
@@ -44,7 +42,7 @@ public class Candidate {
     private Election election;
 
     public int getElection_id() {
-        return Math.toIntExact(election.getElection_id());
+        return Math.toIntExact(election.getElectionId());
     }
 
     public int getPrecinct_id() {
@@ -55,7 +53,7 @@ public class Candidate {
     }
 
     public void setElection_id(int i) {
-        election.setElection_id((Integer) i);
+        election.setElectionId((Integer) i);
     }
 
     public void setPrecinct_id(int i) {

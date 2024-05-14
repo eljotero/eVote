@@ -1,6 +1,7 @@
 package org.evote.backend.services;
 
 import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,14 +52,25 @@ public class CandidateService {
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
     }
 
-    public Candidate addCandidate(Candidate candidate) {
+    public Candidate addCandidate(CandidateCreateDTO candidateCreateDTO) {
         if (candidateRepository.findByNameAndSurnameAndBirthDateAndEducation(
-                candidate.getName(),
-                candidate.getSurname(),
-                candidate.getBirthDate(),
-                candidate.getEducation()) != null) {
+                candidateCreateDTO.getName(),
+                candidateCreateDTO.getSurname(),
+                candidateCreateDTO.getBirthDate(),
+                candidateCreateDTO.getEducation()) != null) {
             throw new CandidateAlreadyExistsException("Candidate already exists");
         }
+        PoliticalParty politicalParty = politicalPartyRepository.findById(candidateCreateDTO.getPolitical_party_id())
+                .orElseThrow(() -> new CandidateNotFoundException("Political party with id " + candidateCreateDTO.getPolitical_party_id() + " not found"));
+        Precinct precinct = precinctRepository.findById(candidateCreateDTO.getPrecinct_id())
+                .orElseThrow(() -> new CandidateNotFoundException("Precinct with id " + candidateCreateDTO.getPrecinct_id() + " not found"));
+        Election election = electionRepository.findById(candidateCreateDTO.getElection_id())
+                .orElseThrow(() -> new CandidateNotFoundException("Election with id " + candidateCreateDTO.getElection_id() + " not found"));
+
+        Candidate candidate = CandidateMapper.toCandidate(candidateCreateDTO);
+        candidate.setPoliticalParty(politicalParty);
+        candidate.setPrecinct(precinct);
+        candidate.setElection(election);
 
         return candidateRepository.save(candidate);
     }
@@ -69,7 +80,6 @@ public class CandidateService {
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
         candidateRepository.delete(candidate);
     }
-
 
     public Candidate updateCandidate(Integer id, CandidateCreateDTO candidateNewInfo) {
         Candidate candidateToUpdate = candidateRepository.findById(id)
@@ -81,7 +91,7 @@ public class CandidateService {
         Election election = electionRepository.findById(candidateNewInfo.getElection_id())
                 .orElseThrow(() -> new CandidateNotFoundException("Election with id " + candidateNewInfo.getElection_id() + " not found"));
 
-        candidateToUpdate.setCandidate_id(candidateToUpdate.getCandidate_id());
+        candidateToUpdate.setCandidateId(candidateToUpdate.getCandidateId());
         candidateToUpdate.setPoliticalParty(politicalParty);
         candidateToUpdate.setPrecinct(precinct);
         candidateToUpdate.setElection(election);

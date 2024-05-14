@@ -1,21 +1,24 @@
 package org.evote.backend.votes.election.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.enums.ElectionType;
 
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "election")
 public class Election {
     @Id
-    @GeneratedValue
-    private Integer election_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer electionId;
 
-    private String election_name;
+    private String electionName;
 
     private Date startDate;
 
@@ -28,7 +31,4 @@ public class Election {
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    public Integer getId() {
-        return election_id;
-    }
 }

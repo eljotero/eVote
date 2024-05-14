@@ -13,11 +13,9 @@ import java.util.UUID;
 @Table(name = "political_party")
 public class PoliticalParty {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer political_party_id;
-
     private String name;
-
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
@@ -33,5 +31,9 @@ public class PoliticalParty {
     }
 
     public void setAddress_id(Integer addressId) {
+        address.setAddress_id(addressId);
+    }
+    public int getAddress_id() {
+        return address.getAddress_id();
     }
 }

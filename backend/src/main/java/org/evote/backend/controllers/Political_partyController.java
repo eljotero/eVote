@@ -1,6 +1,7 @@
 package org.evote.backend.controllers;
 
 import org.evote.backend.services.PoliticalPartyService;
+import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyCreateDTO;
 import org.evote.backend.votes.political_party.dtos.political_party.Political_partyDTO;
 import org.evote.backend.votes.political_party.dtos.political_party.Political_partyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
@@ -26,26 +27,27 @@ public class Political_partyController {
     }
 
     @GetMapping("/name/{id}")
-    public ResponseEntity<String> getPoliticalPartyNameById(@PathVariable Long id) {
-        String politicalPartyName = politicalPartyService.getPoliticalPartyNameById(id);
-        return ResponseEntity.ok(politicalPartyName);
+    public ResponseEntity<Political_partyDTO> getPoliticalPartyById(@PathVariable Integer id) {
+        PoliticalParty politicalParty = politicalPartyService.getPoliticalPartyById(id);
+        Political_partyDTO political_partyDTO = Political_partyMapper.toPolitical_partyDTO(politicalParty);
+        return ResponseEntity.ok(political_partyDTO);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Political_partyDTO> addPoliticalParty(@RequestBody Political_partyDTO political_partyDTO) {
-        PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(Political_partyMapper.toPoliticalParty(political_partyDTO));
+    public ResponseEntity<Political_partyDTO> addPoliticalParty(@RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
+        PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(Political_partyMapper.toPoliticalParty(politicalPartyCreateDTO));
         return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deletePoliticalParty(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePoliticalParty(@PathVariable Integer id) {
         politicalPartyService.deletePoliticalParty(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Political_partyDTO> updatePoliticalParty(@PathVariable Long id, @RequestBody Political_partyDTO political_partyDTO) {
-        PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, Political_partyMapper.toPoliticalParty(political_partyDTO));
+    public ResponseEntity<Political_partyDTO> updatePoliticalParty(@PathVariable Integer id, @RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
+        PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, Political_partyMapper.toPoliticalParty(politicalPartyCreateDTO));
         return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
     }
 }

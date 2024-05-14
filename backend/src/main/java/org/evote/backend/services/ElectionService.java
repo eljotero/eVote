@@ -40,20 +40,20 @@ public class ElectionService {
 
         return elections;
     }
-    public Election getElectionById(Long id) {
-        return electionRepository.findById(Math.toIntExact(id))
+    public Election getElectionById(Integer id) {
+        return electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));
     }
 
     public Election addElection(Election election) {
-        if (electionRepository.findById(Math.toIntExact(election.getElection_id())).isPresent()) {
-            throw new ElectionAlreadyExistsException("Election with id " + election.getElection_id() + " already exists");
+        if (electionRepository.findByElectionNameAndStartDate(election.getElectionName(), election.getStartDate()) != null) {
+            throw new ElectionAlreadyExistsException("Election with name " + election.getElectionName() + " and start date " + election.getStartDate() + " already exists");
         }
         return electionRepository.save(election);
     }
 
-    public void deleteElection(Long id) {
-        Election election = electionRepository.findById(Math.toIntExact(id))
+    public void deleteElection(Integer id) {
+        Election election = electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));
         electionRepository.delete(election);
     }

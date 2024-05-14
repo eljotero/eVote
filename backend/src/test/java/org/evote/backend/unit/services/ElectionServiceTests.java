@@ -47,7 +47,7 @@ public class ElectionServiceTests {
     public void testGetElectionById() {
         Long id = 1L;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
 
@@ -60,7 +60,7 @@ public class ElectionServiceTests {
     public void testAddElection() {
         Long id = 1L;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
         when(electionRepository.save(election)).thenReturn(election);
@@ -74,7 +74,7 @@ public class ElectionServiceTests {
     public void testDeleteElection() {
         Long id = 1L;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
 
@@ -87,7 +87,7 @@ public class ElectionServiceTests {
     public void testAddElectionAlreadyExists() {
         Long id = 1L;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
 

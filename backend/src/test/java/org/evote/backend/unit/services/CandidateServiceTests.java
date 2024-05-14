@@ -1,12 +1,10 @@
 package org.evote.backend.unit.services;
 
 import org.evote.backend.services.CandidateService;
-import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;
 import org.evote.backend.votes.candidate.repository.CandidateRepository;
-import org.evote.backend.votes.election.entity.Election;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -52,7 +49,7 @@ public class CandidateServiceTests {
     public void testGetCandidateById() {
         Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
 
@@ -65,7 +62,7 @@ public class CandidateServiceTests {
     public void testAddCandidate() {
         Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.empty());
         when(candidateRepository.save(candidate)).thenReturn(candidate);
@@ -79,7 +76,7 @@ public class CandidateServiceTests {
     public void testDeleteCandidate() {
         Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
 
@@ -92,7 +89,7 @@ public class CandidateServiceTests {
     public void testAddCandidateAlreadyExists() {
         Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
 
