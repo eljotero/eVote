@@ -1,10 +1,8 @@
 package org.evote.backend.unit.entities.votes;
 
-import org.evote.backend.votes.address.entity.Address;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.enums.ElectionType;
 import org.evote.backend.votes.election.entity.Election;
-import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -23,11 +21,11 @@ public class ElectionEntityTests {
     @Test
     public void testElectionEntityWithId() {
         Election election = new Election();
-        Long id = 1L;
+        Integer id = 1;
 
         assertNotNull(election);
-        election.setElection_id(id);
-        assertEquals(id, election.getElection_id());
+        election.setElectionId(id);
+        assertEquals(id, election.getElectionId());
     }
 
     @Test
@@ -36,8 +34,8 @@ public class ElectionEntityTests {
         String name = "Presidential Election 2024";
 
         assertNotNull(election);
-        election.setElection_name(name);
-        assertEquals(name, election.getElection_name());
+        election.setElectionName(name);
+        assertEquals(name, election.getElectionName());
     }
 
     @Test
@@ -112,13 +110,13 @@ public class ElectionEntityTests {
         Election election1 = new Election();
         Election election2 = new Election();
 
-        Long id = 1L;
-        election1.setElection_id(id);
-        election2.setElection_id(id);
+        Integer id = 1;
+        election1.setElectionId(id);
+        election2.setElectionId(id);
         assertEquals(election1, election2);
-        election2.setElection_id(2L);
+        election2.setElectionId(2);
         assertNotEquals(election1, election2);
-        election2.setElection_id(id);
+        election2.setElectionId(id);
     }
 
     @Test
@@ -127,12 +125,12 @@ public class ElectionEntityTests {
         Election election2 = new Election();
 
         String name = "Presidential Election 2024";
-        election1.setElection_name(name);
-        election2.setElection_name(name);
+        election1.setElectionName(name);
+        election2.setElectionName(name);
         assertEquals(election1, election2);
-        election2.setElection_name("Local Election 2024");
+        election2.setElectionName("Local Election 2024");
         assertNotEquals(election1, election2);
-        election2.setElection_name(name);
+        election2.setElectionName(name);
     }
 
     @Test
@@ -211,10 +209,10 @@ public class ElectionEntityTests {
         Election election1 = new Election();
         Election election2 = new Election();
 
-        election1.setElection_id(1L);
-        election2.setElection_id(1L);
+        election1.setElectionId(1);
+        election2.setElectionId(1);
         assertEquals(election1.hashCode(), election2.hashCode());
-        election2.setElection_id(2L);
+        election2.setElectionId(2);
         assertNotEquals(election1.hashCode(), election2.hashCode());
     }
 
@@ -223,10 +221,10 @@ public class ElectionEntityTests {
         Election election = new Election();
         Election election2 = new Election();
 
-        election.setElection_name("Presidential Election 2024");
-        election2.setElection_name("Presidential Election 2024");
+        election.setElectionName("Presidential Election 2024");
+        election2.setElectionName("Presidential Election 2024");
         assertEquals(election.hashCode(), election2.hashCode());
-        election2.setElection_name("Local Election 2024");
+        election2.setElectionName("Local Election 2024");
         assertNotEquals(election.hashCode(), election2.hashCode());
     }
 
@@ -315,7 +313,7 @@ public class ElectionEntityTests {
     @Test
     public void testElectionEntityToString() {
         Election election = new Election();
-        String expectedString = "Election(election_id=null, election_name=null, startDate=null, endDate=null, type=null, candidate=null)";
+        String expectedString = "Election(electionId=null, electionName=null, startDate=null, endDate=null, type=null, candidate=null)";
         assertEquals(expectedString, election.toString());
     }
 

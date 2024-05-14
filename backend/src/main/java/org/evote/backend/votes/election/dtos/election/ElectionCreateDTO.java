@@ -12,11 +12,9 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ElectionDTO {
-    private Integer election_id;
+public class ElectionCreateDTO {
     private String election_name;
     private Date startDate;
     private Date endDate;
     private ElectionType type;
-    private Integer candidate_id;
 }

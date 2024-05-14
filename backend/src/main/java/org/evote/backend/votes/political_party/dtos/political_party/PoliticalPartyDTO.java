@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Political_partyDTO {
-    private Long political_party_id;
+public class PoliticalPartyDTO {
+    private Integer politicalPartyId;
     private String name;
-    private Long address_id;
+    private Integer address_id;
 }

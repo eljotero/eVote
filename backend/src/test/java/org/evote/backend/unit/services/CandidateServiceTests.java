@@ -1,22 +1,31 @@
 package org.evote.backend.unit.services;
 
+import lombok.Data;
 import org.evote.backend.services.CandidateService;
-import org.evote.backend.users.precinct.entity.Precinct;
+import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;
 import org.evote.backend.votes.candidate.repository.CandidateRepository;
 import org.evote.backend.votes.election.entity.Election;
+import org.evote.backend.votes.election.exception.ElectionNotFoundException;
+import org.evote.backend.votes.election.repository.ElectionRepository;
+import org.evote.backend.votes.political_party.entity.PoliticalParty;
+import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundException;
+import org.evote.backend.votes.political_party.repository.PoliticalPartyRepository;
+import org.evote.backend.votes.precinct.entity.Precinct;
+import org.evote.backend.votes.precinct.exception.PrecinctNotFoundException;
+import org.evote.backend.votes.precinct.repository.VotesPrecinctRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,6 +37,15 @@ public class CandidateServiceTests {
 
     @Mock
     private CandidateRepository candidateRepository;
+
+    @Mock
+    private PoliticalPartyRepository politicalPartyRepository;
+
+    @Mock
+    private VotesPrecinctRepository precinctRepository;
+
+    @Mock
+    private ElectionRepository electionRepository;
 
     @BeforeEach
     public void setup() {
@@ -50,9 +68,9 @@ public class CandidateServiceTests {
 
     @Test
     public void testGetCandidateById() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
 
@@ -63,23 +81,104 @@ public class CandidateServiceTests {
 
     @Test
     public void testAddCandidate() {
-        UUID id = UUID.randomUUID();
+        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
+        candidateCreateDTO.setName("John");
+        candidateCreateDTO.setSurname("Doe");
+        candidateCreateDTO.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateCreateDTO.setEducation("Bachelor's Degree");
+        candidateCreateDTO.setPolitical_party_id(1);
+        candidateCreateDTO.setPrecinct_id(1);
+        candidateCreateDTO.setElection_id(1);
+
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+        Election election = new Election();
 
-        when(candidateRepository.findById(id)).thenReturn(Optional.empty());
-        when(candidateRepository.save(candidate)).thenReturn(candidate);
+        when(candidateRepository.findByNameAndSurnameAndBirthDateAndEducation(
+                candidateCreateDTO.getName(),
+                candidateCreateDTO.getSurname(),
+                candidateCreateDTO.getBirthDate(),
+                candidateCreateDTO.getEducation())).thenReturn(null);
 
-        Candidate result = candidateService.addCandidate(candidate);
+        when(politicalPartyRepository.findById(candidateCreateDTO.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateCreateDTO.getPrecinct_id())).thenReturn(Optional.of(precinct));
+        when(electionRepository.findById(candidateCreateDTO.getElection_id())).thenReturn(Optional.of(election));
 
-        assertEquals(candidate, result);
+        when(candidateRepository.save(any(Candidate.class))).thenReturn(candidate);
+
+        Candidate result = candidateService.addCandidate(candidateCreateDTO);
+
+        assertNotNull(result);
+        verify(candidateRepository, times(1)).save(any(Candidate.class));
     }
 
     @Test
+    public void testAddCandidateAlreadyExists() {
+        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
+        candidateCreateDTO.setName("John");
+        candidateCreateDTO.setSurname("Doe");
+        candidateCreateDTO.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateCreateDTO.setEducation("Bachelor's Degree");
+
+        Candidate existingCandidate = new Candidate();
+
+        when(candidateRepository.findByNameAndSurnameAndBirthDateAndEducation(
+                candidateCreateDTO.getName(),
+                candidateCreateDTO.getSurname(),
+                candidateCreateDTO.getBirthDate(),
+                candidateCreateDTO.getEducation())).thenReturn(existingCandidate);
+
+        assertThrows(CandidateAlreadyExistsException.class, () -> candidateService.addCandidate(candidateCreateDTO));
+    }
+
+    @Test
+    public void testAddCandidatePoliticalPartyNotFound() {
+        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
+        candidateCreateDTO.setPolitical_party_id(1);
+
+        when(politicalPartyRepository.findById(candidateCreateDTO.getPolitical_party_id())).thenReturn(Optional.empty());
+
+        assertThrows(PoliticalPartyNotFoundException.class, () -> candidateService.addCandidate(candidateCreateDTO));
+    }
+
+    @Test
+    public void testAddCandidatePrecinctNotFound() {
+        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
+        candidateCreateDTO.setPolitical_party_id(1);
+        candidateCreateDTO.setPrecinct_id(1);
+
+        PoliticalParty politicalParty = new PoliticalParty();
+
+        when(politicalPartyRepository.findById(candidateCreateDTO.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateCreateDTO.getPrecinct_id())).thenReturn(Optional.empty());
+
+        assertThrows(PrecinctNotFoundException.class, () -> candidateService.addCandidate(candidateCreateDTO));
+    }
+
+    @Test
+    public void testAddCandidateElectionNotFound() {
+        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
+        candidateCreateDTO.setPolitical_party_id(1);
+        candidateCreateDTO.setPrecinct_id(1);
+        candidateCreateDTO.setElection_id(1);
+
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+
+        when(politicalPartyRepository.findById(candidateCreateDTO.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateCreateDTO.getPrecinct_id())).thenReturn(Optional.of(precinct));
+        when(electionRepository.findById(candidateCreateDTO.getElection_id())).thenReturn(Optional.empty());
+
+        assertThrows(ElectionNotFoundException.class, () -> candidateService.addCandidate(candidateCreateDTO));
+    }
+
+
+    @Test
     public void testDeleteCandidate() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
         Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
+        candidate.setCandidateId(id);
 
         when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
 
@@ -88,20 +187,10 @@ public class CandidateServiceTests {
         verify(candidateRepository, times(1)).delete(candidate);
     }
 
-    @Test
-    public void testAddCandidateAlreadyExists() {
-        UUID id = UUID.randomUUID();
-        Candidate candidate = new Candidate();
-        candidate.setCandidate_id(id);
-
-        when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
-
-        assertThrows(CandidateAlreadyExistsException.class, () -> candidateService.addCandidate(candidate));
-    }
 
     @Test
     public void testGetCandidateByIdNotFound() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
 
         when(candidateRepository.findById(id)).thenReturn(Optional.empty());
 
@@ -110,7 +199,7 @@ public class CandidateServiceTests {
 
     @Test
     public void testDeleteCandidateNotFound() {
-        UUID id = UUID.randomUUID();
+        Integer id = 1;
 
         when(candidateRepository.findById(id)).thenReturn(Optional.empty());
 

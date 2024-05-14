@@ -6,7 +6,6 @@ import org.evote.backend.votes.election.entity.Election;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,13 +14,13 @@ public class ElectionMapperTests {
     @Test
     public void testToElectionDTO() {
         Election election = new Election();
-        election.setElection_id(1L);
-        election.setElection_name("Test Election");
+        election.setElectionId(1);
+        election.setElectionName("Test Election");
         election.setStartDate(new Date());
         election.setEndDate(new Date());
         ElectionDTO electionDTO = ElectionMapper.toElectionDTO(election);
-        assertEquals(election.getElection_id().intValue(), electionDTO.getElection_id());
-        assertEquals(election.getElection_name(), electionDTO.getElection_name());
+        assertEquals(election.getElectionId().intValue(), electionDTO.getElection_id());
+        assertEquals(election.getElectionName(), electionDTO.getElection_name());
         assertEquals(election.getStartDate(), electionDTO.getStartDate());
         assertEquals(election.getEndDate(), electionDTO.getEndDate());
     }

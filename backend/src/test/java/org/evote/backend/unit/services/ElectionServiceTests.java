@@ -1,6 +1,7 @@
 package org.evote.backend.unit.services;
 
 import org.evote.backend.services.ElectionService;
+import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
@@ -45,9 +46,9 @@ public class ElectionServiceTests {
 
     @Test
     public void testGetElectionById() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
 
@@ -58,23 +59,25 @@ public class ElectionServiceTests {
 
     @Test
     public void testAddElection() {
-        Long id = 1L;
+        ElectionCreateDTO electionCreateDTO = new ElectionCreateDTO();
+        electionCreateDTO.setElection_name("Election 1");
+
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionName("Election 1");
 
-        when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
-        when(electionRepository.save(election)).thenReturn(election);
+        when(electionRepository.findByElectionNameAndStartDate(electionCreateDTO.getElection_name(), electionCreateDTO.getStartDate())).thenReturn(null);
+        when(electionRepository.save(any(Election.class))).thenReturn(election);
 
-        Election result = electionService.addElection(election);
+        Election result = electionService.addElection(electionCreateDTO);
 
         assertEquals(election, result);
     }
 
     @Test
     public void testDeleteElection() {
-        Long id = 1L;
+        Integer id = 1;
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionId(id);
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
 
@@ -85,18 +88,20 @@ public class ElectionServiceTests {
 
     @Test
     public void testAddElectionAlreadyExists() {
-        Long id = 1L;
+        ElectionCreateDTO electionCreateDTO = new ElectionCreateDTO();
+        electionCreateDTO.setElection_name("Election 1");
+
         Election election = new Election();
-        election.setElection_id(id);
+        election.setElectionName("Election 1");
 
-        when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.of(election));
+        when(electionRepository.findByElectionNameAndStartDate(electionCreateDTO.getElection_name(), electionCreateDTO.getStartDate())).thenReturn(election);
 
-        assertThrows(ElectionAlreadyExistsException.class, () -> electionService.addElection(election));
+        assertThrows(ElectionAlreadyExistsException.class, () -> electionService.addElection(electionCreateDTO));
     }
 
     @Test
     public void testGetElectionByIdNotFound() {
-        Long id = 1L;
+        Integer id = 1;
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
 
@@ -105,7 +110,7 @@ public class ElectionServiceTests {
 
     @Test
     public void testDeleteElectionNotFound() {
-        Long id = 1L;
+        Integer id = 1;
 
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
 

@@ -42,14 +42,14 @@ public class PoliticalPartyServiceTests {
     }
 
     @Test
-    public void testGetPoliticalPartyNameById() {
-        Long id = 1L;
-        String name = "Test Party";
+    public void testGetPoliticalPartyById() {
+        PoliticalParty politicalParty = new PoliticalParty();
+        politicalParty.setPoliticalPartyId(1);
 
-        when(politicalPartyRepository.findNameById(Math.toIntExact(id))).thenReturn(name);
+        when(politicalPartyRepository.findById(1)).thenReturn(java.util.Optional.of(politicalParty));
 
-        String result = politicalPartyService.getPoliticalPartyNameById(id);
+        PoliticalParty result = politicalPartyService.getPoliticalPartyById(1);
 
-        assertEquals(name, result);
+        assertEquals(politicalParty, result);
     }
 }
