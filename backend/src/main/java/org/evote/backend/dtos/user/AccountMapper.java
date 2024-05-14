@@ -35,15 +35,18 @@ public class AccountMapper {
     public static AccountUserDTO toAccountUserDTO(Account account) {
         AccountUserDTO accountUserDTO = new AccountUserDTO();
         accountUserDTO.setEmail(account.getEmail());
-        accountUserDTO.setHasVoted(account.getHasVoted());
-        accountUserDTO.setIsAccountActive(account.getIsAccountActive());
-        accountUserDTO.setUser_id(account.getUser().getUser_id());
         accountUserDTO.setName(account.getUser().getName());
         accountUserDTO.setSurname(account.getUser().getSurname());
         accountUserDTO.setSex(account.getUser().getSex());
         accountUserDTO.setBirthDate(account.getUser().getBirthDate());
         accountUserDTO.setEducation(String.valueOf(account.getUser().getEducation()));
         accountUserDTO.setProfession(account.getUser().getProfession());
+        accountUserDTO.setCityType(String.valueOf(account.getUser().getCityType()));
+        accountUserDTO.setPersonalIdNumber(account.getUser().getPersonalIdNumber());
+        accountUserDTO.setZipCode(account.getUser().getAddress().getZip_code());
+        accountUserDTO.setCity(account.getUser().getAddress().getCity());
+        accountUserDTO.setCountry(account.getUser().getAddress().getCountry());
+        accountUserDTO.setAddressLine(account.getUser().getAddress().getAddress_line());
         return accountUserDTO;
     }
 }

@@ -1,6 +1,8 @@
 package org.evote.backend.unit.services;
 
+import org.evote.backend.dtos.user.AddressUpdateDTO;
 import org.evote.backend.dtos.user.UserUpdateDTO;
+import org.evote.backend.services.AddressService;
 import org.evote.backend.services.UserService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTests {
@@ -27,6 +30,8 @@ public class UserServiceTests {
     private PasswordEncoder passwordEncoder;
     @Mock
     private AccountRepository accountRepository;
+    @Mock
+    private AddressService addressService;
 
     @InjectMocks
     private UserService userService;
@@ -42,7 +47,7 @@ public class UserServiceTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        userService = new UserService(usersRepository, passwordEncoder, accountRepository);
+        userService = new UserService(usersRepository, passwordEncoder, accountRepository, addressService);
         id = 1;
 
         userUpdateDTO = new UserUpdateDTO();
@@ -56,7 +61,9 @@ public class UserServiceTests {
         userUpdateDTO.setProfession("Developer");
 
         account = new Account();
+        account.setAccount_id(id);
         user = new User();
+        user.setAccount(account);
 
         account.setUser(user);
     }
@@ -67,7 +74,7 @@ public class UserServiceTests {
         when(passwordEncoder.encode(String.valueOf(userUpdateDTO.getPersonalIdNumber()))).thenReturn("encodedPersonalIdNumber");
         when(usersRepository.save(user)).thenReturn(user);
         when(accountRepository.save(account)).thenReturn(account);
-
+        when(addressService.updateAddress(any(Integer.class), any(AddressUpdateDTO.class))).thenReturn("Address updated successfully");
         String result = userService.updateUser(id, userUpdateDTO);
 
         assertEquals("User updated successfully", result);

@@ -1,5 +1,6 @@
 package org.evote.backend.services;
 
+import org.evote.backend.dtos.user.AddressUpdateDTO;
 import org.evote.backend.dtos.user.UserUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -23,11 +24,13 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final AccountRepository accountRepository;
+    private final AddressService addressService;
 
-    public UserService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository) {
+    public UserService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository, AddressService addressService) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.accountRepository = accountRepository;
+        this.addressService = addressService;
     }
 
     @Transactional
@@ -58,7 +61,14 @@ public class UserService {
                 .map(CityType::valueOf)
                 .ifPresent(userToUpdate::setCityType);
         Optional.ofNullable(userUpdateDTO.getProfession()).ifPresent(userToUpdate::setProfession);
+        Account account = userToUpdate.getAccount();
+        AddressUpdateDTO addressUpdateDTO = new AddressUpdateDTO();
+        addressUpdateDTO.setZip_code(userUpdateDTO.getZip_code());
+        addressUpdateDTO.setCity(userUpdateDTO.getCity());
+        addressUpdateDTO.setCountry(userUpdateDTO.getCountry());
+        addressUpdateDTO.setAddress_line(userUpdateDTO.getAddress_line());
         try {
+            addressService.updateAddress(account.getAccount_id(), addressUpdateDTO);
             usersRepository.save(userToUpdate);
         } catch (Exception e) {
             throw new RuntimeException("Error while updating user");

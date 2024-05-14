@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
-    @EntityGraph(attributePaths = {"user"})
     Optional<Account> findById(Integer id);
 
     Account findByEmail(String email);

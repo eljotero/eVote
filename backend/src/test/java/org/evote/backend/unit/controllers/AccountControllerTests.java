@@ -7,6 +7,7 @@ import org.evote.backend.dtos.user.AccountMapper;
 import org.evote.backend.dtos.user.AccountUserDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.user.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,8 @@ public class AccountControllerTests {
         User user = new User();
         user.setName("John");
         user.setSurname("Doe");
+        Address address = new Address();
+        user.setAddress(address);
         account.setUser(user);
     }
 
@@ -78,7 +81,6 @@ public class AccountControllerTests {
 
         when(accountService.getAccountById(accountId)).thenReturn(account);
         AccountUserDTO expectedAccountUserDTO = AccountMapper.toAccountUserDTO(account);
-        assertEquals(expectedAccountUserDTO.getUser_id(), accountController.getAccountById(accountId).getBody().getUser_id());
         assertEquals(expectedAccountUserDTO.getEmail(), accountController.getAccountById(accountId).getBody().getEmail());
         assertEquals(expectedAccountUserDTO.getName(), accountController.getAccountById(accountId).getBody().getName());
         assertEquals(expectedAccountUserDTO.getSurname(), accountController.getAccountById(accountId).getBody().getSurname());

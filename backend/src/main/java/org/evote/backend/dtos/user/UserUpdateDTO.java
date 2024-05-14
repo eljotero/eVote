@@ -18,4 +18,8 @@ public class UserUpdateDTO {
     private String education;
     private String cityType;
     private String profession;
+    private String zip_code;
+    private String city;
+    private String country;
+    private String address_line;
 }
