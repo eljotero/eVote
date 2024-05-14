@@ -37,13 +37,13 @@ public class CandidateService {
     }
     public List<Candidate> getCandidatesByElectionIdAndPrecinctId(int electionId, int precinctId) {
         return candidateRepository.findAll().stream()
-                .filter(candidate -> candidate.getElection_id() == electionId && candidate.getPrecinct_id() == precinctId)
+                .filter(candidate -> candidate.getCandidateId() == electionId && candidate.getPrecinct().getPrecinct_id() == precinctId)
                 .collect(Collectors.toList());
     }
 
     public List<Candidate> getCandidatesByPoliticalPartyId(int politicalPartyId) {
         return candidateRepository.findAll().stream()
-                .filter(candidate -> candidate.getPolitical_party_id() == politicalPartyId)
+                .filter(candidate -> candidate.getPoliticalParty().getPoliticalPartyId() == politicalPartyId)
                 .collect(Collectors.toList());
     }
 

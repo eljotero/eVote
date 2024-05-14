@@ -1,6 +1,8 @@
 package org.evote.backend.services;
 
-import org.evote.backend.votes.political_party.dtos.political_party.Political_partyDTO;
+import org.evote.backend.votes.address.entity.Address;
+import org.evote.backend.votes.address.repository.VotesAddressRepository;
+import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyCreateDTO;
 import org.evote.backend.votes.political_party.dtos.political_party.Political_partyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
@@ -14,12 +16,11 @@ import java.util.List;
 @Service
 public class PoliticalPartyService {
 
-    private final PoliticalPartyRepository politicalPartyRepository;
-
     @Autowired
-    public PoliticalPartyService(PoliticalPartyRepository politicalPartyRepository) {
-        this.politicalPartyRepository = politicalPartyRepository;
-    }
+    private PoliticalPartyRepository politicalPartyRepository;
+    @Autowired
+    private VotesAddressRepository votesAddressRepository;
+
 
     public List<PoliticalParty> getAllPoliticalParties() {
         return politicalPartyRepository.findAll();
@@ -30,10 +31,21 @@ public class PoliticalPartyService {
                 .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
     }
 
-    public PoliticalParty addPoliticalParty(PoliticalParty politicalParty) {
-        if(politicalPartyRepository.findNameByName(politicalParty.getName()) != null) {
-            throw new PoliticalPartyAlreadyExistsException("Political party with name " + politicalParty.getName() + " already exists");
+    public PoliticalParty getPoliticalPartyByName(String name) {
+        return politicalPartyRepository.findByName(name);
+    }
+
+    public PoliticalParty addPoliticalParty(PoliticalPartyCreateDTO politicalPartyCreateDTO) {
+        if(politicalPartyRepository.findByName(politicalPartyCreateDTO.getName()) != null) {
+            throw new PoliticalPartyAlreadyExistsException("Political party with name " + politicalPartyCreateDTO.getName() + " already exists");
         }
+
+        Address address = votesAddressRepository.findById(politicalPartyCreateDTO.getAddress_id())
+                .orElseThrow(() -> new PoliticalPartyNotFoundException("Address with id " + politicalPartyCreateDTO.getAddress_id() + " not found"));
+
+        PoliticalParty politicalParty = Political_partyMapper.toPoliticalParty(politicalPartyCreateDTO);
+        politicalParty.setAddress(address);
+
         return politicalPartyRepository.save(politicalParty);
     }
 
@@ -43,10 +55,16 @@ public class PoliticalPartyService {
         politicalPartyRepository.delete(politicalParty);
     }
 
-    public PoliticalParty updatePoliticalParty(Integer id, PoliticalParty politicalParty) {
-        PoliticalParty politicalPartyToUpdate = politicalPartyRepository.findById(Math.toIntExact(id))
+    public PoliticalParty updatePoliticalParty(Integer id, PoliticalPartyCreateDTO politicalPartyCreateDTO) {
+        PoliticalParty politicalPartyToUpdate = politicalPartyRepository.findById(id)
                 .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
-        politicalPartyToUpdate.setName(politicalParty.getName());
+
+        Address address = votesAddressRepository.findById(politicalPartyCreateDTO.getAddress_id())
+                .orElseThrow(() -> new PoliticalPartyNotFoundException("Address with id " + politicalPartyCreateDTO.getAddress_id() + " not found"));
+
+        politicalPartyToUpdate.setName(politicalPartyCreateDTO.getName());
+        politicalPartyToUpdate.setAddress(address);
+
         return politicalPartyRepository.save(politicalPartyToUpdate);
     }
 }

@@ -49,12 +49,13 @@ public class Political_partyControllerTests {
 
     @Test
     public void testGetPoliticalPartyNameById() throws Exception {
-        Long id = 1L;
-        String name = "Test Party";
-        when(politicalPartyService.getPoliticalPartyNameById(id)).thenReturn(name);
+        Integer id = 1;
+        PoliticalParty politicalParty1 = new PoliticalParty();
+        when(politicalPartyService.getPoliticalPartyById(id)).thenReturn(politicalParty1);
 
         mockMvc.perform(get("/api/political_parties/name/{id}", id))
                 .andExpect(status().isOk())
-                .andExpect(content().string(name));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("{\"political_party_id\":null,\"name\":null,\"address\":null,\"candidates\":null}"));
     }
 }

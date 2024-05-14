@@ -25,9 +25,9 @@ public class CandidateDTOTests {
         Date birthDate = new Date();
         String education = "Test Education";
         String profession = "Test Profession";
-        Long political_party_id = 1L;
+        Integer political_party_id = 1;
         Integer precinct_id = 1;
-        Long election_id = 1L;
+        Integer election_id = 1;
 
         candidateDTO.setName(name);
         candidateDTO.setSurname(surname);

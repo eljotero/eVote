@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.precinct.entity.Precinct;
@@ -13,7 +13,10 @@ import org.evote.backend.votes.precinct.entity.Precinct;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "candidate")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {
@@ -40,28 +43,5 @@ public class Candidate {
     @ManyToOne
     @JoinColumn(name = "election_id")
     private Election election;
-
-    public int getElection_id() {
-        return Math.toIntExact(election.getElectionId());
-    }
-
-    public int getPrecinct_id() {
-        return precinct.getPrecinct_id();
-    }
-    public int getPolitical_party_id() {
-        return politicalParty.getId();
-    }
-
-    public void setElection_id(int i) {
-        election.setElectionId((Integer) i);
-    }
-
-    public void setPrecinct_id(int i) {
-        precinct.setPrecinct_id(i);
-    }
-
-    public void setPolitical_party_id(int i) {
-        politicalParty.setId(i);
-    }
 
 }

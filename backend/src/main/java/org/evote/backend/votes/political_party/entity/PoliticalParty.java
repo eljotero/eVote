@@ -1,20 +1,22 @@
 package org.evote.backend.votes.political_party.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.evote.backend.votes.address.entity.Address;
 import org.evote.backend.votes.candidate.entity.Candidate;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "political_party")
 public class PoliticalParty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer political_party_id;
+    private Integer politicalPartyId;
     private String name;
     @OneToOne
     @JoinColumn(name = "address_id")
@@ -22,18 +24,4 @@ public class PoliticalParty {
 
     @OneToMany(mappedBy = "politicalParty")
     private List<Candidate> candidates;
-    public Integer getId() {
-        return political_party_id;
-    }
-
-    public void setId(Integer l) {
-        this.political_party_id = l;
-    }
-
-    public void setAddress_id(Integer addressId) {
-        address.setAddress_id(addressId);
-    }
-    public int getAddress_id() {
-        return address.getAddress_id();
-    }
 }

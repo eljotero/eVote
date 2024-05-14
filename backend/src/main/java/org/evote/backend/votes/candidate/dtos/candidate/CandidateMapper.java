@@ -24,7 +24,7 @@ public class CandidateMapper {
         candidateDTO.setBirthDate(candidate.getBirthDate());
         candidateDTO.setEducation(candidate.getEducation());
         candidateDTO.setProfession(candidate.getProfession());
-        candidateDTO.setPolitical_party_id(candidate.getPoliticalParty().getId());
+        candidateDTO.setPolitical_party_id(candidate.getPoliticalParty().getPoliticalPartyId());
         candidateDTO.setPrecinct_id(candidate.getPrecinct().getPrecinct_id());
         candidateDTO.setElection_id(candidate.getElection().getElectionId());
         candidateDTO.setInfo(candidate.getInfo());

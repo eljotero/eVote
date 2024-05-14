@@ -26,7 +26,7 @@ public class Political_partyController {
         return ResponseEntity.ok(political_partyDTOs);
     }
 
-    @GetMapping("/name/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Political_partyDTO> getPoliticalPartyById(@PathVariable Integer id) {
         PoliticalParty politicalParty = politicalPartyService.getPoliticalPartyById(id);
         Political_partyDTO political_partyDTO = Political_partyMapper.toPolitical_partyDTO(politicalParty);
@@ -35,7 +35,7 @@ public class Political_partyController {
 
     @PostMapping("/add")
     public ResponseEntity<Political_partyDTO> addPoliticalParty(@RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
-        PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(Political_partyMapper.toPoliticalParty(politicalPartyCreateDTO));
+        PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(politicalPartyCreateDTO);
         return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
     }
 
@@ -47,7 +47,7 @@ public class Political_partyController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Political_partyDTO> updatePoliticalParty(@PathVariable Integer id, @RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
-        PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, Political_partyMapper.toPoliticalParty(politicalPartyCreateDTO));
+        PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO);
         return ResponseEntity.ok(Political_partyMapper.toPolitical_partyDTO(politicalParty));
     }
 }

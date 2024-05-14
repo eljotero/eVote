@@ -5,7 +5,6 @@ import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,8 +23,8 @@ public class PoliticalPartyEntityTests {
         Long id = 1L;
 
         assertNotNull(politicalParty);
-        politicalParty.setPolitical_party_id(id);
-        assertEquals(id, politicalParty.getPolitical_party_id());
+        politicalParty.setPoliticalPartyId(id);
+        assertEquals(id, politicalParty.getPoliticalPartyId());
     }
 
     @Test
@@ -114,10 +113,10 @@ public class PoliticalPartyEntityTests {
         PoliticalParty politicalParty1 = new PoliticalParty();
         PoliticalParty politicalParty2 = new PoliticalParty();
 
-        politicalParty1.setPolitical_party_id(1L);
-        politicalParty2.setPolitical_party_id(1L);
+        politicalParty1.setPoliticalPartyId(1L);
+        politicalParty2.setPoliticalPartyId(1L);
         assertEquals(politicalParty1.hashCode(), politicalParty2.hashCode());
-        politicalParty2.setPolitical_party_id(2L);
+        politicalParty2.setPoliticalPartyId(2L);
         assertNotEquals(politicalParty1.hashCode(), politicalParty2.hashCode());
     }
 

@@ -6,7 +6,7 @@ public class Political_partyMapper {
 
     public static Political_partyDTO toPolitical_partyDTO(PoliticalParty politicalParty) {
         Political_partyDTO political_partyDTO = new Political_partyDTO();
-        political_partyDTO.setId(politicalParty.getId());
+        political_partyDTO.setId(politicalParty.getPoliticalPartyId());
         political_partyDTO.setName(politicalParty.getName());
         political_partyDTO.setAddress_id(politicalParty.getAddress().getAddress_id());
 
@@ -16,7 +16,6 @@ public class Political_partyMapper {
     public static PoliticalParty toPoliticalParty(PoliticalPartyCreateDTO politicalPartyCreateDTO) {
         PoliticalParty politicalParty = new PoliticalParty();
         politicalParty.setName(politicalPartyCreateDTO.getName());
-        politicalParty.setAddress_id(politicalPartyCreateDTO.getAddress_id());
 
         return politicalParty;
     }
