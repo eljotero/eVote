@@ -6,6 +6,7 @@ import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,6 +21,8 @@ public class ElectionService {
     public List<Election> getAllElections() {
         return electionRepository.findAll();
     }
+
+    @Transactional
     public List<Election> getUpcomingElections() {
         List<Election> elections = electionRepository.findAll();
         LocalDate today = LocalDate.now();
@@ -40,11 +43,13 @@ public class ElectionService {
 
         return elections;
     }
+
     public Election getElectionById(Integer id) {
         return electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));
     }
 
+    @Transactional
     public Election addElection(Election election) {
         if (electionRepository.findByElectionNameAndStartDate(election.getElectionName(), election.getStartDate()) != null) {
             throw new ElectionAlreadyExistsException("Election with name " + election.getElectionName() + " and start date " + election.getStartDate() + " already exists");
@@ -52,6 +57,7 @@ public class ElectionService {
         return electionRepository.save(election);
     }
 
+    @Transactional
     public void deleteElection(Integer id) {
         Election election = electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));

@@ -10,6 +10,7 @@ import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundE
 import org.evote.backend.votes.political_party.repository.PoliticalPartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class PoliticalPartyService {
         return politicalPartyRepository.findAll();
     }
 
+    @Transactional
     public PoliticalParty getPoliticalPartyById(Integer id) {
         return politicalPartyRepository.findById(id)
                 .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
@@ -35,6 +37,7 @@ public class PoliticalPartyService {
         return politicalPartyRepository.findByName(name);
     }
 
+    @Transactional
     public PoliticalParty addPoliticalParty(PoliticalPartyCreateDTO politicalPartyCreateDTO) {
         if(politicalPartyRepository.findByName(politicalPartyCreateDTO.getName()) != null) {
             throw new PoliticalPartyAlreadyExistsException("Political party with name " + politicalPartyCreateDTO.getName() + " already exists");
@@ -49,12 +52,14 @@ public class PoliticalPartyService {
         return politicalPartyRepository.save(politicalParty);
     }
 
+    @Transactional
     public void deletePoliticalParty(Integer id) {
         PoliticalParty politicalParty = politicalPartyRepository.findById(Math.toIntExact(id))
                 .orElseThrow(() ->  new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
         politicalPartyRepository.delete(politicalParty);
     }
 
+    @Transactional
     public PoliticalParty updatePoliticalParty(Integer id, PoliticalPartyCreateDTO politicalPartyCreateDTO) {
         PoliticalParty politicalPartyToUpdate = politicalPartyRepository.findById(id)
                 .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));

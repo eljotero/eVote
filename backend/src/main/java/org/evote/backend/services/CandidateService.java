@@ -17,6 +17,7 @@ import org.evote.backend.votes.precinct.exception.PrecinctNotFoundException;
 import org.evote.backend.votes.precinct.repository.VotesPrecinctRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,10 +33,10 @@ public class CandidateService {
     @Autowired
     private VotesPrecinctRepository precinctRepository;
 
-
     public List<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
     }
+
     public List<Candidate> getCandidatesByElectionIdAndPrecinctId(int electionId, int precinctId) {
         return candidateRepository.findAll().stream()
                 .filter(candidate -> candidate.getCandidateId() == electionId && candidate.getPrecinct().getPrecinct_id() == precinctId)
@@ -53,6 +54,7 @@ public class CandidateService {
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
     }
 
+    @Transactional
     public Candidate addCandidate(CandidateCreateDTO candidateCreateDTO) {
         if (candidateRepository.findByNameAndSurnameAndBirthDateAndEducation(
                 candidateCreateDTO.getName(),
@@ -76,12 +78,14 @@ public class CandidateService {
         return candidateRepository.save(candidate);
     }
 
+    @Transactional
     public void deleteCandidate(Integer id) {
         Candidate candidate = candidateRepository.findById(id)
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
         candidateRepository.delete(candidate);
     }
 
+    @Transactional
     public Candidate updateCandidate(Integer id, CandidateCreateDTO candidateNewInfo) {
         Candidate candidateToUpdate = candidateRepository.findById(id)
                 .orElseThrow(() -> new CandidateNotFoundException("Candidate with id " + id + " not found"));
