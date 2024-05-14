@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Political_partyDTO {
+public class PoliticalPartyDTO {
     private Integer politicalPartyId;
     private String name;
     private Integer address_id;

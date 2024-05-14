@@ -2,10 +2,10 @@ package org.evote.backend.votes.political_party.dtos.political_party;
 
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 
-public class Political_partyMapper {
+public class PoliticalPartyMapper {
 
-    public static Political_partyDTO toPolitical_partyDTO(PoliticalParty politicalParty) {
-        Political_partyDTO political_partyDTO = new Political_partyDTO();
+    public static PoliticalPartyDTO toPolitical_partyDTO(PoliticalParty politicalParty) {
+        PoliticalPartyDTO political_partyDTO = new PoliticalPartyDTO();
         political_partyDTO.setPoliticalPartyId(politicalParty.getPoliticalPartyId());
         political_partyDTO.setName(politicalParty.getName());
         political_partyDTO.setAddress_id(politicalParty.getAddress().getAddress_id());

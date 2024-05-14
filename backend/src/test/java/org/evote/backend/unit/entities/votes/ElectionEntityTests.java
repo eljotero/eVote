@@ -313,7 +313,7 @@ public class ElectionEntityTests {
     @Test
     public void testElectionEntityToString() {
         Election election = new Election();
-        String expectedString = "Election(election_id=null, election_name=null, startDate=null, endDate=null, type=null, candidate=null)";
+        String expectedString = "Election(electionId=null, electionName=null, startDate=null, endDate=null, type=null, candidate=null)";
         assertEquals(expectedString, election.toString());
     }
 

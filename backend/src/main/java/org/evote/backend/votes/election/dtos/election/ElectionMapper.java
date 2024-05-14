@@ -6,7 +6,6 @@ public class ElectionMapper {
 
     public static ElectionDTO toElectionDTO(Election election) {
         ElectionDTO electionDTO = new ElectionDTO();
-
         electionDTO.setElection_id(election.getElectionId());
         electionDTO.setElection_name(election.getElectionName());
         electionDTO.setStartDate(election.getStartDate());
@@ -15,7 +14,6 @@ public class ElectionMapper {
         if (election.getCandidate() != null) {
             electionDTO.setCandidate_id(election.getCandidate().getCandidateId());
         }
-
         return electionDTO;
     }
 
@@ -29,7 +27,4 @@ public class ElectionMapper {
 
         return election;
     }
-
-
-
 }

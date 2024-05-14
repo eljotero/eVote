@@ -34,7 +34,7 @@ public class ElectionController {
 
     @PostMapping("/add")
     public ResponseEntity<ElectionDTO> addElection(@RequestBody ElectionCreateDTO electionCreateDTO) {
-        Election election = electionService.addElection(ElectionMapper.toElection(electionCreateDTO));
+        Election election = electionService.addElection(electionCreateDTO);
         return ResponseEntity.ok(ElectionMapper.toElectionDTO(election));
     }
 

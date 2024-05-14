@@ -8,10 +8,7 @@ import org.evote.backend.votes.enums.ElectionType;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Table(name = "election")
 public class Election {
     @Id

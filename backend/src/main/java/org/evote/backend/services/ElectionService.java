@@ -1,5 +1,7 @@
 package org.evote.backend.services;
 
+import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
+import org.evote.backend.votes.election.dtos.election.ElectionMapper;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
@@ -50,10 +52,11 @@ public class ElectionService {
     }
 
     @Transactional
-    public Election addElection(Election election) {
-        if (electionRepository.findByElectionNameAndStartDate(election.getElectionName(), election.getStartDate()) != null) {
-            throw new ElectionAlreadyExistsException("Election with name " + election.getElectionName() + " and start date " + election.getStartDate() + " already exists");
+    public Election addElection(ElectionCreateDTO electionCreateDTO) {
+        if (electionRepository.findByElectionNameAndStartDate(electionCreateDTO.getElection_name(), electionCreateDTO.getStartDate()) != null) {
+            throw new ElectionAlreadyExistsException("Election with name " + electionCreateDTO.getElection_name() + " and start date " + electionCreateDTO.getStartDate() + " already exists");
         }
+        Election election = ElectionMapper.toElection(electionCreateDTO);
         return electionRepository.save(election);
     }
 

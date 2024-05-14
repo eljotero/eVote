@@ -178,7 +178,7 @@ public class PoliticalPartyEntityTests {
     @Test
     public void testPoliticalPartyEntityToString() {
         PoliticalParty politicalParty = new PoliticalParty();
-        String expectedString = "PoliticalParty(political_party_id=null, name=null, address=null, candidates=null)";
+        String expectedString = "PoliticalParty(politicalPartyId=null, name=null, address=null, candidates=null)";
         String actualString = politicalParty.toString();
         assertEquals(expectedString, actualString);
     }

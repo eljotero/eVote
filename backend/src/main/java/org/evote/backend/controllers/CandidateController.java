@@ -48,10 +48,10 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addCandidate(@RequestBody CandidateCreateDTO candidateDTO) {
+    public ResponseEntity<?> addCandidate(@RequestBody CandidateCreateDTO candidateCreateDTO) {
         try {
-            Candidate candidate = candidateService.addCandidate(candidateDTO);
-            return new ResponseEntity<>(CandidateMapper.toCandidateDTO(candidate), HttpStatus.CREATED);
+            Candidate candidate = candidateService.addCandidate(candidateCreateDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(CandidateMapper.toCandidateDTO(candidate));
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

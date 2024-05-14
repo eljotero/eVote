@@ -13,10 +13,7 @@ import org.evote.backend.votes.precinct.entity.Precinct;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Table(name = "candidate")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {

@@ -43,13 +43,13 @@ public class PoliticalPartyServiceTests {
 
     @Test
     public void testGetPoliticalPartyById() {
-        Integer id = 1;
-        PoliticalParty politicalParty1 = new PoliticalParty();
+        PoliticalParty politicalParty = new PoliticalParty();
+        politicalParty.setPoliticalPartyId(1);
 
-        when(politicalPartyRepository.findByPoliticalPartyId(id)).thenReturn(politicalParty1);
+        when(politicalPartyRepository.findById(1)).thenReturn(java.util.Optional.of(politicalParty));
 
-        PoliticalParty result = politicalPartyService.getPoliticalPartyById(id);
+        PoliticalParty result = politicalPartyService.getPoliticalPartyById(1);
 
-        assertEquals(politicalParty1, result);
+        assertEquals(politicalParty, result);
     }
 }

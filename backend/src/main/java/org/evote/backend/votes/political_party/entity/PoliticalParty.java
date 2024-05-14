@@ -8,10 +8,7 @@ import org.evote.backend.votes.candidate.entity.Candidate;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Table(name = "political_party")
 public class PoliticalParty {
     @Id
