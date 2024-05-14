@@ -1,14 +1,16 @@
-import { checkEmail } from '@/app/services/emailService';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import axios from '../../../../lib/axios';
+import { setID } from '@/store/idSlice';
 import { setToken } from '@/store/tokenSlice';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import axios from '../../../../lib/axios';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,24 +20,20 @@ export default function LoginForm() {
       );
       return;
     }
-    const isEmailValid = await checkEmail(email);
-    if (!isEmailValid) {
-      toast.error('Błąd logowania. Nieprawidłowy adres email.');
-    }
     try {
-      const response = await axios.post('/auth/login', {
+      const response = await axios.post('auth/login', {
         email,
         password,
       });
       if (response.status === 200) {
         dispatch(setToken(response.data.token));
         dispatch(setID(response.data.id));
-        return;
+        router.push('/');
       } else {
-        toast.error('Błąd logowania. Spróbuj ponownie.');
+        toast.error('Błąd logowania. Spróbuj ponownie');
       }
     } catch (error) {
-      toast.error('Błąd logowania. Spróbuj ponownie.');
+      toast.error('Błąd logowania. Spróbuj ponownie');
     }
   };
 
