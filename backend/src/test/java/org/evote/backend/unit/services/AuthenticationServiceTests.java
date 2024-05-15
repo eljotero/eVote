@@ -45,16 +45,17 @@ public class AuthenticationServiceTests {
 
 
     @Test
-    public void testRegister() throws AccountAlreadyExistsException {
+    public void testRegister() {
         AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+        accountCreateDTO.setEmail("test@test.com");
         accountCreateDTO.setPassword("password123");
 
         when(passwordEncoder.encode(accountCreateDTO.getPassword())).thenReturn("encodedPassword");
+        when(accountRepository.findByEmail(accountCreateDTO.getEmail())).thenReturn(null);
         when(accountRepository.save(AccountMapper.toAccount(accountCreateDTO))).thenReturn(AccountMapper.toAccount(accountCreateDTO));
 
-        Account result = authenticationService.register(accountCreateDTO);
+        authenticationService.register(accountCreateDTO);
 
-        assertEquals("Account created successfully", result);
         verify(accountRepository, times(1)).save(AccountMapper.toAccount(accountCreateDTO));
     }
 

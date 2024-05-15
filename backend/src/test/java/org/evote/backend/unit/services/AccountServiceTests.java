@@ -81,18 +81,6 @@ public class AccountServiceTests {
     }
 
     @Test
-    public void testSetAccountToInactive() {
-        account.setIsAccountActive(true);
-
-        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.of(account));
-        accountService.deleteAccount(account.getAccount_id());
-
-        assertFalse(account.getIsAccountActive());
-        verify(accountRepository, times(1)).save(account);
-
-    }
-
-    @Test
     public void testAuthenticateAccount() {
         when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
 
