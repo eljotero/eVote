@@ -1,6 +1,7 @@
 package org.evote.backend.unit.dtos.election;
 
 import org.evote.backend.votes.election.dtos.election.ElectionDTO;
+import org.evote.backend.votes.enums.ElectionType;
 import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +20,8 @@ public class ElectionDTOTests {
         String election_name = "Test Election";
         Date startDate = new Date();
         Date endDate = new Date();
-        SmallIntJdbcType type = SmallIntJdbcType.INSTANCE;
-        UUID candidate_id = UUID.randomUUID();
+        ElectionType type = ElectionType.EuropeanParliament;
+        Integer candidate_id = 1;
 
         electionDTO.setElection_id(election_id);
         electionDTO.setElection_name(election_name);

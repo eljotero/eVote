@@ -1,11 +1,14 @@
 package org.evote.backend.services;
 
+import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
+import org.evote.backend.votes.election.dtos.election.ElectionMapper;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,6 +23,8 @@ public class ElectionService {
     public List<Election> getAllElections() {
         return electionRepository.findAll();
     }
+
+    @Transactional
     public List<Election> getUpcomingElections() {
         List<Election> elections = electionRepository.findAll();
         LocalDate today = LocalDate.now();
@@ -40,20 +45,24 @@ public class ElectionService {
 
         return elections;
     }
-    public Election getElectionById(Long id) {
-        return electionRepository.findById(Math.toIntExact(id))
+
+    public Election getElectionById(Integer id) {
+        return electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));
     }
 
-    public Election addElection(Election election) {
-        if (electionRepository.findById(Math.toIntExact(election.getElection_id())).isPresent()) {
-            throw new ElectionAlreadyExistsException("Election with id " + election.getElection_id() + " already exists");
+    @Transactional
+    public Election addElection(ElectionCreateDTO electionCreateDTO) {
+        if (electionRepository.findByElectionNameAndStartDate(electionCreateDTO.getElection_name(), electionCreateDTO.getStartDate()) != null) {
+            throw new ElectionAlreadyExistsException("Election with name " + electionCreateDTO.getElection_name() + " and start date " + electionCreateDTO.getStartDate() + " already exists");
         }
+        Election election = ElectionMapper.toElection(electionCreateDTO);
         return electionRepository.save(election);
     }
 
-    public void deleteElection(Long id) {
-        Election election = electionRepository.findById(Math.toIntExact(id))
+    @Transactional
+    public void deleteElection(Integer id) {
+        Election election = electionRepository.findById(id)
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + id + " not found"));
         electionRepository.delete(election);
     }

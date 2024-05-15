@@ -23,11 +23,11 @@ public class CandidateEntityTests {
     @Test
     public void testCandidateEntityWithId() {
         Candidate candidate = new Candidate();
-        UUID uuid = UUID.randomUUID();
+        Integer id = 1;
 
         assertNotNull(candidate);
-        candidate.setCandidate_id(uuid);
-        assertEquals(uuid, candidate.getCandidate_id());
+        candidate.setCandidateId(id);
+        assertEquals(id, candidate.getCandidateId());
     }
 
     @Test
@@ -228,7 +228,7 @@ public class CandidateEntityTests {
         Candidate candidate1 = new Candidate();
         Candidate candidate2 = new Candidate();
         Election election = new Election();
-        election.setElection_id(1L);
+        election.setElectionId(1);
         candidate1.setElection(election);
         candidate2.setElection(election);
 
@@ -236,7 +236,7 @@ public class CandidateEntityTests {
         assertNotNull(candidate2);
         assertEquals(candidate1.hashCode(), candidate2.hashCode());
         Election election2 = new Election();
-        election2.setElection_id(2L);
+        election2.setElectionId(2);
         candidate2.setElection(election2);
         assertNotEquals(candidate1.hashCode(), candidate2.hashCode());
     }
@@ -357,7 +357,7 @@ public class CandidateEntityTests {
         Candidate candidate1 = new Candidate();
         Candidate candidate2 = new Candidate();
         Election election = new Election();
-        election.setElection_id(1L);
+        election.setElectionId(1);
         candidate1.setElection(election);
         candidate2.setElection(election);
 
@@ -365,7 +365,7 @@ public class CandidateEntityTests {
         assertNotNull(candidate2);
         assertEquals(candidate1, candidate2);
         Election election2 = new Election();
-        election2.setElection_id(2L);
+        election2.setElectionId(2);
         candidate2.setElection(election2);
         assertNotEquals(candidate1, candidate2);
     }
@@ -374,7 +374,7 @@ public class CandidateEntityTests {
     public void testCandidateEntityToString() {
         Candidate candidate = new Candidate();
 
-        String expectedToString = "Candidate(candidate_id=null, name=null, surname=null, birthDate=null, education=null, profession=null, info=null, image=null, politicalParty=null, precinct=null, election=null)";
+        String expectedToString = "Candidate(candidateId=null, name=null, surname=null, birthDate=null, education=null, profession=null, info=null, image=null, politicalParty=null, precinct=null, election=null)";
 
         assertNotNull(candidate);
         assertEquals(expectedToString, candidate.toString());
