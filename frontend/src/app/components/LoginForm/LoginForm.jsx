@@ -30,10 +30,10 @@ export default function LoginForm() {
         dispatch(setID(response.data.id));
         router.push('/');
       } else {
-        toast.error('Błąd logowania. Spróbuj ponownie');
+        toast.error('Błąd logowania. Spróbuj ponownie.');
       }
     } catch (error) {
-      toast.error('Błąd logowania. Spróbuj ponownie');
+      toast.error('Błąd logowania. Spróbuj ponownie.');
     }
   };
 
