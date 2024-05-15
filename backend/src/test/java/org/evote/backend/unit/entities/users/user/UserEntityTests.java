@@ -3,6 +3,7 @@ package org.evote.backend.unit.entities.users.user;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
+import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.user.entity.User;
 import org.junit.jupiter.api.Test;
@@ -55,10 +56,10 @@ public class UserEntityTests {
     @Test
     public void testUserEntityWithPersonalIdNumber() {
         User user = new User();
-        Number personalIdNumber = 123456789;
+        String personalIdNumber = String.valueOf(123456789);
 
         assertNotNull(user);
-        user.setPersonalIdNumber(123456789);
+        user.setPersonalIdNumber(String.valueOf(123456789));
         assertEquals(personalIdNumber, user.getPersonalIdNumber());
     }
 
@@ -90,11 +91,11 @@ public class UserEntityTests {
     @Test
     public void testUserEntityWithEducation() {
         User user = new User();
-        String education = "Bachelor";
+        String education = "PRIMARY";
 
         assertNotNull(user);
-        user.setEducation(education);
-        assertEquals(education, user.getEducation());
+        user.setEducation(Education.valueOf(education));
+        assertEquals(Education.PRIMARY, user.getEducation());
     }
 
     @Test
@@ -120,7 +121,7 @@ public class UserEntityTests {
     @Test
     public void testUserEntityWithCityType() {
         User user = new User();
-        CityType cityType = CityType.BelowFiftyThousand;
+        CityType cityType = CityType.BELOWFIFTYTHOUSAND;
 
         assertNotNull(user);
         user.setCityType(cityType);
@@ -175,8 +176,8 @@ public class UserEntityTests {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setPersonalIdNumber(123456789);
-        user2.setPersonalIdNumber(123456789);
+        user1.setPersonalIdNumber(String.valueOf(123456789));
+        user2.setPersonalIdNumber(String.valueOf(123456789));
         assertEquals(user1.hashCode(), user2.hashCode());
     }
 
@@ -211,8 +212,8 @@ public class UserEntityTests {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setEducation("Bachelor");
-        user2.setEducation("Bachelor");
+        user1.setEducation(Education.valueOf("PRIMARY"));
+        user2.setEducation(Education.valueOf("PRIMARY"));
         assertEquals(user1.hashCode(), user2.hashCode());
     }
 
@@ -241,8 +242,8 @@ public class UserEntityTests {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setCityType(CityType.BelowFiftyThousand);
-        user2.setCityType(CityType.BelowFiftyThousand);
+        user1.setCityType(CityType.BELOWFIFTYTHOUSAND);
+        user2.setCityType(CityType.BELOWFIFTYTHOUSAND);
         assertEquals(user1.hashCode(), user2.hashCode());
     }
 
@@ -300,12 +301,12 @@ public class UserEntityTests {
     public void testUserEntityEqualsPersonalIdNumber() {
         User user1 = new User();
         User user2 = new User();
-        user1.setPersonalIdNumber(123456789);
-        user2.setPersonalIdNumber(123456789);
+        user1.setPersonalIdNumber(String.valueOf(123456789));
+        user2.setPersonalIdNumber(String.valueOf(123456789));
         assertEquals(user1, user2);
-        user2.setPersonalIdNumber(987654321);
+        user2.setPersonalIdNumber(String.valueOf(987654321));
         assertNotEquals(user1, user2);
-        user2.setPersonalIdNumber(123456789);
+        user2.setPersonalIdNumber(String.valueOf(123456789));
     }
 
     @Test
@@ -346,12 +347,12 @@ public class UserEntityTests {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setEducation("Bachelor");
-        user2.setEducation("Bachelor");
+        user1.setEducation(Education.valueOf("PRIMARY"));
+        user2.setEducation(Education.valueOf("PRIMARY"));
         assertEquals(user1, user2);
-        user2.setEducation("Master");
+        user2.setEducation(Education.valueOf("VOCATIONAL"));
         assertNotEquals(user1, user2);
-        user2.setEducation("Bachelor");
+        user2.setEducation(Education.valueOf("PRIMARY"));
     }
 
     @Test
@@ -385,12 +386,12 @@ public class UserEntityTests {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setCityType(CityType.BelowFiftyThousand);
-        user2.setCityType(CityType.BelowFiftyThousand);
+        user1.setCityType(CityType.BELOWFIFTYTHOUSAND);
+        user2.setCityType(CityType.BELOWFIFTYTHOUSAND);
         assertEquals(user1, user2);
-        user2.setCityType(CityType.Over500Thousand);
+        user2.setCityType(CityType.OVER500THOUSAND);
         assertNotEquals(user1, user2);
-        user2.setCityType(CityType.BelowFiftyThousand);
+        user2.setCityType(CityType.BELOWFIFTYTHOUSAND);
     }
 
     @Test
@@ -450,7 +451,7 @@ public class UserEntityTests {
     public void testUserEntityToString() {
         User user = new User();
         Account account = new Account();
-        String expectedString = "User(user_id=null, name=null, surname=null, sex=null, personalIdNumber=null, code=null, birthDate=null, education=null, profession=null, precincts=null, address=null, cityType=null, account=null)";
+        String expectedString = "User(user_id=null, name=null, surname=null, sex=null, personalIdNumber=null, code=null, birthDate=null, education=null, cityType=null, profession=null, precincts=null, address=null, account=null)";
         String actualString = user.toString();
         assertEquals(expectedString, user.toString());
     }

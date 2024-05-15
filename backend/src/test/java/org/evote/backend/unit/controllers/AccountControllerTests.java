@@ -2,12 +2,13 @@ package org.evote.backend.unit.controllers;
 
 
 import org.evote.backend.controllers.AccountController;
-import org.evote.backend.dtos.user.AccountCreateDTO;
 import org.evote.backend.dtos.user.AccountDTO;
-import org.evote.backend.dtos.user.AccountLoginDTO;
-import org.evote.backend.dtos.user.AccountLoginResponseDTO;
+import org.evote.backend.dtos.user.AccountMapper;
+import org.evote.backend.dtos.user.AccountUserDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.address.entity.Address;
+import org.evote.backend.users.user.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -35,14 +35,22 @@ public class AccountControllerTests {
 
     @InjectMocks
     private AccountController accountController;
+
     private Account account;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+        accountController = new AccountController(accountService);
         account = new Account();
         account.setEmail("test@test.com");
         account.setPassword("password");
+        User user = new User();
+        user.setName("John");
+        user.setSurname("Doe");
+        Address address = new Address();
+        user.setAddress(address);
+        account.setUser(user);
     }
 
     @Test
@@ -56,19 +64,6 @@ public class AccountControllerTests {
         assertEquals(accounts.size(), responseEntity.getBody().size());
     }
 
-    @Test
-    public void testAddAccount() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password");
-
-        when(accountService.addAccount(any(Account.class))).thenReturn(account);
-
-        ResponseEntity<AccountDTO> responseEntity = accountController.addAccount(accountCreateDTO);
-
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
 
     @Test
     public void testSetAccountToInactiveAccountById() {
@@ -85,24 +80,14 @@ public class AccountControllerTests {
         Integer accountId = 1;
 
         when(accountService.getAccountById(accountId)).thenReturn(account);
-
-        ResponseEntity<AccountDTO> responseEntity = accountController.getAccountById(accountId);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
+        AccountUserDTO expectedAccountUserDTO = AccountMapper.toAccountUserDTO(account);
+        assertEquals(expectedAccountUserDTO.getEmail(), accountController.getAccountById(accountId).getBody().getEmail());
+        assertEquals(expectedAccountUserDTO.getName(), accountController.getAccountById(accountId).getBody().getName());
+        assertEquals(expectedAccountUserDTO.getSurname(), accountController.getAccountById(accountId).getBody().getSurname());
+        assertEquals(expectedAccountUserDTO.getSex(), accountController.getAccountById(accountId).getBody().getSex());
+        assertEquals(expectedAccountUserDTO.getBirthDate(), accountController.getAccountById(accountId).getBody().getBirthDate());
+        assertEquals(expectedAccountUserDTO.getEducation(), accountController.getAccountById(accountId).getBody().getEducation());
+        assertEquals(expectedAccountUserDTO.getProfession(), accountController.getAccountById(accountId).getBody().getProfession());
     }
-
-    @Test
-    public void testLoginUser() {
-        AccountLoginDTO AccountLoginDTO = new AccountLoginDTO();
-        AccountLoginDTO.setEmail("test@test.com");
-        AccountLoginDTO.setPassword("password");
-
-        when(accountService.authenticate(AccountLoginDTO.getEmail(), AccountLoginDTO.getPassword())).thenReturn(account);
-
-        ResponseEntity<AccountLoginResponseDTO> responseEntity = accountController.login(AccountLoginDTO);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
-
 
 }

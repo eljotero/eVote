@@ -5,6 +5,7 @@ import lombok.Data;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
+import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.precinct.entity.Precinct;
 
 import java.util.Date;
@@ -21,10 +22,13 @@ public class User {
     private String name;
     private String surname;
     private Boolean sex;
-    private Number personalIdNumber;
+    private String personalIdNumber;
     private String code;
     private Date birthDate;
-    private String education;
+    @Enumerated(EnumType.STRING)
+    private Education education;
+    @Enumerated(EnumType.STRING)
+    private CityType cityType;
     private String profession;
 
     @ManyToMany
@@ -34,9 +38,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @Enumerated(EnumType.ORDINAL)
-    private CityType cityType;
 
     @OneToOne(mappedBy = "user")
     private Account account;
