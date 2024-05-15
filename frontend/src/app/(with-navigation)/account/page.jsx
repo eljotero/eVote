@@ -6,7 +6,7 @@ import LabeledInput from '../../components/Account/LabeledInput';
 import LabeledSelect from '../../components/Account/LabeledSelect';
 import { toast } from 'react-hot-toast';
 
-export default function account() {
+export default function Account() {
   const id = useSelector((state) => state.id.value);
   const token = useSelector((state) => state.token.value);
   const [data, setData] = useState({});
