@@ -17,6 +17,6 @@ export const idSlice = createSlice({
   },
 });
 
-export const { setID, cleaclearIDrToken } = idSlice.actions;
+export const { setID, clearID } = idSlice.actions;
 
 export default idSlice.reducer;

@@ -2,15 +2,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearID } from '../../../store/idSlice';
+import { clearToken } from '../../../store/tokenSlice';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const token = useSelector((state) => state.token.value);
-  console.log(token);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const logout = () => {
+    dispatch(clearToken());
+    dispatch(clearID);
+    router.push('/');
   };
 
   return (
@@ -193,14 +203,21 @@ export default function Navbar() {
           ) : null}
         </ul>
         {!token ? (
-            <Link
-              className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
-              href='/login'
-              aria-label='Zaloguj się'
-            >
-              Zaloguj się
-            </Link>
-        ) : null}
+          <Link
+            className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
+            href='/login'
+            aria-label='Zaloguj się'
+          >
+            Zaloguj się
+          </Link>
+        ) : (
+          <button
+            onClick={logout}
+            className='hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
+          >
+            Wyloguj
+          </button>
+        )}
       </nav>
       <div
         className={`navbar-menu relative z-50 ${isMenuOpen ? '' : 'hidden'}`}

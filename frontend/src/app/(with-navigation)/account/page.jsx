@@ -67,10 +67,10 @@ export default function account() {
       profession,
       cityType,
       personalIdNumber,
-      zipCode,
+      zip_code: zipCode,
       city,
       country,
-      addressLine,
+      address_line: addressLine,
     };
     axios
       .put(`user/${id}`, formData, {
