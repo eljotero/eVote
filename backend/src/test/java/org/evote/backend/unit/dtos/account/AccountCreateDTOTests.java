@@ -1,6 +1,6 @@
 package org.evote.backend.unit.dtos.account;
 
-import org.evote.backend.dtos.user.AccountCreateDTO;
+import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.enums.Role;
 import org.junit.jupiter.api.Test;
 

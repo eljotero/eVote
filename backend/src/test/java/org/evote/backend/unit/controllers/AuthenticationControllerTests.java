@@ -1,7 +1,7 @@
 package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.AuthenticationController;
-import org.evote.backend.dtos.user.AuthenticationResponseDTO;
+import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.entity.Account;
 import org.junit.jupiter.api.BeforeEach;

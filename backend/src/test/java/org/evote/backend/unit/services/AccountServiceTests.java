@@ -85,7 +85,7 @@ public class AccountServiceTests {
         account.setIsAccountActive(true);
 
         when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.of(account));
-        accountService.setAccountToInactive(account.getAccount_id());
+        accountService.deleteAccount(account.getAccount_id());
 
         assertFalse(account.getIsAccountActive());
         verify(accountRepository, times(1)).save(account);

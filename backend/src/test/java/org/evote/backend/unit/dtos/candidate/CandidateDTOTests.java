@@ -1,11 +1,10 @@
 package org.evote.backend.unit.dtos.candidate;
 
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

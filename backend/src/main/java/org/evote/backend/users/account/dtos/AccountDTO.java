@@ -1,4 +1,4 @@
-package org.evote.backend.dtos.user;
+package org.evote.backend.users.account.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package org.evote.backend.unit.dtos.political_party;
 
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyDTO;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

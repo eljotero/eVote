@@ -1,7 +1,7 @@
 package org.evote.backend.services;
 
 import org.evote.backend.config.JwtService;
-import org.evote.backend.dtos.user.AuthenticationResponseDTO;
+import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;

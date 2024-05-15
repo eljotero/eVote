@@ -1,12 +1,9 @@
 package org.evote.backend.unit.controllers;
 
-import org.evote.backend.controllers.AccountController;
 import org.evote.backend.controllers.CandidateController;
-import org.evote.backend.services.AccountService;
 import org.evote.backend.services.CandidateService;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
+import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateDTO;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
@@ -16,14 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,8 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc

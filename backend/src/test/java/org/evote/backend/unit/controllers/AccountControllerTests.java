@@ -2,10 +2,10 @@ package org.evote.backend.unit.controllers;
 
 
 import org.evote.backend.controllers.AccountController;
-import org.evote.backend.dtos.user.AccountCreateDTO;
-import org.evote.backend.dtos.user.AccountDTO;
-import org.evote.backend.dtos.user.AccountLoginDTO;
-import org.evote.backend.dtos.user.AccountLoginResponseDTO;
+import org.evote.backend.users.account.dtos.AccountCreateDTO;
+import org.evote.backend.users.account.dtos.AccountDTO;
+import org.evote.backend.users.account.dtos.AccountLoginDTO;
+import org.evote.backend.users.account.dtos.AccountLoginResponseDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.junit.jupiter.api.BeforeEach;
@@ -90,19 +90,5 @@ public class AccountControllerTests {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
     }
-
-    @Test
-    public void testLoginUser() {
-        AccountLoginDTO AccountLoginDTO = new AccountLoginDTO();
-        AccountLoginDTO.setEmail("test@test.com");
-        AccountLoginDTO.setPassword("password");
-
-        when(accountService.authenticate(AccountLoginDTO.getEmail(), AccountLoginDTO.getPassword())).thenReturn(account);
-
-        ResponseEntity<AccountLoginResponseDTO> responseEntity = accountController.login(AccountLoginDTO);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(account.getEmail(), responseEntity.getBody().getEmail());
-    }
-
 
 }

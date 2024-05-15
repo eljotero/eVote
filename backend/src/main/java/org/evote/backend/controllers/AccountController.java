@@ -1,6 +1,6 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.*;
+import org.evote.backend.users.account.dtos.*;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class AccountController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> setAccountToInactive(@PathVariable Integer id) {
-        accountService.setAccountToInactive(id);
+        accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -41,13 +41,6 @@ public class AccountController {
     public ResponseEntity<AccountDTO> getAccountById(@PathVariable Integer id) {
         Account account = accountService.getAccountById(id);
         return ResponseEntity.ok(AccountMapper.toAccountDTO(account));
-    }
-
-    // Return only JWT token
-    @PostMapping("/login")
-    public ResponseEntity<AccountLoginResponseDTO> login(@RequestBody AccountLoginDTO accountLoginDTO) {
-        Account account = accountService.authenticate(accountLoginDTO.getEmail(), accountLoginDTO.getPassword());
-        return ResponseEntity.ok(AccountMapper.toAccountLoginResponseDTO(account));
     }
 
 }

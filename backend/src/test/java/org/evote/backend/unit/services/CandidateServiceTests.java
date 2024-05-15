@@ -1,8 +1,7 @@
 package org.evote.backend.unit.services;
 
-import lombok.Data;
 import org.evote.backend.services.CandidateService;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;

@@ -1,9 +1,9 @@
 package org.evote.backend.controllers;
 
 import org.evote.backend.services.PoliticalPartyService;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyCreateDTO;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyDTO;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyMapper;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyCreateDTO;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyDTO;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

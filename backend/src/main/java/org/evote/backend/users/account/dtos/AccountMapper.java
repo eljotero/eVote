@@ -1,7 +1,6 @@
-package org.evote.backend.dtos.user;
+package org.evote.backend.users.account.dtos;
 
 import org.evote.backend.users.account.entity.Account;
-import org.evote.backend.users.user.entity.User;
 
 public class AccountMapper {
 
