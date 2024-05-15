@@ -1,6 +1,9 @@
 package org.evote.backend.services;
 
 import org.evote.backend.config.JwtService;
+import org.evote.backend.users.account.dtos.AccountCreateDTO;
+import org.evote.backend.users.account.dtos.AccountLoginDTO;
+import org.evote.backend.users.account.dtos.AccountMapper;
 import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
@@ -28,25 +31,23 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public String register(Account account) throws AccountAlreadyExistsException {
-        if (account.getPassword().length() < 8) {
+    public Account register(AccountCreateDTO accountCreateDTO) throws AccountAlreadyExistsException {
+        if (accountCreateDTO.getPassword().length() < 8) {
             throw new PasswordTooShortException("Password must be at least 8 characters long");
         }
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        try {
-            accountRepository.save(account);
-        } catch (DataAccessException e) {
+        accountCreateDTO.setPassword(passwordEncoder.encode(accountCreateDTO.getPassword()));
+        if (accountRepository.findByEmail(accountCreateDTO.getEmail()) != null) {
             throw new AccountAlreadyExistsException("Account already exists");
         }
-        return "Account created successfully";
+        return accountRepository.save(AccountMapper.toAccount(accountCreateDTO));
     }
 
-    public AuthenticationResponseDTO login(Account account) {
-        Account dbAccount = accountRepository.findByEmail(account.getUsername());
+    public AuthenticationResponseDTO login(AccountLoginDTO accountLoginDTO) {
+        Account dbAccount = accountRepository.findByEmail(accountLoginDTO.getEmail());
         if (dbAccount == null) {
             throw new AccountNotFoundException("Account not found");
         }
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(accountLoginDTO.getEmail(), accountLoginDTO.getPassword()));
         return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount));
     }
 }
