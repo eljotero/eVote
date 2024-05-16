@@ -23,6 +23,7 @@ export default function Account() {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [addressLine, setAddressLine] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
   const fetchAccount = async () => {
     const res = await axios.get(`account/${id}`, {
       headers: {
@@ -87,7 +88,24 @@ export default function Account() {
         toast.error('Błąd zapisu');
       });
   };
-  return (
+
+    function sendEmail() {
+        axios.post('email/sendEmail', {}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+                toast.success('Email wysłany pomyślnie!');
+            } else {
+                toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
+            }
+        }).catch((error) => {
+            toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
+        });
+    }
+
+    return (
     <div className='flex justify-center items-center relative top-35'>
       <div className='bg-slate-50 rounded-md border border-solid border-gray-500 grid grid-rows-3 grid-cols-1 justify-items-center items-center justify-evenly'>
         <div className='grid grid-rows-4 grid-cols-2 w-5/6 mt-4 gap-2'>
@@ -526,13 +544,19 @@ export default function Account() {
               { label: 'Zimbabwe', value: 'Zimbabwe' },
             ]}
           />
+            <button
+                onClick={sendEmail}
+                className='bg-blue-500 rounded-md w-1/1 h-1/1 text-white'
+            >
+                Wygeneruj swój kod do głosowania
+            </button>
         </div>
-        <button
-          onClick={onSubmit}
-          className='bg-green-500 rounded-md w-1/5 h-1/5 text-white'
-        >
-          Zapisz
-        </button>
+          <button
+              onClick={onSubmit}
+              className='bg-green-500 rounded-md w-1/5 h-1/5 text-white'
+          >
+              Zapisz
+          </button>
       </div>
     </div>
   );
