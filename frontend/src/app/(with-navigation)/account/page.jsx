@@ -89,23 +89,35 @@ export default function Account() {
       });
   };
 
-    function sendEmail() {
-        axios.post('email/sendEmail', {}, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        }).then((res) => {
-            if (res.status === 200) {
-                toast.success('Email wysłany pomyślnie!');
-            } else {
-                toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
-            }
-        }).catch((error) => {
-            toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
-        });
-    }
+  function sendEmail() {
+    axios
+      .post(
+        'email/sendEmail',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toast.success('Email wysłany pomyślnie!');
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 400) {
+          toast.error(
+            'Email został już wysłany. Sprawdź swoją skrzynkę odbiorczą.'
+          );
+          return;
+        }
+        toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
+      });
+  }
 
-    return (
+  return (
     <div className='flex justify-center items-center relative top-35'>
       <div className='bg-slate-50 rounded-md border border-solid border-gray-500 grid grid-rows-3 grid-cols-1 justify-items-center items-center justify-evenly'>
         <div className='grid grid-rows-4 grid-cols-2 w-5/6 mt-4 gap-2'>
@@ -544,19 +556,19 @@ export default function Account() {
               { label: 'Zimbabwe', value: 'Zimbabwe' },
             ]}
           />
-            <button
-                onClick={sendEmail}
-                className='bg-blue-500 rounded-md w-1/1 h-1/1 text-white'
-            >
-                Wygeneruj swój kod do głosowania
-            </button>
-        </div>
           <button
-              onClick={onSubmit}
-              className='bg-green-500 rounded-md w-1/5 h-1/5 text-white'
+            onClick={sendEmail}
+            className='bg-blue-500 rounded-md w-1/1 h-1/1 text-white'
           >
-              Zapisz
+            Wygeneruj swój kod do głosowania
           </button>
+        </div>
+        <button
+          onClick={onSubmit}
+          className='bg-green-500 rounded-md w-1/5 h-1/5 text-white'
+        >
+          Zapisz
+        </button>
       </div>
     </div>
   );
