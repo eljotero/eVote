@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -37,5 +38,9 @@ public class AccountService {
                 .orElseThrow(() -> new AccountNotFoundException("Account with id " + id + " not found"));
         account.setIsAccountActive(false);
         accountRepository.save(account);
+    }
+
+    public Optional<Account> getAccountByEmail(String email) {
+        return Optional.ofNullable(accountRepository.findByEmail(email));
     }
 }
