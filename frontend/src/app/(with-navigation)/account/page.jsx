@@ -23,6 +23,7 @@ export default function Account() {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [addressLine, setAddressLine] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
   const fetchAccount = async () => {
     const res = await axios.get(`account/${id}`, {
       headers: {
@@ -72,22 +73,6 @@ export default function Account() {
       country,
       address_line: addressLine,
     };
-    const sendEmail = async () => {
-          try {
-              const response = await axios.post('/api/email/sendEmail', {}, {
-                  headers: {
-                      Authorization: `Bearer ${token}`,
-                  },
-              });
-              if (response.status === 200) {
-                  toast.success('Email wysłany pomyślnie!');
-              } else {
-                  toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
-              }
-          } catch (error) {
-              toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
-          }
-      };
     axios
       .put(`user/${id}`, formData, {
         headers: {

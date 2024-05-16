@@ -2,8 +2,12 @@ package org.evote.backend.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.eclipse.angus.mail.imap.protocol.ID;
+import org.evote.backend.config.JwtService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -17,15 +21,20 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class EmailService {
 
     private final JavaMailSender mailSender;
+    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    public EmailService(JavaMailSender mailSender) {
+    public EmailService(JavaMailSender mailSender, UserRepository userRepository, AccountRepository accountRepository) {
         this.mailSender = mailSender;
+        this.userRepository = userRepository;
+        this.accountRepository = accountRepository;
 
     }
     private String generateOneTimeCode() {
@@ -36,12 +45,18 @@ public class EmailService {
     @Async
     public void sendEmail(String to) {
         try {
-            String htmlBody = readHtmlTemplate("mail_template.html");
-            htmlBody = htmlBody.replace("{$code}", generateOneTimeCode());
-            htmlBody = htmlBody.replace("{$to}", to);
-            String subject = "Twój jednorazowy kod do głosowania!";
-            sendHtmlEmail(to, subject, htmlBody);
-
+            Account account = accountRepository.findByEmail(to);
+            if (account != null && account.getUser().getCode() == null) {
+                String code = generateOneTimeCode();
+                String htmlBody = readHtmlTemplate("mail_template.html");
+                htmlBody = htmlBody.replace("{$code}", code);
+                htmlBody = htmlBody.replace("{$to}", to);
+                String subject = "Twój jednorazowy kod do głosowania!";
+                sendHtmlEmail(to, subject, htmlBody);
+                User user = account.getUser();
+                user.setCode(code);
+                userRepository.save(user);
+            }
         } catch (IOException | MessagingException e) {
             e.printStackTrace();
         }

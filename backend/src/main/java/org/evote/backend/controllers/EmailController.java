@@ -6,6 +6,8 @@ import org.evote.backend.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/email")
 public class EmailController {
