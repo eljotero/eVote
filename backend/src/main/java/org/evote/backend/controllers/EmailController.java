@@ -3,7 +3,6 @@ package org.evote.backend.controllers;
 
 import org.evote.backend.config.JwtService;
 import org.evote.backend.services.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,7 +16,7 @@ public class EmailController {
     private final EmailService emailService;
     private final JwtService jwtService;
 
-    @Autowired
+
     public EmailController(EmailService emailService, JwtService jwtService) {
         this.emailService = emailService;
         this.jwtService = jwtService;
