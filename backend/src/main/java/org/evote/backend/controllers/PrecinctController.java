@@ -1,9 +1,7 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.PrecinctSetDTO;
 import org.evote.backend.services.PrecinctService;
 import org.evote.backend.users.precinct.entity.Precinct;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
