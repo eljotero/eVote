@@ -7,6 +7,7 @@ import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.exceptions.AddressNotFoundException;
 import org.evote.backend.users.address.repository.UserAddressRepository;
+import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,8 @@ public class AddressService {
 
     private final AccountRepository accountRepository;
 
-    public AddressService(UserAddressRepository userAddressRepository, AccountRepository accountRepository) {
+
+    public AddressService(UserAddressRepository userAddressRepository, AccountRepository accountRepository, UsersPrecinctRepository usersPrecinctRepository, PrecinctService precinctService) {
         this.userAddressRepository = userAddressRepository;
         this.accountRepository = accountRepository;
     }
