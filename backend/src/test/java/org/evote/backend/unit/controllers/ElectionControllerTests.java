@@ -2,8 +2,8 @@ package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.ElectionController;
 import org.evote.backend.services.ElectionService;
-import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
-import org.evote.backend.votes.election.dtos.election.ElectionDTO;
+import org.evote.backend.votes.election.dtos.ElectionCreateDTO;
+import org.evote.backend.votes.election.dtos.ElectionDTO;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.enums.ElectionType;
 import org.junit.jupiter.api.Assertions;

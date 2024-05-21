@@ -2,10 +2,10 @@ package org.evote.backend.unit.controllers;
 
 
 import org.evote.backend.controllers.AccountController;
-import org.evote.backend.dtos.user.AccountDTO;
-import org.evote.backend.dtos.user.AccountMapper;
-import org.evote.backend.dtos.user.AccountUserDTO;
+import org.evote.backend.users.account.dtos.AccountDTO;
 import org.evote.backend.services.AccountService;
+import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AccountUserDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.user.entity.User;

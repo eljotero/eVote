@@ -1,7 +1,7 @@
 package org.evote.backend.services;
 
-import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
-import org.evote.backend.votes.election.dtos.election.ElectionMapper;
+import org.evote.backend.votes.election.dtos.ElectionCreateDTO;
+import org.evote.backend.votes.election.dtos.ElectionMapper;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
@@ -60,6 +60,7 @@ public class ElectionService {
         return electionRepository.save(election);
     }
 
+    // Change to truncate
     @Transactional
     public void deleteElection(Integer id) {
         Election election = electionRepository.findById(id)

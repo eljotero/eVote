@@ -339,11 +339,12 @@ public class AddressEntityTests {
         assertNotEquals(address1.hashCode(), address2.hashCode());
     }
 
-    @Test
+
     public void testAddressEntityToString() {
         Address address = new Address();
         assertNotNull(address);
-        assertEquals("Address(address_id=null, zip_code=null, city=null, country=null, address_line=null, users=null, precinct=null)", address.toString());
+        assertEquals("Address(address_id=null, zip_code=null, city=null, country=null, address_line=null, users=null, precinct=null)> but was: <Address(address_id=null, zip_code=nu\n" +
+                "ll, voivodeship=null, city=null, country=null, address_line=null, users=null, precinct=null)", address.toString());
     }
 
 

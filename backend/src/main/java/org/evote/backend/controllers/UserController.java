@@ -1,6 +1,6 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.UserUpdateDTO;
+import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.evote.backend.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

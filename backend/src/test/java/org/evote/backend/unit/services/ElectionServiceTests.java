@@ -1,7 +1,7 @@
 package org.evote.backend.unit.services;
 
 import org.evote.backend.services.ElectionService;
-import org.evote.backend.votes.election.dtos.election.ElectionCreateDTO;
+import org.evote.backend.votes.election.dtos.ElectionCreateDTO;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;

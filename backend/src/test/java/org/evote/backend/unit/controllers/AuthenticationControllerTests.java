@@ -1,9 +1,14 @@
 package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.AuthenticationController;
-import org.evote.backend.dtos.user.AuthenticationResponseDTO;
+import org.evote.backend.users.account.dtos.AccountCreateDTO;
+import org.evote.backend.users.account.dtos.AccountLoginDTO;
+import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.account.exceptions.AccountNotFoundException;
+import org.evote.backend.users.account.exceptions.PasswordTooShortException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,7 +16,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 public class AuthenticationControllerTests {
@@ -28,44 +36,43 @@ public class AuthenticationControllerTests {
 
     @Test
     public void testRegister() {
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("password123");
-        when(authenticationService.register(account)).thenReturn("Account created successfully");
-        assertEquals("Account created successfully", authenticationController.register(account).getBody());
+        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+        accountCreateDTO.setEmail("test@mail.com");
+        accountCreateDTO.setPassword("password123");
+        when(authenticationService.register(accountCreateDTO)).thenReturn(AccountMapper.toAccount(accountCreateDTO));
+        assertEquals(accountCreateDTO.getEmail(), Objects.requireNonNull(authenticationController.register(accountCreateDTO).getBody()).getEmail());
     }
 
     @Test
-    public void testRegisterBadRequest() {
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("pass");
-        when(authenticationService.register(account)).thenThrow(new RuntimeException("Bad request"));
-        assertEquals("Bad request", authenticationController.register(account).getBody());
+    public void testRegisterPasswordToShort() {
+        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+        accountCreateDTO.setEmail("test@mail.com");
+        accountCreateDTO.setPassword("pass");
+
+        when(authenticationService.register(accountCreateDTO)).thenThrow(new PasswordTooShortException("Password must be at least 8 characters long"));
+        assertThrows(PasswordTooShortException.class, () -> authenticationController.register(accountCreateDTO));
     }
 
     @Test
     public void testLogin() {
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("password123");
-        account.setAccount_id(1);
-        when(authenticationService.login(account)).thenReturn(new AuthenticationResponseDTO("token", account.getAccount_id()));
+        AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
+        accountLoginDTO.setEmail("test@mail.com");
+        accountLoginDTO.setPassword("password123");
+        when(authenticationService.login(accountLoginDTO)).thenReturn(new AuthenticationResponseDTO("token", 1));
 
-        AuthenticationResponseDTO response = (AuthenticationResponseDTO) authenticationController.login(account).getBody();
+        AuthenticationResponseDTO response = (AuthenticationResponseDTO) authenticationController.login(accountLoginDTO).getBody();
 
         assertEquals("token", response.getToken());
         assertEquals(1, response.getId());
     }
 
     @Test
-    public void testLoginBadRequest() {
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("password123");
-        when(authenticationService.login(account)).thenThrow(new RuntimeException("Login failed"));
-        ResponseEntity<?> response = authenticationController.login(account);
-        assertEquals(400, response.getStatusCodeValue());
-        assertEquals("Login failed", response.getBody());
+    public void testLoginAccountNotFound() {
+        AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
+        accountLoginDTO.setEmail("test@mail.com");
+        accountLoginDTO.setPassword("password123");
+
+        when(authenticationService.login(accountLoginDTO)).thenThrow(new AccountNotFoundException("Account not found"));
+        assertThrows(AccountNotFoundException.class, () -> authenticationController.login(accountLoginDTO));
     }
 }

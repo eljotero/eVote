@@ -1,12 +1,13 @@
 package org.evote.backend.services;
 
-import org.evote.backend.dtos.user.AddressUpdateDTO;
+import org.evote.backend.users.account.dtos.AddressUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.exceptions.AddressNotFoundException;
 import org.evote.backend.users.address.repository.UserAddressRepository;
+import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public class AddressService {
     private final UserAddressRepository userAddressRepository;
 
     private final AccountRepository accountRepository;
+
 
     public AddressService(UserAddressRepository userAddressRepository, AccountRepository accountRepository) {
         this.userAddressRepository = userAddressRepository;
@@ -36,6 +38,7 @@ public class AddressService {
         Optional.ofNullable(addressUpdateDTO.getCity()).ifPresent(userAddress::setCity);
         Optional.ofNullable(addressUpdateDTO.getCountry()).ifPresent(userAddress::setCountry);
         Optional.ofNullable(addressUpdateDTO.getAddress_line()).ifPresent(userAddress::setAddress_line);
+        Optional.ofNullable(addressUpdateDTO.getVoivodeship()).ifPresent(userAddress::setVoivodeship);
         try {
             userAddressRepository.save(userAddress);
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package org.evote.backend.dtos.user;
+package org.evote.backend.users.account.dtos;
 
 import org.evote.backend.users.account.entity.Account;
 
@@ -47,6 +47,7 @@ public class AccountMapper {
         accountUserDTO.setCity(account.getUser().getAddress().getCity());
         accountUserDTO.setCountry(account.getUser().getAddress().getCountry());
         accountUserDTO.setAddressLine(account.getUser().getAddress().getAddress_line());
+        accountUserDTO.setVoivodeship(account.getUser().getAddress().getVoivodeship());
         return accountUserDTO;
     }
 }

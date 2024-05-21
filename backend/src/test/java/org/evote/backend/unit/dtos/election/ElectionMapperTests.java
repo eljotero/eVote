@@ -1,7 +1,7 @@
 package org.evote.backend.unit.dtos.election;
 
-import org.evote.backend.votes.election.dtos.election.ElectionDTO;
-import org.evote.backend.votes.election.dtos.election.ElectionMapper;
+import org.evote.backend.votes.election.dtos.ElectionDTO;
+import org.evote.backend.votes.election.dtos.ElectionMapper;
 import org.evote.backend.votes.election.entity.Election;
 import org.junit.jupiter.api.Test;
 

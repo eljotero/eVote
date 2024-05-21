@@ -1,4 +1,4 @@
-package org.evote.backend.dtos.user;
+package org.evote.backend.users.account.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountLoginDTO {
+public class AccountLoginResponseDTO {
     private String email;
-    private String password;
+    private String token;
 }

@@ -1,4 +1,4 @@
-package org.evote.backend.votes.candidate.dtos.candidate;
+package org.evote.backend.votes.candidate.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

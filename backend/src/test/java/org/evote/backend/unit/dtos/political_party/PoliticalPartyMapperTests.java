@@ -1,8 +1,8 @@
 package org.evote.backend.unit.dtos.political_party;
 
 import org.evote.backend.votes.address.entity.Address;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyDTO;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyMapper;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyDTO;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.junit.jupiter.api.Test;
 

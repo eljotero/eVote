@@ -1,7 +1,7 @@
 package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.UserController;
-import org.evote.backend.dtos.user.UserUpdateDTO;
+import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.evote.backend.services.UserService;
 import org.evote.backend.users.account.entity.Account;
 import org.junit.jupiter.api.BeforeEach;

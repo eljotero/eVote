@@ -1,4 +1,4 @@
-package org.evote.backend.votes.political_party.dtos.political_party;
+package org.evote.backend.votes.political_party.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PoliticalPartyDTO {
-    private Integer politicalPartyId;
+public class PoliticalPartyCreateDTO {
     private String name;
     private Integer address_id;
 }
