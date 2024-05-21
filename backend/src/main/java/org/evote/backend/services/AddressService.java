@@ -21,7 +21,7 @@ public class AddressService {
     private final AccountRepository accountRepository;
 
 
-    public AddressService(UserAddressRepository userAddressRepository, AccountRepository accountRepository, UsersPrecinctRepository usersPrecinctRepository, PrecinctService precinctService) {
+    public AddressService(UserAddressRepository userAddressRepository, AccountRepository accountRepository) {
         this.userAddressRepository = userAddressRepository;
         this.accountRepository = accountRepository;
     }
