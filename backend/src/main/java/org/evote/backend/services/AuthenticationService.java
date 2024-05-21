@@ -2,7 +2,10 @@ package org.evote.backend.services;
 
 import jakarta.transaction.Transactional;
 import org.evote.backend.config.JwtService;
-import org.evote.backend.dtos.user.AuthenticationResponseDTO;
+import org.evote.backend.users.account.dtos.AccountCreateDTO;
+import org.evote.backend.users.account.dtos.AccountLoginDTO;
+import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -38,35 +41,36 @@ public class AuthenticationService {
         this.userAddressRepository = userAddressRepository;
     }
 
+
     @Transactional
-    public String register(Account account) throws AccountAlreadyExistsException {
-        if (account.getPassword().length() < 8) {
+    public Account register(AccountCreateDTO accountCreateDTO) throws AccountAlreadyExistsException {
+        if (accountCreateDTO.getPassword().length() < 8) {
             throw new PasswordTooShortException("Password must be at least 8 characters long");
         }
-        if (accountRepository.findByEmail(account.getEmail()) != null) {
+        if (accountRepository.findByEmail(accountCreateDTO.getEmail()) != null) {
             throw new AccountAlreadyExistsException("Account already exists");
         }
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        accountCreateDTO.setPassword(passwordEncoder.encode(accountCreateDTO.getPassword()));
         User user = new User();
         Address address = new Address();
+        Account account = AccountMapper.toAccount(accountCreateDTO);
         try {
             Address savedAddress = userAddressRepository.save(address);
             user.setAddress(savedAddress);
             User savedUser = userRepository.save(user);
             account.setUser(savedUser);
-            accountRepository.save(account);
+            return accountRepository.save(account);
         } catch (DataAccessException e) {
             throw new AccountAlreadyExistsException("Error while creating account");
         }
-        return "Account created successfully";
     }
 
-    public AuthenticationResponseDTO login(Account account) {
-        Account dbAccount = accountRepository.findByEmail(account.getUsername());
+    public AuthenticationResponseDTO login(AccountLoginDTO accountLoginDTO) {
+        Account dbAccount = accountRepository.findByEmail(accountLoginDTO.getEmail());
         if (dbAccount == null) {
             throw new AccountNotFoundException("Account not found");
         }
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(accountLoginDTO.getEmail(), accountLoginDTO.getPassword()));
         return new AuthenticationResponseDTO(jwtService.generateToken(dbAccount), dbAccount.getAccount_id());
     }
 

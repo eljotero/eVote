@@ -1,8 +1,8 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.AccountDTO;
-import org.evote.backend.dtos.user.AccountMapper;
-import org.evote.backend.dtos.user.AccountUserDTO;
+import org.evote.backend.users.account.dtos.AccountDTO;
+import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AccountUserDTO;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ public class AccountController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> setAccountToInactive(@PathVariable Integer id) {
-        accountService.setAccountToInactive(id);
+        accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();
     }
 

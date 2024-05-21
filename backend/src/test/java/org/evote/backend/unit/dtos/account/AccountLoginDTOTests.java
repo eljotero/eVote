@@ -1,6 +1,6 @@
 package org.evote.backend.unit.dtos.account;
 
-import org.evote.backend.dtos.user.AccountLoginDTO;
+import org.evote.backend.users.account.dtos.AccountLoginDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

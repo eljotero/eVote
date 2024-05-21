@@ -1,6 +1,6 @@
 package org.evote.backend.services;
 
-import org.evote.backend.dtos.user.AddressUpdateDTO;
+import org.evote.backend.users.account.dtos.AddressUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;

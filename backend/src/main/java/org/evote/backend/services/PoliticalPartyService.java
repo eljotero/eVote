@@ -2,8 +2,8 @@ package org.evote.backend.services;
 
 import org.evote.backend.votes.address.entity.Address;
 import org.evote.backend.votes.address.repository.VotesAddressRepository;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyCreateDTO;
-import org.evote.backend.votes.political_party.dtos.political_party.PoliticalPartyMapper;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyCreateDTO;
+import org.evote.backend.votes.political_party.dtos.PoliticalPartyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundException;
