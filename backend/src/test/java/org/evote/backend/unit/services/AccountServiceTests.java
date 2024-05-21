@@ -1,12 +1,11 @@
 
 package org.evote.backend.unit.services;
 
+import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
-import org.evote.backend.users.account.exceptions.AccountAuthenticationException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
-import org.evote.backend.services.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -80,34 +79,6 @@ public class AccountServiceTests {
         verify(accountRepository, times(1)).findById(account.getAccount_id());
     }
 
-    @Test
-    public void testAuthenticateAccount() {
-        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
-
-        Account authenticatedAccount = accountService.authenticate(account.getEmail(), account.getPassword());
-
-        assertNotNull(authenticatedAccount);
-        assertEquals(account.getEmail(), authenticatedAccount.getEmail());
-        verify(accountRepository, times(1)).findByEmail(account.getEmail());
-    }
-
-    @Test
-    public void testAuthenticateAccountNotFound() {
-        when(accountRepository.findByEmail(account.getEmail())).thenReturn(null);
-
-        AccountAuthenticationException exception = assertThrows(AccountAuthenticationException.class, () -> accountService.authenticate(account.getEmail(), account.getPassword()));
-        assertEquals("Account with email " + account.getEmail() + " not found", exception.getMessage());
-        verify(accountRepository, times(1)).findByEmail(account.getEmail());
-    }
-
-    @Test
-    public void testAuthenticateAccountInvalidPassword() {
-        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
-
-        AccountAuthenticationException exception = assertThrows(AccountAuthenticationException.class, () -> accountService.authenticate(account.getEmail(), "invalid_password"));
-        assertEquals("Invalid password", exception.getMessage());
-        verify(accountRepository, times(1)).findByEmail(account.getEmail());
-    }
 
     @Test
     public void testGetAllAccounts() {

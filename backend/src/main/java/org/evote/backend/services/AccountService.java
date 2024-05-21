@@ -2,16 +2,18 @@ package org.evote.backend.services;
 
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
-import org.evote.backend.users.account.exceptions.AccountAuthenticationException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
+
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -37,14 +39,7 @@ public class AccountService {
         accountRepository.delete(account);
     }
 
-    public Account authenticate(String email, String password) {
-        Account account = accountRepository.findByEmail(email);
-        if (account == null) {
-            throw new AccountAuthenticationException("Account with email " + email + " not found");
-        }
-        if (!account.getPassword().equals(password)) {
-            throw new AccountAuthenticationException("Invalid password");
-        }
-        return account;
+    public Optional<Account> getAccountByEmail(String email) {
+        return Optional.ofNullable(accountRepository.findByEmail(email));
     }
 }

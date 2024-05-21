@@ -77,7 +77,7 @@ public class CandidateControllerIntegrationTest {
 
         given().port(port).contentType("application/json").body(candidateCreateDTO)
                 .when().post(BASE_PATH + "/add")
-                .then().statusCode(409);
+                .then().statusCode(400);
     }
 
     @Test

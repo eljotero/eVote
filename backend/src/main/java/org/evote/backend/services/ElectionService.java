@@ -60,6 +60,7 @@ public class ElectionService {
         return electionRepository.save(election);
     }
 
+    // Change to truncate
     @Transactional
     public void deleteElection(Integer id) {
         Election election = electionRepository.findById(id)

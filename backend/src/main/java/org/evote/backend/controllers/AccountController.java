@@ -1,11 +1,12 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.users.account.dtos.*;
-import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.account.dtos.AccountDTO;
+import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AccountUserDTO;
 import org.evote.backend.services.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.evote.backend.users.account.entity.Account;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +16,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/account")
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
 
+    private final AccountService accountService;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<List<AccountDTO>> getAllAccounts() {
         List<Account> account = accountService.getAllAccounts();
@@ -25,12 +32,7 @@ public class AccountController {
         return ResponseEntity.ok(accountDTOs);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<AccountDTO> addAccount(@RequestBody AccountCreateDTO accountCreateDTO) {
-        Account account = accountService.addAccount(AccountMapper.toAccount(accountCreateDTO));
-        return new ResponseEntity<>(AccountMapper.toAccountDTO(account), HttpStatus.CREATED);
-    }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> setAccountToInactive(@PathVariable Integer id) {
         accountService.deleteAccount(id);
@@ -38,9 +40,10 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDTO> getAccountById(@PathVariable Integer id) {
+    @PreAuthorize("hasRole('Admin') or @authenticationService.hasAccount(#id)")
+    public ResponseEntity<AccountUserDTO> getAccountById(@PathVariable Integer id) {
         Account account = accountService.getAccountById(id);
-        return ResponseEntity.ok(AccountMapper.toAccountDTO(account));
+        return ResponseEntity.ok(AccountMapper.toAccountUserDTO(account));
     }
 
 }

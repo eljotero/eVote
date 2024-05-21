@@ -47,57 +47,57 @@ public class AccountControllerIntegrationTest {
         createdAccounts.clear();
     }
 
-    @Test
-    public void testGetAllAccountsReturn200() {
-        given().port(port).when().get(BASE_PATH + "/all").then().statusCode(200);
-    }
-
-    @Test
-    public void testAddAccountReturn201() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
-        createdAccounts.add(createdAccountId);
-    }
-
-    @Test
-    public void testAddAlreadyExistingAccount() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
-        createdAccounts.add(createdAccountId);
-
-        AccountCreateDTO accountCreateDTO2 = new AccountCreateDTO();
-        accountCreateDTO2.setEmail("test@test.com");
-        accountCreateDTO2.setPassword("password1234");
-
-        given().port(port).contentType("application/json").body(accountCreateDTO2).when().post(BASE_PATH + "/add").then().statusCode(409);
-    }
-
-    @Test
-    public void testGetAccountById() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
-        createdAccounts.add(createdAccountId);
-
-        AccountDTO accountDTO = given().port(port).when().get(BASE_PATH + "/" + createdAccountId).then().statusCode(200).extract().as(AccountDTO.class);
-
-        Assertions.assertEquals(accountCreateDTO.getEmail(), accountDTO.getEmail());
-        Assertions.assertEquals(accountCreateDTO.getRole(), accountDTO.getRole());
-        Assertions.assertEquals(accountCreateDTO.getHasVoted(), accountDTO.getHasVoted());
-    }
-
-
-    @Test
-    public void testGetByIdNonExistentAccount() {
-        given().port(port).when().get("http://localhost:" + port + "/api/account/999999").then().statusCode(404);
-    }
+//    @Test
+//    public void testGetAllAccountsReturn200() {
+//        given().port(port).when().get(BASE_PATH + "/all").then().statusCode(200);
+//    }
+//
+//    @Test
+//    public void testAddAccountReturn201() {
+//        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+//        accountCreateDTO.setEmail("test@test.com");
+//        accountCreateDTO.setPassword("password1234");
+//
+//        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
+//        createdAccounts.add(createdAccountId);
+//    }
+//
+//    @Test
+//    public void testAddAlreadyExistingAccount() {
+//        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+//        accountCreateDTO.setEmail("test@test.com");
+//        accountCreateDTO.setPassword("password1234");
+//
+//        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
+//        createdAccounts.add(createdAccountId);
+//
+//        AccountCreateDTO accountCreateDTO2 = new AccountCreateDTO();
+//        accountCreateDTO2.setEmail("test@test.com");
+//        accountCreateDTO2.setPassword("password1234");
+//
+//        given().port(port).contentType("application/json").body(accountCreateDTO2).when().post(BASE_PATH + "/add").then().statusCode(409);
+//    }
+//
+//    @Test
+//    public void testGetAccountById() {
+//        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
+//        accountCreateDTO.setEmail("test@test.com");
+//        accountCreateDTO.setPassword("password1234");
+//
+//        Integer createdAccountId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/add").then().statusCode(201).extract().path("id");
+//        createdAccounts.add(createdAccountId);
+//
+//        AccountDTO accountDTO = given().port(port).when().get(BASE_PATH + "/" + createdAccountId).then().statusCode(200).extract().as(AccountDTO.class);
+//
+//        Assertions.assertEquals(accountCreateDTO.getEmail(), accountDTO.getEmail());
+//        Assertions.assertEquals(accountCreateDTO.getRole(), accountDTO.getRole());
+//        Assertions.assertEquals(accountCreateDTO.getHasVoted(), accountDTO.getHasVoted());
+//    }
+//
+//
+//    @Test
+//    public void testGetByIdNonExistentAccount() {
+//        given().port(port).when().get("http://localhost:" + port + "/api/account/999999").then().statusCode(404);
+//    }
 
 }

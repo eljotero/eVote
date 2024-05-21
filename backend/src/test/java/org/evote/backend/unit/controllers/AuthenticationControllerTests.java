@@ -58,11 +58,12 @@ public class AuthenticationControllerTests {
         AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
         accountLoginDTO.setEmail("test@mail.com");
         accountLoginDTO.setPassword("password123");
-        when(authenticationService.login(accountLoginDTO)).thenReturn(new AuthenticationResponseDTO("token"));
+        when(authenticationService.login(accountLoginDTO)).thenReturn(new AuthenticationResponseDTO("token", 1));
 
         AuthenticationResponseDTO response = (AuthenticationResponseDTO) authenticationController.login(accountLoginDTO).getBody();
 
-        assertEquals(new AuthenticationResponseDTO("token").getToken(), response.getToken());
+        assertEquals("token", response.getToken());
+        assertEquals(1, response.getId());
     }
 
     @Test
