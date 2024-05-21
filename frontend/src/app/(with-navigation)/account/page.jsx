@@ -23,6 +23,7 @@ export default function Account() {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [addressLine, setAddressLine] = useState('');
+  const [voivodeship, setVoivodeship] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const fetchAccount = async () => {
     const res = await axios.get(`account/${id}`, {
@@ -55,8 +56,10 @@ export default function Account() {
       setCity(data.city);
       setCountry(data.country);
       setAddressLine(data.addressLine);
+      setVoivodeship(data.voivodeship);
     }
   }, [data]);
+  console.log(data);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = {
@@ -69,6 +72,7 @@ export default function Account() {
       cityType,
       personalIdNumber,
       zip_code: zipCode,
+      voivodeship,
       city,
       country,
       address_line: addressLine,
@@ -554,6 +558,29 @@ export default function Account() {
               { label: 'Yemen', value: 'Yemen' },
               { label: 'Zambia', value: 'Zambia' },
               { label: 'Zimbabwe', value: 'Zimbabwe' },
+            ]}
+          />
+          <LabeledSelect
+            label='Wojewodztwo'
+            value={voivodeship}
+            onChange={(e) => setVoivodeship(e.target.value)}
+            options={[
+              { label: 'Dolnośląskie', value: 'Dolnośląskie' },
+              { label: 'Kujawsko-pomorskie', value: 'Kujawsko-pomorskie' },
+              { label: 'Lubelskie', value: 'Lubelskie' },
+              { label: 'Lubuskie', value: 'Lubuskie' },
+              { label: 'Łódzkie', value: 'Łódzkie' },
+              { label: 'Małopolskie', value: 'Małopolskie' },
+              { label: 'Mazowieckie', value: 'Mazowieckie' },
+              { label: 'Opolskie', value: 'Opolskie' },
+              { label: 'Podkarpackie', value: 'Podkarpackie' },
+              { label: 'Podlaskie', value: 'Podlaskie' },
+              { label: 'Pomorskie', value: 'Pomorskie' },
+              { label: 'Śląskie', value: 'Śląskie' },
+              { label: 'Świętokrzyskie', value: 'Świętokrzyskie' },
+              { label: 'Warmińsko-mazurskie', value: 'Warmińsko-mazurskie' },
+              { label: 'Wielkopolskie', value: 'Wielkopolskie' },
+              { label: 'Zachodniopomorskie', value: 'Zachodniopomorskie' },
             ]}
           />
           <button

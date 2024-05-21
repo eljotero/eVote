@@ -47,6 +47,7 @@ public class AccountMapper {
         accountUserDTO.setCity(account.getUser().getAddress().getCity());
         accountUserDTO.setCountry(account.getUser().getAddress().getCountry());
         accountUserDTO.setAddressLine(account.getUser().getAddress().getAddress_line());
+        accountUserDTO.setVoivodeship(account.getUser().getAddress().getVoivodeship());
         return accountUserDTO;
     }
 }

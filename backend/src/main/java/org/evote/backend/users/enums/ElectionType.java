@@ -4,5 +4,6 @@ public enum ElectionType {
     LocalGovernment,
     EuropeanParliament,
     Presidential,
-    Parliamentary
+    Parliamentary,
+    Senate
 }

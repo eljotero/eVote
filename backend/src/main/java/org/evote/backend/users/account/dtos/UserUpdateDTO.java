@@ -20,6 +20,7 @@ public class UserUpdateDTO {
     private String profession;
     private String zip_code;
     private String city;
+    private String voivodeship;
     private String country;
     private String address_line;
 }
