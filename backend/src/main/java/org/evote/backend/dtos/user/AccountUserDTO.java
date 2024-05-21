@@ -23,4 +23,5 @@ public class AccountUserDTO {
     private String city;
     private String country;
     private String addressLine;
+    private String voivodeship;
 }

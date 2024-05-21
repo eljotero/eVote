@@ -8,9 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @org.springframework.stereotype.Repository
-public interface UsersPrecinctRepository extends JpaRepository<Precinct, Integer> {
+public interface UsersPrecinctRepository extends JpaRepository<Precinct, UUID> {
 
     @Query("SELECT p FROM UsersPrecinct p WHERE :city MEMBER OF p.availableCities AND p.electionType = :electionType")
     Optional<Precinct> findByAvailableCitiesContainsAndElectionType(@Param("city") String city, @Param("electionType") ElectionType electionType);

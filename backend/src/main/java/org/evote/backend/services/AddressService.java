@@ -38,6 +38,7 @@ public class AddressService {
         Optional.ofNullable(addressUpdateDTO.getCity()).ifPresent(userAddress::setCity);
         Optional.ofNullable(addressUpdateDTO.getCountry()).ifPresent(userAddress::setCountry);
         Optional.ofNullable(addressUpdateDTO.getAddress_line()).ifPresent(userAddress::setAddress_line);
+        Optional.ofNullable(addressUpdateDTO.getVoivodeship()).ifPresent(userAddress::setVoivodeship);
         try {
             userAddressRepository.save(userAddress);
         } catch (Exception e) {

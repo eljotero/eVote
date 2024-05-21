@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,26 +75,26 @@ public class UserService {
         Optional.ofNullable(userUpdateDTO.getProfession()).ifPresent(userToUpdate::setProfession);
         List<Precinct> precinctList = userToUpdate.getPrecincts();
         for (ElectionType electionType : ElectionType.values()) {
+            if (electionType == ElectionType.Presidential || electionType == ElectionType.LocalGovernment) {
+                continue;
+            }
+            Optional<Precinct> precinct = Optional.empty();
             if (electionType == ElectionType.EuropeanParliament) {
-                Optional<Precinct> precinct = precinctService.findPrecinctEuro(userUpdateDTO.getVoivodeship(), electionType);
-                if (precinct.isPresent()) {
-                    List<User> userList = precinct.get().getUsers();
-                    precinctList.add(precinct.get());
-                    userList.add(userToUpdate);
-                    usersPrecinctRepository.save(precinct.get());
-                } else {
-                    throw new RuntimeException("Wrong voivodeship");
-                }
+                precinct = precinctService.findPrecinctEuro(userUpdateDTO.getVoivodeship(), electionType);
             } else if (electionType == ElectionType.Senate || electionType == ElectionType.Parliamentary) {
-                Optional<Precinct> precinct = precinctService.findPrecinctCity(userUpdateDTO.getCity(), electionType);
-                if (precinct.isPresent()) {
-                    List<User> userList = precinct.get().getUsers();
-                    precinctList.add(precinct.get());
-                    userList.add(userToUpdate);
-                    usersPrecinctRepository.save(precinct.get());
-                } else {
-                    throw new RuntimeException("Wrong city");
+                precinct = precinctService.findPrecinctCity(userUpdateDTO.getCity(), electionType);
+            }
+
+            if (precinct.isPresent()) {
+                Precinct existingPrecinct = precinct.get();
+                if (!precinctList.contains(existingPrecinct) &&
+                        usersPrecinctRepository.findById(existingPrecinct.getPrecinct_uuid()).isEmpty()) {
+                    precinctList.add(existingPrecinct);
+                    existingPrecinct.getUsers().add(userToUpdate);
+                    usersPrecinctRepository.save(existingPrecinct);
                 }
+            } else {
+                throw new RuntimeException(electionType == ElectionType.EuropeanParliament ? "Wrong voivodeship" : "Wrong city");
             }
         }
         Account account = userToUpdate.getAccount();
