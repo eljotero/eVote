@@ -1,7 +1,7 @@
 package org.evote.backend.unit.services;
 
-import org.evote.backend.dtos.user.AddressUpdateDTO;
-import org.evote.backend.dtos.user.UserUpdateDTO;
+import org.evote.backend.users.account.dtos.AddressUpdateDTO;
+import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.evote.backend.services.AddressService;
 import org.evote.backend.services.UserService;
 import org.evote.backend.users.account.entity.Account;

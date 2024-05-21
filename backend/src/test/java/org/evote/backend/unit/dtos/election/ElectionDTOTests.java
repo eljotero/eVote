@@ -1,12 +1,10 @@
 package org.evote.backend.unit.dtos.election;
 
-import org.evote.backend.votes.election.dtos.election.ElectionDTO;
+import org.evote.backend.votes.election.dtos.ElectionDTO;
 import org.evote.backend.votes.enums.ElectionType;
-import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,7 +1,7 @@
 package org.evote.backend.services;
 
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
+import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;

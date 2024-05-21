@@ -79,26 +79,6 @@ public class AccountServiceTests {
         verify(accountRepository, times(1)).findById(account.getAccount_id());
     }
 
-    @Test
-    public void testSetAccountToInactive() {
-        account.setIsAccountActive(true);
-
-        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.of(account));
-        accountService.setAccountToInactive(account.getAccount_id());
-
-        assertFalse(account.getIsAccountActive());
-        verify(accountRepository, times(1)).save(account);
-
-    }
-
-    @Test
-    public void testSetAccountToInactiveAccountNotFound() {
-        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.empty());
-
-        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> accountService.setAccountToInactive(account.getAccount_id()));
-        assertEquals("Account with id " + account.getAccount_id() + " not found", exception.getMessage());
-    }
-
 
     @Test
     public void testGetAllAccounts() {

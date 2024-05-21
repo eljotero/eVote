@@ -1,4 +1,4 @@
-package org.evote.backend.dtos.user;
+package org.evote.backend.users.account.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,10 +10,10 @@ import org.evote.backend.users.enums.Role;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDTO {
-    private Integer id;
+public class AccountCreateDTO {
     private String email;
-    private Role role;
-    private Boolean hasVoted;
-    private Boolean isAccountActive;
+    private String password;
+    private Role role = Role.USER;
+    private Boolean hasVoted = false;
+    private Boolean isAccountActive = false;
 }

@@ -1,10 +1,9 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.dtos.user.AccountMapper;
 import org.evote.backend.services.CandidateService;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateDTO;
-import org.evote.backend.votes.candidate.dtos.candidate.CandidateMapper;
+import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateDTO;
+import org.evote.backend.votes.candidate.dtos.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController

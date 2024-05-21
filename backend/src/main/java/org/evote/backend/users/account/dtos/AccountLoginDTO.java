@@ -1,4 +1,4 @@
-package org.evote.backend.votes.political_party.dtos.political_party;
+package org.evote.backend.users.account.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PoliticalPartyCreateDTO {
-    private String name;
-    private Integer address_id;
+public class AccountLoginDTO {
+    private String email;
+    private String password;
 }

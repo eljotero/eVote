@@ -33,11 +33,10 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public void setAccountToInactive(Integer id) {
+    public void deleteAccount(Integer id) {
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account with id " + id + " not found"));
-        account.setIsAccountActive(false);
-        accountRepository.save(account);
+        accountRepository.delete(account);
     }
 
     public Optional<Account> getAccountByEmail(String email) {

@@ -1,4 +1,4 @@
-package org.evote.backend.votes.political_party.dtos.political_party;
+package org.evote.backend.votes.political_party.dtos;
 
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 
