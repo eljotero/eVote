@@ -1,12 +1,16 @@
 package org.evote.backend.unit.services;
 
+import org.evote.backend.services.AddressService;
+import org.evote.backend.services.PrecinctService;
+import org.evote.backend.services.UserService;
 import org.evote.backend.users.account.dtos.AddressUpdateDTO;
 import org.evote.backend.users.account.dtos.UserUpdateDTO;
-import org.evote.backend.services.AddressService;
-import org.evote.backend.services.UserService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.enums.ElectionType;
+import org.evote.backend.users.precinct.entity.Precinct;
+import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
@@ -17,7 +21,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -32,6 +39,10 @@ public class UserServiceTests {
     private AccountRepository accountRepository;
     @Mock
     private AddressService addressService;
+    @Mock
+    private PrecinctService precinctService;
+    @Mock
+    private UsersPrecinctRepository usersPrecinctRepository;
 
     @InjectMocks
     private UserService userService;
@@ -47,7 +58,7 @@ public class UserServiceTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        userService = new UserService(usersRepository, passwordEncoder, accountRepository, addressService);
+        userService = new UserService(usersRepository, passwordEncoder, accountRepository, addressService, precinctService, usersPrecinctRepository);
         id = 1;
 
         userUpdateDTO = new UserUpdateDTO();
@@ -59,6 +70,8 @@ public class UserServiceTests {
         userUpdateDTO.setEducation("PRIMARY");
         userUpdateDTO.setCityType("Over500Thousand");
         userUpdateDTO.setProfession("Developer");
+        userUpdateDTO.setVoivodeship("Voivodeship");
+        userUpdateDTO.setCity("City");
 
         account = new Account();
         account.setAccount_id(id);
@@ -70,13 +83,23 @@ public class UserServiceTests {
 
     @Test
     public void testUpdateUser() {
+        Precinct precinct = new Precinct();
+        List<Precinct> precincts = new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        precinct.setUsers(users);
+        precincts.add(precinct);
+        user.setPrecincts(precincts);
+        when(precinctService.findPrecinctCity(any(String.class), any(ElectionType.class)))
+                    .thenReturn(Optional.of(precinct));
+        when(precinctService.findPrecinctEuro(any(String.class), any(ElectionType.class)))
+                    .thenReturn(Optional.of(precinct));
         when(accountRepository.findById(id)).thenReturn(java.util.Optional.of(account));
         when(passwordEncoder.encode(String.valueOf(userUpdateDTO.getPersonalIdNumber()))).thenReturn("encodedPersonalIdNumber");
         when(usersRepository.save(user)).thenReturn(user);
         when(accountRepository.save(account)).thenReturn(account);
         when(addressService.updateAddress(any(Integer.class), any(AddressUpdateDTO.class))).thenReturn("Address updated successfully");
         String result = userService.updateUser(id, userUpdateDTO);
-
         assertEquals("User updated successfully", result);
     }
 

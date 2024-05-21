@@ -36,13 +36,13 @@ public class UserService {
     private final UsersPrecinctRepository usersPrecinctRepository;
 
 
-    public UserService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository, AddressService addressService, UsersPrecinctRepository usersPrecinctRepository, PrecinctService precinctService, UsersPrecinctRepository usersPrecinctRepository1) {
+    public UserService(UserRepository usersRepository, PasswordEncoder passwordEncoder, AccountRepository accountRepository, AddressService addressService, PrecinctService precinctService, UsersPrecinctRepository usersPrecinctRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.accountRepository = accountRepository;
         this.addressService = addressService;
         this.precinctService = precinctService;
-        this.usersPrecinctRepository = usersPrecinctRepository1;
+        this.usersPrecinctRepository = usersPrecinctRepository;
     }
 
     @Transactional

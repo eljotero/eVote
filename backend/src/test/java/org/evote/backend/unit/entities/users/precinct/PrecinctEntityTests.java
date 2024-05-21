@@ -153,7 +153,7 @@ public class PrecinctEntityTests {
     @Test
     public void testPrecinctEntityToString() {
         Precinct precinct = new Precinct();
-        String expectedString = "Precinct(precinct_id=null, address=null, electionType=null)";
+        String expectedString = "Precinct(precinct_uuid=null, precinct_id=null, availableAddresses=null, availableCities=null, address=null, electionType=null, users=null)";
         String actualString = precinct.toString();
         assertEquals(expectedString, actualString);
     }
