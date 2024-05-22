@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import axios from '../../../../lib/axios';
 import CandidateForm from '../../components/CandidateForm/CandidateForm';
 import Dropdown from "@/app/components/Dropdown/Dropdown";
+import CountdownForm from "@/app/components/Countdown/CountdownForm";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
@@ -10,6 +11,7 @@ export default function Candidates() {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedDistrict2, setSelectedDistrict2] = useState('');
+    const upcomingElectionStartDate = elections.length > 0 ? new Date(elections[0].startDate).toLocaleDateString() : null;
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -289,23 +291,29 @@ export default function Candidates() {
 
     return (
         <div className='container mx-auto mt-10'>
-            <div className='bg-blue-500 rounded-md text-white text-center py-4 mb-8'>
-                <h1 className='text-4xl font-bold'>Poznaj swoich kandydatów!</h1>
-                <h2 className='text-2xl'>Region: {selectedRegion} </h2> {}
+            <div className='text-center py-4 mb-8' style={{ backgroundColor: '#f0f0f0', borderRadius: '15px' }}>
+                <h1 className='text-4xl font-bold' style={{ color: '#333' }}>Poznaj swoich kandydatów!</h1>
+                <h2 className='text-2xl font-bold' style={{ color: '#555' }}>Region: {selectedRegion} </h2> {}
             </div>
-            <div className='bg-blue-500 rounded-md text-white text-center py-4 mb-8'>
-                <h1 className='text-1xl font-bold'>
+            <div className='text-center py-4 mb-8' style={{ backgroundColor: '#f0f0f0', borderRadius: '15px' }}>
+                <h1 className='text-1xl font-bold' style={{ color: '#333' }}>
                     Najbliższe wybory:{' '}
                     {closestElectionNames
                         ? closestElectionNames
                         : 'Brak najbliższych wyborów'}
                 </h1>
+                {upcomingElectionStartDate && (
+                    <p style={{ color: '#555' }}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
+                )}
+                <br/>
+                <CountdownForm initialCount={upcomingElectionStartDate} />
             </div>
-            <h2 className='text-2xl font-bold mb-4'>Kandydaci do sejmu</h2>
+            <h2 className='text-2xl font-bold mb-4' style={{ color: '#333' }}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
                 <select
                     onChange={(e) => setSelectedDistrict(e.target.value)}
                     className='form-select block w-full mt-1'
+                    style={{ borderRadius: '15px' }}
                 >
                     {selectedRegion &&
                         districtsByRegion[selectedRegion] &&
@@ -324,11 +332,12 @@ export default function Candidates() {
                     />
                 ))}
             </div>
-            <h2 className='text-2xl font-bold mb-4'>Kandydaci do senatu</h2>
+            <h2 className='text-2xl font-bold mb-4' style={{ color: '#333' }}>Kandydaci do senatu</h2>
             <div className='flex justify-center mb-4'>
                 <select
                     onChange={(e) => setSelectedDistrict2(e.target.value)}
                     className='form-select block w-full mt-1'
+                    style={{ borderRadius: '15px' }}
                 >
                     {selectedRegion &&
                         districtsByRegion2[selectedRegion].map((district) => (
