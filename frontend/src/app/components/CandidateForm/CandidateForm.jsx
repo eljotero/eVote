@@ -20,15 +20,15 @@ export default function CandidateForm({ candidate, onVote }) {
 
   useEffect(() => {
     fetch('http://localhost:8080/api/political_parties/all')
-      .then((response) => response.json())
-      .then((data) => {
-        const politicalParty = data.find(
-          (party) => party.political_party_id === political_party_id
-        );
-        if (politicalParty) {
-          setPoliticalPartyName(politicalParty.name);
-        }
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          const politicalParty = data.find(
+              (party) => party.politicalPartyId === political_party_id
+          );
+          if (politicalParty) {
+            setPoliticalPartyName(politicalParty.name);
+          }
+        });
   }, [political_party_id]);
 
   const handleShowPlan = () => {
