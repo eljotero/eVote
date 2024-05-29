@@ -18,8 +18,6 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @Autowired
-    private JwtService jwtService;
 
     @PostMapping("/register")
     public ResponseEntity<AccountDTO> register(@RequestBody AccountCreateDTO accountCreateDTO) {
@@ -31,12 +29,6 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody AccountLoginDTO accountLoginDTO) {
         AuthenticationResponseDTO authenticationResponseDTO = authenticationService.login(accountLoginDTO);
         return new ResponseEntity<>(authenticationResponseDTO, HttpStatus.OK);
-    }
-
-    @PostMapping("/vote")
-    public ResponseEntity<String> vote(@RequestBody Account account) {
-        String newVotingToken = jwtService.generateVotingToken(account);
-        return ResponseEntity.ok(newVotingToken);
     }
 
 }

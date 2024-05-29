@@ -4,6 +4,9 @@ import axios from '../../../../lib/axios';
 import CandidateForm from '../../components/CandidateForm/CandidateForm';
 import Dropdown from "@/app/components/Dropdown/Dropdown";
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
+import {Toast} from "next/dist/client/components/react-dev-overlay/internal/components/Toast";
+import {toast} from "react-hot-toast";
+import {useSelector} from "react-redux";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
@@ -67,6 +70,19 @@ export default function Candidates() {
         );
         setCandidates(updatedCandidates);
     };
+
+    const token = useSelector((state) => state.token.value);
+    // tu chyba trzeba konto a nie token
+    const handleVote = async () => {
+        console.log('Token:', token);
+        try {
+            // const response = await axios.post('/vote', account);
+            // const votingToken = response.data;
+            // console.log('Voting token:', votingToken);
+        } catch(error) {
+            toast.error('Błąd głosowania. Spróbuj ponownie.');
+        }
+    }
 
     const districtsByRegion = {
         Dolnośląskie: [
@@ -291,29 +307,35 @@ export default function Candidates() {
 
     return (
         <div className='container mx-auto mt-10'>
-            <div className='text-center py-4 mb-8' style={{ backgroundColor: '#f0f0f0', borderRadius: '15px' }}>
-                <h1 className='text-4xl font-bold' style={{ color: '#333' }}>Poznaj swoich kandydatów!</h1>
-                <h2 className='text-2xl font-bold' style={{ color: '#555' }}>Region: {selectedRegion} </h2> {}
+            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
+                <h1 className='text-4xl font-bold' style={{color: '#333'}}>Poznaj swoich kandydatów!</h1>
+                <h2 className='text-2xl font-bold' style={{color: '#555'}}>Region: {selectedRegion} </h2> {}
             </div>
-            <div className='text-center py-4 mb-8' style={{ backgroundColor: '#f0f0f0', borderRadius: '15px' }}>
-                <h1 className='text-1xl font-bold' style={{ color: '#333' }}>
+            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
+                <h1 className='text-1xl font-bold' style={{color: '#333'}}>
                     Najbliższe wybory:{' '}
                     {closestElectionNames
                         ? closestElectionNames
                         : 'Brak najbliższych wyborów'}
                 </h1>
                 {upcomingElectionStartDate && (
-                    <p style={{ color: '#555' }}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
+                    <p style={{color: '#555'}}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
                 )}
                 <br/>
-                <CountdownForm initialCount={upcomingElectionStartDate} />
+                <CountdownForm initialCount={upcomingElectionStartDate}/>
+                <button
+                    onClick={handleVote}
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                >
+                    Zagłosuj (test)
+                </button>
             </div>
-            <h2 className='text-2xl font-bold mb-4' style={{ color: '#333' }}>Kandydaci do sejmu</h2>
+            <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
                 <select
                     onChange={(e) => setSelectedDistrict(e.target.value)}
                     className='form-select block w-full mt-1'
-                    style={{ borderRadius: '15px' }}
+                    style={{borderRadius: '15px'}}
                 >
                     {selectedRegion &&
                         districtsByRegion[selectedRegion] &&
@@ -332,12 +354,12 @@ export default function Candidates() {
                     />
                 ))}
             </div>
-            <h2 className='text-2xl font-bold mb-4' style={{ color: '#333' }}>Kandydaci do senatu</h2>
+            <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do senatu</h2>
             <div className='flex justify-center mb-4'>
                 <select
                     onChange={(e) => setSelectedDistrict2(e.target.value)}
                     className='form-select block w-full mt-1'
-                    style={{ borderRadius: '15px' }}
+                    style={{borderRadius: '15px'}}
                 >
                     {selectedRegion &&
                         districtsByRegion2[selectedRegion].map((district) => (

@@ -84,14 +84,4 @@ public class AuthenticationService {
         return account.getAccount_id().equals(ID);
     }
 
-    public String generateVotingToken(Integer accountID) {
-        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-        if (Boolean.TRUE.equals(account.getHasVoted())) {
-            throw new UserAlreadyVotedException("User has already voted");
-        }
-        String token = jwtService.generateVotingToken(account);
-        account.setHasVoted(true);
-        accountRepository.save(account);
-        return token;
-    }
 }
