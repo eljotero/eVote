@@ -10,6 +10,7 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
+import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.repository.UserAddressRepository;
@@ -81,5 +82,16 @@ public class AuthenticationService {
             return false;
         }
         return account.getAccount_id().equals(ID);
+    }
+
+    public String generateVotingToken(Integer accountID) {
+        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+        if (Boolean.TRUE.equals(account.getHasVoted())) {
+            throw new UserAlreadyVotedException("User has already voted");
+        }
+        String token = jwtService.generateVotingToken(account);
+        account.setHasVoted(true);
+        accountRepository.save(account);
+        return token;
     }
 }
