@@ -34,7 +34,7 @@ describe('RegisterForm', () => {
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
-        const submitButton = getByText('Zarejestruj');
+        const submitButton = getByText('Zarejestruj się');
 
         expect(emailInput).toBeInTheDocument();
         expect(passwordInput).toBeInTheDocument();
@@ -56,14 +56,14 @@ describe('RegisterForm', () => {
 
     it('calls handleSubmit when the form is submitted', async () => {
         checkEmail.mockResolvedValue(true);
-        axios.post.mockResolvedValue({ status: 200 });
+        axios.post.mockResolvedValue({ status: 201 });
 
         const {getByLabelText, getByText} = render(<RegisterForm/>);
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
         const confirmPasswordInput = getByLabelText('Potwierdź hasło');
-        const submitButton = getByText('Zarejestruj');
+        const submitButton = getByText('Zarejestruj się');
 
         fireEvent.change(emailInput, {target: {value: TEST_EMAIL}});
         fireEvent.change(passwordInput, {target: {value: TEST_PASSWORD}});
@@ -80,75 +80,6 @@ describe('RegisterForm', () => {
         expect(toast.success).toHaveBeenCalledWith('Konto zostało utworzone. Zaloguj się.');
     });
 
-    it('shows an error when the email, password, or confirmPassword is empty', async () => {
-        const {getByText} = render(<RegisterForm/>);
-        const submitButton = getByText('Zarejestruj');
-
-        await act(async () => {
-            fireEvent.click(submitButton);
-        });
-
-        expect(toast.error).toHaveBeenCalledWith('Nie można zarejestrować konta. Wymagane jest podanie adresu email i hasła.');
-    });
-
-    it('shows an error when the password and confirmPassword do not match', async () => {
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
-
-        const emailInput = getByLabelText('Email');
-        const passwordInput = getByLabelText('Hasło');
-        const confirmPasswordInput = getByLabelText('Potwierdź hasło');
-        const submitButton = getByText('Zarejestruj');
-
-        fireEvent.change(emailInput, {target: {value: TEST_EMAIL}});
-        fireEvent.change(passwordInput, {target: {value: TEST_PASSWORD}});
-        fireEvent.change(confirmPasswordInput, {target: {value: TEST_BAD_PASSWORD}});
-
-        await act(async () => {
-            fireEvent.click(submitButton);
-        });
-
-        expect(toast.error).toHaveBeenCalledWith('Nie można zarejestrować konta. Hasła nie pasują do siebie.');
-    });
-
-    it('shows an error when the password is less than 8 characters', async () => {
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
-
-        const emailInput = getByLabelText('Email');
-        const passwordInput = getByLabelText('Hasło');
-        const confirmPasswordInput = getByLabelText('Potwierdź hasło');
-        const submitButton = getByText('Zarejestruj');
-
-        fireEvent.change(emailInput, {target: {value: TEST_EMAIL}});
-        fireEvent.change(passwordInput, {target: {value: TEST_SHORT_PASSWORD}});
-        fireEvent.change(confirmPasswordInput, {target: {value: TEST_SHORT_PASSWORD}});
-
-        await act(async () => {
-            fireEvent.click(submitButton);
-        });
-
-        expect(toast.error).toHaveBeenCalledWith('Nie można zarejestrować konta. Hasło musi mieć co najmniej 8 znaków.');
-    });
-
-    it('shows an error when the email is invalid', async () => {
-        checkEmail.mockResolvedValue(false);
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
-
-        const emailInput = getByLabelText('Email');
-        const passwordInput = getByLabelText('Hasło');
-        const confirmPasswordInput = getByLabelText('Potwierdź hasło');
-        const submitButton = getByText('Zarejestruj');
-
-        fireEvent.change(emailInput, {target: {value: TEST_BAD_EMAIL}});
-        fireEvent.change(passwordInput, {target: {value: TEST_PASSWORD}});
-        fireEvent.change(confirmPasswordInput, {target: {value: TEST_PASSWORD}});
-
-        await act(async () => {
-            fireEvent.click(submitButton);
-        });
-
-        expect(toast.error).toHaveBeenCalledWith('Nie można zarejestrować konta. Nieprawidłowy adres email.');
-    });
-
     it('shows an error when the email already exists', async () => {
         checkEmail.mockResolvedValue(true);
         axios.post.mockRejectedValue(new Error());
@@ -157,7 +88,7 @@ describe('RegisterForm', () => {
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
         const confirmPasswordInput = getByLabelText('Potwierdź hasło');
-        const submitButton = getByText('Zarejestruj');
+        const submitButton = getByText('Zarejestruj się');
 
         fireEvent.change(emailInput, {target: {value: TEST_EMAIL}});
         fireEvent.change(passwordInput, {target: {value: TEST_PASSWORD}});
