@@ -2,11 +2,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../../../lib/axios';
 import CandidateForm from '../../components/CandidateForm/CandidateForm';
-import Dropdown from "@/app/components/Dropdown/Dropdown";
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
-import {Toast} from "next/dist/client/components/react-dev-overlay/internal/components/Toast";
 import {toast} from "react-hot-toast";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setVotingToken} from "@/store/votingTokenSlice";
 
 export default function Candidates() {
     const [candidates, setCandidates] = useState([]);
@@ -71,18 +70,33 @@ export default function Candidates() {
         setCandidates(updatedCandidates);
     };
 
+
+
+    // Voting token
+    const id = useSelector((state) => state.id.value);
     const token = useSelector((state) => state.token.value);
-    // tu chyba trzeba konto a nie token
+    const dispatch = useDispatch();
+    const [data, setData] = useState({});
     const handleVote = async () => {
-        console.log('Token:', token);
+        if (!id || !token) {
+            toast.error("Należy być zalogowanym, aby móc zagłosować.");
+            return;
+        }
         try {
-            // const response = await axios.post('/vote', account);
-            // const votingToken = response.data;
-            // console.log('Voting token:', votingToken);
-        } catch(error) {
-            toast.error('Błąd głosowania. Spróbuj ponownie.');
+            const response = await axios.get(`account/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setData(response.data);
+            console.log(data);
+            dispatch(setVotingToken(response.data));
+            toast.success("Głosowanie zostało zautoryzowane.");
+        } catch (e) {
+            toast.error("Nie udało się zautoryzować głosowania.");
         }
     }
+
 
     const districtsByRegion = {
         Dolnośląskie: [
