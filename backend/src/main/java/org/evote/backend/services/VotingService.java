@@ -23,13 +23,13 @@ public class VotingService {
         this.userRepository = userRepository;
     }
 
-    public Boolean hasVoted(Integer accountID) {
-        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+    public Boolean hasVoted(Integer id) {
+        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
         return Boolean.TRUE.equals(account.getHasVoted());
     }
 
-    public boolean verifyCode(Integer accountID, String code) {
-        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+    public boolean verifyCode(Integer id, String code) {
+        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
         User user = account.getUser();
         if (user == null) {
             throw new UserNotFoundException("User associated with this account not found");
@@ -37,9 +37,9 @@ public class VotingService {
         return code.equals(user.getCode());
     }
 
-    public String generateVotingToken(Integer accountID) {
-        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-        if (hasVoted(accountID)) {
+    public String generateVotingToken(Integer id) {
+        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+        if (hasVoted(id)) {
             throw new UserAlreadyVotedException("User has already voted");
         }
         String token = jwtService.generateVotingToken(account);

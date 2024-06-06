@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
-export default function CountdownForm({ initialCount }) {
+export default function CountdownForm({initialCount, handleVoteButton}) {
     const parseDate = (dateStr) => {
         if (!dateStr) {
             return null;
         }
 
         const [day, month, year] = dateStr.split('.').map(Number);
-        return new Date(year, month - 1, day );
+        return new Date(year, month - 1, day);
     };
 
     const targetDate = parseDate(initialCount);
@@ -21,6 +21,7 @@ export default function CountdownForm({ initialCount }) {
     };
 
     const [countdown, setCountdown] = useState(calculateCountdown());
+    const [showVoteButton, setShowVoteButton] = useState(false);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -29,6 +30,7 @@ export default function CountdownForm({ initialCount }) {
 
             if (newCountdown <= 0) {
                 clearInterval(timer);
+                setShowVoteButton(true);
             }
         }, 1000);
 
@@ -45,15 +47,23 @@ export default function CountdownForm({ initialCount }) {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-            <div style={{ position: 'absolute', textAlign: 'center' }}>
-                <h2 style={{ color: 'black' }}>
-                    <span style={{ fontWeight: 'bold' }}>{days}</span> dni<br />
-                    <span style={{ fontWeight: 'bold' }}>{hours}</span> godzin |
-                    <span style={{ fontWeight: 'bold' }}>{minutes}</span> minut |
-                    <span style={{ fontWeight: 'bold' }}>{seconds}</span> sekund
-                </h2>
-            </div>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}>
+            {showVoteButton ? (
+                    <button
+                        onClick={handleVoteButton}
+                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                    >
+                        Zagłosuj
+                    </button>
+                ) :
+                (<div style={{position: 'absolute', textAlign: 'center'}}>
+                    <h2 style={{color: 'black'}}>
+                        <span style={{fontWeight: 'bold'}}>{days}</span> dni<br/>
+                        <span style={{fontWeight: 'bold'}}>{hours}</span> godzin |
+                        <span style={{fontWeight: 'bold'}}>{minutes}</span> minut |
+                        <span style={{fontWeight: 'bold'}}>{seconds}</span> sekund
+                    </h2>
+                </div>)}
         </div>
     );
 }

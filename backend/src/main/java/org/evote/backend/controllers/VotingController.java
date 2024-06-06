@@ -5,9 +5,7 @@ import org.evote.backend.config.JwtService;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.services.VotingService;
 import org.evote.backend.users.account.dtos.VotingCodeDTO;
-import org.evote.backend.users.account.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,13 +21,13 @@ public class VotingController {
     private final AccountService accountService;
     private final VotingService votingService;
 
-    @PostMapping("/{accountID}")
-    @PreAuthorize("@authenticationService.hasAccount(#accountID)")
-    public ResponseEntity<String> vote(@PathVariable Integer accountID, @RequestBody VotingCodeDTO votingCodeDTO) {
+    @PostMapping("/{id}")
+    @PreAuthorize("@authenticationService.hasAccount(#id)")
+    public ResponseEntity<String> vote(@PathVariable Integer id, @RequestBody VotingCodeDTO votingCodeDTO) {
         String code = votingCodeDTO.getCode();
-        boolean isValid = votingService.verifyCode(accountID, code);
+        boolean isValid = votingService.verifyCode(id, code);
         if (isValid) {
-            String newVotingToken = votingService.generateVotingToken(accountID);
+            String newVotingToken = votingService.generateVotingToken(id);
             return ResponseEntity.ok(newVotingToken);
         } else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid code");
