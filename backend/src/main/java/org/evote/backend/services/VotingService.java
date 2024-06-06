@@ -5,6 +5,8 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +25,16 @@ public class VotingService {
 
     public Boolean hasVoted(Integer accountID) {
         Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-        if (Boolean.TRUE.equals(account.getHasVoted())) {
-            return true;
-        } else {
-            return false;
+        return Boolean.TRUE.equals(account.getHasVoted());
+    }
+
+    public boolean verifyCode(Integer accountID, String code) {
+        Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+        User user = account.getUser();
+        if (user == null) {
+            throw new UserNotFoundException("User associated with this account not found");
         }
+        return code.equals(user.getCode());
     }
 
     public String generateVotingToken(Integer accountID) {

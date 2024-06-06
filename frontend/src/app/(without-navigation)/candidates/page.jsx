@@ -8,6 +8,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setVotingToken} from "@/store/votingTokenSlice";
 
 export default function Candidates() {
+    const id = useSelector((state) => state.id.value);
+    const token = useSelector((state) => state.token.value);
+    const [votingCode, setVotingCode] = useState('');
+    const [showForm, setShowForm] = useState(false);
     const [candidates, setCandidates] = useState([]);
     const [elections, setElections] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('');
@@ -73,28 +77,28 @@ export default function Candidates() {
 
 
     // Voting token
-    const id = useSelector((state) => state.id.value);
-    const token = useSelector((state) => state.token.value);
-    const dispatch = useDispatch();
-    const [data, setData] = useState({});
-    const handleVote = async () => {
-        if (!id || !token) {
-            toast.error("Należy być zalogowanym, aby móc zagłosować.");
-            return;
-        }
-        try {
-            const response = await axios.get(`account/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setData(response.data);
-            console.log(data);
-            dispatch(setVotingToken(response.data));
-            toast.success("Głosowanie zostało zautoryzowane.");
-        } catch (e) {
-            toast.error("Nie udało się zautoryzować głosowania.");
-        }
+    // to do wjebania w coś
+    // const dispatch = useDispatch();
+    // try {
+    //     const response = await axios.post(`vote/${id}`, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //     });
+    //     console.log(data);
+    //     dispatch(setVotingToken(response.data));
+    //     toast.success("Głosowanie zostało zautoryzowane.");
+    // } catch (e) {
+    //     toast.error("Nie udało się zautoryzować głosowania.");
+    // }
+
+
+    const handleVoteButton = () => {
+        setShowForm(prevState => !prevState);
+    }
+
+    const handleSubmitCode = () => {
+        toast.success("Głosowanie zostało zautoryzowane.");
     }
 
 
@@ -338,11 +342,39 @@ export default function Candidates() {
                 <br/>
                 <CountdownForm initialCount={upcomingElectionStartDate}/>
                 <button
-                    onClick={handleVote}
+                    onClick={handleVoteButton}
                     className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                 >
                     Zagłosuj (test)
                 </button>
+                {showForm && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full relative">
+                            <button
+                                onClick={handleVoteButton}
+                                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            >
+                                &times;
+                            </button>
+                            <h1 className="text-xl font-semibold mb-4">Wpisz kod otrzymany w mailu</h1>
+                            <div className="mb-4">
+                                <input
+                                    type="email"
+                                    placeholder="Twój kod"
+                                    value={votingCode}
+                                    onChange={(e) => setVotingCode(e.target.value)}
+                                    className="email-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500"
+                                />
+                            </div>
+                            <button
+                                onClick={handleSubmitCode}
+                                className="w-full font-semibold bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
+                            >
+                                Wyślij
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
             <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
