@@ -1,5 +1,5 @@
 'use client';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {toast} from "react-hot-toast";
 import {setVotingToken} from "@/store/votingTokenSlice";
@@ -9,10 +9,12 @@ import axios from "../../../../lib/axios";
 export default function Vote() {
     const id = useSelector((state) => state.id.value);
     const token = useSelector((state) => state.token.value);
+    const dispatch = useDispatch();
     const [votingCode, setVotingCode] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [elections, setElections] = useState([]);
     const upcomingElectionStartDate = elections.length > 0 ? new Date(elections[0].startDate).toLocaleDateString() : null;
+    console.log("id:" + id)
 
     useEffect(() => {
         const fetchElections = async () => {
@@ -25,7 +27,7 @@ export default function Vote() {
         };
 
         fetchElections();
-    });
+    }, []);
 
 
     const handleVoteButton = () => {
@@ -39,11 +41,14 @@ export default function Vote() {
             return;
         }
         try {
-            const response = await axios.post(`vote/${id}`, {
+            const response = await axios.post(`vote/${id}`, { code: votingCode }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            const newVotingToken = response.data;
+            console.log(newVotingToken);
+            dispatch(setVotingToken(newVotingToken));
             toast.success("Głosowanie zostało zautoryzowane.");
         } catch (e) {
             toast.error("Nie udało się zautoryzować głosowania.");
@@ -67,7 +72,13 @@ export default function Vote() {
                     <p style={{color: '#555'}}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
                 )}
                 <br/>
-                <CountdownForm initialCount={upcomingElectionStartDate} handleVoteButton={handleVoteButton}/>
+                <CountdownForm initialCount={upcomingElectionStartDate}/>
+                <button
+                    onClick={handleVoteButton}
+                    className='mt-10 hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200'
+                >
+                    Zagłosuj
+                </button>
                 {showForm && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                         <div className="bg-white -top-28 p-8 rounded-lg shadow-lg max-w-md w-full relative">
@@ -89,7 +100,7 @@ export default function Vote() {
                             </div>
                             <button
                                 onClick={handleSubmitCode}
-                                className="w-full font-semibold bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
+                                className="w-full font-bold bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none transition duration-200"
                             >
                                 Wyślij
                             </button>

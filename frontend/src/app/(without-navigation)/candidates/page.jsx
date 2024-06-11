@@ -72,10 +72,6 @@ export default function Candidates() {
     };
 
 
-    const handleVoteButton = () => {
-    }
-
-
     const districtsByRegion = {
         Dolnośląskie: [
             'Okręg wyborczy nr 1 - Legnica',
@@ -314,19 +310,7 @@ export default function Candidates() {
                     <p style={{color: '#555'}}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
                 )}
                 <br/>
-                <CountdownForm initialCount={upcomingElectionStartDate} handleVoteButton={handleVoteButton}/>
-                {showForm && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div className="bg-white -top-28 p-8 rounded-lg shadow-lg max-w-md w-full relative">
-                            <button
-                                onClick={handleVoteButton}
-                                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                            >
-                                &times;
-                            </button>
-                        </div>
-                    </div>
-                )}
+                <CountdownForm initialCount={upcomingElectionStartDate}/>
             </div>
             <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
