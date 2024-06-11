@@ -3,13 +3,9 @@ import React, {useState, useEffect} from 'react';
 import axios from '../../../../lib/axios';
 import CandidateForm from '../../components/CandidateForm/CandidateForm';
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
-import {toast} from "react-hot-toast";
-import {useDispatch, useSelector} from "react-redux";
-import {setVotingToken} from "@/store/votingTokenSlice";
+
 
 export default function Candidates() {
-    const id = useSelector((state) => state.id.value);
-    const token = useSelector((state) => state.token.value);
     const [votingCode, setVotingCode] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [candidates, setCandidates] = useState([]);
@@ -52,6 +48,7 @@ export default function Candidates() {
             }
         };
 
+
         const fetchElections = async () => {
             try {
                 const response = await axios.get('elections/upcoming');
@@ -74,28 +71,8 @@ export default function Candidates() {
         setCandidates(updatedCandidates);
     };
 
-    
-    // Voting
-    const handleVoteButton = () => {
-        setShowForm(prevState => !prevState);
-    }
 
-    const handleSubmitCode = async (e) => {
-        e.preventDefault();
-        if (votingCode === '') {
-            toast.error("Błąd głosowania. Wymagane jest podanie kodu.");
-            return;
-        }
-        try {
-            const response = await axios.post(`vote/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            toast.success("Głosowanie zostało zautoryzowane.");
-        } catch (e) {
-            toast.error("Nie udało się zautoryzować głosowania.");
-        }
+    const handleVoteButton = () => {
     }
 
 
@@ -346,22 +323,6 @@ export default function Candidates() {
                                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                             >
                                 &times;
-                            </button>
-                            <h1 className="text-xl font-semibold mb-4">Wpisz kod otrzymany w mailu</h1>
-                            <div className="mb-4">
-                                <input
-                                    type="email"
-                                    placeholder="Twój kod"
-                                    value={votingCode}
-                                    onChange={(e) => setVotingCode(e.target.value)}
-                                    className="email-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500"
-                                />
-                            </div>
-                            <button
-                                onClick={handleSubmitCode}
-                                className="w-full font-semibold bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
-                            >
-                                Wyślij
                             </button>
                         </div>
                     </div>
