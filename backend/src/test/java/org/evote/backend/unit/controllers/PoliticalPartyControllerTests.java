@@ -54,7 +54,8 @@ public class PoliticalPartyControllerTests {
         politicalParty2.setAddress(address2);
 
         politicalParties = Arrays.asList(politicalParty1, politicalParty2);
-        MockitoAnnotations.openMocks(this);
+
+
     }
 
     @Test

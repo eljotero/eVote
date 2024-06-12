@@ -1,8 +1,8 @@
 package org.evote.backend.votes.enums;
 
 public enum CityType {
-    Over500Thousand,
-    TwoHundredTo500Thousand,
-    FiftyToTwoHundredThousand,
-    BelowFiftyThousand
+    OVER500THOUSAND,
+    TWOHUNDREDTO500THOUSAND,
+    FIFTYTOTWOHUNDREDTHOUSAND,
+    BELOWFIFTYTHOUSAND
 }

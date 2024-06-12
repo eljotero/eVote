@@ -14,21 +14,23 @@ import java.util.Date;
 public class Vote {
     @Id
     @GeneratedValue
-    private Long vote_id;
+    private Long voteId;
 
     @ManyToOne
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    private Date voter_birthdate;
+    private Date voterBirthdate;
 
-    private String voter_education;
+    private String voterEducation;
 
     @Enumerated(EnumType.ORDINAL)
-    private CityType voter_city_type;
+    private CityType voterCityType;
 
-    private Time vote_time;
+    private Time voteTime;
 
-    private String voter_country;
+    private String voterCountry;
+
+    private Boolean sex;
 
 }
