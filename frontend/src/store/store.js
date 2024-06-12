@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import tokenReducer from './tokenSlice';
+import votingTokenReducer from './votingTokenSlice';
 import idReducer from './idSlice';
 
 const persistConfig = {
@@ -16,6 +17,7 @@ export const store = configureStore({
   reducer: {
     token: persistedTokenReducer,
     id: persistedIdReducer,
+    votingToken: votingTokenReducer,
   },
 });
 

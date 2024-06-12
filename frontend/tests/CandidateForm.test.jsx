@@ -43,7 +43,7 @@ describe('CandidateForm', () => {
       );
       getByText = result.getByText;
     });
-    fireEvent.click(getByText('Pokaz plan polityczny'));
+    fireEvent.click(getByText('Pokaż plan polityczny'));
     await waitFor(() =>
       expect(getByText('Political Plan')).toBeInTheDocument()
     );
@@ -57,7 +57,7 @@ describe('CandidateForm', () => {
     const { getByText, queryByText } = render(
       <CandidateForm candidate={mockCandidateWithPlan} />
     );
-    fireEvent.click(getByText('Pokaz plan polityczny'));
+    fireEvent.click(getByText('Pokaż plan polityczny'));
     await waitFor(() =>
       expect(getByText('Political Plan')).toBeInTheDocument()
     );

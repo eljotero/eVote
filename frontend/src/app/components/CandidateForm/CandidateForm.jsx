@@ -66,7 +66,7 @@ export default function CandidateForm({ candidate, onVote }) {
           onClick={handleShowPlan}
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
         >
-          {showPlan ? 'Hide Plan' : 'Pokaz plan polityczny'}
+          {showPlan ? 'Hide Plan' : 'Pokaż plan polityczny'}
         </button>
         {showPlan && (
           <div className='absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex items-center justify-center z-10'>

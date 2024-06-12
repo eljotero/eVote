@@ -10,6 +10,7 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
+import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.repository.UserAddressRepository;
@@ -81,4 +82,5 @@ public class AuthenticationService {
         }
         return account.getAccount_id().equals(ID);
     }
+
 }

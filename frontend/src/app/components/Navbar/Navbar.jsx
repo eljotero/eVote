@@ -141,10 +141,10 @@ export default function Navbar() {
           <li>
             <Link
               className='text-sm font-semibold text-gray-400 hover:text-blue-600'
-              href='#'
-              aria-label='Link'
+              href='/vote'
+              aria-label='Zagłosuj'
             >
-              Link
+              Zagłosuj
             </Link>
           </li>
           <li className='text-gray-300'>
@@ -267,47 +267,56 @@ export default function Navbar() {
             <ul aria-label='Elementy mobilnego menu'>
               <li className='mb-1'>
                 <Link
-                  className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
-                  href='/'
-                  aria-label='Strona główna'
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='/'
+                    aria-label='Strona główna'
                 >
                   Strona główna
                 </Link>
               </li>
               <li className='mb-1'>
                 <Link
-                  className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
-                  href='#'
-                  aria-label='Jak zagłosować'
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='#'
+                    aria-label='Jak zagłosować'
                 >
                   Jak zagłosować
                 </Link>
               </li>
               <li className='mb-1'>
                 <Link
-                  className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
-                  href='/candidates'
-                  aria-label='Kandydaci'
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='/candidates'
+                    aria-label='Kandydaci'
                 >
                   Kandydaci
                 </Link>
               </li>
               <li className='mb-1'>
                 <Link
-                  className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
-                  href='#'
-                  aria-label='Link'
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='/vote'
+                    aria-label='Zagłosuj'
                 >
-                  Link
+                  Zagłosuj
                 </Link>
               </li>
               <li className='mb-1'>
                 <Link
-                  className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
-                  href='#'
-                  aria-label='Kontakt'
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='#'
+                    aria-label='Kontakt'
                 >
                   Kontakt
+                </Link>
+              </li>
+              <li className='mb-1'>
+                <Link
+                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                    href='/account'
+                    aria-label='Moje konto'
+                >
+                  Moje konto
                 </Link>
               </li>
             </ul>
@@ -315,9 +324,9 @@ export default function Navbar() {
           <div className='mt-auto'>
             <div className='pt-6'>
               <Link
-                className='block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl'
-                href='/login'
-                aria-label='Zaloguj się'
+                  className='block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl'
+                  href='/login'
+                  aria-label='Zaloguj się'
               >
                 Zaloguj się
               </Link>

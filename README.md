@@ -1,122 +1,119 @@
 # eVote
-System eVote to zaawansowany system zarządzania wyborami, który umożliwia kompleksową organizację i przeprowadzanie różnych typów wyborów. System jest zaprojektowany tak, aby był łatwy w użyciu, bezpieczny i elastyczny, spełniając potrzeby instytucji państwowych. 
+The eVote system is an advanced election management system designed to comprehensively organize and conduct various types of elections. The system is designed to be easy to use, secure, and flexible, meeting the needs of state institutions.
 
-## Funkcjonalności systemu eVote
+## Features of the eVote System
 
-### 1. Tworzenie i zarządzanie wyborami
-System eVote pozwala na łatwe tworzenie nowych wyborów. Administratorzy mogą określić szczegóły takie jak:
-- Nazwa i opis wyborów.
-- Data rozpoczęcia i zakończenia głosowania.
-- Typ wyborów (np. wybory prezydenckie, referenda, wybory do rady itp.).
+### 1. Creating and Managing Elections
+The eVote system allows for easy creation of new elections. Administrators can specify details such as:
+- Name and description of the election.
+- Start and end date of voting.
+- Type of election (e.g., presidential elections, referendums, council elections, etc.).
 
-### 2. Dodawanie kandydatów
-eVote umożliwia dodawanie kandydatów do poszczególnych wyborów. Administratorzy mogą:
-- Wprowadzać dane kandydatów, takie jak imię, nazwisko, zdjęcie i krótki opis.
-- Organizować kandydatów w różnych kategoriach lub partiach politycznych.
-- Aktualizować lub usuwać informacje o kandydacie w razie potrzeby.
+### 2. Adding Candidates
+eVote enables adding candidates to individual elections. Administrators can:
+- Enter candidate data, such as first name, last name, photo, and a brief description.
+- Organize candidates into different categories or political parties.
+- Update or delete candidate information as needed.
 
-### 3. Głosowanie
-System eVote zapewnia bezpieczne i anonimowe oddawanie głosów. Funkcje głosowania obejmują:
-- Interfejs użytkownika umożliwiający wybór preferowanych kandydatów.
-- Zapewnienie, że każdy użytkownik może oddać tylko jeden głos.
-- Możliwość weryfikacji tożsamości głosujących przy użyciu unikalnych identyfikatorów lub tokenów JWT.
+### 3. Voting
+The eVote system ensures secure and anonymous voting. Voting features include:
+- A user interface allowing the selection of preferred candidates.
+- Ensuring that each user can cast only one vote.
+- The ability to verify voters' identities using unique identifiers or JWT tokens.
 
-### 4. Autentykacja i bezpieczeństwo
-Bezpieczeństwo jest kluczowym aspektem systemu eVote. Funkcje związane z bezpieczeństwem obejmują:
-- Autentykację opartą na tokenach JWT, która zapewnia bezpieczne logowanie i zarządzanie sesjami.
-- Szyfrowanie danych przechowywanych w bazie danych oraz przesyłanych między frontendem a backendem.
-- Role użytkowników, umożliwiające różne poziomy dostępu (np. administratorzy, użytkownicy).
+### 4. Authentication and Security
+Security is a key aspect of the eVote system. Security-related features include:
+- JWT-based authentication, ensuring secure login and session management.
+- Encryption of data stored in the database and transmitted between the frontend and backend.
+- User roles, allowing different levels of access (e.g., administrators, users).
 
-### 5. Wyniki wyborów
-eVote umożliwia szybkie i dokładne przeliczanie głosów oraz prezentowanie wyników. Funkcje te obejmują:
-- Wyświetlanie wyników na żywo w trakcie trwania głosowania.
-- Generowanie raportów z wynikami po zakończeniu wyborów.
-- Możliwość eksportu wyników do różnych formatów (np. CSV, PDF).
+### 5. Election Results
+eVote enables fast and accurate vote counting and presenting results. These features include:
+- Displaying live results during the voting process.
+- Generating reports with results after the election ends.
+- Exporting results to various formats (e.g., CSV, PDF).
 
-### 6. Zarządzanie użytkownikami
-System oferuje zaawansowane narzędzia do zarządzania użytkownikami, w tym:
-- Rejestrację nowych użytkowników.
-- Zarządzanie danymi użytkowników, w tym edycję i usuwanie kont.
-- Przydzielanie ról i uprawnień poszczególnym użytkownikom.
+### 6. User Management
+The system offers advanced user management tools, including:
+- Registration of new users.
+- Managing user data, including editing and deleting accounts.
+- Assigning roles and permissions to individual users.
 
-System eVote oferuje wszystkie te funkcjonalności w celu stworzenia bezpiecznego, efektywnego i łatwego w użyciu narzędzia do zarządzania wyborami, które może być dostosowane do różnych potrzeb i scenariuszy wyborczych.
+The eVote system offers all these functionalities to create a secure, efficient, and user-friendly election management tool that can be tailored to different needs and election scenarios.
 
 ## Frontend
-Frontend aplikacji eVote został zbudowany przy użyciu [Next.js](https://nextjs.org/), frameworka opartego na [React](https://reactjs.org/). Do stylizacji używamy [Tailwind CSS](https://tailwindcss.com/) którego konfiguracja jest w pliku [tailwind.config.js](frontend/tailwind.config.js).
+The eVote application's frontend is built using [Next.js](https://nextjs.org/), a framework based on [React](https://reactjs.org/). We use [Tailwind CSS](https://tailwindcss.com/) for styling, configured in the [tailwind.config.js](frontend/tailwind.config.js) file.
 
-Frontend korzysta z [axios](https://axios-http.com/) do wykonywania żądań HTTP do backendu. Do zarządzania stanem aplikacji używamy [Redux Toolkit](https://redux-toolkit.js.org/).
+The frontend uses [axios](https://axios-http.com/) for making HTTP requests to the backend. We use [Redux Toolkit](https://redux-toolkit.js.org/) for state management.
 
-#### Struktura projektu
-Projekt składa się z kilku modułów:
-- **src/app/components:** Zawiera reużywalne komponenty React.
-- **src/store:** Zawiera akcje i reducery Redux.
-- **src/services:** Zawiera serwisy do komunikacji z backendem.
-- **tests:** Zawiera wszystkie testy jednostkowe i integracyjne dla frontendu. Testy są pisane za pomocą biblioteki Jest. 
+#### Project Structure
+The project consists of several modules:
+- **src/app/components:** Contains reusable React components.
+- **src/store:** Contains Redux actions and reducers.
+- **src/services:** Contains services for communication with the backend.
+- **tests:** Contains all unit and integration tests for the frontend. Tests are written using the Jest library. 
 
-#### Uruchomienie projektu
-Aby uruchomić frontend, musisz mieć zainstalowany [Node.js](https://nodejs.org/) i [npm](https://www.npmjs.com/). Następnie wykonaj następujące polecenia w katalogu frontend:
+#### Running the Project
+To run the frontend, you need to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed. Then, execute the following commands in the frontend directory:
 ```sh
 npm install
 npm run dev
 ```
-Otwórz http://localhost:3000 w przeglądarce, aby zobaczyć wynik.
+Open http://localhost:3000 in your browser to see the result.
 
-#### Testy
-Aby uruchomić testy dla frontendu, wykonaj następujące polecenia w katalogu frontend:
+#### Tests
+To run tests for the frontend, execute the following commands in the frontend directory:
 ```
 npm test
 ```
-Testy są wykonywane przy użyciu [Jest](https://jestjs.io). Możesz również uruchomić testy w trybie watch za pomocą 
+Tests are run using [Jest](https://jestjs.io). You can also run tests in watch mode using
 ```
 npm run test:watch
 ```
-lub wygenerować raport pokrycia testami za pomocą 
+or generate a coverage report using
 ```
 npm run test:coverage
 ```
 
 #### Linting
-Projekt korzysta z [ESLint](https://eslint.org) do utrzymania jakości kodu. Możesz uruchomić linter za pomocą 
+The project uses [ESLint](https://eslint.org) to maintain code quality. You can run the linter using 
 ```
 npm run lint.
 ```
 
 ## Backend
-Backend został zbudowany przy użyciu [Spring Boot](https://spring.io/projects/spring-boot), frameworka dla aplikacji Java. 
-Do testów jednostkowych używamy [JUnit](https://junit.org/junit5/), a do testów integracyjnych [RestAssured](https://rest-assured.io). 
-Do zarządzania zależnościami używamy [Maven](https://maven.apache.org).
+The backend is built using [Spring Boot](https://spring.io/projects/spring-boot), a framework for Java applications. We use [JUnit](https://junit.org/junit5/) for unit testing and,  [RestAssured](https://rest-assured.io) for integration testing. We use [Maven](https://maven.apache.org) for dependency management.
 
-#### Struktura projektu
-Projekt składa się z kilku modułów:  
-- **org.evote.backend:** Główny moduł aplikacji, zawiera klasę BackendApplication uruchamiającą aplikację.
-- **org.evote.backend.services:** Zawiera serwisy, które implementują logikę biznesową aplikacji.
-- **org.evote.backend.controllers:** Zawiera kontrolery, które obsługują żądania HTTP.
-- **org.evote.backend.users:** Zawiera klasy DTO i encje związane z użytkownikami.
-- **org.evote.backend.votes:** Zawiera klasy DTO i encje związane z głosowaniem.
-- **org.evote.backend.exception:**
-- **org.evote.backend.unit:** Zawiera testy jednostkowe.
-- **org.evote.backend.integration:** Zawiera testy integracyjne
+#### Project Structure
+The project consists of several modules: 
+- **org.evote.backend:** The main application module, contains the BackendApplication class that runs the application.
+- **org.evote.backend.services:** Contains services that implement the business logic of the application.
+- **org.evote.backend.controllers:** Contains controllers that handle HTTP requests.
+- **org.evote.backend.users:** Contains DTOs and entities related to users.
+- **org.evote.backend.votes:** Contains DTOs and entities related to voting.
+- **org.evote.backend.exception:** Contains exceptions and global handler.
+- **org.evote.backend.unit:** Contains unit tests.
+- **org.evote.backend.integration:** Contains integration tests.
 
-#### Uruchomienie projektu
-Aby uruchomić backend, musisz mieć zainstalowane [Java](https://www.oracle.com/java/technologies/downloads/) i [Maven](https://maven.apache.org). Następnie wykonaj następujące polecenia w katalogu głównym projektu:
+#### Running the Project
+To run the backend, you need to have [Java](https://www.oracle.com/java/technologies/downloads/) and [Maven](https://maven.apache.org) installed. Then, execute the following commands in the root directory of the project:
 ```sh
 mvn clean install
 mvn spring-boot:run
 ```
-Aplikacja będzie dostępna pod adresem http://localhost:8080.
+The application will be available at http://localhost:8080.
 
-#### Testy
-Aby uruchomić testy dla backendu, wykonaj następujące polecenia w katalogu głównym projektu:
+#### Tests
+To run tests for the backend, execute the following commands in the root directory of the project:
 ```
 mvn test
 ```
 
-#### Autentykacja
-Projekt korzysta z autentykacji opartej na tokenach JWT. Token jest generowany po pomyślnym zalogowaniu i musi być przekazywany w nagłówku Authorization przy każdym żądaniu.
+#### Authentication
+The project uses JWT-based authentication. The token is generated upon successful login and must be included in the Authorization header with each request.
 
-#### Baza danych
-Projekt korzysta z bazy danych PostgreSQL, która jest uruchamiana za pomocą Dockera. Domyślnie, dane są przechowywane na dysku i nie są usuwane po zakończeniu sesji. 
-Konfiguracja bazy danych oraz Dockera znajduje się w pliku [docker-compose.yml](docker/compose.yml) oraz [application.properties](backend/src/main/resources/application.properties)
+#### Database
+The project uses a PostgreSQL database, which is run using Docker. By default, data is stored on disk and not deleted after the session ends. The database and Docker configuration is located in the  [docker-compose.yml](docker/compose.yml) and [application.properties](backend/src/main/resources/application.properties) files.
 
 ## CI/CD
-Projekt korzysta z GitHub Actions do automatycznego budowania i testowania kodu. Zobacz plik [maven.yml](.github/workflows/maven.yml) dla szczegółów.
+The project uses GitHub Actions for automatic building and testing of the code. See the [maven.yml](.github/workflows/maven.yml) file for details.
