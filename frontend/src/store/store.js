@@ -6,7 +6,7 @@ import idReducer from './idSlice';
 export const store = configureStore({
   reducer: {
     token: tokenReducer,
-    // votingToken: votingTokenReducer,
+    votingToken: votingTokenReducer,
     id: idReducer,
   },
 });
