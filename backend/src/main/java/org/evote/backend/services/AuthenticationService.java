@@ -41,18 +41,27 @@ public class AuthenticationService {
         this.userAddressRepository = userAddressRepository;
     }
 
-
-    public String register(Account account) throws AccountAlreadyExistsException {
-        if (account.getPassword().length() < 8) {
+    @Transactional
+    public Account register(AccountCreateDTO accountCreateDTO) throws AccountAlreadyExistsException {
+        if (accountCreateDTO.getPassword().length() < 8) {
             throw new PasswordTooShortException("Password must be at least 8 characters long");
         }
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        try {
-            accountRepository.save(account);
-        } catch (DataAccessException e) {
+        if (accountRepository.findByEmail(accountCreateDTO.getEmail()) != null) {
             throw new AccountAlreadyExistsException("Account already exists");
         }
-        return "Account created successfully";
+        accountCreateDTO.setPassword(passwordEncoder.encode(accountCreateDTO.getPassword()));
+        User user = new User();
+        Address address = new Address();
+        Account account = AccountMapper.toAccount(accountCreateDTO);
+        try {
+            Address savedAddress = userAddressRepository.save(address);
+            user.setAddress(savedAddress);
+            User savedUser = userRepository.save(user);
+            account.setUser(savedUser);
+            return accountRepository.save(account);
+        } catch (DataAccessException e) {
+            throw new AccountAlreadyExistsException("Error while creating account");
+        }
     }
 
     public AuthenticationResponseDTO login(AccountLoginDTO accountLoginDTO) {

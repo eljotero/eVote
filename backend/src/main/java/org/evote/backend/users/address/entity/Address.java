@@ -14,6 +14,7 @@ import java.util.List;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer address_id;
 
     private String zip_code;

@@ -20,7 +20,8 @@ public class UserController {
     @PreAuthorize("hasRole('Admin') or @authenticationService.hasAccount(#id)")
     public ResponseEntity<?> updateAccount(@PathVariable Integer id, @RequestBody UserUpdateDTO userUpdateDTO) {
         try {
-            return ResponseEntity.ok(userService.updateUser(id, userUpdateDTO));
+            String response = userService.updateUser(id, userUpdateDTO);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

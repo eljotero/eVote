@@ -47,11 +47,13 @@ public class UserService {
 
     @Transactional
     public String updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
-        Optional<Account> dbAccount = accountRepository.findById(id);
-        if (dbAccount.isEmpty()) {
+        Account accountToUpdate;
+        if (accountRepository.findById(id).isEmpty()) {
             throw new AccountNotFoundException("Account not found");
+        } else {
+            accountToUpdate = accountRepository.findById(id).get();
         }
-        Account accountToUpdate = dbAccount.get();
+
         User userToUpdate = accountToUpdate.getUser();
         if (userToUpdate == null) {
             throw new UserNotFoundException("User not found");

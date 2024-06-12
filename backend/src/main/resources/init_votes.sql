@@ -18,28 +18,28 @@ INSERT INTO address (address_id, address_line, city, country, zip_code)
 VALUES (5, 'Marii Konopnickiej 6', 'Warszawa', 'Polska', '00-491')
     ON CONFLICT (address_id) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (1, 'Wybory parlamentarne - sejm','2024-06-26','2024-06-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (1, 'Wybory parlamentarne - sejm','2024-06-26','2024-06-25', 3)
     ON CONFLICT (electionid) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (2, 'Wybory parlamentarne - senat','2024-06-26','2024-06-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (2, 'Wybory parlamentarne - senat','2024-06-26','2024-06-25', 4)
     ON CONFLICT (electionid) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (3, 'Wybory prezydenckie','2024-09-26','2024-09-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (3, 'Wybory prezydenckie','2024-09-26','2024-09-25', 2)
     ON CONFLICT (electionid) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (4, 'Wybory samorządowe - gimna','2025-09-26','2025-09-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (4, 'Wybory samorządowe - gimna','2025-09-26','2025-09-25', 1)
     ON CONFLICT (electionid) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (5, 'Wybory samorządowe - powiat','2025-09-26','2025-09-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (5, 'Wybory samorządowe - powiat','2025-09-26','2025-09-25', 1)
     ON CONFLICT (electionid) DO NOTHING;
 
-INSERT INTO election (electionid, electionname, enddate, startdate)
-VALUES (6, 'Wybory samorządowe - województwo','2025-09-26','2025-09-25')
+INSERT INTO election (electionid, electionname, enddate, startdate, type)
+VALUES (6, 'Wybory samorządowe - województwo','2025-09-26','2025-09-25', 1)
     ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO political_party (politicalpartyid, name, address_id)
@@ -64,114 +64,114 @@ VALUES (5,'Trzecia Droga', 5)
 
 --sejm
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 1)
+VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 2, 1 )
+VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 2, 3 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 3, 1 )
+VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 3, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 4, 1)
+VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 4, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 5, 1)
+VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 5, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 6, 1)
+VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 6, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 7, 1)
+VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 7, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 8, 1)
+VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 8, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 9, 1)
+VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 9, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 10, 1)
+VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 10, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 11, 1)
+VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 11, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 12, 1)
+VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 12, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 13, 1)
+VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 13, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 14, 1)
+VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 14, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 15, 1)
+VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 15, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 16, 1)
+VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 16, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('675b586e-a54d-46ab-9304-6d266997314b', 17, 1)
+VALUES('675b586e-a54d-46ab-9304-6d266997314b', 17, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 18, 1)
+VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 18, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 19, 1)
+VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 19, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 20, 1)
+VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 20, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 21, 1)
+VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 21, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 22, 1)
+VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 22, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 23, 1)
+VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 23, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 24, 1)
+VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 24, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 1)
+VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 --senat
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 2)
+VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 4)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 2)
+VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 4)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 

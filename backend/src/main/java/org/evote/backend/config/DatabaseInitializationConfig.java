@@ -44,27 +44,27 @@ public class DatabaseInitializationConfig {
         return dataSource;
     }
 
-//    @Bean
-//    public DataSourceInitializer dataSourceInitializer1() {
-//        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-//        databasePopulator.addScript(initDataScript1);
-//
-//        DataSourceInitializer initializer = new DataSourceInitializer();
-//        initializer.setDataSource(usersDataSourceInit());
-//        initializer.setDatabasePopulator(databasePopulator);
-//
-//        return initializer;
-//    }
-//
-//    @Bean
-//    public DataSourceInitializer dataSourceInitializer2() {
-//        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-//        databasePopulator.addScript(initDataScript2);
-//
-//        DataSourceInitializer initializer = new DataSourceInitializer();
-//        initializer.setDataSource(votesDataSourceInit());
-//        initializer.setDatabasePopulator(databasePopulator);
-//
-//        return initializer;
-//    }
+    @Bean
+    public DataSourceInitializer dataSourceInitializer1() {
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.addScript(initDataScript1);
+
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(usersDataSourceInit());
+        initializer.setDatabasePopulator(databasePopulator);
+
+        return initializer;
+    }
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer2() {
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.addScript(initDataScript2);
+
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(votesDataSourceInit());
+        initializer.setDatabasePopulator(databasePopulator);
+
+        return initializer;
+    }
 }

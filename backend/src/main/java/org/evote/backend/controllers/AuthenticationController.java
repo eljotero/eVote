@@ -17,12 +17,9 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Account account) {
-        try {
-            return ResponseEntity.ok(authenticationService.register(account));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<AccountDTO> register(@RequestBody AccountCreateDTO accountCreateDTO) {
+        Account account = authenticationService.register(accountCreateDTO);
+        return new ResponseEntity<>(AccountMapper.toAccountDTO(account), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
