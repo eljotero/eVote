@@ -82,10 +82,12 @@ public class AddressEntityTests {
     public void testAddressEntityWithPrecinct() {
         Address address = new Address();
         Precinct precinct = new Precinct();
+        List<Precinct> precincts = new java.util.ArrayList<>(List.of(precinct));
+        precincts.add(precinct);
 
         assertNotNull(address);
-        address.setPrecinct(precinct);
-        assertEquals(precinct, address.getPrecinct());
+        address.setPrecincts(precincts);
+        assertEquals(precincts, address.getPrecincts());
     }
 
     @Test
@@ -202,23 +204,6 @@ public class AddressEntityTests {
         assertNotEquals(address1, address2);
     }
 
-    @Test
-    public void testAddressEntityEqualsWithPrecinct() {
-        Address address1 = new Address();
-        Address address2 = new Address();
-        Precinct precinct = new Precinct();
-        precinct.setPrecinct_id(1);
-
-        assertNotNull(address1);
-        assertNotNull(address2);
-        address1.setPrecinct(precinct);
-        address2.setPrecinct(precinct);
-        assertEquals(address1, address2);
-        Precinct precinct2 = new Precinct();
-        precinct2.setPrecinct_id(2);
-        address2.setPrecinct(precinct2);
-        assertNotEquals(address1, address2);
-    }
 
     @Test
     public void testAddressEntityHashCode() {
@@ -318,24 +303,6 @@ public class AddressEntityTests {
         address2.setUsers(List.of(user));
         assertEquals(address1.hashCode(), address2.hashCode());
         address2.setUsers(List.of());
-        assertNotEquals(address1.hashCode(), address2.hashCode());
-    }
-
-    @Test
-    public void testAddressEntityHashCodeWithPrecinct() {
-        Address address1 = new Address();
-        Address address2 = new Address();
-        Precinct precinct = new Precinct();
-        precinct.setPrecinct_id(1);
-
-        assertNotNull(address1);
-        assertNotNull(address2);
-        address1.setPrecinct(precinct);
-        address2.setPrecinct(precinct);
-        assertEquals(address1.hashCode(), address2.hashCode());
-        Precinct precinct2 = new Precinct();
-        precinct2.setPrecinct_id(2);
-        address2.setPrecinct(precinct2);
         assertNotEquals(address1.hashCode(), address2.hashCode());
     }
 

@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,5 +116,16 @@ public class ElectionServiceTests {
         when(electionRepository.findById(Math.toIntExact(id))).thenReturn(Optional.empty());
 
         assertThrows(ElectionNotFoundException.class, () -> electionService.deleteElection(id));
+    }
+
+    @Test
+    public void testGetUpcomingElections() {
+        Election election = new Election();
+        election.setElectionName("Election 1");
+        election.setStartDate(Date.from(new Date().toInstant().plusSeconds(86400)));
+        election.setEndDate(Date.from(new Date().toInstant().plusSeconds(172800)));
+        List<Election> elections = Arrays.asList(election);
+        when(electionRepository.findAll()).thenReturn(elections);
+        assertEquals(elections, electionService.getUpcomingElections());
     }
 }

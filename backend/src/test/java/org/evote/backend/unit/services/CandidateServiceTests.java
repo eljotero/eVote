@@ -204,4 +204,77 @@ public class CandidateServiceTests {
 
         assertThrows(CandidateNotFoundException.class, () -> candidateService.deleteCandidate(id));
     }
+
+    @Test
+    public void testUpdateCandidate() {
+        Integer id = 1;
+        CandidateCreateDTO candidateNewInfo = new CandidateCreateDTO();
+        candidateNewInfo.setName("John");
+        candidateNewInfo.setSurname("Doe");
+        candidateNewInfo.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateNewInfo.setEducation("Bachelor's Degree");
+        candidateNewInfo.setPolitical_party_id(1);
+        candidateNewInfo.setPrecinct_id(1);
+        candidateNewInfo.setElection_id(1);
+
+        Candidate candidate = new Candidate();
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+        Election election = new Election();
+
+        when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
+        when(politicalPartyRepository.findById(candidateNewInfo.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateNewInfo.getPrecinct_id())).thenReturn(Optional.of(precinct));
+        when(electionRepository.findById(candidateNewInfo.getElection_id())).thenReturn(Optional.of(election));
+
+        when(candidateRepository.save(any(Candidate.class))).thenReturn(candidate);
+
+        Candidate result = candidateService.updateCandidate(id, candidateNewInfo);
+
+        assertNotNull(result);
+        verify(candidateRepository, times(1)).save(any(Candidate.class));
+    }
+
+    @Test
+    public void testGetCandidatesByPoliticalPartyId() {
+        Integer politicalPartyId = 1;
+        PoliticalParty politicalParty = new PoliticalParty();
+        politicalParty.setPoliticalPartyId(politicalPartyId);
+
+        Candidate candidate1 = new Candidate();
+        candidate1.setPoliticalParty(politicalParty);
+        Candidate candidate2 = new Candidate();
+        candidate2.setPoliticalParty(politicalParty);
+        List<Candidate> candidates = Arrays.asList(candidate1, candidate2);
+
+        when(candidateRepository.findAll()).thenReturn(candidates);
+
+        List<Candidate> result = candidateService.getCandidatesByPoliticalPartyId(politicalPartyId);
+
+        assertEquals(candidates, result);
+    }
+
+    @Test
+    public void testGetCandidatesByElectionIdAndPrecinctId() {
+        Integer electionId = 1;
+        Integer precinctId = 1;
+        Election election = new Election();
+        election.setElectionId(electionId);
+        Precinct precinct = new Precinct();
+        precinct.setPrecinct_id(precinctId);
+
+        Candidate candidate1 = new Candidate();
+        candidate1.setElection(election);
+        candidate1.setPrecinct(precinct);
+        Candidate candidate2 = new Candidate();
+        candidate2.setElection(election);
+        candidate2.setPrecinct(precinct);
+        List<Candidate> candidates = Arrays.asList(candidate1, candidate2);
+
+        when(candidateRepository.findAll()).thenReturn(candidates);
+
+        List<Candidate> result = candidateService.getCandidatesByElectionIdAndPrecinctId(electionId, precinctId);
+
+        assertEquals(candidates, result);
+    }
 }
