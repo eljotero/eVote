@@ -14,7 +14,7 @@ import java.util.List;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer address_id;
 
     private String zip_code;
@@ -31,7 +31,7 @@ public class Address {
     @JsonIgnore
     private List<User> users;
 
-    @OneToOne(mappedBy = "address")
+    @OneToMany(mappedBy = "address")
     @JsonIgnore
-    private Precinct precinct;
+    private List<Precinct> precincts;
 }

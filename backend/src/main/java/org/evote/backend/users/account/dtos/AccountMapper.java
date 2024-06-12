@@ -6,7 +6,7 @@ public class AccountMapper {
 
     public static AccountDTO toAccountDTO(Account account) {
         AccountDTO accountDTO = new AccountDTO();
-        accountDTO.setId(account.getAccount_id());
+       // accountDTO.setId(account.getAccount_id());
         accountDTO.setEmail(account.getEmail());
         accountDTO.setRole(account.getRole());
         accountDTO.setHasVoted(account.getHasVoted());
@@ -18,9 +18,9 @@ public class AccountMapper {
         Account account = new Account();
         account.setEmail(accountCreateDTO.getEmail());
         account.setPassword(accountCreateDTO.getPassword());
-        account.setRole(accountCreateDTO.getRole());
-        account.setHasVoted(accountCreateDTO.getHasVoted());
-        account.setIsAccountActive(accountCreateDTO.getIsAccountActive());
+        //account.setRole(accountCreateDTO.getRole());
+        ///account.setHasVoted(accountCreateDTO.getHasVoted());
+        //account.setIsAccountActive(accountCreateDTO.getIsAccountActive());
 
         return account;
     }

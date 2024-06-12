@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const logout = () => {
     dispatch(clearToken());
-    dispatch(clearID);
+    dispatch(clearID());
     router.push('/');
   };
 

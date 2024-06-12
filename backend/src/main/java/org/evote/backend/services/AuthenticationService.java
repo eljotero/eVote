@@ -42,7 +42,6 @@ public class AuthenticationService {
         this.userAddressRepository = userAddressRepository;
     }
 
-
     @Transactional
     public Account register(AccountCreateDTO accountCreateDTO) throws AccountAlreadyExistsException {
         if (accountCreateDTO.getPassword().length() < 8) {

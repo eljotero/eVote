@@ -54,6 +54,8 @@ export default function Account() {
         resolver: zodResolver(personInfoSchema),
     });
     const fetchAccount = async () => {
+        console.log(id);
+        console.log(token);
         const res = await axios.get(`account/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -103,6 +105,8 @@ export default function Account() {
             country: data.country,
             address_line: data.addressLine,
         };
+        console.log(id);
+        console.log(token);
         axios
             .put(`user/${id}`, formData, {
                 headers: {
@@ -256,7 +260,7 @@ export default function Account() {
                         label='Kod pocztowy'
                         register={register}
                         name='zipCode'
-                        type='number'
+                        type='text'
                         error={errors.zipCode}
                         disabled={false}
                         placeholder={'Podaj swój kod pocztowy'}

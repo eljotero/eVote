@@ -43,6 +43,7 @@ export default function RegisterForm() {
                 return;
             }
         } catch (error) {
+            console.log(error);
             toast.error('Konto z takim adresem email już istnieje. Zaloguj się.');
         }
         reset();

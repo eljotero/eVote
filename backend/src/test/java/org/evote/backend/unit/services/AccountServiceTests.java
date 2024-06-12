@@ -92,6 +92,20 @@ public class AccountServiceTests {
         verify(accountRepository, times(1)).findAll();
     }
 
+    @Test
+    public void testDeleteAccount() {
+        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.of(account));
+        accountService.deleteAccount(account.getAccount_id());
+        verify(accountRepository, times(1)).delete(account);
+    }
+
+    @Test
+    public void testGetAccountByEmail() {
+        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
+        Optional<Account> result = accountService.getAccountByEmail(account.getEmail());
+        assertEquals(account, result.get());
+    }
+
 }
 
 

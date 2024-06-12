@@ -148,7 +148,7 @@ public class PrecinctEntityTests {
     public void testPrecinctEntityToString() {
         Precinct precinct = new Precinct();
         assertNotNull(precinct.toString());
-        assertEquals("Precinct(precinct_id=null, address=null, electionType=null)", precinct.toString());
+        assertEquals("Precinct(precinct_uuid=null, precinct_id=null, availableAddresses=null, availableCities=null, address=null, electionType=null)", precinct.toString());
     }
 
 }

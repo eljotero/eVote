@@ -11,16 +11,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
 public class ElectionControllerTests {
 
     @Mock
@@ -52,6 +49,7 @@ public class ElectionControllerTests {
         election1.setType(ElectionType.Presidential);
 
         elections = Arrays.asList(election1, election2);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
