@@ -77,26 +77,23 @@ public class UserService {
         Optional.ofNullable(userUpdateDTO.getProfession()).ifPresent(userToUpdate::setProfession);
         List<Precinct> precinctList = userToUpdate.getPrecincts();
         for (ElectionType electionType : ElectionType.values()) {
-            if (electionType == ElectionType.Presidential || electionType == ElectionType.LocalGovernment) {
+            if (electionType == ElectionType.Presidential || electionType == ElectionType.LocalGovernment || electionType == ElectionType.EuropeanParliament) {
                 continue;
             }
             Optional<Precinct> precinct = Optional.empty();
-            if (electionType == ElectionType.EuropeanParliament) {
-                precinct = precinctService.findPrecinctEuro(userUpdateDTO.getVoivodeship(), electionType);
-            } else if (electionType == ElectionType.Senate || electionType == ElectionType.Parliamentary) {
+            if (electionType == ElectionType.Senate || electionType == ElectionType.Parliamentary) {
                 precinct = precinctService.findPrecinctCity(userUpdateDTO.getCity(), electionType);
             }
 
             if (precinct.isPresent()) {
                 Precinct existingPrecinct = precinct.get();
-                if (!precinctList.contains(existingPrecinct) &&
-                        usersPrecinctRepository.findById(existingPrecinct.getPrecinct_uuid()).isEmpty()) {
+                if (usersPrecinctRepository.findByUserIdAndPrecinctId(userToUpdate.getUser_id(), existingPrecinct.getPrecinct_id()).isEmpty()) {
                     precinctList.add(existingPrecinct);
                     existingPrecinct.getUsers().add(userToUpdate);
                     usersPrecinctRepository.save(existingPrecinct);
+                } else {
+                    throw new RuntimeException("User already assigned to this precinct");
                 }
-            } else {
-                throw new RuntimeException(electionType == ElectionType.EuropeanParliament ? "Wrong voivodeship" : "Wrong city");
             }
         }
         Account account = userToUpdate.getAccount();
