@@ -12,9 +12,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.18",
+    "@hookform/resolvers": "^3.4.2",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "http-proxy-middleware": "^3.0.0",
@@ -23,6 +21,7 @@
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.5",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.1.0",
     "react-redux": "^9.1.2",
@@ -31,7 +30,8 @@
     "react-transition-group": "^4.4.5",
     "redux-mock-store": "^1.5.4",
     "redux-persist": "^6.0.0",
-    "sass": "^1.75.0"
+    "sass": "^1.75.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
