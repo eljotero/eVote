@@ -35,8 +35,7 @@ public class User {
     private CityType cityType;
     private String profession;
 
-    @ManyToMany
-    @JoinTable(name = "precinct", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "precinct_uuid"))
+    @ManyToMany(mappedBy = "users")
     private List<Precinct> precincts;
 
     @ManyToOne

@@ -18,17 +18,13 @@ export default function Candidates() {
         const woj = urlParams.get('woj');
         setSelectedRegion(woj || '');
         const fetchCandidates = async () => {
-            if (selectedDistrict && selectedDistrict2) {
                 try {
                     const responseSejm = await axios.get(
-                        `candidates/filtered?electionId=${1}&precinctId=${getDistrictNumber(
-                            selectedDistrict
-                        )}`
+                        `candidates/filtered?electionId=${1}&precinctId=${getDistrictNumber(selectedDistrict)}`
                     );
+
                     const responseSenate = await axios.get(
-                        `candidates/filtered?electionId=${2}&precinctId=${getDistrictNumber2(
-                            selectedDistrict2
-                        )}`
+                        `candidates/filtered?electionId=${2}&precinctId=${getDistrictNumber(selectedDistrict2)}`
                     );
                     const candidatesWithShowPlanSejm = responseSejm.data.map(
                         (candidate) => ({...candidate, showPlan: false})
@@ -43,8 +39,8 @@ export default function Candidates() {
                 } catch (error) {
                     console.error('Error fetching candidates:', error);
                 }
-            }
         };
+
 
         const fetchElections = async () => {
             try {

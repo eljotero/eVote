@@ -27,14 +27,19 @@ public class Precinct {
     @ElementCollection
     private List<String> availableCities;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
     @Enumerated(EnumType.ORDINAL)
     private ElectionType electionType;
 
-    @ManyToMany(mappedBy = "precincts")
+    @ManyToMany
+    @JoinTable(
+            name = "users_precincts",
+            joinColumns = @JoinColumn(name = "precinct_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     @JsonIgnore
     private List<User> users;
 }

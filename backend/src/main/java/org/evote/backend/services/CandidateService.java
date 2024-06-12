@@ -39,7 +39,7 @@ public class CandidateService {
 
     public List<Candidate> getCandidatesByElectionIdAndPrecinctId(int electionId, int precinctId) {
         return candidateRepository.findAll().stream()
-                .filter(candidate -> candidate.getCandidateId() == electionId && candidate.getPrecinct().getPrecinct_id() == precinctId)
+                .filter(candidate -> candidate.getElection().getElectionId() == electionId && candidate.getPrecinct().getPrecinct_id() == precinctId)
                 .collect(Collectors.toList());
     }
 
