@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
@@ -53,6 +54,7 @@ public class PoliticalPartyControllerTests {
         politicalParty2.setAddress(address2);
 
         politicalParties = Arrays.asList(politicalParty1, politicalParty2);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

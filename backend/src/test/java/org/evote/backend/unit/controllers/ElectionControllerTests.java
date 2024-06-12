@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.util.*;
@@ -48,6 +49,7 @@ public class ElectionControllerTests {
         election1.setType(ElectionType.Presidential);
 
         elections = Arrays.asList(election1, election2);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
