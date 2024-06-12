@@ -7,7 +7,6 @@ import { act } from 'react-dom/test-utils';
 import { toast } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import LoginForm from '../src/app/components/LoginForm/LoginForm';
-import { useRouter } from 'next/navigation';
 
 jest.mock('lib/axios');
 jest.mock('../src/app/services/emailService', () => ({

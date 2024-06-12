@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-export default function CountdownForm({initialCount, handleVoteButton}) {
+export default function CountdownForm({initialCount}) {
     const parseDate = (dateStr) => {
         if (!dateStr) {
             return null;
@@ -21,7 +21,6 @@ export default function CountdownForm({initialCount, handleVoteButton}) {
     };
 
     const [countdown, setCountdown] = useState(calculateCountdown());
-    const [showVoteButton, setShowVoteButton] = useState(false);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -30,12 +29,21 @@ export default function CountdownForm({initialCount, handleVoteButton}) {
 
             if (newCountdown <= 0) {
                 clearInterval(timer);
-                setShowVoteButton(true);
             }
         }, 1000);
 
         return () => clearInterval(timer);
     }, [initialCount]);
+
+    if (countdown <= 0) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                <div style={{ position: 'absolute', textAlign: 'center' }}>
+                    <h2 style={{ color: 'black' }}>Wybory trwają.</h2>
+                </div>
+            </div>
+        );
+    }
 
     const seconds = Math.floor((countdown) % 60);
     const minutes = Math.floor((countdown / 60) % 60);
@@ -43,27 +51,19 @@ export default function CountdownForm({initialCount, handleVoteButton}) {
     const days = Math.floor(countdown / (60 * 60 * 24));
 
     if (!targetDate) {
-        return <div>Invalid date format. Please use DD.MM.YYYY.</div>;
+        return <div>Zły format daty (DD.MM.YYYY).</div>;
     }
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}>
-            {showVoteButton ? (
-                    <button
-                        onClick={handleVoteButton}
-                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-                    >
-                        Zagłosuj
-                    </button>
-                ) :
-                (<div style={{position: 'absolute', textAlign: 'center'}}>
-                    <h2 style={{color: 'black'}}>
-                        <span style={{fontWeight: 'bold'}}>{days}</span> dni<br/>
-                        <span style={{fontWeight: 'bold'}}>{hours}</span> godzin |
-                        <span style={{fontWeight: 'bold'}}>{minutes}</span> minut |
-                        <span style={{fontWeight: 'bold'}}>{seconds}</span> sekund
-                    </h2>
-                </div>)}
+            <div style={{position: 'absolute', textAlign: 'center'}}>
+                <h2 style={{color: 'black'}}>
+                    <span style={{fontWeight: 'bold'}}>{days}</span> dni<br/>
+                    <span style={{fontWeight: 'bold'}}>{hours}</span> godzin |
+                    <span style={{fontWeight: 'bold'}}>{minutes}</span> minut |
+                    <span style={{fontWeight: 'bold'}}>{seconds}</span> sekund
+                </h2>
+            </div>
         </div>
     );
 }
