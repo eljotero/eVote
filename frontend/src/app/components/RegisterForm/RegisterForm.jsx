@@ -6,7 +6,7 @@ import {toast} from "react-hot-toast";
 import axios from "../../../../lib/axios";
 
 const registerSchema = z.object({
-    email: z.string(),
+    email: z.string().email({message: 'Nieprawidłowy adres email'}),
     password: z.string().min(8, 'Hasło musi mieć minimum 10 znaków'),
     confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -64,7 +64,7 @@ export default function RegisterForm() {
                 <input type='email' name='email'
                        id={'email'}
                        {...register('email')}
-                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'/>
+                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 hover:shadow-md hover:shadow-gray-300/20'/>
                 {errors.email && (
                     <p className='text-red-500'>{`${errors.email.message}`}</p>
                 )}
@@ -74,7 +74,7 @@ export default function RegisterForm() {
                        className='block text-sm font-medium text-gray-700'>Hasło</label>
                 <input type='password' name='password'
                        id={'password'}
-                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'
+                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 hover:shadow-md hover:shadow-gray-300/20'
                        {...register('password')} />
                 {errors.password && (
                     <p className='text-red-500'>{`${errors.password.message}`}</p>
@@ -86,14 +86,15 @@ export default function RegisterForm() {
                     hasło</label>
                 <input type='password' id={'confirmPassword'}
                        name='confirmPassword' {...register('confirmPassword')}
-                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300'/>
+                       className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 hover:shadow-md hover:shadow-gray-300/20'/>
                 {errors.confirmPassword && (
                     <p className='text-red-500'>{`${errors.confirmPassword.message}`}</p>
                 )}
             </div>
             <div>
                 <button type='submit'
-                        className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'>Zarejestruj
+                        className='w-full font-semibold p-2 rounded-md focus:bg-blue-500 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 bg-blue-500 border border-blue-600 text-white hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'>
+                    Zarejestruj
                     się
                 </button>
             </div>

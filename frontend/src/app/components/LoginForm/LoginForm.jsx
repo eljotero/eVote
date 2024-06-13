@@ -9,8 +9,8 @@ import {setToken} from "@/store/tokenSlice";
 import {setID} from "@/store/idSlice";
 
 const loginSchema = z.object({
-    email: z.string().email(),
-    password: z.string()
+    email: z.string().email({message: 'Nieprawidłowy adres email'}),
+    password: z.string({message: 'Nieprawidłowe hasło'})
 });
 
 export default function LoginForm() {
@@ -58,7 +58,7 @@ export default function LoginForm() {
                        className='block text-sm font-medium text-gray-700'>Email</label>
                 <input
                     id={'email'}
-                    className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300' {...register('email')}
+                    className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 hover:shadow-md hover:shadow-gray-300/20' {...register('email')}
                     type='email'/>
                 {errors.email && (
                     <p className='text-red-500'>{`${errors.email.message}`}</p>
@@ -68,14 +68,14 @@ export default function LoginForm() {
                     htmlFor='password'>Hasło</label>
                 <input
                     id={'password'}
-                    className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300' {...register('password')}
+                    className='mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 hover:shadow-md hover:shadow-gray-300/20' {...register('password')}
                     type='password'/>
                 {errors.password && (
                     <p className='text-red-500'>{`${errors.password.message}`}</p>
                 )}
                 <button type={"submit"}
                         aria-label='Wyślij formularz logowania'
-                        className='w-full text-white p-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-colors duration-300'
+                        className='w-full font-semibold p-2 rounded-md focus:bg-blue-500 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 bg-blue-500 border border-blue-600 text-white hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
                         disabled={isSubmitting}>
                     Zaloguj
                 </button>
