@@ -7,7 +7,6 @@ import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.exceptions.AddressNotFoundException;
 import org.evote.backend.users.address.repository.UserAddressRepository;
-import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +44,11 @@ public class AddressService {
             throw new RuntimeException("Error while updating address");
         }
         return "Address updated successfully";
+    }
+
+    public Boolean isAddressDataComplete(Integer id) {
+        Address userAddress = userAddressRepository.findById(id)
+                .orElseThrow(() -> new AddressNotFoundException("Address with id " + id + " not found"));
+           return userAddress.getZip_code() != null && userAddress.getVoivodeship() != null && userAddress.getCity() != null && userAddress.getCountry() != null && userAddress.getAddress_line() != null;
     }
 }

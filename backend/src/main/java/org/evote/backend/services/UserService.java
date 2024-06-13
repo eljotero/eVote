@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -116,5 +117,10 @@ public class UserService {
             throw new AccountNotFoundException("Account with id " + id + " not found");
         }
         return "User updated successfully";
+    }
+
+    public Boolean isUserDataComplete(UUID id) {
+        User user = usersRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+        return user.getName() != null && user.getSurname() != null && user.getPersonalIdNumber() != null && user.getSex() != null && user.getBirthDate() != null && user.getEducation() != null && user.getCityType() != null && user.getProfession() != null && user.getAddress() != null;
     }
 }
