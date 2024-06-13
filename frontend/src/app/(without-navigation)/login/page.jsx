@@ -22,7 +22,7 @@ export default function Login() {
                 </div>
             </div>
             <div
-                className='w-full bg-gray-100 lg:w-1/2 flex justify-center items-center'
+                className='w-full bg-gray-200 lg:w-1/2 flex justify-center items-center'
                 aria-label='Sekcja z formularzem'
             >
                 <div className='max-w-md w-full'>

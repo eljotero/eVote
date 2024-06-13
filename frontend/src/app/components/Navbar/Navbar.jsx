@@ -200,7 +200,7 @@ export default function Navbar() {
                 </ul>
                 {!token ? (
                     <Link
-                        className='hidden lg:inline-block py-2 px-6 border border-blue-500 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
+                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
                         href='/login'
                         aria-label='Zaloguj się'
                     >
@@ -209,7 +209,7 @@ export default function Navbar() {
                 ) : (
                     <button
                         onClick={logout}
-                        className='hidden lg:inline-block py-2 px-6 border border-blue-500 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
+                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
                     >
                         Wyloguj
                     </button>
@@ -323,13 +323,23 @@ export default function Navbar() {
                     </div>
                     <div className='mt-auto'>
                         <div className='pt-6'>
-                            <Link
-                                className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
-                                href='/login'
-                                aria-label='Zaloguj się'
-                            >
-                                Zaloguj się
-                            </Link>
+                            {!token ? (
+                                <Link
+                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-blue-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
+                                    href='/login'
+                                    aria-label='Zaloguj się'
+                                >
+                                    Zaloguj się
+                                </Link>
+                            ) : (
+                                <button
+                                    onClick={logout}
+                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-blue-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
+                                    aria-label='Wyloguj'
+                                >
+                                    Wyloguj
+                                </button>
+                            )}
                         </div>
                     </div>
                 </nav>
