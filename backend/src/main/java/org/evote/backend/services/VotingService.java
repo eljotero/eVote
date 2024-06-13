@@ -5,8 +5,8 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
-import org.evote.backend.users.address.exceptions.AddressInfoNotComplete;
 import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.exceptions.CodeMismatchException;
 import org.evote.backend.users.user.exceptions.UserInfoNotComplete;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.votes.candidate.entity.Candidate;
@@ -46,30 +46,17 @@ public class VotingService {
         this.accountService = accountService;
     }
 
-    public Boolean hasVoted(Integer id) {
-        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-        return Boolean.TRUE.equals(account.getHasVoted());
-    }
-
-    public boolean verifyCode(Integer id, String code) {
-        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+    public String generateVotingToken(String email, String code) {
+        Account account = accountService.getAccountByEmail(email).orElseThrow(() -> new AccountNotFoundException("Account not found"));
         User user = account.getUser();
         if (user == null) {
             throw new UserNotFoundException("User associated with this account not found");
         }
-        return code.equals(user.getCode());
-    }
-
-    public String generateVotingToken(Integer id) {
-        Account account = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-        if (hasVoted(id)) {
+        if (!code.equals(user.getCode())) {
+            throw new CodeMismatchException("Provided code does not match the user's code");
+        }
+        if (account.getHasVoted()) {
             throw new UserAlreadyVotedException("User has already voted");
-        }
-        if (!userService.isUserDataComplete(account.getUser().getUser_id())) {
-            throw new UserInfoNotComplete("User data is not complete");
-        }
-        if (!addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id())) {
-            throw new AddressInfoNotComplete("Address data is not complete");
         }
         return jwtService.generateVotingToken(account);
     }
@@ -81,32 +68,34 @@ public class VotingService {
         if (account.isEmpty()) {
             throw new AccountNotFoundException("Account not found");
         }
-        User user = account.get().getUser();
+        Account dbAccount = account.get();
+        User user = dbAccount.getUser();
         if (user == null) {
             throw new UserNotFoundException("User associated with this account not found");
         }
-        if (!isDataValid(account.get())) {
-            throw new UserInfoNotComplete("User data is not complete");
-        }
-        List<SingleVoteDTO> votes = voteDTO.getVotes();
-        for (SingleVoteDTO vote : votes) {
-            Vote newVote = new Vote();
-            Candidate candidate = candidateService.getCandidateById(vote.getCandidateId());
-            if (!isValidPrecinct(user, candidate)) {
-                throw new CandidateWrongPrecinctException("Candidate not found");
+        if (isDataValid(dbAccount)) {
+            List<SingleVoteDTO> votes = voteDTO.getVotes();
+            for (SingleVoteDTO vote : votes) {
+                Candidate candidate = candidateService.getCandidateById(vote.getCandidateId());
+                if (!isValidPrecinct(user, candidate)) {
+                    throw new CandidateWrongPrecinctException("Candidate not found");
+                }
+                Vote newVote = new Vote() {{
+                    setCandidate(candidate);
+                    setVoterBirthdate(user.getBirthDate());
+                    setVoterCityType(CityType.valueOf(user.getCityType().toString()));
+                    setVoterEducation(user.getEducation().toString());
+                    setSex(user.getSex());
+                    setVoterCountry(user.getAddress().getCountry());
+                    setVoteTime(Time.valueOf(LocalTime.now()));
+                }};
+                voteRepository.save(newVote);
             }
-            newVote.setCandidate(candidate);
-            newVote.setVoterBirthdate(user.getBirthDate());
-            newVote.setVoterCityType(CityType.valueOf(user.getCityType().toString()));
-            newVote.setVoterEducation(user.getEducation().toString());
-            newVote.setSex(user.getSex());
-            newVote.setVoterCountry(user.getAddress().getCountry());
-            newVote.setVoteTime(Time.valueOf(LocalTime.now()));
-            voteRepository.save(newVote);
+            dbAccount.setHasVoted(true);
+            accountRepository.save(dbAccount);
+            return "Voted successfully";
         }
-        account.get().setHasVoted(true);
-        accountRepository.save(account.get());
-        return "Voted successfully";
+        return "Voting failed";
     }
 
     private boolean isValidPrecinct(User user, Candidate candidate) {
