@@ -1,6 +1,6 @@
 package org.evote.backend.unit.services;
 
-import org.evote.backend.config.JwtService;
+import org.evote.backend.services.JwtService;
 import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

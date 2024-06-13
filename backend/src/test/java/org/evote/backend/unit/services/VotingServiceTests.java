@@ -1,6 +1,6 @@
 package org.evote.backend.unit.services;
 
-import org.evote.backend.config.JwtService;
+import org.evote.backend.services.JwtService;
 import org.evote.backend.services.*;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;

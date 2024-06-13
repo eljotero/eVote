@@ -1,12 +1,11 @@
 package org.evote.backend.unit.controllers;
 
 import org.evote.backend.controllers.AuthenticationController;
+import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
 import org.evote.backend.users.account.dtos.AccountMapper;
 import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
-import org.evote.backend.services.AuthenticationService;
-import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Objects;
 
@@ -33,7 +31,7 @@ public class AuthenticationControllerTests {
     public void setup() {
         MockitoAnnotations.openMocks(this);
     }
-/*
+
     @Test
     public void testRegister() {
         AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
@@ -42,7 +40,6 @@ public class AuthenticationControllerTests {
         when(authenticationService.register(accountCreateDTO)).thenReturn(AccountMapper.toAccount(accountCreateDTO));
         assertEquals(accountCreateDTO.getEmail(), Objects.requireNonNull(authenticationController.register(accountCreateDTO).getBody()).getEmail());
     }
-
 
 
     @Test
@@ -78,5 +75,4 @@ public class AuthenticationControllerTests {
         assertThrows(AccountNotFoundException.class, () -> authenticationController.login(accountLoginDTO));
     }
 
- */
 }

@@ -117,4 +117,19 @@ public class CandidateControllerTests {
 
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
     }
+
+    @Test
+    public void testUpdateCandidate() {
+        int id = 1;
+        when(candidateService.updateCandidate(id, candidateCreateDTO)).thenReturn(candidates.get(0));
+
+        ResponseEntity<?> responseEntity = candidateController.updateCandidate(id, candidateCreateDTO);
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(candidateCreateDTO.getName(), ((CandidateDTO) Objects.requireNonNull(responseEntity.getBody())).getName());
+        assertEquals(candidateCreateDTO.getSurname(), ((CandidateDTO) Objects.requireNonNull(responseEntity.getBody())).getSurname());
+        assertEquals(candidateCreateDTO.getPolitical_party_id(), ((CandidateDTO) Objects.requireNonNull(responseEntity.getBody())).getPolitical_party_id());
+        assertEquals(candidateCreateDTO.getPrecinct_id(), ((CandidateDTO) Objects.requireNonNull(responseEntity.getBody())).getPrecinct_id());
+        assertEquals(candidateCreateDTO.getElection_id(), ((CandidateDTO) Objects.requireNonNull(responseEntity.getBody())).getElection_id());
+    }
 }

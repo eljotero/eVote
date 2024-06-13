@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
@@ -31,6 +32,7 @@ public class PoliticalPartyControllerTests {
 
     @BeforeEach
     public void setup() {
+        MockitoAnnotations.openMocks(this);
         PoliticalParty politicalParty1 = new PoliticalParty();
         PoliticalParty politicalParty2 = new PoliticalParty();
         Address address1 = new Address();
@@ -53,50 +55,63 @@ public class PoliticalPartyControllerTests {
         politicalParty2.setAddress(address2);
 
         politicalParties = Arrays.asList(politicalParty1, politicalParty2);
+    }
 
+    @Test
+    public void testGetAllPoliticalParties() {
+        when(politicalPartyService.getAllPoliticalParties()).thenReturn(politicalParties);
+
+        ResponseEntity<List<PoliticalPartyDTO>> response = politicalPartyController.getAllPoliticalParties();
+
+        Assertions.assertEquals(response.getStatusCode().value(), 200);
+        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).size(), 2);
 
     }
 
-//    @Test
-//    public void testGetAllPoliticalParties() {
-//        when(politicalPartyService.getAllPoliticalParties()).thenReturn(politicalParties);
-//
-//        ResponseEntity<List<PoliticalPartyDTO>> response = politicalPartyController.getAllPoliticalParties();
-//
-//        Assertions.assertEquals(response.getStatusCode().value(), 200);
-//        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).size(), 2);
-//
-//    }
-//
-//    @Test
-//    public void testGetPoliticalPartyById() {
-//        Integer id = 1;
-//        when(politicalPartyService.getPoliticalPartyById(id)).thenReturn(politicalParties.get(0));
-//
-//        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.getPoliticalPartyById(id);
-//
-//        Assertions.assertEquals(response.getStatusCode().value(), 200);
-//        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
-//    }
-//
-//    @Test
-//    public void testDeletePoliticalParty() {
-//        Integer id = 1;
-//        ResponseEntity<Void> response = politicalPartyController.deletePoliticalParty(id);
-//        Assertions.assertNull(response.getBody());
-//    }
-//
-//    @Test
-//    public void testAddPoliticalParty() {
-//        PoliticalPartyCreateDTO politicalPartyCreateDTO = new PoliticalPartyCreateDTO();
-//        politicalPartyCreateDTO.setName("Political Party 1");
-//        politicalPartyCreateDTO.setAddress_id(1);
-//
-//        when(politicalPartyService.addPoliticalParty(politicalPartyCreateDTO)).thenReturn(politicalParties.get(0));
-//
-//        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.addPoliticalParty(politicalPartyCreateDTO);
-//
-//        Assertions.assertEquals(response.getStatusCode().value(), 200);
-//        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
-//    }
+    @Test
+    public void testGetPoliticalPartyById() {
+        Integer id = 1;
+        when(politicalPartyService.getPoliticalPartyById(id)).thenReturn(politicalParties.get(0));
+
+        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.getPoliticalPartyById(id);
+
+        Assertions.assertEquals(response.getStatusCode().value(), 200);
+        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
+    }
+
+    @Test
+    public void testDeletePoliticalParty() {
+        Integer id = 1;
+        ResponseEntity<Void> response = politicalPartyController.deletePoliticalParty(id);
+        Assertions.assertNull(response.getBody());
+    }
+
+    @Test
+    public void testAddPoliticalParty() {
+        PoliticalPartyCreateDTO politicalPartyCreateDTO = new PoliticalPartyCreateDTO();
+        politicalPartyCreateDTO.setName("Political Party 1");
+        politicalPartyCreateDTO.setAddress_id(1);
+
+        when(politicalPartyService.addPoliticalParty(politicalPartyCreateDTO)).thenReturn(politicalParties.get(0));
+
+        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.addPoliticalParty(politicalPartyCreateDTO);
+
+        Assertions.assertEquals(response.getStatusCode().value(), 200);
+        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
+    }
+
+    @Test
+    public void updatePoliticalParty() {
+        Integer id = 1;
+        PoliticalPartyCreateDTO politicalPartyCreateDTO = new PoliticalPartyCreateDTO();
+        politicalPartyCreateDTO.setName("Political Party 1");
+        politicalPartyCreateDTO.setAddress_id(1);
+
+        when(politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO)).thenReturn(politicalParties.get(0));
+
+        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.updatePoliticalParty(id, politicalPartyCreateDTO);
+
+        Assertions.assertEquals(response.getStatusCode().value(), 200);
+        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
+    }
 }

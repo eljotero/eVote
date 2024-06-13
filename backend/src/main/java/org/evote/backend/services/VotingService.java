@@ -1,13 +1,11 @@
 package org.evote.backend.services;
 
-import org.evote.backend.config.JwtService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeMismatchException;
-import org.evote.backend.users.user.exceptions.UserInfoNotComplete;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
