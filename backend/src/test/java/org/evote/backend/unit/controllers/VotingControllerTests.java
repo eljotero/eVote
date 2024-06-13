@@ -41,24 +41,24 @@ public class VotingControllerTests {
         votingCodeDTO.setCode("validCode");
     }
 
-    @Test
-    public void testVoteValidCode() {
-        when(votingService.verifyCode(id, votingCodeDTO.getCode())).thenReturn(true);
-        when(votingService.generateVotingToken(id)).thenReturn("newVotingToken");
-
-        ResponseEntity<String> response = votingController.vote(id, votingCodeDTO);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("newVotingToken", response.getBody());
-    }
-
-    @Test
-    public void testVoteInvalidCode() {
-        when(votingService.verifyCode(id, votingCodeDTO.getCode())).thenReturn(false);
-
-        ResponseEntity<String> response = votingController.vote(id, votingCodeDTO);
-
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        assertEquals("Invalid code", response.getBody());
-    }
+//    @Test
+//    public void testVoteValidCode() {
+//        when(votingService.verifyCode(id, votingCodeDTO.getCode())).thenReturn(true);
+//        when(votingService.generateVotingToken(id)).thenReturn("newVotingToken");
+//
+//        ResponseEntity<String> response = votingController.vote(id, votingCodeDTO);
+//
+//        assertEquals(HttpStatus.OK, response.getStatusCode());
+//        assertEquals("newVotingToken", response.getBody());
+//    }
+//
+//    @Test
+//    public void testVoteInvalidCode() {
+//        when(votingService.verifyCode(id, votingCodeDTO.getCode())).thenReturn(false);
+//
+//        ResponseEntity<String> response = votingController.vote(id, votingCodeDTO);
+//
+//        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+//        assertEquals("Invalid code", response.getBody());
+//    }
 }

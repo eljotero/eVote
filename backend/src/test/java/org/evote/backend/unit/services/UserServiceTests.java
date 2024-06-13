@@ -8,6 +8,9 @@ import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.address.entity.Address;
+import org.evote.backend.users.enums.CityType;
+import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.enums.ElectionType;
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
@@ -21,10 +24,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -51,6 +51,8 @@ public class UserServiceTests {
 
     private User user;
 
+    private User user2;
+
     private UserUpdateDTO userUpdateDTO;
 
     private Account account;
@@ -75,10 +77,24 @@ public class UserServiceTests {
 
         account = new Account();
         account.setAccount_id(id);
+
         user = new User();
+        user.setUser_id(UUID.randomUUID());
+        user.setName("John");
+        user.setSurname("Doe");
+        user.setSex(false);
+        user.setPersonalIdNumber("123456789");
+        user.setBirthDate(new Date());
+        user.setEducation(Education.PRIMARY);
+        user.setCityType(CityType.BELOWFIFTYTHOUSAND);
+        user.setProfession("Developer");
         user.setAccount(account);
+        user.setAddress(new Address());
 
         account.setUser(user);
+
+        user2 = new User();
+        user2.setUser_id(UUID.randomUUID());
     }
 
     @Test
@@ -91,9 +107,9 @@ public class UserServiceTests {
         precincts.add(precinct);
         user.setPrecincts(precincts);
         when(precinctService.findPrecinctCity(any(String.class), any(ElectionType.class)))
-                    .thenReturn(Optional.of(precinct));
+                .thenReturn(Optional.of(precinct));
         when(precinctService.findPrecinctEuro(any(String.class), any(ElectionType.class)))
-                    .thenReturn(Optional.of(precinct));
+                .thenReturn(Optional.of(precinct));
         when(accountRepository.findById(id)).thenReturn(java.util.Optional.of(account));
         when(passwordEncoder.encode(String.valueOf(userUpdateDTO.getPersonalIdNumber()))).thenReturn("encodedPersonalIdNumber");
         when(usersRepository.save(user)).thenReturn(user);
@@ -116,6 +132,27 @@ public class UserServiceTests {
         when(accountRepository.findById(id)).thenReturn(java.util.Optional.of(account));
         UserNotFoundException exception = org.junit.jupiter.api.Assertions.assertThrows(UserNotFoundException.class, () -> userService.updateUser(id, userUpdateDTO));
         assertEquals("User not found", exception.getMessage());
+    }
+
+    @Test
+    public void testIsUserDataValid() {
+        when(usersRepository.findById(user.getUser_id())).thenReturn(java.util.Optional.of(user));
+        Boolean result = userService.isUserDataComplete(user.getUser_id());
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void testIfUserDataValidUserNotFound() {
+        when(usersRepository.findById(user2.getUser_id())).thenReturn(java.util.Optional.empty());
+        UserNotFoundException exception = org.junit.jupiter.api.Assertions.assertThrows(UserNotFoundException.class, () -> userService.isUserDataComplete(user2.getUser_id()));
+        assertEquals("User not found", exception.getMessage());
+    }
+
+    @Test
+    public void testIsUserDataInvalid() {
+        when(usersRepository.findById(user2.getUser_id())).thenReturn(java.util.Optional.of(user2));
+        Boolean result = userService.isUserDataComplete(user2.getUser_id());
+        assertEquals(false, result);
     }
 
 }

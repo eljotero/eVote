@@ -80,4 +80,28 @@ public class AddressServiceTests {
         assertEquals("Address not found", exception.getMessage());
     }
 
+    @Test
+    public void testIsAddressDataComplete() {
+        when(userAddressRepository.findById(id)).thenReturn(java.util.Optional.of(address));
+        address.setZip_code("12345");
+        address.setCity("City");
+        address.setCountry("Country");
+        address.setAddress_line("Address line");
+        address.setVoivodeship("Voivodeship");
+        boolean result = addressService.isAddressDataComplete(id);
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void testIsAddressDataIncomplete() {
+        when(userAddressRepository.findById(id)).thenReturn(java.util.Optional.of(address));
+        address.setZip_code("12345");
+        address.setCity("City");
+        address.setCountry("Country");
+        address.setAddress_line("Address line");
+        address.setVoivodeship(null);
+        boolean result = addressService.isAddressDataComplete(id);
+        assertEquals(false, result);
+    }
+
 }
