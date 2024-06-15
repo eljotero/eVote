@@ -31,4 +31,9 @@ public class VotingController {
     public ResponseEntity<?> getResults(@PathVariable int electionId) {
         return ResponseEntity.ok(votingService.getResults(electionId));
     }
+
+    @GetMapping("/detailedResults/{electionId}")
+    public ResponseEntity<?> getDetailedResults(@PathVariable int electionId) {
+        return ResponseEntity.ok(votingService.getDetailedResults(electionId));
+    }
 }

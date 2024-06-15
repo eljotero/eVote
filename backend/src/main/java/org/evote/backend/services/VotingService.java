@@ -124,4 +124,37 @@ public class VotingService {
     private boolean isDataValid(Account account) {
         return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
     }
+
+    public Map<String, Object> getDetailedResults(Integer electionId) {
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Object> detailedResults = new HashMap<>();
+
+        Map<String, Integer> partyVotes = new HashMap<>();
+        Map<String, Map<String, Integer>> cityTypeVotes = new HashMap<>();
+        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
+
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
+                // Count votes per party
+                PoliticalParty party = vote.getCandidate().getPoliticalParty();
+                partyVotes.merge(party.getName(), 1, Integer::sum);
+
+                // Count votes per city type
+                CityType cityType = vote.getVoterCityType();
+                cityTypeVotes.computeIfAbsent(cityType.name(), k -> new HashMap<>())
+                        .merge(party.getName(), 1, Integer::sum);
+
+                // Count votes per education level
+                String education = vote.getVoterEducation();
+                educationVotes.computeIfAbsent(education, k -> new HashMap<>())
+                        .merge(party.getName(), 1, Integer::sum);
+            }
+        }
+
+        detailedResults.put("partyVotes", partyVotes);
+        detailedResults.put("cityTypeVotes", cityTypeVotes);
+        detailedResults.put("educationVotes", educationVotes);
+
+        return detailedResults;
+    }
 }
