@@ -55,7 +55,7 @@ export default function RegisterForm() {
                     <input
                         id='email'
                         className={`mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 ${
-                            errors.email ? 'shake border-red-500' : 'hover:shadow-md hover:shadow-gray-300/20'
+                            errors.email ? 'shake border-red-500 focus:border-red-200 focus:ring-red-300' : 'hover:shadow-md hover:shadow-gray-300/20'
                         }`}
                         {...register('email')}
                         type='email'
@@ -74,7 +74,7 @@ export default function RegisterForm() {
                     <input
                         id='password'
                         className={`mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 ${
-                            errors.password ? 'shake border-red-500' : 'hover:shadow-md hover:shadow-gray-300/20'
+                            errors.password ? 'shake border-red-500 focus:border-red-200 focus:ring-red-300' : 'hover:shadow-md hover:shadow-gray-300/20'
                         }`}
                         {...register('password')}
                         type='password'
@@ -93,7 +93,7 @@ export default function RegisterForm() {
                     <input
                         id='confirmPassword'
                         className={`mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-300 transition-colors duration-300 ${
-                            errors.confirmPassword ? 'shake border-red-500' : 'hover:shadow-md hover:shadow-gray-300/20'
+                            errors.confirmPassword ? 'shake border-red-500 focus:border-red-200 focus:ring-red-300' : 'hover:shadow-md hover:shadow-gray-300/20'
                         }`}
                         {...register('confirmPassword')}
                         type='password'
@@ -108,7 +108,7 @@ export default function RegisterForm() {
                 <div>
                 <button
                         type='submit'
-                        className='w-full font-semibold p-2 rounded-md focus:bg-blue-500 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 bg-blue-500 border border-blue-600 text-white hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
+                        className='w-full font-semibold p-2 rounded-md focus:bg-blue-500 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 bg-blue-500 border border-blue-500 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-700/20 hover:text-white duration-300'
                         disabled={isSubmitting}
                     >
                         Zarejestruj się

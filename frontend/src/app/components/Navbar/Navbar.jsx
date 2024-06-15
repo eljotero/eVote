@@ -31,7 +31,7 @@ export default function Navbar() {
             >
                 <a
                     className='text-3xl font-bold leading-none'
-                    href='#'
+                    href='/'
                     aria-label='Strona główna'
                 >
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
@@ -87,7 +87,7 @@ export default function Navbar() {
                     <li>
                         <Link
                             className='text-sm font-semibold text-gray-400 hover:text-blue-600 duration-300'
-                            href='#'
+                            href='/about'
                             aria-label='Jak zagłosować'
                         >
                             Jak zagłosować
@@ -200,7 +200,7 @@ export default function Navbar() {
                 </ul>
                 {!token ? (
                     <Link
-                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
+                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-sky-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
                         href='/login'
                         aria-label='Zaloguj się'
                     >
@@ -209,7 +209,7 @@ export default function Navbar() {
                 ) : (
                     <button
                         onClick={logout}
-                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-blue-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
+                        className='hidden lg:inline-block py-2 px-6 border border-blue-200 text-sm text-sky-500 font-bold rounded-xl hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 hover:text-white duration-300'
                     >
                         Wyloguj
                     </button>
@@ -230,13 +230,9 @@ export default function Navbar() {
                             href='/'
                             aria-label='Strona główna'
                         >
-                            <Image
-                                className='h-15'
-                                src='/evote.png'
-                                alt='eVote'
-                                width={60}
-                                height={80}
-                            />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
+                                 eVote
+                            </span>
                         </a>
                         <button
                             className='navbar-close'
@@ -273,7 +269,7 @@ export default function Navbar() {
                             <li className='mb-1'>
                                 <Link
                                     className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded duration-300'
-                                    href='#'
+                                    href='/about'
                                     aria-label='Jak zagłosować'
                                 >
                                     Jak zagłosować
@@ -282,7 +278,7 @@ export default function Navbar() {
                             <li className='mb-1'>
                                 <Link
                                     className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded duration-300'
-                                    href='/candidates'
+                                    href='/map'
                                     aria-label='Kandydaci'
                                 >
                                     Kandydaci
@@ -325,7 +321,7 @@ export default function Navbar() {
                         <div className='pt-6'>
                             {!token ? (
                                 <Link
-                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-blue-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
+                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-sky-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
                                     href='/login'
                                     aria-label='Zaloguj się'
                                 >
@@ -334,7 +330,7 @@ export default function Navbar() {
                             ) : (
                                 <button
                                     onClick={logout}
-                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-blue-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
+                                    className='block px-4 py-3 mb-2 leading-loose text-sm text-center font-semibold border text-sky-500 border-blue-200 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-600/20 rounded-xl duration-300'
                                     aria-label='Wyloguj'
                                 >
                                     Wyloguj

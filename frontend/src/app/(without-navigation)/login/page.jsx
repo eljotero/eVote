@@ -2,6 +2,7 @@
 
 import React, {useState} from 'react';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import { motion } from 'framer-motion';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import Image from 'next/image';
@@ -12,13 +13,18 @@ export default function Login() {
     const [isLoginFormVisible, setLoginFormVisibility] = useState(true);
 
     return (
-        <section className='flex h-screen' aria-label='Sekcja logowania'>
+        <section className='flex h-screen' aria-label='Sekcja logowania i rejestracji'>
             <div
                 className='hidden lg:flex items-center justify-center flex-1 bg-white text-black'
                 aria-label='Sekcja z obrazem'
             >
                 <div className='max-w-md text-center'>
-                    <Image src='/evote.png' alt='Evote' width={500} height={300} loading='lazy'/>
+                    <motion.div
+                        whileHover={{scale: 1.1}}
+                        transition={{type: 'spring', stiffness: 400, damping: 10}}
+                    >
+                        <Image src='/evote.png' alt='Evote' width={500} height={300} loading='lazy'/>
+                    </motion.div>
                 </div>
             </div>
             <div
