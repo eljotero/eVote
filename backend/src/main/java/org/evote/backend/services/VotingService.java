@@ -11,6 +11,7 @@ import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
 import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.votes.enums.ElectionType;
+import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.dtos.SingleVoteDTO;
 import org.evote.backend.votes.vote.dtos.VoteDTO;
 import org.evote.backend.votes.vote.entity.Vote;
@@ -20,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -94,6 +97,22 @@ public class VotingService {
             return "Voted successfully";
         }
         return "Voting failed";
+    }
+
+    public Map<String, Integer> getResults(Integer electionId) {
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Integer> partyVotes = new HashMap<>();
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
+                PoliticalParty party = vote.getCandidate().getPoliticalParty();
+                if (partyVotes.containsKey(party.getName())) {
+                    partyVotes.put(party.getName(), partyVotes.get(party.getName()) + 1);
+                } else {
+                    partyVotes.put(party.getName(), 1);
+                }
+            }
+        }
+        return partyVotes;
     }
 
     private boolean isValidPrecinct(User user, Candidate candidate) {
