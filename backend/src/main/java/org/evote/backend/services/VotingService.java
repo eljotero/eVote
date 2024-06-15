@@ -42,6 +42,15 @@ public class VotingService {
         if (hasVoted(id)) {
             throw new UserAlreadyVotedException("User has already voted");
         }
+        User user = account.getUser();
+        if (user == null) {
+            throw new UserNotFoundException("User associated with this account not found");
+        }
+        if (user.getSex() == null || user.getAddress() == null || user.getPrecincts() == null || user.getName() == null
+            || user.getSurname() == null || user.getBirthDate() == null || user.getPersonalIdNumber() == null
+            || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
+            throw new UserNotFoundException("User data is incomplete");
+        }
         String token = jwtService.generateVotingToken(account);
         account.setHasVoted(true);
         accountRepository.save(account);

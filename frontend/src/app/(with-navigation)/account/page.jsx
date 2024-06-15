@@ -146,6 +146,12 @@ export default function Account() {
                     );
                     return;
                 }
+                if (error.response.status === 422) {
+                    toast.error(
+                        'Uzupełnij swoje dane, aby móc otrzymać kod.'
+                    );
+                    return;
+                }
                 toast.error('Błąd wysyłania emaila. Spróbuj ponownie.');
             });
     }
