@@ -5,6 +5,7 @@ import {MdHowToVote} from "react-icons/md";
 import Image from 'next/image';
 import evote from '../../../public/evote-home.png';
 import Link from "next/link";
+import './about/page.css';
 
 export default function Home() {
     return (
@@ -59,7 +60,7 @@ export default function Home() {
                     <div className="mt-12 md:mt-0 lg:absolute -right-24 lg:w-7/12">
                         <div className="relative w-full">
                             <div aria-hidden="true"
-                                 className="absolute scale-75 md:scale-110 inset-0 m-auto w-full h-full md:w-96 md:h-96 rounded-full rotate-45 bg-gradient-to-r from-blue-500 to-sky-300 blur-3xl"></div>
+                                 className="absolute scale-75 md:scale-110 inset-0 m-auto w-full h-full md:w-96 md:h-96 rounded-full rotate-45 bg-gradient-to-r from-blue-500 to-sky-300 blur-3xl animate-blob"></div>
                             <Image src={evote} alt="Opis obrazu" className="relative w-full" loading='lazy'
                                    layout='responsive'/>
                         </div>
