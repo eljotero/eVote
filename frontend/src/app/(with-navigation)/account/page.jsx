@@ -54,8 +54,6 @@ export default function Account() {
         resolver: zodResolver(personInfoSchema),
     });
     const fetchAccount = async () => {
-        console.log(id);
-        console.log(token);
         const res = await axios.get(`account/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,

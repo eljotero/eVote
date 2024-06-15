@@ -22,5 +22,7 @@ public interface UsersPrecinctRepository extends JpaRepository<Precinct, UUID> {
 
     @Query("SELECT p FROM UsersPrecinct p JOIN p.users u WHERE u.user_id = :userId AND p.precinct_id = :precinctId")
     Optional<Precinct> findByUserIdAndPrecinctId(@Param("userId") UUID userId, @Param("precinctId") Integer precinctId);
+
+    Optional<Precinct> findByAvailableCitiesContains(String city);
 }
 

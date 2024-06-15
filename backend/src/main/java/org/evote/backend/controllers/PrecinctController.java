@@ -2,8 +2,8 @@ package org.evote.backend.controllers;
 
 import org.evote.backend.services.PrecinctService;
 import org.evote.backend.users.precinct.entity.Precinct;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +21,4 @@ public class PrecinctController {
         return precinctService.findAllPrecincts();
     }
 
-//    @RequestMapping("/city")
-//    public Precinct getPrecinctByCity(@RequestBody PrecinctSetDTO precinctSetDTO) {
-//        return precinctService.findPrecinctCity(precinctSetDTO).orElse(null);
-//    }
 }

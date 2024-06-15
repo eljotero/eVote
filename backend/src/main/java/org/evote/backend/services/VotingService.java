@@ -5,10 +5,17 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
+import org.evote.backend.votes.candidate.repository.CandidateRepository;
+import org.evote.backend.votes.vote.dtos.SubmitVoteDTO;
+import org.evote.backend.votes.vote.entity.Vote;
+import org.evote.backend.votes.vote.repository.VoteRepository;
 import org.springframework.stereotype.Service;
+
+import java.sql.Time;
 
 @Service
 public class VotingService {
@@ -16,11 +23,15 @@ public class VotingService {
     private final AccountRepository accountRepository;
     private final JwtService jwtService;
     private final UserRepository userRepository;
+    private final VoteRepository voteRepository;
+    private final CandidateRepository candidateRepository;
 
-    public VotingService(AccountRepository accountRepository, JwtService jwtService, UserRepository userRepository) {
+    public VotingService(AccountRepository accountRepository, JwtService jwtService, UserRepository userRepository, VoteRepository voteRepository, CandidateService candidateService, CandidateRepository candidateRepository) {
         this.accountRepository = accountRepository;
         this.jwtService = jwtService;
         this.userRepository = userRepository;
+        this.voteRepository = voteRepository;
+        this.candidateRepository = candidateRepository;
     }
 
     public Boolean hasVoted(Integer id) {
@@ -56,4 +67,18 @@ public class VotingService {
         accountRepository.save(account);
         return token;
     }
+
+    public void submitVote(SubmitVoteDTO submitVoteDTO) {
+        Vote vote = new Vote();
+        vote.setVoter_birthdate(submitVoteDTO.getVoterBirthDate());
+        vote.setVoter_city_type(CityType.values()[submitVoteDTO.getVoterCityType()]);
+        vote.setVoter_education(submitVoteDTO.getVoterEducation());
+        vote.setVoter_country(submitVoteDTO.getVoterCountry());
+        vote.setVote_time(new Time(System.currentTimeMillis()));
+        vote.setCandidate(candidateRepository.findById(submitVoteDTO.getCandidateId())
+                .orElseThrow(() -> new RuntimeException("Candidate not found")));
+
+        voteRepository.save(vote);
+    }
+
 }
