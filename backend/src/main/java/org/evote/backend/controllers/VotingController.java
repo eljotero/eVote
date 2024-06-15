@@ -26,4 +26,9 @@ public class VotingController {
     public ResponseEntity<?> vote(@RequestHeader("Authorization") String token, @RequestBody VoteDTO voteDTO) {
         return ResponseEntity.ok(votingService.vote(token.substring(7), voteDTO));
     }
+
+    @GetMapping("/results/{electionId}")
+    public ResponseEntity<?> getResults(@PathVariable int electionId) {
+        return ResponseEntity.ok(votingService.getResults(electionId));
+    }
 }
