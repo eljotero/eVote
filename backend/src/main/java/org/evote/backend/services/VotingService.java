@@ -135,16 +135,11 @@ public class VotingService {
 
         for (Vote vote : votes) {
             if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
-                // Count votes per party
                 PoliticalParty party = vote.getCandidate().getPoliticalParty();
                 partyVotes.merge(party.getName(), 1, Integer::sum);
-
-                // Count votes per city type
                 CityType cityType = vote.getVoterCityType();
                 cityTypeVotes.computeIfAbsent(cityType.name(), k -> new HashMap<>())
                         .merge(party.getName(), 1, Integer::sum);
-
-                // Count votes per education level
                 String education = vote.getVoterEducation();
                 educationVotes.computeIfAbsent(education, k -> new HashMap<>())
                         .merge(party.getName(), 1, Integer::sum);
@@ -157,4 +152,68 @@ public class VotingService {
 
         return detailedResults;
     }
+
+
+    public Map<String, Map<String, Integer>> getDetailedVotesByParty(int electionId, int politicalPartyId) {
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
+
+        Map<String, Integer> cityTypeVotes = new HashMap<>();
+        Map<String, Integer> educationVotes = new HashMap<>();
+
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId) && vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
+                CityType cityType = vote.getVoterCityType();
+                cityTypeVotes.merge(cityType.name(), 1, Integer::sum);
+                String education = vote.getVoterEducation();
+                educationVotes.merge(education, 1, Integer::sum);
+            }
+        }
+
+        detailedResults.put("cityTypeVotes", cityTypeVotes);
+        detailedResults.put("educationVotes", educationVotes);
+
+        return detailedResults;
+    }
+
+    public Map<String, Map<String, Integer>> getDetailedEducationVotesByParty(int electionId, int politicalPartyId) {
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
+
+        Map<String, Integer> educationVotes = new HashMap<>();
+
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId) &&
+                    vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
+
+                String education = vote.getVoterEducation();
+                educationVotes.merge(education, 1, Integer::sum);
+            }
+        }
+
+        detailedResults.put("educationVotes", educationVotes);
+
+        return detailedResults;
+    }
+
+    public Map<String, Map<String, Integer>> getDetailedCityTypeVotesByParty(int electionId, int politicalPartyId) {
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
+
+        Map<String, Integer> cityTypeVotes = new HashMap<>();
+
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId) &&
+                    vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
+
+                CityType cityType = vote.getVoterCityType();
+                cityTypeVotes.merge(cityType.name(), 1, Integer::sum);
+            }
+        }
+
+        detailedResults.put("cityTypeVotes", cityTypeVotes);
+
+        return detailedResults;
+    }
+
 }
