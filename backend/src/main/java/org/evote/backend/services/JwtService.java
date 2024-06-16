@@ -1,4 +1,4 @@
-package org.evote.backend.config;
+package org.evote.backend.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

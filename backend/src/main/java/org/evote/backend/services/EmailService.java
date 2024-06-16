@@ -60,11 +60,7 @@ public class EmailService {
             String subject = "Twój jednorazowy kod do głosowania!";
             sendHtmlEmail(userEmail, subject, htmlBody);
             user.setCode(code);
-            try {
-                userRepository.save(user);
-            } catch (Exception e) {
-                throw new RuntimeException("Wystąpił błąd podczas zapisywania kodu!");
-            }
+            userRepository.save(user);
         } catch (IOException | MessagingException e) {
             throw new RuntimeException("Wystąpił błąd podczas wysyłania emaila!");
         }

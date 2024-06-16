@@ -1,6 +1,6 @@
 package org.evote.backend.unit.controllers;
 
-import org.evote.backend.config.JwtService;
+import org.evote.backend.services.JwtService;
 import org.evote.backend.controllers.EmailController;
 import org.evote.backend.services.EmailService;
 import org.junit.jupiter.api.BeforeEach;

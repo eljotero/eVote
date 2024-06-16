@@ -1,7 +1,6 @@
 package org.evote.backend.services;
 
 import jakarta.transaction.Transactional;
-import org.evote.backend.config.JwtService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
 import org.evote.backend.users.account.dtos.AccountMapper;
@@ -10,13 +9,11 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.PasswordTooShortException;
-import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.address.repository.UserAddressRepository;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.repository.UserRepository;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,15 +51,11 @@ public class AuthenticationService {
         User user = new User();
         Address address = new Address();
         Account account = AccountMapper.toAccount(accountCreateDTO);
-        try {
-            Address savedAddress = userAddressRepository.save(address);
-            user.setAddress(savedAddress);
-            User savedUser = userRepository.save(user);
-            account.setUser(savedUser);
-            return accountRepository.save(account);
-        } catch (DataAccessException e) {
-            throw new AccountAlreadyExistsException("Error while creating account");
-        }
+        Address savedAddress = userAddressRepository.save(address);
+        user.setAddress(savedAddress);
+        User savedUser = userRepository.save(user);
+        account.setUser(savedUser);
+        return accountRepository.save(account);
     }
 
     public AuthenticationResponseDTO login(AccountLoginDTO accountLoginDTO) {

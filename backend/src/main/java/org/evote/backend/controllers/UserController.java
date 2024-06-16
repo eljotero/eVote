@@ -1,7 +1,7 @@
 package org.evote.backend.controllers;
 
-import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.evote.backend.services.UserService;
+import org.evote.backend.users.account.dtos.UserUpdateDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +19,7 @@ public class UserController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('Admin') or @authenticationService.hasAccount(#id)")
     public ResponseEntity<?> updateAccount(@PathVariable Integer id, @RequestBody UserUpdateDTO userUpdateDTO) {
-        try {
-            String response = userService.updateUser(id, userUpdateDTO);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        String response = userService.updateUser(id, userUpdateDTO);
+        return ResponseEntity.ok(response);
     }
 }

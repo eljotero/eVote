@@ -1,7 +1,7 @@
 package org.evote.backend.controllers;
 
 
-import org.evote.backend.config.JwtService;
+import org.evote.backend.services.JwtService;
 import org.evote.backend.services.EmailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +24,7 @@ public class EmailController {
 
     @PostMapping("/sendEmail")
     public ResponseEntity<?> sendEmail(@RequestHeader("Authorization") String token) {
-        try {
-            String jwtToken = token.substring(7);
-            String email = jwtService.extractEmail(jwtToken);
-            return ResponseEntity.ok(emailService.sendEmail(email));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        String email = jwtService.extractEmail(token.substring(7));
+        return ResponseEntity.ok(emailService.sendEmail(email));
     }
 }
