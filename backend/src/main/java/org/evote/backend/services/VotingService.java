@@ -71,7 +71,7 @@ public class VotingService {
     public void submitVote(SubmitVoteDTO submitVoteDTO) {
         Vote vote = new Vote();
         vote.setVoter_birthdate(submitVoteDTO.getVoterBirthDate());
-        vote.setVoter_city_type(CityType.values()[submitVoteDTO.getVoterCityType()]);
+        vote.setVoter_city_type(submitVoteDTO.getVoterCityType());
         vote.setVoter_education(submitVoteDTO.getVoterEducation());
         vote.setVoter_country(submitVoteDTO.getVoterCountry());
         vote.setVote_time(new Time(System.currentTimeMillis()));

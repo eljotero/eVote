@@ -294,19 +294,19 @@ export default function Account() {
                         options={[
                             {
                                 label: 'Powyżej 500 tysięcy',
-                                value: 'OVER500THOUSAND'
+                                value: 'Over500Thousand'
                             },
                             {
                                 label: 'Pomiędzy 200 a 500 tysięcy',
-                                value: 'TWOHUNDREDTO500THOUSAND'
+                                value: 'TwoHundredTo500Thousand'
                             },
                             {
                                 label: 'Pomiędzy 50 a 200 tysięcy',
-                                value: 'FIFTYTOTWOHUNDREDTHOUSAND'
+                                value: 'FiftyToTwoHundredThousand'
                             },
                             {
                                 label: 'Poniżej 50 tysięcy',
-                                value: 'BELOWFIFTYTHOUSAND'
+                                value: 'BelowFiftyThousand'
                             },
                         ]}
                         error={errors.cityType}

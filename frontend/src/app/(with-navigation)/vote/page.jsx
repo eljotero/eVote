@@ -96,6 +96,21 @@ export default function Vote() {
             toast.error("Nie udało się zautoryzować głosowania.");
         }
     }
+
+    function toCamelCase(str) {
+        switch (str) {
+            case 'OVER500THOUSAND':
+                return 'Over500Thousand';
+            case 'TWOHUNDREDTO500THOUSAND':
+                return 'TwoHundredTo500Thousand';
+            case 'FIFTYTOTWOHUNDREDTHOUSAND':
+                return 'FiftyToTwoHundredThousand';
+            case 'BELOWFIFTYTHOUSAND':
+                return 'BelowFiftyThousand';
+            default:
+                return '';
+        }
+    }
     
     const submitVote = async (votingToken) => {
         if (!votingToken || votingToken === '') {
@@ -106,7 +121,7 @@ export default function Vote() {
         try {
             const response = await axios.post(`vote/submit`, {
                 voterBirthDate: user.birthDate,
-                voterCityType: user.cityType,              
+                voterCityType: toCamelCase(user.cityType),              
                 voterEducation: user.education,
                 voterCountry: user.country,
                 candidateId: selectedCandidateId,
@@ -169,7 +184,7 @@ export default function Vote() {
                             className='mt-2 py-1 px-4 bg-blue-500 hover:bg-blue-600 text-xs text-white font-bold rounded-xl transition duration-200'
                             onClick={verifyVotingCode}
                         >
-                            Zweryfikuj Kod
+                            Zweryfikuj kod i oddaj głos
                         </button>
                     </div>
                 </div>
