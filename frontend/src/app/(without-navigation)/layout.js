@@ -2,7 +2,7 @@
 export default function Layout({children}) {
     return (
         <>
-            <main>{children}</main>
+            <main style={{overflow: 'auto', height: '100%'}}>{children}</main>
         </>
     );
 }

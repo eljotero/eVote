@@ -3,13 +3,13 @@ import {FaQuestion} from "react-icons/fa";
 import {GoPersonFill} from "react-icons/go";
 import {MdHowToVote} from "react-icons/md";
 import Image from 'next/image';
-import evote from '../../../public/evote-home.png';
+import home from '../../../public/images/evote-home.png';
 import Link from "next/link";
 import './about/page.css';
 
 export default function Home() {
     return (
-        <section className="bg-white relative pt-28 pb-16 lg:pt-20" aria-label="Sekcja główna">
+        <section className="bg-white relative pt-28 pb-16 lg:pt-10" aria-label="Sekcja główna">
             <div className="relative xl:container m-auto px-6 md:px-12 lg:px-6">
                 <h1 className="sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-blue-900 text-4xl text-center sm:text-5xl md:text-6xl lg:w-auto lg:text-left xl:text-7xl">
                     Nowoczesny <br className="lg:block hidden"/>
@@ -61,7 +61,7 @@ export default function Home() {
                         <div className="relative w-full">
                             <div aria-hidden="true"
                                  className="absolute scale-75 md:scale-110 inset-0 m-auto w-full h-full md:w-96 md:h-96 rounded-full rotate-45 bg-gradient-to-r from-blue-500 to-sky-300 blur-3xl animate-blob"></div>
-                            <Image src={evote} alt="Opis obrazu" className="relative w-full" loading='lazy'
+                            <Image src={home} alt="Opis obrazu" className="relative w-full" loading='lazy'
                                    layout='responsive'/>
                         </div>
                     </div>

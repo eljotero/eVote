@@ -12,8 +12,8 @@ export default function LabeledSelect({
         <div className='relative'>
             <label title={title} htmlFor={name} className='block uppercase text-xs font-bold mb-2'>{label}</label>
             <select
-                className={`border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:border-gray-200 focus:ring-gray-300 focus:ring w-full ease-linear transition-all duration-150 ${
-                    error ? 'border-red-500 border' : ''
+                className={`border px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:border-gray-200 focus:ring-gray-300 focus:ring w-full ease-linear transition-all duration-150 ${
+                    error ? 'border border-red-500' : ''
                 }`}
                 {...register(name)}
                 id={name}

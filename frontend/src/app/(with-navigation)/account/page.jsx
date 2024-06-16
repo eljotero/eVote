@@ -1,5 +1,5 @@
 'use client';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {z} from 'zod';
 import {useForm} from "react-hook-form";
@@ -10,22 +10,25 @@ import LabeledInput
 import LabeledSelect
     from "@/app/components/Account/LabeledSelect";
 import {toast} from "react-hot-toast";
+import Image from 'next/image';
+import evote from '../../../../public/images/evote-account.png';
+import evote2 from '../../../../public/images/evote-account2.png';
 
 const personInfoSchema = z.object({
-    email: z.string().email({ message: 'Nieprawidłowy adres email' }),
-    name: z.string({message: 'Pole wymagane'}),
-    surname: z.string({message: 'Pole wymagane'}),
-    sex: z.string({message: 'Pole wymagane'}),
-    birthDate: z.string().refine((val) => !isNaN(Date.parse(val)), { message: 'Pole wymagane' }),
-    education: z.string({message: 'Pole wymagane'}),
-    profession: z.string({message: 'Pole wymagane'}),
-    cityType: z.string({message: 'Pole wymagane'}),
+    email: z.string({message: 'Pole wymagane'}).email({ message: 'Nieprawidłowy adres email' }),
+    name: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    surname: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    sex: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    birthDate: z.string({message: 'Pole wymagane'}).refine((val) => !isNaN(Date.parse(val)), { message: 'Pole wymagane' }),
+    education: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    profession: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    cityType: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
     personalIdNumber: z.string({message: 'Pole wymagane'}).min(11, 'PESEL musi mieć 11 cyfr'),
-    zipCode: z.string({message: 'Pole wymagane'}),
-    city: z.string({message: 'Pole wymagane'}),
-    country: z.string({message: 'Pole wymagane'}),
-    addressLine: z.string({message: 'Pole wymagane'}),
-    voivodeship: z.string({message: 'Pole wymagane'}),
+    zipCode: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    city: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    country: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    addressLine: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
+    voivodeship: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
 }).refine((data) => {
     const today = new Date();
     const birthDate = new Date(data.birthDate);
@@ -151,16 +154,26 @@ export default function Account() {
     }
 
     return (
-        <section className="py-1 h-auto flex items-center" aria-label="Sekcja informacji o koncie">
-            <div className="w-full lg:w-6/12 px-4 mx-auto mt-6">
+        <section className="py-1 h-auto flex items-center relative" aria-label="Sekcja informacji o koncie">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4">
+                <Image src={evote2} alt="Opis obrazu" className="relative" loading='lazy'
+                       layout='responsive'/>
+            </div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/4">
+                <Image src={evote} alt="Opis obrazu" className="relative" loading='lazy'
+                       layout='responsive'/>
+            </div>
+
+            <div className="w-full lg:w-6/12 px-4 mx-auto mt-16">
                 <div
-                    className="relative flex flex-col min-w-0 w-full mb-6 shadow-lg rounded-lg border-0 bg-gray-200">
-                    <div className="rounded-t bg-gray-200 mb-0 px-6 py-6">
+                    className="relative flex flex-col min-w-0 w-full mb-6 shadow-lg rounded-lg border bg-gray-100 border-gray-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 duration-300">
+                    <div className="rounded-t mb-0 px-6 py-6">
                         <div className="text-center flex justify-between">
                             <h6 className="text-xl font-bold px-4 py-2">Moje konto</h6>
                             <button
                                 className="border-0 px-4 py-2 rounded shadow font-bold bg-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 text-white duration-300"
-                                onClick={sendEmail}>
+                                onClick={sendEmail}
+                                aria-label='Wygeneruj kod'>
                                 Wygeneruj kod do głosowania
                             </button>
                         </div>
@@ -168,7 +181,7 @@ export default function Account() {
                     </div>
                     <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                        <h6 className="text-sm mt-3 mb-6 font-bold uppercase">
+                            <h6 className="text-sm mt-3 mb-6 font-bold uppercase">
                                 Informacje osobiste
                             </h6>
                             <div className="grid grid-cols-2 gap-4">
@@ -1372,8 +1385,9 @@ export default function Account() {
                             <div className="grid grid-cols-1 gap-5 mt-8">
                                 <button
                                     disabled={isSubmitting}
-                                    className='py-3 px-6 font-bold rounded bg-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 text-white duration-300'
+                                    className='py-3 px-6 font-bold rounded bg-blue-400 hover:bg-blue-500 text-white duration-300'
                                     type={"submit"}
+                                    aria-label='Zapisz'
                                 >
                                     Zapisz
                                 </button>

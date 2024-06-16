@@ -18,7 +18,7 @@ export default function About() {
                 <div
                     className="absolute -bottom-32 left-20 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-                <div className="m-8 relative space-y-8">
+                <div className="m-8 relative space-y-8 z-10">
 
                     <div className="flex flex-col md:flex-row bg-transparent rounded-xl gap-10">
                         <div className="w-full md:w-[500px] flex justify-center md:justify-end">
@@ -91,6 +91,10 @@ export default function About() {
 
                 </div>
             </div>
+
+            {/*<div className="absolute bottom-0 right-0 mb-8 mr-8 w-1/2">*/}
+            {/*    <Image src={evote} alt="Evote" />*/}
+            {/*</div>*/}
 
         </section>
     );
