@@ -5,6 +5,7 @@ import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
+import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -104,6 +105,24 @@ public class AccountServiceTests {
         when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
         Optional<Account> result = accountService.getAccountByEmail(account.getEmail());
         assertEquals(account, result.get());
+    }
+
+    @Test
+    public void testHasUserVoted() {
+        Account account = new Account();
+        account.setHasVoted(false);
+        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
+        assertEquals(false, accountService.hasUserVoted(account));
+        assertEquals(false, account.getHasVoted());
+    }
+
+    @Test
+    public void testHasUserVotedAlreadyVoted() {
+        Account account = new Account();
+        account.setHasVoted(true);
+        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
+        UserAlreadyVotedException exception = assertThrows(UserAlreadyVotedException.class, () -> accountService.hasUserVoted(account));
+        assertEquals("User has already voted", exception.getMessage());
     }
 
 }

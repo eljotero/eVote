@@ -1,7 +1,7 @@
 package org.evote.backend.controllers;
 
 
-import org.evote.backend.config.JwtService;
+import org.evote.backend.services.JwtService;
 import org.evote.backend.services.EmailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

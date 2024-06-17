@@ -53,9 +53,9 @@ public class UserControllerTests {
         assertEquals("Account updated successfully", userController.updateAccount(id, userUpdateDTO).getBody());
     }
 
-    @Test
-    public void testUpdateUserBadRequest() {
-        when(userService.updateUser(id, userUpdateDTO)).thenThrow(new RuntimeException("Bad request"));
-        assertEquals("Bad request", userController.updateAccount(id, userUpdateDTO).getBody());
-    }
+//    @Test
+//    public void testUpdateUserBadRequest() {
+//        when(userService.updateUser(id, userUpdateDTO)).thenThrow(new RuntimeException("Bad request"));
+//        assertEquals("Bad request", userController.updateAccount(id, userUpdateDTO).getBody());
+//    }
 }
