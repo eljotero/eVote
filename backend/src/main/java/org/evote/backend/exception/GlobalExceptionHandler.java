@@ -1,6 +1,8 @@
 package org.evote.backend.exception;
 
 import org.evote.backend.users.account.exceptions.*;
+import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
+import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
@@ -44,6 +46,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = UserAlreadyVotedException.class)
     public ResponseEntity<ErrorResponse> handleUserAlreadyVotedException(UserAlreadyVotedException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(HttpStatus.CONFLICT.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = UserIncompleteDataException.class)
+    public ResponseEntity<ErrorResponse> handleUserIncompleteDataException(UserIncompleteDataException e) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage()));
     }
 
     @ExceptionHandler(value = CandidateAlreadyExistsException.class)

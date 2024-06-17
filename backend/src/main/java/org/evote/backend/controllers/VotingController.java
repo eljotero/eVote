@@ -5,6 +5,7 @@ import org.evote.backend.config.JwtService;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.services.VotingService;
 import org.evote.backend.users.account.dtos.VotingCodeDTO;
+import org.evote.backend.votes.vote.dtos.SubmitVoteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +33,11 @@ public class VotingController {
         } else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid code");
         }
+    }
+
+    @PostMapping("/submit")
+    public ResponseEntity<String> submitVote(@RequestBody SubmitVoteDTO submitVoteDTO) {
+        votingService.submitVote(submitVoteDTO);
+        return ResponseEntity.ok("Vote submitted successfully");
     }
 }
