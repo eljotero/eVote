@@ -156,15 +156,15 @@ export default function Account() {
     return (
         <section className="py-1 h-auto flex items-center relative" aria-label="Sekcja informacji o koncie">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote2} alt="Opis obrazu" className="relative" loading='lazy'
+                <Image src={evote2} alt="Megafon" className="relative" loading='lazy'
                        layout='responsive'/>
             </div>
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote} alt="Opis obrazu" className="relative" loading='lazy'
+                <Image src={evote} alt="Dłoń trzymająca telefon" className="relative" loading='lazy'
                        layout='responsive'/>
             </div>
 
-            <div className="w-full lg:w-6/12 px-4 mx-auto mt-16">
+            <div className="sm:w-8/12 lg:w-6/12 px-4 mx-auto mt-16">
                 <div
                     className="relative flex flex-col min-w-0 w-full mb-6 shadow-lg rounded-lg border bg-gray-100 border-gray-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 duration-300">
                     <div className="rounded-t mb-0 px-6 py-6">
