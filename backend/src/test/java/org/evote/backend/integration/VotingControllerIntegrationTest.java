@@ -21,6 +21,7 @@ import org.springframework.http.MediaType;
 import static io.restassured.RestAssured.*;
 import static io.restassured.specification.ProxySpecification.port;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -57,7 +58,6 @@ public class VotingControllerIntegrationTest {
                 .statusCode(201)
                 .extract()
                 .path("id");
-
 
         token = given()
                 .port(port)

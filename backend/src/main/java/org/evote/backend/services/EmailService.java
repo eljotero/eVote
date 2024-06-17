@@ -48,16 +48,16 @@ public class EmailService {
     public String sendEmail(String userEmail) {
         Optional<Account> account = accountService.getAccountByEmail(userEmail);
         if (account.isEmpty()) {
-            throw new AccountNotFoundException("Konto nie istnieje");
+            throw new AccountNotFoundException("Account doesn't exist");
         }
         User user = account.get().getUser();
         if (user.getCode() != null) {
-            throw new CodeAlreadySent("Kod został już wysłany!");
+            throw new CodeAlreadySent("Code has already been sent");
         }
         if (user.getSex() == null || user.getAddress() == null || user.getPrecincts() == null || user.getName() == null
                 || user.getSurname() == null || user.getBirthDate() == null || user.getPersonalIdNumber() == null
                 || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
-            throw new UserIncompleteDataException("Uzupełnij dane użytkownika!");
+            throw new UserIncompleteDataException("Complete user data is required");
         }
         String code = generateOneTimeCode();
         try {
@@ -70,10 +70,10 @@ public class EmailService {
             try {
                 userRepository.save(user);
             } catch (Exception e) {
-                throw new RuntimeException("Wystąpił błąd podczas zapisywania kodu!");
+                throw new RuntimeException("There was an error while saving the code");
             }
         } catch (IOException | MessagingException e) {
-            throw new RuntimeException("Wystąpił błąd podczas wysyłania emaila!");
+            throw new RuntimeException("There was an error while sending the email");
         }
         return "Kod został wysłany!";
     }
