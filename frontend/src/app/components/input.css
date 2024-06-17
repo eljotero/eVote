@@ -1,3 +1,4 @@
+/* Keyframe animation for shake effect */
 .shake {
     animation: shake 0.3s ease-in-out;
 }
@@ -9,3 +10,4 @@
     75% { transform: translateX(-4px); }
     100% { transform: translateX(0); }
 }
+

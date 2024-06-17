@@ -162,10 +162,10 @@ export default function Navbar() {
                     <li>
                         <Link
                             className='text-sm font-semibold text-gray-400 hover:text-blue-600 duration-300'
-                            href='#'
-                            aria-label='Kontakt'
+                            href='/info'
+                            aria-label='Informacje'
                         >
-                            Kontakt
+                            Informacje
                         </Link>
                     </li>
                     {token ? (
@@ -296,10 +296,10 @@ export default function Navbar() {
                             <li className='mb-1'>
                                 <Link
                                     className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded duration-300'
-                                    href='#'
-                                    aria-label='Kontakt'
+                                    href='/info'
+                                    aria-label='Informacje'
                                 >
-                                    Kontakt
+                                    Informacje
                                 </Link>
                             </li>
                             {token ? (

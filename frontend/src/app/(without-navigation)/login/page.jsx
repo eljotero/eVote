@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import Image from 'next/image';
+import evote from '../../../../public/images/evote.png';
 import './page.css';
 import Link from "next/link";
 
@@ -23,12 +24,12 @@ export default function Login() {
                         whileHover={{scale: 1.1}}
                         transition={{type: 'spring', stiffness: 400, damping: 10}}
                     >
-                        <Image src='/evote.png' alt='Evote' width={500} height={300} loading='lazy'/>
+                        <Image src={evote} alt='Evote' width={500} height={300} loading='lazy'/>
                     </motion.div>
                 </div>
             </div>
             <div
-                className='w-full bg-gray-200 lg:w-1/2 flex justify-center items-center'
+                className='w-full bg-gray-100 lg:w-1/2 flex justify-center items-center'
                 aria-label='Sekcja z formularzem'
             >
                 <div className='max-w-md w-full'>
