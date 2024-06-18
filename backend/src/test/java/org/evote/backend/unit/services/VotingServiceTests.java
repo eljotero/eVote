@@ -1,6 +1,5 @@
 package org.evote.backend.unit.services;
 
-import org.evote.backend.services.JwtService;
 import org.evote.backend.services.*;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -10,7 +9,6 @@ import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
 import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.enums.Role;
-
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeMismatchException;
@@ -18,6 +16,7 @@ import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
 import org.evote.backend.votes.election.entity.Election;
+import org.evote.backend.votes.election.exception.ElectionInvalidDateException;
 import org.evote.backend.votes.enums.ElectionType;
 import org.evote.backend.votes.vote.dtos.SingleVoteDTO;
 import org.evote.backend.votes.vote.dtos.VoteDTO;
@@ -29,11 +28,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -111,6 +108,12 @@ public class VotingServiceTests {
         election = new Election();
         election.setElectionId(2);
         election.setType(ElectionType.Senate);
+        LocalDate localDate = LocalDate.parse("1999-01-01");
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        election.setStartDate(date);
+        LocalDate localDate1 = LocalDate.parse("2029-01-02");
+        Date date1 = Date.from(localDate1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        election.setEndDate(date1);
 
         user = new User();
         user.setUser_id(UUID.randomUUID());
@@ -217,7 +220,7 @@ public class VotingServiceTests {
 
         when(accountRepository.findById(id)).thenReturn(Optional.of(account));
         when(jwtService.generateVotingToken(account)).thenReturn("newVotingToken");
-
+    }
 
     @Test
     public void voteTestWrongCandidate() {
@@ -237,6 +240,42 @@ public class VotingServiceTests {
         when(accountService.getAccountByEmail("test@mail.com")).thenReturn(Optional.of(account));
         when(userService.isUserDataComplete(account.getUser().getUser_id())).thenReturn(false);
         assertEquals("Voting failed", votingService.vote("token", voteDTO));
+    }
+
+    @Test
+    public void voteTestElectionNotStarted() {
+        when(jwtService.extractEmail("token")).thenReturn("test@mail.com");
+        when(accountService.getAccountByEmail("test@mail.com")).thenReturn(Optional.of(account));
+        when(userService.isUserDataComplete(account.getUser().getUser_id())).thenReturn(true);
+        when(addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id())).thenReturn(true);
+        when(accountService.hasUserVoted(account)).thenReturn(false);
+        when(candidateService.getCandidateById(id)).thenReturn(candidate);
+        LocalDate localDate = LocalDate.parse("2025-01-01");
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        election.setStartDate(date);
+        assertThrows(ElectionInvalidDateException.class, () -> votingService.vote("token", voteDTO));
+    }
+
+    @Test
+    public void voteTestElectionEnded() {
+        when(jwtService.extractEmail("token")).thenReturn("test@mail.com");
+        when(accountService.getAccountByEmail("test@mail.com")).thenReturn(Optional.of(account));
+        when(userService.isUserDataComplete(account.getUser().getUser_id())).thenReturn(true);
+        when(addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id())).thenReturn(true);
+        when(accountService.hasUserVoted(account)).thenReturn(false);
+        when(candidateService.getCandidateById(id)).thenReturn(candidate);
+        LocalDate localDate = LocalDate.parse("1410-01-01");
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        election.setEndDate(date);
+        assertThrows(ElectionInvalidDateException.class, () -> votingService.vote("token", voteDTO));
+    }
+
+    @Test
+    public void voteTestUserNotFound() {
+        when(jwtService.extractEmail("token")).thenReturn("test@mail.com");
+        when(accountService.getAccountByEmail("test@mail.com")).thenReturn(Optional.of(account));
+        account.setUser(null);
+        assertThrows(UserNotFoundException.class, () -> votingService.vote("token", voteDTO));
     }
 
 }

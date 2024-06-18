@@ -4,12 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.evote.backend.services.JwtService;
 import org.evote.backend.services.VotingService;
 import org.evote.backend.users.account.dtos.VotingCodeDTO;
-import org.evote.backend.votes.vote.dtos.SubmitVoteDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.evote.backend.votes.vote.dtos.VoteDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/vote")
@@ -25,10 +23,9 @@ public class VotingController {
         return ResponseEntity.ok(votingService.generateVotingToken(email, votingCodeDTO.getCode()));
     }
 
-    @PostMapping("/submit")
-    public ResponseEntity<String> submitVote(@RequestBody SubmitVoteDTO submitVoteDTO) {
-        votingService.submitVote(submitVoteDTO);
-        return ResponseEntity.ok("Vote submitted successfully");
+    @PostMapping("/vote")
+    public ResponseEntity<?> submitVote(@RequestHeader("Authorization") String token, @RequestBody VoteDTO voteDTO) {
+        return ResponseEntity.ok(votingService.vote(token.substring(7), voteDTO));
     }
-}
 
+}

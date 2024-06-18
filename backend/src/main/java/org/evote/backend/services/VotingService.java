@@ -4,18 +4,14 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
-import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeMismatchException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
-import org.evote.backend.users.user.repository.UserRepository;
-import org.evote.backend.votes.candidate.repository.CandidateRepository;
-import org.evote.backend.votes.vote.dtos.SubmitVoteDTO;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
+import org.evote.backend.votes.election.exception.ElectionInvalidDateException;
 import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.votes.enums.ElectionType;
-import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.dtos.SingleVoteDTO;
 import org.evote.backend.votes.vote.dtos.VoteDTO;
 import org.evote.backend.votes.vote.entity.Vote;
@@ -24,29 +20,31 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
+import java.time.ZoneId;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-
-import java.sql.Time;
 
 @Service
 public class VotingService {
 
     private final AccountRepository accountRepository;
     private final JwtService jwtService;
-    private final UserRepository userRepository;
+    private final CandidateService candidateService;
     private final VoteRepository voteRepository;
-    private final CandidateRepository candidateRepository;
+    private final UserService userService;
+    private final AddressService addressService;
+    private final AccountService accountService;
 
-    public VotingService(AccountRepository accountRepository, JwtService jwtService, UserRepository userRepository, VoteRepository voteRepository, CandidateService candidateService, CandidateRepository candidateRepository) {
+    public VotingService(AccountRepository accountRepository, JwtService jwtService, CandidateService candidateService, VoteRepository voteRepository, UserService userService, AddressService addressService, AccountService accountService) {
         this.accountRepository = accountRepository;
         this.jwtService = jwtService;
-        this.userRepository = userRepository;
+        this.candidateService = candidateService;
         this.voteRepository = voteRepository;
-        this.candidateRepository = candidateRepository;
+        this.userService = userService;
+        this.addressService = addressService;
+        this.accountService = accountService;
     }
 
     public String generateVotingToken(String email, String code) {
@@ -83,14 +81,22 @@ public class VotingService {
                 if (!isValidPrecinct(user, candidate)) {
                     throw new CandidateWrongPrecinctException("Candidate not found");
                 }
-                Vote newVote = new Vote();
-                newVote.setCandidate(candidate);
-                newVote.setVoterBirthdate(user.getBirthDate());
-                newVote.setVoterCityType(CityType.valueOf(user.getCityType().toString()));
-                newVote.setVoterEducation(user.getEducation().toString());
-                newVote.setSex(user.getSex());
-                newVote.setVoterCountry(user.getAddress().getCountry());
-                newVote.setVoteTime(Time.valueOf(LocalTime.now()));
+                LocalDate today = LocalDate.now();
+                LocalDate startDate = candidate.getElection().getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate endDate = candidate.getElection().getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                if (startDate.isAfter(today) || today.isAfter(endDate)) {
+                    throw new ElectionInvalidDateException("Election is not active");
+                }
+                Vote newVote = new Vote() {{
+                    setCandidate(candidate);
+                    setVoterBirthdate(user.getBirthDate());
+                    setVoterCityType(CityType.valueOf(user.getCityType().toString()));
+                    setVoterEducation(user.getEducation().toString());
+                    setSex(user.getSex());
+                    setVoterCountry(user.getAddress().getCountry());
+                    setVoteTime(Time.valueOf(LocalTime.now()));
+                }};
                 voteRepository.save(newVote);
             }
             dbAccount.setHasVoted(true);
@@ -100,44 +106,15 @@ public class VotingService {
         return "Voting failed";
     }
 
-    public List<Vote> getResults() {
-        List<Vote> votes = voteRepository.findAll();
-        Map<PoliticalParty, Long> partyVotes = new HashMap<>();
-        for(Vote vote : votes) {
-            PoliticalParty party = vote.getCandidate().getPoliticalParty();
-            if(partyVotes.containsKey(party)) {
-                partyVotes.put(party, partyVotes.get(party) + 1);
-            } else {
-                partyVotes.put(party, 1L);
-            }
-        }
-      
-        User user = account.getUser();
-        if (user == null) {
-            throw new UserNotFoundException("User associated with this account not found");
-        }
-        if (user.getSex() == null || user.getAddress() == null || user.getPrecincts() == null || user.getName() == null
-            || user.getSurname() == null || user.getBirthDate() == null || user.getPersonalIdNumber() == null
-            || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
-            throw new UserNotFoundException("User data is incomplete");
-        }
-        String token = jwtService.generateVotingToken(account);
-        account.setHasVoted(true);
-        accountRepository.save(account);
-        return token;
+
+    private boolean isValidPrecinct(User user, Candidate candidate) {
+        return user.getPrecincts().stream()
+                .anyMatch(p -> p.getPrecinct_id().equals(candidate.getPrecinct().getPrecinct_id())
+                        && ElectionType.valueOf(String.valueOf(p.getElectionType())) == candidate.getPrecinct().getElectionType());
     }
 
-    public void submitVote(SubmitVoteDTO submitVoteDTO) {
-        Vote vote = new Vote();
-        vote.setVoter_birthdate(submitVoteDTO.getVoterBirthDate());
-        vote.setVoter_city_type(submitVoteDTO.getVoterCityType());
-        vote.setVoter_education(submitVoteDTO.getVoterEducation());
-        vote.setVoter_country(submitVoteDTO.getVoterCountry());
-        vote.setVote_time(new Time(System.currentTimeMillis()));
-        vote.setCandidate(candidateRepository.findById(submitVoteDTO.getCandidateId())
-                .orElseThrow(() -> new RuntimeException("Candidate not found")));
-
-        voteRepository.save(vote);
+    private boolean isDataValid(Account account) {
+        return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
     }
 
 }

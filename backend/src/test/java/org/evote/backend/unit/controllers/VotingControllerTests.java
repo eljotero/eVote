@@ -58,6 +58,6 @@ public class VotingControllerTests {
         voteDTO.setVotes(List.of(singleVoteDTO));
         when(jwtService.extractEmail("tokensssss")).thenReturn("email");
         when(votingService.vote("email", voteDTO)).thenReturn("Voted");
-        assertEquals(HttpStatus.OK, votingController.vote("tokensssss", voteDTO).getStatusCode());
+        assertEquals(HttpStatus.OK, votingController.submitVote("tokensssss", voteDTO).getStatusCode());
     }
 }
