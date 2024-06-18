@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Service
 @RequiredArgsConstructor
 public class StatisticsService {
@@ -146,8 +147,12 @@ public class StatisticsService {
         return educationVotes;
     }
 
+    public Map<String, Integer> getPrediction(String electionType) {
+        return null;
+    }
 
-    public String getAgeGroup(int age) {
+
+    private String getAgeGroup(int age) {
         if (age >= 18 && age <= 29) {
             return "18-29";
         } else if (age >= 30 && age <= 39) {
@@ -161,7 +166,7 @@ public class StatisticsService {
         }
     }
 
-    public void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
+    private void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
         PoliticalParty party = vote.getCandidate().getPoliticalParty();
         if (educationVotes.containsKey(education)) {
             Map<String, Integer> partyVotes = educationVotes.get(education);

@@ -29,4 +29,9 @@ public class StatisticsController {
         allResults.put("resultsByCityType", statisticsService.getResultsByCityType(electionId));
         return ResponseEntity.ok(allResults);
     }
+
+    @GetMapping("/prediction/{electionType}")
+    public ResponseEntity<?> getPrediction(@PathVariable String electionType) {
+        return ResponseEntity.ok(statisticsService.getPrediction(electionType));
+    }
 }

@@ -86,6 +86,15 @@
             <version>5.3.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jpmml</groupId>
+            <artifactId>jpmml-sklearn</artifactId>
+            <version>1.8.3</version>
+            <type>pom</type>
+        </dependency>
+
+
+
 
     </dependencies>
     <build>
