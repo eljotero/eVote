@@ -65,21 +65,21 @@ public class CandidateControllerIntegrationTest {
         given().port(port).when().get(BASE_PATH + "/all").then().statusCode(200);
     }
 
-//    @Test
-//    public void addCandidate() {
-//
-//        CandidateDTO candidateDTO = given().port(port).contentType("application/json").body(createExampleCandidateCreateDTO())
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(201).extract().as(CandidateDTO.class);
-//
-//        createdCandidates.add(candidateDTO.getCandidate_id());
-//
-//        Assertions.assertNotNull(candidateDTO);
-//
-//    }
+    @Test
+    public void addCandidate() {
 
-//    @Test
-//    public void addCandidateThatAlreadyExists() {
+        CandidateDTO candidateDTO = given().port(port).contentType("application/json").body(createExampleCandidateCreateDTO())
+                .when().post(BASE_PATH + "/add")
+                .then().statusCode(201).extract().as(CandidateDTO.class);
+
+        createdCandidates.add(candidateDTO.getCandidate_id());
+
+        Assertions.assertNotNull(candidateDTO);
+
+    }
+
+    @Test
+    public void addCandidateThatAlreadyExists() {
 //        CandidateCreateDTO candidateCreateDTO = createExampleCandidateCreateDTO();
 //
 //        CandidateDTO candidateDTO = given().port(port).contentType("application/json").body(candidateCreateDTO)
@@ -87,11 +87,11 @@ public class CandidateControllerIntegrationTest {
 //                .then().statusCode(201).extract().as(CandidateDTO.class);
 //
 //        createdCandidates.add(candidateDTO.getCandidate_id());
-//
+
 //        given().port(port).contentType("application/json").body(candidateCreateDTO)
 //                .when().post(BASE_PATH + "/add")
 //                .then().statusCode(400);
-//    }
+    }
 
     @Test
     public void testAddCandidateWithNonExistentPoliticalParty() {
@@ -101,7 +101,7 @@ public class CandidateControllerIntegrationTest {
 
         given().port(port).contentType("application/json").body(candidateCreateDTO)
                 .when().post(BASE_PATH + "/add")
-                .then().statusCode(400);
+                .then().statusCode(404);
     }
 
     @Test
@@ -137,8 +137,9 @@ public class CandidateControllerIntegrationTest {
         candidateCreateDTO.setEducation("BSc Computer Science");
         candidateCreateDTO.setBirthDate(new Date());
         candidateCreateDTO.setImage("image.jpg");
-        candidateCreateDTO.setInfo("I am a software engineer");
+        candidateCreateDTO.setInfo("I am José Mourinho");
         return candidateCreateDTO;
     }
+
 
 }
