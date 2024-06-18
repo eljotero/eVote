@@ -28,7 +28,7 @@ VALUES (2, 'Wybory parlamentarne - senat','2024-06-26','2024-06-25', 4)
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
 VALUES (3, 'Wybory prezydenckie','2024-09-26','2024-09-25', 2)
-ON CONFLICT (electionid) DO NOTHING;
+    ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
 VALUES (4, 'Wybory samorządowe - gimna','2025-09-26','2025-09-25', 1)
@@ -165,7 +165,6 @@ VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 3)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
-
 --senat
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
 VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 4)
@@ -176,8 +175,7 @@ VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 4)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
-
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            1,
            '1988-04-20',
@@ -191,9 +189,9 @@ VALUES (
            1,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            2,
            '1980-03-25',
@@ -207,11 +205,11 @@ VALUES (
            1,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            3,
            '1988-04-20',
@@ -225,9 +223,9 @@ VALUES (
            2,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            4,
            '1960-01-22',
@@ -241,9 +239,9 @@ VALUES (
            2,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            5,
            '1989-06-22',
@@ -257,9 +255,9 @@ VALUES (
            3,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            6,
            '1974-04-21',
@@ -273,9 +271,9 @@ VALUES (
            3,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            7,
            '1984-04-21',
@@ -289,9 +287,9 @@ VALUES (
            4,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            7,
            '1984-04-21',
@@ -305,9 +303,9 @@ VALUES (
            4,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            8,
            '1980-07-11',
@@ -321,9 +319,9 @@ VALUES (
            4,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            9,
            '1970-02-14',
@@ -337,9 +335,9 @@ VALUES (
            5,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            10,
            '1960-11-14',
@@ -353,10 +351,10 @@ VALUES (
            5,
            '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            11,
            '1977-11-14',
@@ -370,9 +368,9 @@ VALUES (
            1,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            12,
            '1979-01-14',
@@ -386,9 +384,9 @@ VALUES (
            1,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            13,
            '1989-01-24',
@@ -402,9 +400,9 @@ VALUES (
            2,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            14,
            '1982-06-24',
@@ -418,10 +416,10 @@ VALUES (
            2,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            15,
            '1972-06-24',
@@ -435,10 +433,10 @@ VALUES (
            3,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            16,
            '1988-09-24',
@@ -452,9 +450,9 @@ VALUES (
            3,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            17,
            '1982-03-21',
@@ -468,9 +466,9 @@ VALUES (
            4,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            18,
            '1987-07-04',
@@ -484,9 +482,9 @@ VALUES (
            4,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            19,
            '1985-09-14',
@@ -500,9 +498,9 @@ VALUES (
            5,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            20,
            '1990-09-14',
@@ -516,9 +514,9 @@ VALUES (
            5,
            '0c2cdf82-08e1-410c-bc41-55ae53171391'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            21,
            '1962-03-19',
@@ -532,9 +530,9 @@ VALUES (
            1,
            'ec4144e5-5df2-40de-9a01-c39b60d98764'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            22,
            '1972-03-19',
@@ -548,9 +546,9 @@ VALUES (
            2,
            'ec4144e5-5df2-40de-9a01-c39b60d98764'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            23,
            '1982-03-19',
@@ -564,10 +562,10 @@ VALUES (
            3,
            'ec4144e5-5df2-40de-9a01-c39b60d98764'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            24,
            '1982-05-19',
@@ -581,10 +579,10 @@ VALUES (
            1,
            '174857a5-cb83-413c-bfe6-f652e66c4923'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            25,
            '1989-05-19',
@@ -598,9 +596,9 @@ VALUES (
            2,
            '174857a5-cb83-413c-bfe6-f652e66c4923'
        )
-ON CONFLICT (candidate_id) DO NOTHING;
+    ON CONFLICT (candidateid) DO NOTHING;
 
-INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
+INSERT INTO candidate (candidateid, birthdate, education,image, info, name, surname, profession, election_id, political_party_id, precinct_id)
 VALUES (
            26,
            '1979-09-29',
@@ -1066,4 +1064,3 @@ VALUES (
 --INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
 --VALUES (111, false, '16:50:31', '2000-10-08', 2, 'Polska', 'wyższe',8)
 --ON CONFLICT (voteid) DO NOTHING;
-
