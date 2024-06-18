@@ -1,6 +1,6 @@
 'use client';
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
+import React, {use, useEffect, useState} from "react";
 import {toast} from "react-hot-toast";
 import {setVotingToken} from "@/store/votingTokenSlice";
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
@@ -14,6 +14,7 @@ export default function Vote() {
     const [showForm, setShowForm] = useState(false);
     const [elections, setElections] = useState([]);
     const [precincts, setPrecincts] = useState([]);
+    const [politicalParties, setPoliticalParties] = useState([]);
     const [candidatesByElection, setCandidatesByElection] = useState({});
     const [user, setUser] = useState({});
     const [selectedCandidateId, setSelectedCandidateId] = useState(null);
@@ -49,11 +50,21 @@ export default function Vote() {
     }, [user])
 
     useEffect(() => {
+        const fetchPoliticalParties = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/political_parties/all');
+                setPoliticalParties(response.data);
+            } catch (error) {
+                console.error('Error fetching political parties:', error);
+            }
+        };
+        fetchPoliticalParties();
+    }, [])
+
+    useEffect(() => {
         const fetchCandidates = async () => {
             try {
                 let newCandidatesByElection = {};
-                console.log(precincts);
-                console.log(elections);
                 for (const precinctId of precincts) {
                     for (const election of elections) {
                         const response = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${election.election_id}&precinctId=${precinctId}`);
@@ -65,6 +76,7 @@ export default function Vote() {
                         }
                     }
                 }
+                console.log(newCandidatesByElection);
                 setCandidatesByElection(newCandidatesByElection);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
@@ -137,14 +149,18 @@ export default function Vote() {
     }
     
     const handleVoteClick = (candidateId) => {
+        const selectedCandidateElection = candidates.find(candidate => candidate.candidate_id === candidateId);
+        const electionStartDate = new Date(selectedCandidateElection.startDate);
+    
+        // Sprawdzamy, czy elekcja się już rozpoczęła
+        if (new Date() < electionStartDate) {
+            return;
+        }
+    
         setSelectedCandidateId(candidateId);
         setShowForm(true);
     }
     
-    const closestElectionNames = elections
-        .map((election) => election.election_name)
-        .join(', ');
-
  return (
     <>
         <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
@@ -211,9 +227,17 @@ export default function Vote() {
                             <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2> 
                             <p className='text-md'>{candidate.education}</p> 
                             <p className='text-md'>{candidate.profession}</p> 
+                            <p className='text-md'>     
+                                {politicalParties.find(politicalParty => politicalParty.politicalPartyId === candidate.political_party_id).name}
+                            </p>
                             <button
-                                className='mt-2 py-1 px-4 bg-blue-500 hover:bg-blue-600 text-xs text-white font-bold rounded-xl transition duration-200' 
+                                className={`mt-2 py-1 px-4 text-xs font-bold rounded-xl transition duration-200 ${
+                                    new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate) ? 
+                                    'bg-gray-400 cursor-not-allowed' : 
+                                    'bg-blue-500 hover:bg-blue-600 text-white'
+                                }`}
                                 onClick={() => handleVoteClick(candidate.candidate_id)}
+                                disabled={new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate)}
                             >
                                 Zagłosuj
                             </button>
