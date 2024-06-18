@@ -101,6 +101,12 @@ public class AccountServiceTests {
     }
 
     @Test
+    public void testDeleteAccountAccountNotFound() {
+        when(accountRepository.findById(account.getAccount_id())).thenReturn(Optional.empty());
+        assertThrows(AccountNotFoundException.class, () -> accountService.deleteAccount(account.getAccount_id()));
+    }
+
+    @Test
     public void testGetAccountByEmail() {
         when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
         Optional<Account> result = accountService.getAccountByEmail(account.getEmail());

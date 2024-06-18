@@ -81,6 +81,17 @@ public class EmailServiceTests {
     }
 
     @Test
+    public void testSendEmailDataIncomplete() {
+        user.setSex(null);
+        when(accountService.getAccountByEmail(userEmail)).thenReturn(java.util.Optional.of(account));
+        try {
+            emailService.sendEmail(userEmail);
+        } catch (Exception e) {
+            assertEquals("Uzupełnij dane użytkownika!", e.getMessage());
+        }
+    }
+
+    @Test
     public void testSendEmailCodeAlreadySent() {
         user.setCode("123456");
         when(accountService.getAccountByEmail(userEmail)).thenReturn(java.util.Optional.of(account));

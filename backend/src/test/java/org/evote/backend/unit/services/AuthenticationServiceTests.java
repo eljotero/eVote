@@ -1,6 +1,6 @@
 package org.evote.backend.unit.services;
 
-import org.evote.backend.services.JwtService;
+import org.evote.backend.configuration.JwtService;
 import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
