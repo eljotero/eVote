@@ -29,14 +29,14 @@ const StatsPage = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/stats/allResults/1');
+                const response = await axios.get('https://localhost:8080/api/stats/allResults/1');
                 setAgeGroupResults(response.data.resultsByAgeGroup);
                 setEducationGroupResults(response.data.resultsByEducation);
                 setSexGroupResults(response.data.resultsBySex);
                 setCityGroupResults(response.data.resultsByCityType);
                 setCountryGroupResults(response.data.resultsByCountry);
                 setSejmGroupResults(response.data.results);
-                const response2 = await axios.get('http://localhost:8080/api/stats/allResults/2');
+                const response2 = await axios.get('https://localhost:8080/api/stats/allResults/2');
                 setAgeGroupResultsSenat(response2.data.resultsByAgeGroup);
                 setEducationGroupResultsSenat(response2.data.resultsByEducation);
                 setSexGroupResultsSenat(response2.data.resultsBySex);
@@ -44,7 +44,7 @@ const StatsPage = () => {
                 setCountryGroupResultsSenat(response2.data.resultsByCountry);
                 setGroupResultsSenat(response2.data.results);
 
-                const response3 = await axios.get('http://localhost:8080/api/stats/mandates/1');
+                const response3 = await axios.get('https://localhost:8080/api/stats/mandates/1');
                 setGroupMandates(response3.data);
 
                 setLoading(false);
