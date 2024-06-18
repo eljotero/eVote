@@ -18,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.URL;
@@ -76,7 +77,7 @@ public class PoliticalPartyControllerIntegrationTest {
     //TODO: NIE ZAPOMNIEĆ O USUWANIU GO Z BAZY W AFTER EACH
     @Test
     public void testGetPoliticalPartyById() {
-        PoliticalPartyDTO politicalPartyDTO = given().port(port).when().get(BASE_PATH + "/10").then().statusCode(200).extract().as(PoliticalPartyDTO.class);
+        PoliticalPartyDTO politicalPartyDTO = given().port(port).when().get(BASE_PATH + "/1").then().statusCode(200).extract().as(PoliticalPartyDTO.class);
 
         Assertions.assertNotNull(politicalPartyDTO);
     }
