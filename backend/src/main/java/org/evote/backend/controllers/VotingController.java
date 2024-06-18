@@ -1,7 +1,7 @@
 package org.evote.backend.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.evote.backend.services.JwtService;
+import org.evote.backend.configuration.JwtService;
 import org.evote.backend.services.VotingService;
 import org.evote.backend.users.account.dtos.VotingCodeDTO;
 import org.evote.backend.votes.vote.dtos.VoteDTO;

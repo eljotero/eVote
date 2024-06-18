@@ -1,20 +1,25 @@
 package org.evote.backend.services;
 
 import lombok.RequiredArgsConstructor;
+import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
 import org.evote.backend.votes.enums.CityType;
+import org.evote.backend.votes.enums.ElectionType;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.entity.Vote;
 import org.evote.backend.votes.vote.repository.VoteRepository;
 import org.springframework.stereotype.Service;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -147,7 +152,52 @@ public class StatisticsService {
     }
 
 
-    public String getAgeGroup(int age) {
+    public Map<String, Integer> getPredictions(String electionType) {
+        Map<String, List<Integer>> partyVotes = new HashMap<>();
+        List<Election> allElections = electionRepository.findAll();
+        ElectionType type;
+        try {
+            type = ElectionType.valueOf(electionType);
+        } catch (IllegalArgumentException e) {
+            throw new ElectionNotFoundException("Election type not found");
+        }
+
+        for (Election election : allElections) {
+            if (election.getType() == type) {
+                Integer electionId = election.getElectionId();
+                Map<String, Integer> electionResults = getResults(electionId);
+                for (Map.Entry<String, Integer> entry : electionResults.entrySet()) {
+                    String party = entry.getKey();
+                    Integer votes = entry.getValue();
+                    if (!partyVotes.containsKey(party)) {
+                        partyVotes.put(party, new ArrayList<>());
+                    }
+                    partyVotes.get(party).add(votes);
+                }
+            }
+        }
+
+        Map<String, Integer> predictedResults = new HashMap<>();
+        for (Map.Entry<String, List<Integer>> entry : partyVotes.entrySet()) {
+            String party = entry.getKey();
+            List<Integer> votesList = entry.getValue();
+
+            SimpleRegression regression = new SimpleRegression();
+
+            for (int i = 0; i < votesList.size(); i++) {
+                regression.addData(i, votesList.get(i));
+            }
+
+            int predictedVotes = (int) Math.floor(regression.predict(votesList.size()));
+
+            predictedResults.put(party, predictedVotes);
+        }
+
+        return predictedResults;
+    }
+
+
+    private String getAgeGroup(int age) {
         if (age >= 18 && age <= 29) {
             return "18-29";
         } else if (age >= 30 && age <= 39) {
@@ -161,7 +211,7 @@ public class StatisticsService {
         }
     }
 
-    public void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
+    private void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
         PoliticalParty party = vote.getCandidate().getPoliticalParty();
         if (educationVotes.containsKey(education)) {
             Map<String, Integer> partyVotes = educationVotes.get(education);

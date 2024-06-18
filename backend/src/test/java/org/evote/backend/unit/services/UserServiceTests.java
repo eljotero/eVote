@@ -15,6 +15,7 @@ import org.evote.backend.users.enums.ElectionType;
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.exceptions.UserAlreadyAssignedException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 

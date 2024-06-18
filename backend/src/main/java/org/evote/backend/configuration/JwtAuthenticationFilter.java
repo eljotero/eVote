@@ -1,4 +1,4 @@
-package org.evote.backend.config;
+package org.evote.backend.configuration;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -6,7 +6,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.evote.backend.services.JwtService;
 import org.evote.backend.users.account.AccountDetailService;
 import org.evote.backend.users.account.exceptions.AccountAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
