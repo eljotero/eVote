@@ -172,10 +172,10 @@
                 </dependencies>
                 <configuration>
                     <targetClasses>
-                        <param>org.evote.backend.controllers.*</param>
+                        <param>org.evote.backend.services.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.evote.backend.unit.controllers.*</param>
+                        <param>org.evote.backend.unit.services.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

@@ -5,6 +5,7 @@ import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
 import org.evote.backend.users.account.dtos.AccountMapper;
+import org.evote.backend.users.account.dtos.AuthenticationResponseDTO;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
@@ -23,8 +24,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AuthenticationServiceTests {
@@ -50,9 +51,6 @@ public class AuthenticationServiceTests {
 
     private Account account;
 
-
-
-
     @InjectMocks
     private AuthenticationService authenticationService;
 
@@ -64,9 +62,7 @@ public class AuthenticationServiceTests {
         account = new Account();
         account.setPassword("password123");
         account.setEmail("test@mail.com");
-
     }
-
 
     @Test
     public void testRegister() {
@@ -74,20 +70,32 @@ public class AuthenticationServiceTests {
         accountCreateDTO.setEmail("test@test.com");
         accountCreateDTO.setPassword("password123");
 
-        when(passwordEncoder.encode(accountCreateDTO.getPassword())).thenReturn("encodedPassword");
+        when(passwordEncoder.encode("password123")).thenReturn("encodedPassword");
         when(accountRepository.findByEmail(accountCreateDTO.getEmail())).thenReturn(null);
-        when(accountRepository.save(AccountMapper.toAccount(accountCreateDTO))).thenReturn(AccountMapper.toAccount(accountCreateDTO));
 
-        authenticationService.register(accountCreateDTO);
+        Account savedAccount = new Account();
+        savedAccount.setEmail(accountCreateDTO.getEmail());
+        savedAccount.setPassword("encodedPassword");
 
-        verify(accountRepository, times(1)).save(AccountMapper.toAccount(accountCreateDTO));
+        when(accountRepository.save(any(Account.class))).thenReturn(savedAccount);
+
+        Account registeredAccount = authenticationService.register(accountCreateDTO);
+
+        assertNotNull(registeredAccount, "Registered account should not be null");
+        assertEquals(accountCreateDTO.getEmail(), registeredAccount.getEmail(), "Emails should match");
+        assertEquals("encodedPassword", registeredAccount.getPassword(), "Passwords should match");
+
+        verify(accountRepository, times(1)).save(any(Account.class));
+        verify(passwordEncoder, times(1)).encode("password123");
+        verify(accountRepository, times(1)).findByEmail(accountCreateDTO.getEmail());
     }
+
+
 
     @Test
     public void testRegisterPasswordTooShort() {
         AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setPassword("pass");
-
+        accountCreateDTO.setPassword("passwo");
 
         PasswordTooShortException exception = assertThrows(PasswordTooShortException.class, () -> authenticationService.register(accountCreateDTO));
         assertEquals("Password must be at least 8 characters long", exception.getMessage());
@@ -95,49 +103,42 @@ public class AuthenticationServiceTests {
 
     @Test
     public void testRegisterAccountAlreadyExists() {
-
         AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
         accountCreateDTO.setEmail("test@test.com");
         accountCreateDTO.setPassword("password123");
 
         when(passwordEncoder.encode(accountCreateDTO.getPassword())).thenReturn("encodedPassword");
         when(accountRepository.findByEmail(accountCreateDTO.getEmail())).thenReturn(AccountMapper.toAccount(accountCreateDTO));
-        when(accountRepository.save(AccountMapper.toAccount(accountCreateDTO))).thenThrow(new AccountAlreadyExistsException("Account already exists"));
 
         AccountAlreadyExistsException exception = assertThrows(AccountAlreadyExistsException.class, () -> authenticationService.register(accountCreateDTO));
-
         assertEquals("Account already exists", exception.getMessage());
     }
 
     @Test
     public void testLogin() {
-
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("password123");
-
         AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
         accountLoginDTO.setEmail(account.getEmail());
         accountLoginDTO.setPassword(account.getPassword());
+
         when(authenticationManager.authenticate(any())).thenReturn(null);
-        when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
+        when(accountRepository.findByEmail(accountLoginDTO.getEmail())).thenReturn(account);
         when(jwtService.generateToken(account)).thenReturn("token");
-        assertEquals("token", authenticationService.login(accountLoginDTO).getToken());
+
+        AuthenticationResponseDTO responseDTO = authenticationService.login(accountLoginDTO);
+
+        assertNotNull(responseDTO);
+        assertEquals("token", responseDTO.getToken());
     }
 
     @Test
     public void testLoginAccountNotFound() {
-
-        Account account = new Account();
-        account.setEmail("test@mail.com");
-        account.setPassword("password123");
-
         AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
         accountLoginDTO.setEmail(account.getEmail());
         accountLoginDTO.setPassword(account.getPassword());
 
         when(authenticationManager.authenticate(any())).thenReturn(null);
-        when(accountRepository.findByEmail(account.getEmail())).thenReturn(null);
+        when(accountRepository.findByEmail(accountLoginDTO.getEmail())).thenReturn(null);
+
         AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> authenticationService.login(accountLoginDTO));
         assertEquals("Account not found", exception.getMessage());
     }
@@ -150,7 +151,8 @@ public class AuthenticationServiceTests {
         SecurityContextHolder.setContext(securityContext);
         when(auth.getName()).thenReturn(account.getEmail());
         when(accountRepository.findByEmail(account.getEmail())).thenReturn(account);
-        assertEquals(true, authenticationService.hasAccount(1));
+
+        assertTrue(authenticationService.hasAccount(1));
     }
 
     @Test
@@ -161,6 +163,7 @@ public class AuthenticationServiceTests {
         SecurityContextHolder.setContext(securityContext);
         when(auth.getName()).thenReturn(account.getEmail());
         when(accountRepository.findByEmail(account.getEmail())).thenReturn(null);
-        assertEquals(false, authenticationService.hasAccount(1));
+
+        assertFalse(authenticationService.hasAccount(1));
     }
 }
