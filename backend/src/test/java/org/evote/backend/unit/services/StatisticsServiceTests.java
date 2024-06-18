@@ -15,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -114,7 +116,7 @@ public class StatisticsServiceTests {
         Vote vote1 = createVote(election, party1, CityType.OVER500THOUSAND);
         Vote vote2 = createVote(election, party1, CityType.OVER500THOUSAND);
         Vote vote3 = createVote(election, party1, CityType.FIFTYTOTWOHUNDREDTHOUSAND);
-        Vote vote4 = createVote(election, party1, CityType.FIFTYTOTWOHUNDREDTHOUSAND); 
+        Vote vote4 = createVote(election, party1, CityType.FIFTYTOTWOHUNDREDTHOUSAND);
         List<Vote> votes = Arrays.asList(vote1, vote2, vote3, vote4);
         when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
         when(voteRepository.findAll()).thenReturn(votes);
@@ -166,11 +168,6 @@ public class StatisticsServiceTests {
         assertEquals(expectedSeats, actualSeats);
     }
 
-    @Test
-    public void testConvertSexToString() {
-        assertEquals("Mężczyzna", statisticsService.convertSexToString(true));
-        assertEquals("Kobieta", statisticsService.convertSexToString(false));
-    }
     @Test
     public void testGetResultsByCountry() {
         int electionId = 1;
@@ -263,27 +260,7 @@ public class StatisticsServiceTests {
         vote.setVoterEducation(education);
         return vote;
     }
-    @Test
-    public void testGroupByParam() {
-        Election election = new Election();
-        election.setElectionId(1);
-        PoliticalParty party1 = new PoliticalParty();
-        party1.setName("Party1");
-        Vote vote1 = new Vote();
-        Candidate candidate1 = new Candidate();
-        candidate1.setElection(election);
-        candidate1.setPoliticalParty(party1);
-        vote1.setCandidate(candidate1);
-        Vote vote2 = new Vote();
-        Candidate candidate2 = new Candidate();
-        candidate2.setElection(election);
-        candidate2.setPoliticalParty(party1);
-        vote2.setCandidate(candidate2);
-        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
-        statisticsService.groupByParam(educationVotes, vote1, "Wyższe");
-        statisticsService.groupByParam(educationVotes, vote2, "Wyższe");
-        assertEquals(2, (int) educationVotes.get("Wyższe").get("Party1"));
-    }
+
     @Test
     public void testDistributeSejmMandates() {
         int electionId = 1;
@@ -307,4 +284,84 @@ public class StatisticsServiceTests {
         Map<String, Integer> results = statisticsService.distributeSejmMandates(electionId);
         assertEquals(460, (int) results.get("Party1"));
     }
+
+    @Test
+    public void testConvertCityTypeToString() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StatisticsService.class.getDeclaredMethod("convertCityTypeToString", CityType.class);
+        method.setAccessible(true);
+        assertEquals("Pomiędzy 50 a 200 tysięcy", method.invoke(statisticsService, CityType.FIFTYTOTWOHUNDREDTHOUSAND));
+        assertEquals("Poniżej 50 tysięcy", method.invoke(statisticsService, CityType.BELOWFIFTYTHOUSAND));
+    }
+
+    @Test
+    public void testGetAgeGroup() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StatisticsService.class.getDeclaredMethod("getAgeGroup", int.class);
+        method.setAccessible(true);
+        assertEquals("50-59", method.invoke(statisticsService, 51));
+        assertEquals("60+", method.invoke(statisticsService, 61));
+    }
+
+    @Test
+    public void testGetResultsElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        assertThrows(ElectionNotFoundException.class, () -> statisticsService.getResults(electionId));
+    }
+
+    @Test
+    public void testGetResultsBySexElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsBySex(electionId);
+        });
+        assertEquals("Election not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
+    }
+
+    @Test
+    public void testGetResultsByEducationElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsByEducation(electionId);
+        });
+        assertEquals("Election not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
+    }
+
+    @Test
+    public void testGetResultsByCityTypeElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsByCityType(electionId);
+        });
+        assertEquals("Election not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
+    }
+
+    @Test
+    public void testGetResultsByCountryElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsByCountry(electionId);
+        });
+        assertEquals("Election not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
+    }
+
+    @Test
+    public void testGetResultsByAgeElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsByAgeGroup(electionId);
+        });
+        assertEquals("Election not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
+    }
+
+
 }

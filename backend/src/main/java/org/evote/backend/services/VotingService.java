@@ -1,5 +1,6 @@
 package org.evote.backend.services;
 
+import org.evote.backend.configuration.JwtService;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
@@ -116,5 +117,5 @@ public class VotingService {
     private boolean isDataValid(Account account) {
         return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
     }
-    
+
 }

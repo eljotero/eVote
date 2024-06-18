@@ -30,10 +30,14 @@ public class StatisticsController {
         return ResponseEntity.ok(allResults);
     }
 
+    @GetMapping("/prediction/{electionType}")
+    public ResponseEntity<?> getPrediction(@PathVariable String electionType) {
+        return ResponseEntity.ok(statisticsService.getPredictions(electionType));
+    }
+
     @GetMapping("/mandates/{electionId}")
     public ResponseEntity<Map<String, Integer>> getSejmResults(@PathVariable Integer electionId) {
         Map<String, Integer> results = statisticsService.distributeSejmMandates(electionId);
         return ResponseEntity.ok(results);
     }
 }
-

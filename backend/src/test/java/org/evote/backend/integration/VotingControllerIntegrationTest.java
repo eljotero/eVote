@@ -1,5 +1,8 @@
 package org.evote.backend.integration;
 
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.SSLConfig;
 import org.evote.backend.BackendApplication;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.services.VotingService;
@@ -18,6 +21,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.http.MediaType;
 
+import java.net.URL;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.*;
@@ -45,8 +49,18 @@ public class VotingControllerIntegrationTest {
 
     @BeforeEach
     public void setup() {
-        baseURI = "http://localhost";
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resourceURL = classLoader.getResource("keystore.p12");
+
+        RestAssured.config = RestAssuredConfig.newConfig().sslConfig(
+                new SSLConfig().trustStore(resourceURL.getPath(), "password")
+                        .and()
+                        .allowAllHostnames()
+        );
+
+        baseURI = "https://localhost";
         port(port);
+
         AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
         accountCreateDTO.setEmail("test@test.com");
         accountCreateDTO.setPassword("password1234");
@@ -84,22 +98,22 @@ public class VotingControllerIntegrationTest {
         accountService.deleteAccount(accountId);
     }
 
-//    @Test
-//    public void testVoteWithValidCode() {
-//        VotingCodeDTO votingCodeDTO = new VotingCodeDTO();
-//        votingCodeDTO.setCode("123456");
-//
-//        given()
-//                .port(port)
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                .header("Authorization", "Bearer " + token)
-//                .body(votingCodeDTO)
-//                .when()
-//                .post(BASE_PATH + "/" + accountId)
-//                .then()
-//                .statusCode(200)
-//                .body(not(empty()));
-//    }
+    @Test
+    public void testVoteWithValidCode() {
+        VotingCodeDTO votingCodeDTO = new VotingCodeDTO();
+        votingCodeDTO.setCode("123456");
+
+        given()
+                .port(port)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .header("Authorization", "Bearer " + token)
+                .body(votingCodeDTO)
+                .when()
+                .post(BASE_PATH + "/voteToken")
+                .then()
+                .statusCode(200)
+                .body(not(empty()));
+    }
 
 
     @Test
@@ -113,10 +127,11 @@ public class VotingControllerIntegrationTest {
                 .header("Authorization", "Bearer " + token)
                 .body(votingCodeDTO)
                 .when()
-                .post(BASE_PATH + "/" + accountId)
+                .post(BASE_PATH + "/voteToken")
                 .then()
-
-                .statusCode(401)
-                .body(equalTo("Invalid code"));
+                .statusCode(400)
+                .body("status", equalTo(400))
+                .body("message", equalTo("Provided code does not match the user's code"));
     }
+
 }

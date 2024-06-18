@@ -1,21 +1,22 @@
 package org.evote.backend.services;
 
 import lombok.RequiredArgsConstructor;
+import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
 import org.evote.backend.votes.enums.CityType;
+import org.evote.backend.votes.enums.ElectionType;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.entity.Vote;
 import org.evote.backend.votes.vote.repository.VoteRepository;
 import org.springframework.stereotype.Service;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 @Service
 @RequiredArgsConstructor
@@ -148,47 +149,48 @@ public class StatisticsService {
     }
 
 
-    public String getAgeGroup(int age) {
-        if (age >= 18 && age <= 29) {
-            return "18-29";
-        } else if (age >= 30 && age <= 39) {
-            return "30-39";
-        } else if (age >= 40 && age <= 49) {
-            return "40-49";
-        } else if (age >= 50 && age <= 59) {
-            return "50-59";
-        } else {
-            return "60+";
+    public Map<String, Integer> getPredictions(String electionType) {
+        Map<String, List<Integer>> partyVotes = new HashMap<>();
+        List<Election> allElections = electionRepository.findAll();
+        ElectionType type;
+        try {
+            type = ElectionType.valueOf(electionType);
+        } catch (IllegalArgumentException e) {
+            throw new ElectionNotFoundException("Election type not found");
         }
-    }
 
-    public void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
-        PoliticalParty party = vote.getCandidate().getPoliticalParty();
-        if (educationVotes.containsKey(education)) {
-            Map<String, Integer> partyVotes = educationVotes.get(education);
-            if (partyVotes.containsKey(party.getName())) {
-                partyVotes.put(party.getName(), partyVotes.get(party.getName()) + 1);
-            } else {
-                partyVotes.put(party.getName(), 1);
+        for (Election election : allElections) {
+            if (election.getType() == type) {
+                Integer electionId = election.getElectionId();
+                Map<String, Integer> electionResults = getResults(electionId);
+                for (Map.Entry<String, Integer> entry : electionResults.entrySet()) {
+                    String party = entry.getKey();
+                    Integer votes = entry.getValue();
+                    if (!partyVotes.containsKey(party)) {
+                        partyVotes.put(party, new ArrayList<>());
+                    }
+                    partyVotes.get(party).add(votes);
+                }
             }
-        } else {
-            Map<String, Integer> partyVotes = new HashMap<>();
-            partyVotes.put(party.getName(), 1);
-            educationVotes.put(education, partyVotes);
         }
-    }
 
-    public String convertSexToString(boolean sex) {
-        return sex ? "Mężczyzna" : "Kobieta";
-    }
+        Map<String, Integer> predictedResults = new HashMap<>();
+        for (Map.Entry<String, List<Integer>> entry : partyVotes.entrySet()) {
+            String party = entry.getKey();
+            List<Integer> votesList = entry.getValue();
 
-    private String convertCityTypeToString(CityType cityType) {
-        return switch (cityType) {
-            case OVER500THOUSAND -> "Powyżej 500 tysięcy";
-            case TWOHUNDREDTO500THOUSAND -> "Pomiędzy 200 a 500 tysięcy";
-            case FIFTYTOTWOHUNDREDTHOUSAND -> "Pomiędzy 50 a 200 tysięcy";
-            default -> "Poniżej 50 tysięcy";
-        };
+            SimpleRegression regression = new SimpleRegression();
+
+            for (int i = 0; i < votesList.size(); i++) {
+                regression.addData(i, votesList.get(i));
+            }
+
+            int predictedVotes = (int) Math.floor(regression.predict(votesList.size()));
+
+            predictedResults.put(party, predictedVotes);
+        }
+
+        return predictedResults;
     }
 
     public Map<String, Integer> distributeSejmMandates(Integer electionId) {
@@ -225,5 +227,48 @@ public class StatisticsService {
         return seats;
     }
 
+
+    private String getAgeGroup(int age) {
+        if (age >= 18 && age <= 29) {
+            return "18-29";
+        } else if (age >= 30 && age <= 39) {
+            return "30-39";
+        } else if (age >= 40 && age <= 49) {
+            return "40-49";
+        } else if (age >= 50 && age <= 59) {
+            return "50-59";
+        } else {
+            return "60+";
+        }
+    }
+
+    private void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
+        PoliticalParty party = vote.getCandidate().getPoliticalParty();
+        if (educationVotes.containsKey(education)) {
+            Map<String, Integer> partyVotes = educationVotes.get(education);
+            if (partyVotes.containsKey(party.getName())) {
+                partyVotes.put(party.getName(), partyVotes.get(party.getName()) + 1);
+            } else {
+                partyVotes.put(party.getName(), 1);
+            }
+        } else {
+            Map<String, Integer> partyVotes = new HashMap<>();
+            partyVotes.put(party.getName(), 1);
+            educationVotes.put(education, partyVotes);
+        }
+    }
+
+    private String convertSexToString(boolean sex) {
+        return sex ? "Mężczyzna" : "Kobieta";
+    }
+
+    private String convertCityTypeToString(CityType cityType) {
+        return switch (cityType) {
+            case OVER500THOUSAND -> "Powyżej 500 tysięcy";
+            case TWOHUNDREDTO500THOUSAND -> "Pomiędzy 200 a 500 tysięcy";
+            case FIFTYTOTWOHUNDREDTHOUSAND -> "Pomiędzy 50 a 200 tysięcy";
+            default -> "Poniżej 50 tysięcy";
+        };
+    }
 
 }

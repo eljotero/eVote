@@ -6,8 +6,6 @@ import CountdownForm from "@/app/components/Countdown/CountdownForm";
 
 
 export default function Candidates() {
-    const [votingCode, setVotingCode] = useState('');
-    const [showForm, setShowForm] = useState(false);
     const [candidates, setCandidates] = useState([]);
     const [elections, setElections] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('');
@@ -55,7 +53,7 @@ export default function Candidates() {
 
         fetchCandidates();
         fetchElections();
-    }, [selectedDistrict, selectedDistrict2]);
+    }, [selectedDistrict, selectedDistrict2, selectedRegion]);
 
     const handleShowPlan = (candidateId) => {
         const updatedCandidates = candidates.map((candidate) =>
@@ -271,13 +269,6 @@ export default function Candidates() {
         return parseInt(districtNumber);
     }
 
-    function getDistrictNumber2(districtLabel) {
-        let districtNumber;
-        districtNumber = parseInt(districtLabel.split(' ')[3]);
-        districtNumber = districtNumber + 41;
-        return districtNumber;
-    }
-
     const sejmCandidates = candidates.filter(
         (candidate) => candidate.election_id === 1
     );
@@ -294,18 +285,27 @@ export default function Candidates() {
                 <h1 className='text-4xl font-bold' style={{color: '#333'}}>Poznaj swoich kandydatów!</h1>
                 <h2 className='text-2xl font-bold' style={{color: '#555'}}>Region: {selectedRegion} </h2> {}
             </div>
-            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
-                <h1 className='text-1xl font-bold' style={{color: '#333'}}>
-                    Najbliższe wybory:{' '}
-                    {closestElectionNames
-                        ? closestElectionNames
-                        : 'Brak najbliższych wyborów'}
-                </h1>
-                {upcomingElectionStartDate && (
-                    <p style={{color: '#555'}}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
-                )}
-                <br/>
-                <CountdownForm initialCount={upcomingElectionStartDate}/>
+            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0'}}>
+            <table className="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th className="py-2">Nazwa Wyborów</th>
+                        <th className="py-2">Data Rozpoczęcia</th>
+                        <th className="py-2">Odliczanie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {elections.map((election, index) => (
+                        <tr key={election.election_id} className="text-center">
+                            <td className="py-2">{election.election_name}</td>
+                            <td className="py-2">{new Date(election.startDate).toLocaleDateString()}</td>
+                            <td className="py-2">
+                                <CountdownForm initialCount={new Date(election.startDate).toLocaleDateString()}/>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             </div>
             <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
@@ -313,12 +313,12 @@ export default function Candidates() {
                     onChange={(e) => setSelectedDistrict(e.target.value)}
                     className='form-select block w-full mt-1'
                     style={{borderRadius: '15px'}}
+                    id='district-select'
                 >
                     {selectedRegion &&
                         districtsByRegion[selectedRegion] &&
                         districtsByRegion[selectedRegion].map((district) => (
-                            // eslint-disable-next-line react/jsx-key
-                            <option value={district}>{district}</option>
+                            <option key={district} value={district}>{district}</option>
                         ))}
                 </select>
             </div>
@@ -337,11 +337,11 @@ export default function Candidates() {
                     onChange={(e) => setSelectedDistrict2(e.target.value)}
                     className='form-select block w-full mt-1'
                     style={{borderRadius: '15px'}}
+                    id='district-select2'
                 >
                     {selectedRegion &&
                         districtsByRegion2[selectedRegion].map((district) => (
-                            // eslint-disable-next-line react/jsx-key
-                            <option value={district}>{district}</option>
+                            <option key={district} value={district}>{district}</option>
                         ))}
                 </select>
             </div>

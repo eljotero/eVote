@@ -1,4 +1,4 @@
-package org.evote.backend.config;
+package org.evote.backend.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.evote.backend.users.account.AccountDetailService;

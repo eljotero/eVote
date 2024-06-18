@@ -6,6 +6,7 @@ import org.evote.backend.votes.address.repository.VotesAddressRepository;
 import org.evote.backend.votes.political_party.dtos.PoliticalPartyCreateDTO;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
+import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundException;
 import org.evote.backend.votes.political_party.repository.PoliticalPartyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -125,5 +126,48 @@ public class PoliticalPartyServiceTests {
         politicalParty.setName("Test");
         when(politicalPartyRepository.findByName("Test")).thenReturn(politicalParty);
         assertThrows(PoliticalPartyAlreadyExistsException.class, () -> politicalPartyService.addPoliticalParty(politicalPartyDTO));
+    }
+
+    @Test
+    public void testGetPoliticalPartyByIdNotFound() {
+        when(politicalPartyRepository.findById(1)).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> politicalPartyService.getPoliticalPartyById(1));
+    }
+
+    @Test
+    public void testAddPoliticalPartyAddressNotFound() {
+        PoliticalPartyCreateDTO politicalPartyDTO = new PoliticalPartyCreateDTO();
+        politicalPartyDTO.setName("Test");
+        politicalPartyDTO.setAddress_id(1);
+        when(politicalPartyRepository.findByName("Test")).thenReturn(null);
+        when(votesAddressRepository.findById(1)).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> politicalPartyService.addPoliticalParty(politicalPartyDTO));
+    }
+
+    @Test
+    public void testDeletePoliticalPartyNotFound() {
+        when(politicalPartyRepository.findById(1)).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> politicalPartyService.deletePoliticalParty(1));
+    }
+
+    @Test
+    public void testUpdatePoliticalPartyNotFound() {
+        PoliticalPartyCreateDTO politicalPartyDTO = new PoliticalPartyCreateDTO();
+        politicalPartyDTO.setName("Test");
+        politicalPartyDTO.setAddress_id(1);
+        when(politicalPartyRepository.findById(1)).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> politicalPartyService.updatePoliticalParty(1, politicalPartyDTO));
+    }
+
+    @Test
+    public void testUpdatePoliticalPartyAddressNotFound() {
+        PoliticalPartyCreateDTO politicalPartyDTO = new PoliticalPartyCreateDTO();
+        politicalPartyDTO.setName("Test");
+        politicalPartyDTO.setAddress_id(1);
+        PoliticalParty politicalParty = new PoliticalParty();
+        politicalParty.setPoliticalPartyId(1);
+        when(politicalPartyRepository.findById(1)).thenReturn(java.util.Optional.of(politicalParty));
+        when(votesAddressRepository.findById(1)).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> politicalPartyService.updatePoliticalParty(1, politicalPartyDTO));
     }
 }

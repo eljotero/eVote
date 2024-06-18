@@ -50,4 +50,13 @@ public class StatisticsControllerTests {
 
         assertEquals(ResponseEntity.ok(expectedResults), response);
     }
+
+    @Test
+    public void testGetPrediction() {
+        Map<String, Integer> test = new HashMap<>();
+        test.put("test", 1);
+        when(statisticsService.getPredictions("Senate")).thenReturn(test);
+        assertEquals(ResponseEntity.ok(test), statisticsController.getPrediction("Senate"));
+    }
+
 }
