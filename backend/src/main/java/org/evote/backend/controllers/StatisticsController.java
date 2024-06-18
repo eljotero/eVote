@@ -29,4 +29,11 @@ public class StatisticsController {
         allResults.put("resultsByCityType", statisticsService.getResultsByCityType(electionId));
         return ResponseEntity.ok(allResults);
     }
+
+    @GetMapping("/mandates/{electionId}")
+    public ResponseEntity<Map<String, Integer>> getSejmResults(@PathVariable Integer electionId) {
+        Map<String, Integer> results = statisticsService.distributeSejmMandates(electionId);
+        return ResponseEntity.ok(results);
+    }
 }
+

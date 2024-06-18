@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,7 +178,7 @@ public class StatisticsService {
         }
     }
 
-    private String convertSexToString(boolean sex) {
+    public String convertSexToString(boolean sex) {
         return sex ? "Mężczyzna" : "Kobieta";
     }
 
@@ -189,5 +190,40 @@ public class StatisticsService {
             default -> "Poniżej 50 tysięcy";
         };
     }
+
+    public Map<String, Integer> distributeSejmMandates(Integer electionId) {
+        if (electionRepository.findById(electionId).isEmpty()) {
+            throw new ElectionNotFoundException("Election with id " + electionId + " not found");
+        }
+
+        List<Vote> votes = voteRepository.findAll();
+        Map<String, Integer> partyVotes = new HashMap<>();
+        for (Vote vote : votes) {
+            if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
+                PoliticalParty party = vote.getCandidate().getPoliticalParty();
+                partyVotes.merge(party.getName(), 1, Integer::sum);
+            }
+        }
+
+        return calculateMandatesDHondt(partyVotes, 460);
+    }
+
+
+    public Map<String, Integer> calculateMandatesDHondt(Map<String, Integer> partyVotes, int totalSeats) {
+        Map<String, Integer> seats = new HashMap<>();
+        Map<String, Double> currentQuotients = new HashMap<>();
+        for (Map.Entry<String, Integer> entry : partyVotes.entrySet()) {
+            currentQuotients.put(entry.getKey(), entry.getValue().doubleValue());
+        }
+
+        for (int i = 0; i < totalSeats; i++) {
+            String maxParty = Collections.max(currentQuotients.entrySet(), Map.Entry.comparingByValue()).getKey();
+            seats.merge(maxParty, 1, Integer::sum);
+            currentQuotients.put(maxParty, partyVotes.get(maxParty) / (seats.get(maxParty) + 1.0));
+        }
+
+        return seats;
+    }
+
 
 }

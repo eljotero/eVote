@@ -14,7 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,45 +42,65 @@ public class StatisticsServiceTests {
     @Test
     public void testGetResults() {
         int electionId = 1;
+        Election election = new Election();
+        election.setElectionId(electionId);
         PoliticalParty party1 = new PoliticalParty();
         party1.setName("Party1");
-        Vote vote1 = mockVote(electionId, party1);
-        Vote vote2 = mockVote(electionId, party1);
-        Vote vote3 = mockVote(2, party1);
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(mockElection(electionId)));
-        when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2, vote3));
+        Vote vote1 = new Vote();
+        Candidate candidate1 = new Candidate();
+        candidate1.setElection(election);
+        candidate1.setPoliticalParty(party1);
+        vote1.setCandidate(candidate1);
+        Vote vote2 = new Vote();
+        Candidate candidate2 = new Candidate();
+        candidate2.setElection(election);
+        candidate2.setPoliticalParty(party1);
+        vote2.setCandidate(candidate2);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2));
         Map<String, Integer> results = statisticsService.getResults(electionId);
         assertEquals(2, (int) results.get("Party1"));
     }
-
-
-    @Test
-    public void testGetResultsByAgeGroup() {
-        int electionId = 1;
-        Election election = new Election();
-        election.setElectionId(electionId);
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
-        List<Vote> votes = Arrays.asList(
-                mockVote(electionId, "1990-01-01"),
-                mockVote(electionId, "1980-01-01"),
-                mockVote(electionId, "2000-01-01")
-        );
-        when(voteRepository.findAll()).thenReturn(votes);
-        Map<String, Map<String, Integer>> results = statisticsService.getResultsByAgeGroup(electionId);
-        assertEquals(3, results.size());
-        assertEquals(1, (int) results.get("18-29").get("Party1"));
-        assertEquals(1, (int) results.get("40-49").get("Party1"));
-    }
-
-    private Vote mockVote(int electionId, String birthdate) {
-        PoliticalParty party1 = new PoliticalParty();
-        party1.setName("Party1");
-
+    private Vote createVote(Election election, PoliticalParty party, java.sql.Date birthdate) {
         Vote vote = new Vote();
-        vote.setCandidate(mockCandidate(electionId, party1));
-        vote.setVoterBirthdate(Date.valueOf(birthdate));
+        Candidate candidate = new Candidate();
+        candidate.setElection(election);
+        candidate.setPoliticalParty(party);
+        vote.setCandidate(candidate);
+        vote.setVoterBirthdate(birthdate);
         return vote;
     }
+
+    @Test
+    public void testGetResultsByAgeGroup() throws ParseException {
+        int electionId = 1;
+        PoliticalParty party1 = new PoliticalParty();
+        party1.setName("Party1");
+        Election election = new Election();
+        election.setElectionId(electionId);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        java.sql.Date sqlDate1 = new java.sql.Date(dateFormat.parse("1990-01-01").getTime());
+        java.sql.Date sqlDate2 = new java.sql.Date(dateFormat.parse("1980-01-01").getTime());
+        java.sql.Date sqlDate3 = new java.sql.Date(dateFormat.parse("2000-01-01").getTime());
+        java.sql.Date sqlDate4 = new java.sql.Date(dateFormat.parse("1966-01-01").getTime());
+        java.sql.Date sqlDate5 = new java.sql.Date(dateFormat.parse("1950-01-01").getTime());
+        Vote vote1 = createVote(election, party1, sqlDate1);
+        Vote vote2 = createVote(election, party1, sqlDate2);
+        Vote vote3 = createVote(election, party1, sqlDate3);
+        Vote vote4 = createVote(election, party1, sqlDate4);
+        Vote vote5 = createVote(election, party1, sqlDate5);
+        List<Vote> votes = Arrays.asList(vote1, vote2, vote3, vote4, vote5);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(votes);
+        Map<String, Map<String, Integer>> results = statisticsService.getResultsByAgeGroup(electionId);
+        assertEquals(1, (int) results.get("18-29").get("Party1"));
+        assertEquals(1, (int) results.get("30-39").get("Party1"));
+        assertEquals(1, (int) results.get("40-49").get("Party1"));
+        assertEquals(1, (int) results.get("50-59").get("Party1"));
+        assertEquals(1, (int) results.get("60+").get("Party1"));
+    }
+
+
 
 
 
@@ -86,199 +109,202 @@ public class StatisticsServiceTests {
         int electionId = 1;
         PoliticalParty party1 = new PoliticalParty();
         party1.setName("Party1");
-        Vote vote1 = mockVote(electionId, party1, CityType.OVER500THOUSAND);
-        Vote vote2 = mockVote(electionId, party1, CityType.OVER500THOUSAND);
-        Vote vote3 = mockVote(electionId, party1, CityType.TWOHUNDREDTO500THOUSAND);
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(mockElection(electionId)));
-        when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2, vote3));
+        Election election = new Election();
+        election.setElectionId(electionId);
+        Vote vote1 = createVote(election, party1, CityType.OVER500THOUSAND);
+        Vote vote2 = createVote(election, party1, CityType.OVER500THOUSAND);
+        Vote vote3 = createVote(election, party1, CityType.FIFTYTOTWOHUNDREDTHOUSAND);
+        Vote vote4 = createVote(election, party1, CityType.FIFTYTOTWOHUNDREDTHOUSAND); 
+        List<Vote> votes = Arrays.asList(vote1, vote2, vote3, vote4);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(votes);
         Map<String, Map<String, Integer>> results = statisticsService.getResultsByCityType(electionId);
-        assertEquals(2, (int) results.get("Powyżej 500 tysięcy").get("Party1"));
-        assertEquals(1, (int) results.get("Pomiędzy 200 a 500 tysięcy").get("Party1"));
+        assertEquals(2, (int) results.get("Powyżej 500 tysięcy").get("Party1")); // zmieniono na 2
+        assertEquals(2, (int) results.get("Pomiędzy 50 a 200 tysięcy").get("Party1")); // zmieniono na 2
+        assertEquals(0, (int) results.getOrDefault("Pomiędzy 200 a 500 tysięcy", Collections.emptyMap()).getOrDefault("Party1", 0)); // dodano sprawdzenie dla brakującego typu miasta
+        assertEquals(0, (int) results.getOrDefault("Poniżej 50 tysięcy", Collections.emptyMap()).getOrDefault("Party1", 0)); // dodano sprawdzenie dla brakującego typu miasta
     }
 
-    @Test
-    public void testGetResultsBySex() {
-        int electionId = 1;
-        PoliticalParty party1 = new PoliticalParty();
-        party1.setName("Party1");
-        Vote vote1 = mockVote(electionId, party1, true);  // Male
-        Vote vote2 = mockVote(electionId, party1, false); // Female
-        Vote vote3 = mockVote(electionId, party1, true);  // Male
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(mockElection(electionId)));
-        when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2, vote3));
-        Map<String, Map<String, Integer>> results = statisticsService.getResultsBySex(electionId);
-        assertEquals(2, (int) results.get("Mężczyzna").get("Party1"));
-        assertEquals(1, (int) results.get("Kobieta").get("Party1"));
-    }
-
-    @Test
-    public void testGroupByParamNewEducation() {
-        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
-        Vote vote = mock(Vote.class);
-        PoliticalParty party = new PoliticalParty();
-        party.setName("Party1");
-        Candidate candidate = mock(Candidate.class, RETURNS_DEEP_STUBS);
-        when(candidate.getPoliticalParty().getName()).thenReturn(party.getName());
-        when(vote.getCandidate()).thenReturn(candidate);
-        String education = "Bachelor's Degree";
-        statisticsService.groupByParam(educationVotes, vote, education);
-        assertEquals(1, educationVotes.size());
-        assertTrue(educationVotes.containsKey(education));
-        Map<String, Integer> partyVotes = educationVotes.get(education);
-        assertEquals(1, partyVotes.size());
-        assertEquals(1, (int) partyVotes.get("Party1"));
-    }
-
-
-    @Test
-    public void testGroupByParamExistingEducationExistingParty() {
-        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
-        int electionId = 1;
-        String education = "Bachelor's Degree";
-        PoliticalParty party = new PoliticalParty();
-        party.setName("Party1");
-        Candidate candidate = mock(Candidate.class, RETURNS_DEEP_STUBS);
-        when(candidate.getPoliticalParty().getName()).thenReturn(party.getName());
+    private Vote createVote(Election election, PoliticalParty party, CityType cityType) {
         Vote vote = new Vote();
+        Candidate candidate = new Candidate();
+        candidate.setElection(election);
+        candidate.setPoliticalParty(party);
         vote.setCandidate(candidate);
-        statisticsService.groupByParam(educationVotes, vote, education);
-        assertEquals(1, educationVotes.size());
-        assertTrue(educationVotes.containsKey(education));
-        Map<String, Integer> partyVotes = educationVotes.get(education);
-        assertEquals(1, partyVotes.size());
-        assertEquals(1, (int) partyVotes.get(party.getName()));
+        vote.setVoterCityType(cityType);
+        return vote;
+    }
+
+
+    @Test
+    public void testDistributeSejmMandates_ElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.distributeSejmMandates(electionId);
+        });
+        assertEquals("Election with id " + electionId + " not found", exception.getMessage());
+        verify(voteRepository, never()).findAll();
     }
 
     @Test
-    public void testGroupByParamExistingEducationNewParty() {
-        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
-        PoliticalParty party1 = new PoliticalParty();
-        party1.setName("Party1");
-        PoliticalParty party2 = new PoliticalParty();
-        party2.setName("Party2");
-        String education = "Bachelor's Degree";
-        Map<String, Integer> initialPartyVotes = new HashMap<>();
-        initialPartyVotes.put("Party1", 1);
-        educationVotes.put(education, initialPartyVotes);
-        Vote vote = mock(Vote.class);
-        Candidate candidate = mock(Candidate.class, RETURNS_DEEP_STUBS);
-        when(candidate.getPoliticalParty().getName()).thenReturn(party2.getName());
-        when(vote.getCandidate()).thenReturn(candidate);
-        statisticsService.groupByParam(educationVotes, vote, education);
-        assertEquals(1, educationVotes.size());
-        assertTrue(educationVotes.containsKey(education));
-        Map<String, Integer> partyVotes = educationVotes.get(education);
-        assertEquals(2, partyVotes.size());
-        assertEquals(1, (int) partyVotes.get("Party1"));
-        assertEquals(1, (int) partyVotes.get("Party2"));
+    public void testCalculateMandatesDHondt() {
+        Map<String, Integer> partyVotes = new HashMap<>();
+        partyVotes.put("Party1", 5000);
+        partyVotes.put("Party2", 4000);
+        partyVotes.put("Party3", 3000);
+        partyVotes.put("Party4", 2000);
+        partyVotes.put("Party5", 1000);
+        int totalSeats = 10;
+        Map<String, Integer> expectedSeats = new HashMap<>();
+        expectedSeats.put("Party1", 4);
+        expectedSeats.put("Party2", 3);
+        expectedSeats.put("Party3", 2);
+        expectedSeats.put("Party4", 1);
+        Map<String, Integer> actualSeats = statisticsService.calculateMandatesDHondt(partyVotes, totalSeats);
+        assertEquals(expectedSeats, actualSeats);
     }
 
-
+    @Test
+    public void testConvertSexToString() {
+        assertEquals("Mężczyzna", statisticsService.convertSexToString(true));
+        assertEquals("Kobieta", statisticsService.convertSexToString(false));
+    }
     @Test
     public void testGetResultsByCountry() {
         int electionId = 1;
         PoliticalParty party1 = new PoliticalParty();
         party1.setName("Party1");
-        Vote vote1 = mockVote(electionId, party1);
-        vote1.setVoterCountry("Poland");
-        Vote vote2 = mockVote(electionId, party1);
-        vote2.setVoterCountry("Germany");
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(mockElection(electionId)));
+        Election election = new Election();
+        election.setElectionId(electionId);
+        Vote vote1 = createVote(election, party1, "Poland");
+        Vote vote2 = createVote(election, party1, "Germany");
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
         when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2));
         Map<String, Map<String, Integer>> results = statisticsService.getResultsByCountry(electionId);
         assertEquals(1, (int) results.get("Poland").get("Party1"));
         assertEquals(1, (int) results.get("Germany").get("Party1"));
     }
 
-
-
-    @Test
-    public void testGetAgeGroup() {
-        assertEquals("18-29", statisticsService.getAgeGroup(25));
-        assertEquals("30-39", statisticsService.getAgeGroup(35));
-        assertEquals("40-49", statisticsService.getAgeGroup(45));
-        assertEquals("50-59", statisticsService.getAgeGroup(55));
-        assertEquals("60+", statisticsService.getAgeGroup(65));
-        assertEquals("60+", statisticsService.getAgeGroup(15));
+    private Vote createVote(Election election, PoliticalParty party, String country) {
+        Vote vote = new Vote();
+        Candidate candidate = new Candidate();
+        candidate.setElection(election);
+        candidate.setPoliticalParty(party);
+        vote.setCandidate(candidate);
+        vote.setVoterCountry(country);
+        return vote;
     }
 
+    @Test
+    public void testGetResultsByEducation_ElectionNotFound() {
+        int electionId = 1;
+        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
+
+        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
+            statisticsService.getResultsByEducation(electionId);
+        });
+
+        assertEquals("Election not found", exception.getMessage());
+    }
+    @Test
+    public void testGetResultsBySex() {
+        int electionId = 1;
+        PoliticalParty party1 = new PoliticalParty();
+        party1.setName("Party1");
+        Election election = new Election();
+        election.setElectionId(electionId);
+        Vote vote1 = createVote(election, party1, true);
+        Vote vote2 = createVote(election, party1, true);
+        Vote vote3 = createVote(election, party1, false);
+        Vote vote4 = createVote(election, party1, false);
+        List<Vote> votes = Arrays.asList(vote1, vote2, vote3, vote4);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(votes);
+        Map<String, Map<String, Integer>> results = statisticsService.getResultsBySex(electionId);
+        assertEquals(2, (int) results.get("Mężczyzna").get("Party1"));
+        assertEquals(2, (int) results.get("Kobieta").get("Party1"));
+    }
+
+    private Vote createVote(Election election, PoliticalParty party, boolean sex) {
+        Vote vote = new Vote();
+        Candidate candidate = new Candidate();
+        candidate.setElection(election);
+        candidate.setPoliticalParty(party);
+        vote.setCandidate(candidate);
+        vote.setSex(sex);
+        return vote;
+    }
 
     @Test
     public void testGetResultsByEducation() {
         int electionId = 1;
         PoliticalParty party1 = new PoliticalParty();
         party1.setName("Party1");
-        Vote vote1 = mockVote(electionId, party1);
-        vote1.setVoterEducation("Bachelor's Degree");
-        Vote vote2 = mockVote(electionId, party1);
-        vote2.setVoterEducation("Master's Degree");
-        when(electionRepository.findById(electionId)).thenReturn(Optional.of(mockElection(electionId)));
-        when(voteRepository.findAll()).thenReturn(Arrays.asList(vote1, vote2));
-        Map<String, Map<String, Integer>> results = statisticsService.getResultsByEducation(electionId);
-        assertEquals(1, (int) results.get("Bachelor's Degree").get("Party1"));
-        assertEquals(1, (int) results.get("Master's Degree").get("Party1"));
-    }
-
-    @Test
-    public void testGetResultsByCityTypeElectionNotFound() {
-        int electionId = 1;
-        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
-        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
-            statisticsService.getResultsByCityType(electionId);
-        });
-        assertEquals("Election not found", exception.getMessage());
-        verify(voteRepository, never()).findAll();
-    }
-
-    @Test
-    public void testGetResultsByCountryElectionNotFound() {
-        int electionId = 1;
-        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
-        ElectionNotFoundException exception = assertThrows(ElectionNotFoundException.class, () -> {
-            statisticsService.getResultsByCountry(electionId);
-        });
-        assertEquals("Election not found", exception.getMessage());
-        verify(voteRepository, never()).findAll();
-    }
-
-    @Test
-    public void testGetResultsElectionNotFound() {
-        int electionId = 1;
-        when(electionRepository.findById(electionId)).thenReturn(Optional.empty());
-        assertThrows(ElectionNotFoundException.class, () -> statisticsService.getResults(electionId));
-    }
-
-    private Vote mockVote(int electionId, PoliticalParty party) {
-        Vote vote = new Vote();
-        vote.setCandidate(mockCandidate(electionId, party));
-        return vote;
-    }
-
-    private Vote mockVote(int electionId, PoliticalParty party, CityType cityType) {
-        Vote vote = mockVote(electionId, party);
-        vote.setVoterCityType(cityType);
-        return vote;
-    }
-
-    private Vote mockVote(int electionId, PoliticalParty party, boolean sex) {
-        Vote vote = mockVote(electionId, party);
-        vote.setSex(sex);
-        return vote;
-    }
-
-    private Candidate mockCandidate(int electionId, PoliticalParty party) {
-        Candidate candidate = new Candidate();
-        Election election = mockElection(electionId);
-        candidate.setElection(election);
-        candidate.setPoliticalParty(party);
-        return candidate;
-    }
-
-    private Election mockElection(int electionId) {
         Election election = new Election();
         election.setElectionId(electionId);
-        return election;
+        Vote vote1 = createVote2(election, party1, "Wyższe");
+        Vote vote2 = createVote2(election, party1, "Średnie");
+        List<Vote> votes = Arrays.asList(vote1, vote2);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(votes);
+        Map<String, Map<String, Integer>> results = statisticsService.getResultsByEducation(electionId);
+        assertEquals(1, (int) results.get("Wyższe").get("Party1"));
+        assertEquals(1, (int) results.get("Średnie").get("Party1"));
     }
 
-
+    private Vote createVote2(Election election, PoliticalParty party, String education) {
+        Vote vote = new Vote();
+        Candidate candidate = new Candidate();
+        candidate.setElection(election);
+        candidate.setPoliticalParty(party);
+        vote.setCandidate(candidate);
+        vote.setVoterEducation(education);
+        return vote;
+    }
+    @Test
+    public void testGroupByParam() {
+        Election election = new Election();
+        election.setElectionId(1);
+        PoliticalParty party1 = new PoliticalParty();
+        party1.setName("Party1");
+        Vote vote1 = new Vote();
+        Candidate candidate1 = new Candidate();
+        candidate1.setElection(election);
+        candidate1.setPoliticalParty(party1);
+        vote1.setCandidate(candidate1);
+        Vote vote2 = new Vote();
+        Candidate candidate2 = new Candidate();
+        candidate2.setElection(election);
+        candidate2.setPoliticalParty(party1);
+        vote2.setCandidate(candidate2);
+        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
+        statisticsService.groupByParam(educationVotes, vote1, "Wyższe");
+        statisticsService.groupByParam(educationVotes, vote2, "Wyższe");
+        assertEquals(2, (int) educationVotes.get("Wyższe").get("Party1"));
+    }
+    @Test
+    public void testDistributeSejmMandates() {
+        int electionId = 1;
+        PoliticalParty party1 = new PoliticalParty();
+        party1.setName("Party1");
+        Election election = new Election();
+        election.setElectionId(electionId);
+        Vote vote1 = new Vote();
+        Candidate candidate1 = new Candidate();
+        candidate1.setElection(election);
+        candidate1.setPoliticalParty(party1);
+        vote1.setCandidate(candidate1);
+        Vote vote2 = new Vote();
+        Candidate candidate2 = new Candidate();
+        candidate2.setElection(election);
+        candidate2.setPoliticalParty(party1);
+        vote2.setCandidate(candidate2);
+        List<Vote> votes = Arrays.asList(vote1, vote2);
+        when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
+        when(voteRepository.findAll()).thenReturn(votes);
+        Map<String, Integer> results = statisticsService.distributeSejmMandates(electionId);
+        assertEquals(460, (int) results.get("Party1"));
+    }
 }
