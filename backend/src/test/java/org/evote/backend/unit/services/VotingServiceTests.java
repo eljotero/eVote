@@ -6,6 +6,10 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.users.address.entity.Address;
+import org.evote.backend.users.enums.CityType;
+import org.evote.backend.users.enums.Education;
+import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
@@ -16,6 +20,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,6 +114,17 @@ public class VotingServiceTests {
 
     @Test
     public void testGenerateVotingToken() {
+        user.setSex(true);
+        user.setAddress(new Address());
+        user.setPrecincts(new ArrayList<Precinct>());
+        user.setName("Test Name");
+        user.setSurname("Test Surname");
+        user.setBirthDate(new java.util.Date());
+        user.setPersonalIdNumber("Test ID Number");
+        user.setEducation(Education.SECONDARY);
+        user.setCityType(CityType.OVER500THOUSAND);
+        user.setProfession("Test Profession");
+
         when(accountRepository.findById(id)).thenReturn(Optional.of(account));
         when(jwtService.generateVotingToken(account)).thenReturn("newVotingToken");
 
