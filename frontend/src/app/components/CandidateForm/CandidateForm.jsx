@@ -65,6 +65,7 @@ export default function CandidateForm({ candidate, onVote }) {
         <button
           onClick={handleShowPlan}
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          id='showPlanButton'
         >
           {showPlan ? 'Hide Plan' : 'Pokaż plan polityczny'}
         </button>
@@ -76,6 +77,7 @@ export default function CandidateForm({ candidate, onVote }) {
               <button
                 onClick={handleShowPlan}
                 className='mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                id='closePlanButton'
               >
                 Zamknij
               </button>
