@@ -88,5 +88,9 @@ describe('User Register and Login E2E Tests', () => {
         cy.get('#city').should('have.value', 'Łódź');
     })
 
+    it ('can logout', () => {
+        cy.get('nav').contains('Wyloguj').click({ force: true });
+        cy.url().should('include', '/');
+    })
 
   });
