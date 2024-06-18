@@ -5,6 +5,7 @@ import {toast} from "react-hot-toast";
 import {setVotingToken} from "@/store/votingTokenSlice";
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
 import axios from "../../../../lib/axios";
+import Image from "next/image";
 
 export default function Vote() {
     const id = useSelector((state) => state.id.value);
@@ -152,7 +153,6 @@ export default function Vote() {
         const selectedCandidateElection = candidates.find(candidate => candidate.candidate_id === candidateId);
         const electionStartDate = new Date(selectedCandidateElection.startDate);
     
-        // Sprawdzamy, czy elekcja się już rozpoczęła
         if (new Date() < electionStartDate) {
             return;
         }
@@ -223,7 +223,7 @@ export default function Vote() {
                             key={candidate.candidate_id}
                             className='p-2 bg-white shadow-md rounded-xl'
                         >
-                            <img src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} className="w-full max-h-100 object-cover rounded-t-xl" />
+                            <Image src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} width={500} height={200} className="rounded-t-xl" />
                             <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2> 
                             <p className='text-md'>{candidate.education}</p> 
                             <p className='text-md'>{candidate.profession}</p> 

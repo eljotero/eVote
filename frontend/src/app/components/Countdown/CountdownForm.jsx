@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CountdownForm({ initialCount }) {
-
-    
     const parseDate = (dateStr) => {
         if (typeof dateStr !== 'string') {
             return null;
@@ -14,13 +12,13 @@ export default function CountdownForm({ initialCount }) {
 
     const targetDate = parseDate(initialCount);
 
-    const calculateCountdown = () => {
+    const calculateCountdown = useCallback(() => {
         if (!targetDate) {
             return 0;
         }
 
         return Math.floor((targetDate - new Date()) / 1000);
-    };
+    }, [targetDate]);
 
     const [countdown, setCountdown] = useState(calculateCountdown());
 
@@ -35,7 +33,7 @@ export default function CountdownForm({ initialCount }) {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [initialCount]);
+    }, [calculateCountdown]);
 
     if (countdown <= 0) {
         return (
@@ -60,10 +58,10 @@ export default function CountdownForm({ initialCount }) {
         <div className="flex justify-center items-center relative">
             <div className="text-center">
                 <h2 className="text-black">
-                    <span className=" mr-1">{days} dni </span> 
-                    <span className=" mr-1">{hours} godzin </span>
-                    <span className=" mr-1">{minutes} minut </span> 
-                    <span className=" mr-1">{seconds} sekund </span> 
+                    <span className="mr-1">{days} dni </span>
+                    <span className="mr-1">{hours} godzin </span>
+                    <span className="mr-1">{minutes} minut </span>
+                    <span className="mr-1">{seconds} sekund </span>
                 </h2>
             </div>
         </div>

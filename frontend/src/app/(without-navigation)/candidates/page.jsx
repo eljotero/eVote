@@ -318,7 +318,7 @@ export default function Candidates() {
                     {selectedRegion &&
                         districtsByRegion[selectedRegion] &&
                         districtsByRegion[selectedRegion].map((district) => (
-                            <option value={district}>{district}</option>
+                            <option key={district} value={district}>{district}</option>
                         ))}
                 </select>
             </div>
@@ -341,7 +341,7 @@ export default function Candidates() {
                 >
                     {selectedRegion &&
                         districtsByRegion2[selectedRegion].map((district) => (
-                            <option value={district}>{district}</option>
+                            <option key={district} value={district}>{district}</option>
                         ))}
                 </select>
             </div>
