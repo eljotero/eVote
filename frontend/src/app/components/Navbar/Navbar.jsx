@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -34,7 +33,8 @@ export default function Navbar() {
                     href='/'
                     aria-label='Strona główna'
                 >
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
+                    <span
+                        className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
                         eVote
                     </span>
                 </a>
@@ -50,7 +50,8 @@ export default function Navbar() {
                             xmlns='http://www.w3.org/2000/svg'
                         >
                             <title>Menu mobilne</title>
-                            <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'></path>
+                            <path
+                                d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'></path>
                         </svg>
                     </button>
                 </div>
@@ -143,6 +144,15 @@ export default function Navbar() {
                             Zagłosuj
                         </Link>
                     </li>
+                    <li className='mb-1'>
+                        <Link
+                            className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                            href='/stats'
+                            aria-label='Aktualne statystyki'
+                        >
+                            Aktualne statystyki
+                        </Link>
+                    </li>
                     <li className='text-gray-300'>
                         <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -219,7 +229,8 @@ export default function Navbar() {
                 className={`navbar-menu relative z-50 ${isMenuOpen ? '' : 'hidden'}`}
                 aria-label='Menu mobilne'
             >
-                <div className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-25'></div>
+                <div
+                    className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-25'></div>
                 <nav
                     className='fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto'
                     aria-label='Nawigacja mobilna'
@@ -230,7 +241,8 @@ export default function Navbar() {
                             href='/'
                             aria-label='Strona główna'
                         >
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
+                            <span
+                                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500">
                                  eVote
                             </span>
                         </a>
@@ -300,6 +312,15 @@ export default function Navbar() {
                                     aria-label='Informacje'
                                 >
                                     Informacje
+                                </Link>
+                            </li>
+                            <li className='mb-1'>
+                                <Link
+                                    className='block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded'
+                                    href='/stats'
+                                    aria-label='Aktualne statystyki'
+                                >
+                                    Aktualne statystyki
                                 </Link>
                             </li>
                             {token ? (

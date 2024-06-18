@@ -50,4 +50,16 @@ public class PoliticalPartyController {
         PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO);
         return ResponseEntity.ok(PoliticalPartyMapper.toPolitical_partyDTO(politicalParty));
     }
+    @GetMapping("/{id}/name")
+    public ResponseEntity<String> getPoliticalPartyNameById(@PathVariable Integer id) {
+        PoliticalParty politicalParty = politicalPartyService.getPoliticalPartyById(id);
+        if (politicalParty != null) {
+            return ResponseEntity.ok(politicalParty.getName());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 }

@@ -613,3 +613,454 @@ VALUES (
            '174857a5-cb83-413c-bfe6-f652e66c4923'
        )
     ON CONFLICT (candidateid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (1,true, '10:34:56', '2024-06-015', 0, 'Polska', 'wyższe', 1)
+    ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (2,true, '10:34:56', '2024-06-015', 2, 'Polska', 'średnie', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (3,true, '10:34:56', '2024-06-015', 2, 'Polska', 'podstawowe', 3)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (4,true, '10:34:56', '2024-06-015', 2, 'Polska', 'wyższe', 4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (5, false, '08:25:47', '1988-02-28', 1, 'Polska', 'średnie', 5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (6, true, '16:05:38', '1995-07-17', 2, 'Polska', 'podstawowe', 6)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (7, false, '12:30:22', '1982-09-30', 3, 'Polska', 'wyższe', 7)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (8, true, '15:12:18', '1991-05-10', 3, 'Polska', 'średnie', 8)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (9, false, '10:45:50', '1984-08-25', 1, 'Polska', 'podstawowe', 9)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (10, true, '11:55:33', '1976-04-14', 2, 'Polska', 'wyższe', 10)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (11, false, '09:05:12', '1980-01-06', 3, 'Polska', 'średnie', 11)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (12, true, '14:30:45', '1993-03-18', 0, 'Polska', 'podstawowe', 12)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (13, false, '16:40:27', '1987-10-21', 1, 'Polska', 'wyższe', 13)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (14, true, '12:15:36', '1975-07-12', 2, 'Polska', 'średnie', 14)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (15, false, '08:50:48', '1994-06-03', 3, 'Polska', 'podstawowe', 15)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (16, true, '17:20:59', '1989-02-11', 0, 'Polska', 'wyższe', 16)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (17, false, '11:05:12', '1977-05-29', 1, 'Polska', 'średnie', 17)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (18, true, '13:40:23', '1986-09-18', 2, 'Polska', 'podstawowe', 18)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (19, false, '10:15:48', '1992-11-14', 3, 'Polska', 'wyższe', 19)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (20, true, '14:10:36', '1983-08-09', 3, 'Polska', 'średnie', 20)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (21, false, '09:25:17', '1979-04-23', 1, 'Polska', 'podstawowe', 21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (22, true, '15:30:29', '1990-07-06', 2, 'Polska', 'wyższe', 22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (23, false, '12:45:38', '1996-12-17', 3, 'Polska', 'średnie', 23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (24, true, '08:05:42', '1981-01-19', 1, 'Polska', 'podstawowe', 24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (25, false, '13:20:13', '1985-06-25', 1, 'Polska', 'wyższe', 25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (26, true, '16:50:31', '1993-10-08', 2, 'Polska', 'średnie', 26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (27, true, '16:50:31', '1993-10-08', 1, 'Polska', 'wyższe', 25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (28, true, '16:50:31', '1993-10-08', 1, 'Polska', 'podstawowe', 22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (29, true, '16:50:31', '1993-10-08', 0, 'Polska', 'wyższe', 23)
+ON CONFLICT (voteid) DO NOTHING;
+
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (30, false, '16:50:31', '1953-10-08', 2, 'Niemcy', 'podstawowe', 23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (31, false, '16:50:31', '1956-10-08', 2, 'Irlandia', 'wyższe', 22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (32, false, '16:50:31', '1996-10-08', 3, 'Niemcy', 'wyższe', 26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (33, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'średnie', 25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (33, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'średnie', 24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (34, true, '16:50:31', '1956-10-08', 1, 'Irlandia', 'średnie', 4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (35, false, '16:50:31', '1956-10-08', 3, 'Niemcy', 'średnie', 5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (36, false, '16:50:31', '2000-10-08', 2, 'Irlandia', 'podstawowe', 2)
+ON CONFLICT (voteid) DO NOTHING;
+
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (37, false, '16:50:31', '2000-10-08', 2, 'Polska', 'podstawowe', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (38, true, '16:50:31', '2000-10-08', 2, 'Polska', 'podstawowe', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (39, true, '16:50:31', '2001-10-08', 2, 'Polska', 'podstawowe', 2)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (40, true, '16:50:31', '1951-10-08', 2, 'Niemcy', 'podstawowe', 3)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (41, true, '16:50:31', '1971-10-08', 2, 'Irlandia', 'wyższe', 5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (42, true, '16:50:31', '2000-10-08', 2, 'Irlandia', 'wyższe', 4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (43, true, '16:50:31', '1952-10-08', 2, 'Polska', 'wyższe', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (44, true, '16:50:31', '1952-10-08', 0, 'Polska', 'wyższe', 2)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (45, true, '16:50:31', '1952-10-08', 0, 'Polska', 'wyższe', 3)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (46, true, '16:50:31', '1952-10-08', 3, 'Polska', 'wyższe', 4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (47, true, '16:50:31', '1952-10-08', 3, 'Polska', 'wyższe', 4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (48, true, '16:50:31', '1952-10-08', 3, 'Polska', 'wyższe', 5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (49, true, '16:50:31', '1952-10-08', 3, 'Irlandia', 'wyższe', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (50, true, '16:50:31', '1952-10-08', 3, 'Niemcy', 'wyższe', 2)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (51, true, '16:50:31', '1968-10-08', 3, 'Polska', 'podstawowe', 1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (52, false, '16:50:31', '1968-10-08', 3, 'Irlandia', 'wyższe', 2)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (53, true, '16:50:31', '1968-10-08', 3, 'Polska', 'wyższe', 3)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (54, false, '16:50:31', '1968-10-08', 2, 'Polska', 'wyższe', 3)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (55, false, '16:50:31', '1968-10-08', 0, 'Polska', 'podstawowe',4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (56, false, '16:50:31', '1968-10-08', 0, 'Irlandia', 'średnie',5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (57, false, '16:50:31', '1978-10-08', 2, 'Polska', 'średnie',4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (58, false, '16:50:31', '1978-10-08', 2, 'Niemcy', 'średnie',4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (59, false, '16:50:31', '1978-10-08', 3, 'Irlandia', 'wyższe',5)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (60, false, '16:50:31', '1978-10-08', 3, 'Polska', 'podstawowe',1)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (61, false, '16:50:31', '1978-10-08', 3, 'Polska', 'średnie',3)
+ON CONFLICT (voteid) DO NOTHING;
+
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (62, false, '16:50:31', '1978-10-08', 3, 'Polska', 'średnie',4)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (63, false, '16:50:31', '2000-10-08', 3, 'Polska', 'średnie',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (64, true, '16:50:31', '2000-10-08', 0, 'Irlandia', 'średnie',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (65, true, '16:50:31', '2000-10-08', 1, 'Polska', 'wyższe',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (66, true, '16:50:31', '2000-10-08', 2, 'Polska', 'wyższe',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (67, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'średnie',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (68, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'średnie',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (69, true, '16:50:31', '1950-10-08', 0, 'Polska', 'wyższe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (70, true, '16:50:31', '1955-10-08', 1, 'Polska', 'podstawowe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (71, true, '16:50:31', '1955-10-08', 2, 'Niemcy', 'średnie',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (72, true, '16:50:31', '1955-10-08', 3, 'Polska', 'wyższe',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (73, false, '16:50:31', '1955-10-08', 0, 'Polska', 'średnie',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (74, false, '16:50:31', '1958-10-08', 1, 'Polska', 'podstawowe',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (75, false, '16:50:31', '1958-10-08', 2, 'Polska', 'podstawowe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (76, false, '16:50:31', '1958-10-08', 3, 'Niemcy', 'wyższe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (77, true, '16:50:31', '1958-10-08', 1, 'Irlandia', 'wyższe',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (78, true, '16:50:31', '1989-10-08', 0, 'Irlandia', 'wyższe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (79, false, '16:50:31', '1989-10-08', 1, 'Polska', 'podstawowe',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (80, false, '16:50:31', '1989-10-08', 2, 'Polska', 'średnie',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (81, true, '16:50:31', '1989-10-08', 3, 'Polska', 'wyższe',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (82, false, '16:50:31', '1989-10-08', 3, 'Polska', 'wyższe',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (83, true, '16:50:31', '1989-10-08', 0, 'Polska', 'podstawowe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (84, true, '16:50:31', '1989-10-08', 1, 'Irlandia', 'wyższe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (85, true, '16:50:31', '1989-10-08', 0, 'Polska', 'wyższe',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (86, true, '16:50:31', '1989-10-08', 0, 'Niemcy', 'średnie',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (87, true, '16:50:31', '1989-10-08', 0, 'Polska', 'wyższe',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (88, false, '16:50:31', '1989-10-08', 0, 'Polska', 'wyższe',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (89, true, '16:50:31', '1989-10-08', 2, 'Polska', 'wyższe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (90, true, '16:50:31', '1989-10-08', 3, 'Polska', 'podstawowe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (91, false, '16:50:31', '1989-10-08', 0, 'Polska', 'wyższe',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (92, true, '16:50:31', '1989-10-08', 1, 'Polska', 'podstawowe',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (93, true, '16:50:31', '1989-10-08', 2, 'Irlandia', 'wyższe',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (94, true, '16:50:31', '1989-10-08', 3, 'Polska', 'wyższe',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (95, true, '16:50:31', '1989-10-08', 1, 'Niemcy', 'podstawowe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (96, true, '16:50:31', '1979-10-08', 2, 'Polska', 'podstawowe',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (97, true, '16:50:31', '1979-10-08', 3, 'Polska', 'wyższe',22)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (98, false, '16:50:31', '1979-10-08', 0, 'Polska', 'wyższe',23)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (99, false, '16:50:31', '1979-10-08', 1, 'Polska', 'średnie',24)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (100, false, '16:50:31', '1979-10-08', 2, 'Polska', 'wyższe',25)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (101, false, '16:50:31', '1979-10-08', 3, 'Polska', 'wyższe',26)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (102, true, '16:50:31', '1979-10-08', 0, 'Polska', 'wyższe',15)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (103, true, '16:50:31', '1950-10-08', 1, 'Niemcy', 'podstawowe',16)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (104, false, '16:50:31', '1950-10-08', 2, 'Polska', 'podstawowe',17)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (105, false, '16:50:31', '1950-10-08', 3, 'Polska', 'podstawowe',18)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (106, true, '16:50:31', '1950-10-08', 3, 'Polska', 'podstawowe',18)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (107, true, '16:50:31', '1950-10-08', 3, 'Polska', 'podstawowe',19)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (108, true, '16:50:31', '1950-10-08', 0, 'Polska', 'wyższe',20)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (109, true, '16:50:31', '1950-10-08', 1, 'Polska', 'średnie',21)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (110, true, '16:50:31', '2000-10-08', 1, 'Polska', 'wyższe',7)
+ON CONFLICT (voteid) DO NOTHING;
+
+INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
+VALUES (111, false, '16:50:31', '2000-10-08', 2, 'Polska', 'wyższe',8)
+ON CONFLICT (voteid) DO NOTHING;
