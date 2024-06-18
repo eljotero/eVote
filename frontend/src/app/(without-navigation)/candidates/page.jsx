@@ -271,13 +271,6 @@ export default function Candidates() {
         return parseInt(districtNumber);
     }
 
-    function getDistrictNumber2(districtLabel) {
-        let districtNumber;
-        districtNumber = parseInt(districtLabel.split(' ')[3]);
-        districtNumber = districtNumber + 41;
-        return districtNumber;
-    }
-
     const sejmCandidates = candidates.filter(
         (candidate) => candidate.election_id === 1
     );

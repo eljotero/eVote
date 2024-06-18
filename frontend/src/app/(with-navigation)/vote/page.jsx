@@ -14,14 +14,14 @@ export default function Vote() {
     const [showForm, setShowForm] = useState(false);
     const [elections, setElections] = useState([]);
     const [precincts, setPrecincts] = useState([]);
-    const [candidates, setCandidates] = useState([]);
+    const [candidatesByElection, setCandidatesByElection] = useState({});
     const [user, setUser] = useState({});
     const [selectedCandidateId, setSelectedCandidateId] = useState(null);
-    const upcomingElectionStartDate = elections.length > 0 ? new Date(elections[0].startDate).toLocaleDateString() : null;
+    const upcomingElectionStartDate = elections.map(election => new Date(election.startDate).toLocaleDateString());
 
     useEffect(() => {
         const fetchAccount = async () => {
-            const res = await axios.get(`account/${id}`, {
+            const res = await axios.get(`account/${id}`, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -38,7 +38,7 @@ export default function Vote() {
                 const response = await axios.get('http://localhost:8080/api/precinct/all');
                 const precincts = response.data;
                 const matchingPrecinctIds = precincts
-                  .filter(precinct => precinct.address.city === user.city)
+                  .filter(precinct => precinct.availableCities.includes(user.city))
                   .map(precinct => precinct.precinct_id);
                 setPrecincts(matchingPrecinctIds)
             } catch (error) {
@@ -51,13 +51,21 @@ export default function Vote() {
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
+                let newCandidatesByElection = {};
+                console.log(precincts);
+                console.log(elections);
                 for (const precinctId of precincts) {
                     for (const election of elections) {
                         const response = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${election.election_id}&precinctId=${precinctId}`);
                         const candidates = response.data;
-                        setCandidates(prevState => [...prevState, ...candidates]);
+                        if (newCandidatesByElection[election.election_id]) {
+                            newCandidatesByElection[election.election_id] = [...newCandidatesByElection[election.election_id], ...candidates];
+                        } else {
+                            newCandidatesByElection[election.election_id] = candidates;
+                        }
                     }
                 }
+                setCandidatesByElection(newCandidatesByElection);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
             }
@@ -83,7 +91,7 @@ export default function Vote() {
             return;
         }
         try {
-            const response = await axios.post(`vote/${id}`, { code: votingCode }, {
+            const response = await axios.post(`vote/voteToken`, { code: votingCode }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -97,21 +105,7 @@ export default function Vote() {
         }
     }
 
-    function toCamelCase(str) {
-        switch (str) {
-            case 'OVER500THOUSAND':
-                return 'Over500Thousand';
-            case 'TWOHUNDREDTO500THOUSAND':
-                return 'TwoHundredTo500Thousand';
-            case 'FIFTYTOTWOHUNDREDTHOUSAND':
-                return 'FiftyToTwoHundredThousand';
-            case 'BELOWFIFTYTHOUSAND':
-                return 'BelowFiftyThousand';
-            default:
-                return '';
-        }
-    }
-    
+
     const submitVote = async (votingToken) => {
         if (!votingToken || votingToken === '') {
             toast.error("Nie można głosować bez autoryzacji.");
@@ -119,15 +113,16 @@ export default function Vote() {
         }
     
         try {
-            const response = await axios.post(`vote/submit`, {
-                voterBirthDate: user.birthDate,
-                voterCityType: toCamelCase(user.cityType),              
-                voterEducation: user.education,
-                voterCountry: user.country,
-                candidateId: selectedCandidateId,
+            const response = await axios.post(`vote/vote`, {
+              "votes": [
+                    {
+                        "candidate_id": selectedCandidateId,
+                        "electionId": candidates.find(candidate => candidate.candidate_id === selectedCandidateId).election_id,
+                    }
+                ]
             }, {
                 headers: {
-                    Authorization: `Bearer ${votingToken}`, 
+                    Authorization: `Bearer ${token}`, 
                 },
             });
     
@@ -153,17 +148,26 @@ export default function Vote() {
  return (
     <>
         <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
-            <h1 className='text-1xl font-bold' style={{color: '#333'}}>
-                Najbliższe wybory:{' '}
-                {closestElectionNames
-                    ? closestElectionNames
-                    : 'Brak najbliższych wyborów'}
-            </h1>
-            {upcomingElectionStartDate && (
-                <p style={{color: '#555'}}>Data rozpoczęcia najbliższych wyborów: {upcomingElectionStartDate}</p>
-            )}
-            <br/>
-            <CountdownForm initialCount={upcomingElectionStartDate}/>
+            <table className="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th className="py-2">Nazwa Wyborów</th>
+                        <th className="py-2">Data Rozpoczęcia</th>
+                        <th className="py-2">Odliczanie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {elections.map((election, index) => (
+                        <tr key={election.election_id} className="text-center">
+                            <td className="py-2">{election.election_name}</td>
+                            <td className="py-2">{upcomingElectionStartDate[index]}</td>
+                            <td className="py-2">
+                                <CountdownForm initialCount={new Date(election.startDate).toLocaleDateString()}/>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             {showForm && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <button className="inherit top-0 right-0 p-4" onClick={() => setShowForm(false)}>
@@ -190,25 +194,35 @@ export default function Vote() {
                 </div>
             )}
         </div>
-        <div className='grid grid-cols-1 gap-4 lg:grid-cols-4'>
-            {candidates.map((candidate) => (
-                <div
-                    key={candidate.candidate_id}
-                    className='p-2 bg-white shadow-md rounded-xl'
-                >
-                    <img src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} className="w-full max-h-100 object-cover rounded-t-xl" />
-                    <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2> 
-                    <p className='text-md'>{candidate.education}</p> 
-                    <p className='text-md'>{candidate.profession}</p> 
-                    <button
-                        className='mt-2 py-1 px-4 bg-blue-500 hover:bg-blue-600 text-xs text-white font-bold rounded-xl transition duration-200' 
-                        onClick={() => handleVoteClick(candidate.candidate_id)}
-                    >
-                        Zagłosuj
-                    </button>
+        <div className='space-y-8'>
+        {console.log(candidatesByElection)}
+        {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
+            <div key={electionId}>
+                <h2 className="text-3xl font-bold mb-4 text-center">
+                    {elections.find(election => election.election_id === Number(electionId)).election_name}
+                </h2>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                    {candidates.map((candidate) => (
+                        <div
+                            key={candidate.candidate_id}
+                            className='p-2 bg-white shadow-md rounded-xl'
+                        >
+                            <img src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} className="w-full max-h-100 object-cover rounded-t-xl" />
+                            <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2> 
+                            <p className='text-md'>{candidate.education}</p> 
+                            <p className='text-md'>{candidate.profession}</p> 
+                            <button
+                                className='mt-2 py-1 px-4 bg-blue-500 hover:bg-blue-600 text-xs text-white font-bold rounded-xl transition duration-200' 
+                                onClick={() => handleVoteClick(candidate.candidate_id)}
+                            >
+                                Zagłosuj
+                            </button>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
+            </div>
+        ))}
+    </div>
     </>
 );
 }
