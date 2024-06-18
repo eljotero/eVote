@@ -24,7 +24,7 @@ public class VotingController {
     }
 
     @PostMapping("/vote")
-    public ResponseEntity<?> vote(@RequestHeader("Authorization") String token, @RequestBody VoteDTO voteDTO) {
+    public ResponseEntity<?> submitVote(@RequestHeader("Authorization") String token, @RequestBody VoteDTO voteDTO) {
         return ResponseEntity.ok(votingService.vote(token.substring(7), voteDTO));
     }
 

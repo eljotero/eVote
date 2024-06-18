@@ -9,9 +9,9 @@ import org.evote.backend.users.user.exceptions.CodeMismatchException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
+import org.evote.backend.votes.election.exception.ElectionInvalidDateException;
 import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.votes.enums.ElectionType;
-import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.dtos.SingleVoteDTO;
 import org.evote.backend.votes.vote.dtos.VoteDTO;
 import org.evote.backend.votes.vote.entity.Vote;
@@ -23,9 +23,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -83,6 +81,13 @@ public class VotingService {
                 if (!isValidPrecinct(user, candidate)) {
                     throw new CandidateWrongPrecinctException("Candidate not found");
                 }
+                LocalDate today = LocalDate.now();
+                LocalDate startDate = candidate.getElection().getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate endDate = candidate.getElection().getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                if (startDate.isAfter(today) || today.isAfter(endDate)) {
+                    throw new ElectionInvalidDateException("Election is not active");
+                }
                 Vote newVote = new Vote() {{
                     setCandidate(candidate);
                     setVoterBirthdate(user.getBirthDate());
@@ -111,5 +116,5 @@ public class VotingService {
     private boolean isDataValid(Account account) {
         return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
     }
-
+    
 }

@@ -111,7 +111,7 @@ describe('Account', () => {
         inputLabels.forEach(label => {
             expect(getByLabelText(label)).toBeInTheDocument();
         });
-        expect(getByText('Wygeneruj swój kod do głosowania')).toBeInTheDocument();
+        expect(getByText('Wygeneruj kod do głosowania')).toBeInTheDocument();
         expect(getByText('Zapisz')).toBeInTheDocument();
     });
     it('checks if input fields are working correctly', () => {
@@ -136,7 +136,7 @@ describe('Account', () => {
         axios.post.mockResolvedValue({status: 200});
         const {getByLabelText, getByText} = renderAccount();
         await act(async () => {
-            fireEvent.click(getByText('Wygeneruj swój kod do głosowania'));
+            fireEvent.click(getByText('Wygeneruj kod do głosowania'));
         });
         expect(toast.success).toHaveBeenCalledWith('Email wysłany pomyślnie!');
     });
@@ -148,7 +148,7 @@ describe('Account', () => {
         });
         const {getByLabelText, getByText} = renderAccount();
         await act(async () => {
-            fireEvent.click(getByText('Wygeneruj swój kod do głosowania'));
+            fireEvent.click(getByText('Wygeneruj kod do głosowania'));
         });
         expect(toast.error).toHaveBeenCalledWith('Email został już wysłany. Sprawdź swoją skrzynkę odbiorczą.');
     });
@@ -160,7 +160,7 @@ describe('Account', () => {
         });
         const {getByLabelText, getByText} = renderAccount();
         await act(async () => {
-            fireEvent.click(getByText('Wygeneruj swój kod do głosowania'));
+            fireEvent.click(getByText('Wygeneruj kod do głosowania'));
         });
         expect(toast.error).toHaveBeenCalledWith('Błąd wysyłania emaila. Spróbuj ponownie.');
     });

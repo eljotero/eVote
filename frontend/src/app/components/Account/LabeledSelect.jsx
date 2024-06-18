@@ -9,19 +9,22 @@ export default function LabeledSelect({
                                           title
                                       }) {
     return (
-        <div>
-            <label title={title}
-                   htmlFor={name}>{label}</label>
+        <div className='relative'>
+            <label title={title} htmlFor={name} className='block uppercase text-xs font-bold mb-2'>{label}</label>
             <select
-                className='block w-5/6 rounded-md h-1/2 mr-2' {...register(name)}
-                id={name}>
+                className={`border px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:border-gray-200 focus:ring-gray-300 focus:ring w-full ease-linear transition-all duration-150 ${
+                    error ? 'border border-red-500' : ''
+                }`}
+                {...register(name)}
+                id={name}
+                title={title}
+            >
                 {options.map((option) => (
-                    <option key={option.value}
-                            value={option.value}>{option.label}</option>
+                    <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </select>
             {error && (
-                <p className='text-red-500'>{`${error.message}`}</p>
+                <p className='absolute right-2 top-0 mt-1 text-xs text-red-500'>{`${error.message}`}</p>
             )}
         </div>
     );
