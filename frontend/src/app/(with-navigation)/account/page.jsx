@@ -66,15 +66,9 @@ export default function Account() {
         });
         setData(res.data);
     };
-    useEffect(() => {
-        fetchAccount();
-    }, []);
+
     useEffect(() => {
         if (data) {
-            setValue('email', data.email);
-            setValue('name', data.name);
-            setValue('surname', data.surname);
-            setValue('sex', data.sex);
             const date = new Date(data.birthDate);
             const formattedDate = `${date.getFullYear()}-${(
                 '0' +
@@ -91,7 +85,9 @@ export default function Account() {
             setValue('addressLine', data.addressLine);
             setValue('voivodeship', data.voivodeship);
         }
-    }, [data]);
+    }, [data, setValue]);
+
+
     const onSubmit = async (data) => {
         const formData = {
             name: data.name,

@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -27,6 +28,7 @@ public class PrecinctControllerTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+        precincts = new ArrayList<>();
     }
 
     @Test

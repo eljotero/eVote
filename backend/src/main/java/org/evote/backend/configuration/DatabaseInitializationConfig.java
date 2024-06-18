@@ -1,4 +1,4 @@
-package org.evote.backend.config;
+package org.evote.backend.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

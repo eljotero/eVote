@@ -236,6 +236,95 @@ public class CandidateServiceTests {
     }
 
     @Test
+    public void testUpdateCandidateCandidateNotFound() {
+        Integer id = 1;
+        CandidateCreateDTO candidateNewInfo = new CandidateCreateDTO();
+        candidateNewInfo.setName("John");
+        candidateNewInfo.setSurname("Doe");
+        candidateNewInfo.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateNewInfo.setEducation("Bachelor's Degree");
+        candidateNewInfo.setPolitical_party_id(1);
+        candidateNewInfo.setPrecinct_id(1);
+        candidateNewInfo.setElection_id(1);
+
+        Candidate candidate = new Candidate();
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+        Election election = new Election();
+
+        when(candidateRepository.findById(id)).thenReturn(Optional.empty());
+        assertThrows(CandidateNotFoundException.class, () -> candidateService.updateCandidate(id, candidateNewInfo));
+    }
+
+    @Test
+    public void testUpdateCandidatePoliticalPartyNotFound() {
+        Integer id = 1;
+        CandidateCreateDTO candidateNewInfo = new CandidateCreateDTO();
+        candidateNewInfo.setName("John");
+        candidateNewInfo.setSurname("Doe");
+        candidateNewInfo.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateNewInfo.setEducation("Bachelor's Degree");
+        candidateNewInfo.setPolitical_party_id(1);
+        candidateNewInfo.setPrecinct_id(1);
+        candidateNewInfo.setElection_id(1);
+
+        Candidate candidate = new Candidate();
+
+        when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
+        when(politicalPartyRepository.findById(candidateNewInfo.getPolitical_party_id())).thenReturn(Optional.empty());
+        assertThrows(PoliticalPartyNotFoundException.class, () -> candidateService.updateCandidate(id, candidateNewInfo));
+    }
+
+    @Test
+    public void testUpdateCandidatePrecinctNotFound() {
+        Integer id = 1;
+        CandidateCreateDTO candidateNewInfo = new CandidateCreateDTO();
+        candidateNewInfo.setName("John");
+        candidateNewInfo.setSurname("Doe");
+        candidateNewInfo.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateNewInfo.setEducation("Bachelor's Degree");
+        candidateNewInfo.setPolitical_party_id(1);
+        candidateNewInfo.setPrecinct_id(1);
+        candidateNewInfo.setElection_id(1);
+
+        Candidate candidate = new Candidate();
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+        Election election = new Election();
+
+        when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
+        when(politicalPartyRepository.findById(candidateNewInfo.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateNewInfo.getPrecinct_id())).thenReturn(Optional.empty());
+        assertThrows(PrecinctNotFoundException.class, () -> candidateService.updateCandidate(id, candidateNewInfo));
+
+    }
+
+    @Test
+    public void testUpdateCandidateElectionNotFound() {
+        Integer id = 1;
+        CandidateCreateDTO candidateNewInfo = new CandidateCreateDTO();
+        candidateNewInfo.setName("John");
+        candidateNewInfo.setSurname("Doe");
+        candidateNewInfo.setBirthDate(Date.valueOf("1980-01-01"));
+        candidateNewInfo.setEducation("Bachelor's Degree");
+        candidateNewInfo.setPolitical_party_id(1);
+        candidateNewInfo.setPrecinct_id(1);
+        candidateNewInfo.setElection_id(1);
+
+        Candidate candidate = new Candidate();
+        PoliticalParty politicalParty = new PoliticalParty();
+        Precinct precinct = new Precinct();
+        Election election = new Election();
+
+        when(candidateRepository.findById(id)).thenReturn(Optional.of(candidate));
+        when(politicalPartyRepository.findById(candidateNewInfo.getPolitical_party_id())).thenReturn(Optional.of(politicalParty));
+        when(precinctRepository.findById(candidateNewInfo.getPrecinct_id())).thenReturn(Optional.of(precinct));
+        when(electionRepository.findById(candidateNewInfo.getElection_id())).thenReturn(Optional.empty());
+
+        assertThrows(ElectionNotFoundException.class, () -> candidateService.updateCandidate(id, candidateNewInfo));
+    }
+
+    @Test
     public void testGetCandidatesByPoliticalPartyId() {
         Integer politicalPartyId = 1;
         PoliticalParty politicalParty = new PoliticalParty();

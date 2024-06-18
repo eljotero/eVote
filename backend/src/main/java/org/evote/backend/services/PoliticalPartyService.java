@@ -1,5 +1,6 @@
 package org.evote.backend.services;
 
+import lombok.AllArgsConstructor;
 import org.evote.backend.votes.address.entity.Address;
 import org.evote.backend.votes.address.repository.VotesAddressRepository;
 import org.evote.backend.votes.political_party.dtos.PoliticalPartyCreateDTO;
@@ -8,18 +9,18 @@ import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyNotFoundException;
 import org.evote.backend.votes.political_party.repository.PoliticalPartyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class PoliticalPartyService {
 
-    @Autowired
     private PoliticalPartyRepository politicalPartyRepository;
-    @Autowired
+
+
     private VotesAddressRepository votesAddressRepository;
 
 
@@ -39,7 +40,7 @@ public class PoliticalPartyService {
 
     @Transactional
     public PoliticalParty addPoliticalParty(PoliticalPartyCreateDTO politicalPartyCreateDTO) {
-        if(politicalPartyRepository.findByName(politicalPartyCreateDTO.getName()) != null) {
+        if (politicalPartyRepository.findByName(politicalPartyCreateDTO.getName()) != null) {
             throw new PoliticalPartyAlreadyExistsException("Political party with name " + politicalPartyCreateDTO.getName() + " already exists");
         }
 
@@ -55,7 +56,7 @@ public class PoliticalPartyService {
     @Transactional
     public void deletePoliticalParty(Integer id) {
         PoliticalParty politicalParty = politicalPartyRepository.findById(Math.toIntExact(id))
-                .orElseThrow(() ->  new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
+                .orElseThrow(() -> new PoliticalPartyNotFoundException("Political party with id " + id + " not found"));
         politicalPartyRepository.delete(politicalParty);
     }
 

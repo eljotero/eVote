@@ -50,4 +50,6 @@ public class PoliticalPartyController {
         PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO);
         return ResponseEntity.ok(PoliticalPartyMapper.toPolitical_partyDTO(politicalParty));
     }
+
+
 }

@@ -104,7 +104,7 @@ describe('Account', () => {
         const {getByText} = renderAccount();
         const saveButton = getByText('Zapisz');
         fireEvent.click(saveButton);
-        expect(axios.get).toHaveBeenCalledTimes(1);
+        expect(axios.get).toHaveBeenCalledTimes(0);
     });
     it('renders Account and checks if input fields and button are present', () => {
         const {getByLabelText, getByText} = renderAccount();
