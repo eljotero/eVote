@@ -24,7 +24,8 @@ public class EmailController {
 
     @PostMapping("/sendEmail")
     public ResponseEntity<?> sendEmail(@RequestHeader("Authorization") String token) {
-        String email = jwtService.extractEmail(token.substring(7));
+        String jwtToken = token.substring(7);
+        String email = jwtService.extractEmail(jwtToken);
         return ResponseEntity.ok(emailService.sendEmail(email));
     }
 }

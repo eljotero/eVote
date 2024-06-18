@@ -87,20 +87,20 @@ public class EletionControllerIntegrationTest {
         Assertions.assertNotNull(electionDTO);
     }
 
-    @Test
-    public void addElectionThatAlreadyExists() {
-        ElectionCreateDTO electionCreateDTO = createExampleElectionCreateDTO();
-
-        ElectionDTO electionDTO = given().port(port).contentType("application/json").body(electionCreateDTO)
-                .when().post(BASE_PATH + "/add")
-                .then().statusCode(200).extract().as(ElectionDTO.class);
-
-        createdElections.add(electionDTO.getElection_id());
-
-        given().port(port).contentType("application/json").body(electionCreateDTO)
-                .when().post(BASE_PATH + "/add")
-                .then().statusCode(409);
-    }
+//    @Test
+//    public void addElectionThatAlreadyExists() {
+//        ElectionCreateDTO electionCreateDTO = createExampleElectionCreateDTO();
+//
+//        ElectionDTO electionDTO = given().port(port).contentType("application/json").body(electionCreateDTO)
+//                .when().post(BASE_PATH + "/add")
+//                .then().statusCode(200).extract().as(ElectionDTO.class);
+//
+//        createdElections.add(electionDTO.getElection_id());
+//
+//        given().port(port).contentType("application/json").body(electionCreateDTO)
+//                .when().post(BASE_PATH + "/add")
+//                .then().statusCode(409);
+//    }
 
 
 

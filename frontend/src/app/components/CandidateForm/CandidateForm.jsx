@@ -46,7 +46,7 @@ export default function CandidateForm({ candidate, onVote }) {
           src={image}
           alt={name}
           width={500}
-          height={300}
+          height={200}
           objectFit='cover'
         />
       ) : (

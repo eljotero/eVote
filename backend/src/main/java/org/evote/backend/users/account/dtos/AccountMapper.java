@@ -6,7 +6,7 @@ public class AccountMapper {
 
     public static AccountDTO toAccountDTO(Account account) {
         AccountDTO accountDTO = new AccountDTO();
-       // accountDTO.setId(account.getAccount_id());
+        accountDTO.setId(account.getAccount_id());
         accountDTO.setEmail(account.getEmail());
         accountDTO.setRole(account.getRole());
         accountDTO.setHasVoted(account.getHasVoted());

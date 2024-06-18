@@ -4,6 +4,10 @@ import jakarta.mail.internet.MimeMessage;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.services.EmailService;
 import org.evote.backend.users.account.entity.Account;
+import org.evote.backend.users.address.entity.Address;
+import org.evote.backend.users.enums.CityType;
+import org.evote.backend.users.enums.Education;
+import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mail.javamail.JavaMailSender;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -41,6 +47,16 @@ public class EmailServiceTests {
         MockitoAnnotations.openMocks(this);
         account = new Account();
         user = new User();
+        user.setSex(true);
+        user.setAddress(new Address());
+        user.setPrecincts(new ArrayList<Precinct>());
+        user.setName("Test Name");
+        user.setSurname("Test Surname");
+        user.setBirthDate(new java.util.Date());
+        user.setPersonalIdNumber("Test ID Number");
+        user.setEducation(Education.SECONDARY);
+        user.setCityType(CityType.OVER500THOUSAND);
+        user.setProfession("Test Profession");
         account.setUser(user);
         MimeMessage mimeMessage = mock(MimeMessage.class);
         when(mailSender.createMimeMessage()).thenReturn(mimeMessage);

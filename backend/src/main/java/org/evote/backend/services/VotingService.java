@@ -4,9 +4,13 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.evote.backend.votes.enums.CityType;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeMismatchException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
+import org.evote.backend.users.user.repository.UserRepository;
+import org.evote.backend.votes.candidate.repository.CandidateRepository;
+import org.evote.backend.votes.vote.dtos.SubmitVoteDTO;
 import org.evote.backend.votes.candidate.entity.Candidate;
 import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
 import org.evote.backend.votes.enums.CityType;
@@ -26,25 +30,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import java.sql.Time;
+
 @Service
 public class VotingService {
 
     private final AccountRepository accountRepository;
     private final JwtService jwtService;
-    private final CandidateService candidateService;
+    private final UserRepository userRepository;
     private final VoteRepository voteRepository;
-    private final UserService userService;
-    private final AddressService addressService;
-    private final AccountService accountService;
+    private final CandidateRepository candidateRepository;
 
-    public VotingService(AccountRepository accountRepository, JwtService jwtService, CandidateService candidateService, VoteRepository voteRepository, UserService userService, AddressService addressService, AccountService accountService) {
+    public VotingService(AccountRepository accountRepository, JwtService jwtService, UserRepository userRepository, VoteRepository voteRepository, CandidateService candidateService, CandidateRepository candidateRepository) {
         this.accountRepository = accountRepository;
         this.jwtService = jwtService;
-        this.candidateService = candidateService;
+        this.userRepository = userRepository;
         this.voteRepository = voteRepository;
-        this.userService = userService;
-        this.addressService = addressService;
-        this.accountService = accountService;
+        this.candidateRepository = candidateRepository;
     }
 
     public String generateVotingToken(String email, String code) {
@@ -109,16 +111,33 @@ public class VotingService {
                 partyVotes.put(party, 1L);
             }
         }
-        return votes;
+      
+        User user = account.getUser();
+        if (user == null) {
+            throw new UserNotFoundException("User associated with this account not found");
+        }
+        if (user.getSex() == null || user.getAddress() == null || user.getPrecincts() == null || user.getName() == null
+            || user.getSurname() == null || user.getBirthDate() == null || user.getPersonalIdNumber() == null
+            || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
+            throw new UserNotFoundException("User data is incomplete");
+        }
+        String token = jwtService.generateVotingToken(account);
+        account.setHasVoted(true);
+        accountRepository.save(account);
+        return token;
     }
 
-    private boolean isValidPrecinct(User user, Candidate candidate) {
-        return user.getPrecincts().stream()
-                .anyMatch(p -> p.getPrecinct_id().equals(candidate.getPrecinct().getPrecinct_id())
-                        && ElectionType.valueOf(String.valueOf(p.getElectionType())) == candidate.getPrecinct().getElectionType());
+    public void submitVote(SubmitVoteDTO submitVoteDTO) {
+        Vote vote = new Vote();
+        vote.setVoter_birthdate(submitVoteDTO.getVoterBirthDate());
+        vote.setVoter_city_type(submitVoteDTO.getVoterCityType());
+        vote.setVoter_education(submitVoteDTO.getVoterEducation());
+        vote.setVoter_country(submitVoteDTO.getVoterCountry());
+        vote.setVote_time(new Time(System.currentTimeMillis()));
+        vote.setCandidate(candidateRepository.findById(submitVoteDTO.getCandidateId())
+                .orElseThrow(() -> new RuntimeException("Candidate not found")));
+
+        voteRepository.save(vote);
     }
 
-    private boolean isDataValid(Account account) {
-        return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
-    }
 }

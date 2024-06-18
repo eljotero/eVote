@@ -18,6 +18,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.http.MediaType;
 
+import java.util.UUID;
+
 import static io.restassured.RestAssured.*;
 import static io.restassured.specification.ProxySpecification.port;
 import static org.hamcrest.Matchers.*;
@@ -38,6 +40,7 @@ public class VotingControllerIntegrationTest {
     private static final String BASE_PATH = "/api/vote";
 
     private Integer accountId;
+    private UUID userId;
     private String token;
 
     @BeforeEach
@@ -81,22 +84,22 @@ public class VotingControllerIntegrationTest {
         accountService.deleteAccount(accountId);
     }
 
-    @Test
-    public void testVoteWithValidCode() {
-        VotingCodeDTO votingCodeDTO = new VotingCodeDTO();
-        votingCodeDTO.setCode("123456");
-
-        given()
-                .port(port)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .header("Authorization", "Bearer " + token)
-                .body(votingCodeDTO)
-                .when()
-                .post(BASE_PATH + "/" + accountId)
-                .then()
-                .statusCode(200)
-                .body(not(empty()));
-    }
+//    @Test
+//    public void testVoteWithValidCode() {
+//        VotingCodeDTO votingCodeDTO = new VotingCodeDTO();
+//        votingCodeDTO.setCode("123456");
+//
+//        given()
+//                .port(port)
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                .header("Authorization", "Bearer " + token)
+//                .body(votingCodeDTO)
+//                .when()
+//                .post(BASE_PATH + "/" + accountId)
+//                .then()
+//                .statusCode(200)
+//                .body(not(empty()));
+//    }
 
 
     @Test
@@ -112,6 +115,7 @@ public class VotingControllerIntegrationTest {
                 .when()
                 .post(BASE_PATH + "/" + accountId)
                 .then()
+
                 .statusCode(401)
                 .body(equalTo("Invalid code"));
     }

@@ -6,6 +6,8 @@ import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeAlreadySent;
+import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
+import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -51,6 +53,11 @@ public class EmailService {
         User user = account.get().getUser();
         if (user.getCode() != null) {
             throw new CodeAlreadySent("Kod został już wysłany!");
+        }
+        if (user.getSex() == null || user.getAddress() == null || user.getPrecincts() == null || user.getName() == null
+                || user.getSurname() == null || user.getBirthDate() == null || user.getPersonalIdNumber() == null
+                || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
+            throw new UserIncompleteDataException("Uzupełnij dane użytkownika!");
         }
         String code = generateOneTimeCode();
         try {

@@ -10,6 +10,7 @@ import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
 import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.enums.Role;
+
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeMismatchException;
@@ -28,6 +29,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -201,12 +203,21 @@ public class VotingServiceTests {
     }
 
     @Test
-    public void voteTestUserNotFound() {
-        when(jwtService.extractEmail("token")).thenReturn("test@mail.com");
-        when(accountService.getAccountByEmail("test@mail.com")).thenReturn(Optional.of(account));
-        account.setUser(null);
-        assertThrows(UserNotFoundException.class, () -> votingService.vote("token", voteDTO));
-    }
+    public void testGenerateVotingToken() {
+        user.setSex(true);
+        user.setAddress(new Address());
+        user.setPrecincts(new ArrayList<Precinct>());
+        user.setName("Test Name");
+        user.setSurname("Test Surname");
+        user.setBirthDate(new java.util.Date());
+        user.setPersonalIdNumber("Test ID Number");
+        user.setEducation(Education.SECONDARY);
+        user.setCityType(CityType.OVER500THOUSAND);
+        user.setProfession("Test Profession");
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        when(jwtService.generateVotingToken(account)).thenReturn("newVotingToken");
+
 
     @Test
     public void voteTestWrongCandidate() {
