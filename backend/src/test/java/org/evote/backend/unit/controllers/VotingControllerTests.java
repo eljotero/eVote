@@ -1,6 +1,6 @@
 package org.evote.backend.unit.controllers;
 
-import org.evote.backend.services.JwtService;
+import org.evote.backend.configuration.JwtService;
 import org.evote.backend.controllers.VotingController;
 import org.evote.backend.services.AccountService;
 import org.evote.backend.services.VotingService;

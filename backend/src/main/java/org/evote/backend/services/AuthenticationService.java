@@ -1,6 +1,7 @@
 package org.evote.backend.services;
 
 import jakarta.transaction.Transactional;
+import org.evote.backend.configuration.JwtService;
 import org.evote.backend.users.account.dtos.AccountCreateDTO;
 import org.evote.backend.users.account.dtos.AccountLoginDTO;
 import org.evote.backend.users.account.dtos.AccountMapper;
@@ -17,7 +18,6 @@ import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

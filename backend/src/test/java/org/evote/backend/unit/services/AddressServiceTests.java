@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 public class AddressServiceTests {
@@ -102,6 +103,12 @@ public class AddressServiceTests {
         address.setVoivodeship(null);
         boolean result = addressService.isAddressDataComplete(id);
         assertEquals(false, result);
+    }
+
+    @Test
+    public void testIsAddressDataCompleteAddressNotFound() {
+        when(userAddressRepository.findById(id)).thenReturn(java.util.Optional.empty());
+        assertThrows(AddressNotFoundException.class, () -> addressService.isAddressDataComplete(id));
     }
 
 }
