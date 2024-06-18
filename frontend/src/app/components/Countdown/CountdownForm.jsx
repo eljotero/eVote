@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
-export default function CountdownForm({initialCount}) {
+export default function CountdownForm({ initialCount }) {
     const parseDate = (dateStr) => {
-        if (!dateStr) {
+        if (typeof dateStr !== 'string') {
             return null;
         }
 
@@ -12,13 +12,13 @@ export default function CountdownForm({initialCount}) {
 
     const targetDate = parseDate(initialCount);
 
-    const calculateCountdown = () => {
+    const calculateCountdown = useCallback(() => {
         if (!targetDate) {
             return 0;
         }
 
         return Math.floor((targetDate - new Date()) / 1000);
-    };
+    }, [targetDate]);
 
     const [countdown, setCountdown] = useState(calculateCountdown());
 
@@ -33,7 +33,7 @@ export default function CountdownForm({initialCount}) {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [initialCount]);
+    }, [calculateCountdown]);
 
     if (countdown <= 0) {
         return (
@@ -45,7 +45,7 @@ export default function CountdownForm({initialCount}) {
         );
     }
 
-    const seconds = Math.floor((countdown) % 60);
+    const seconds = Math.floor(countdown % 60);
     const minutes = Math.floor((countdown / 60) % 60);
     const hours = Math.floor((countdown / (60 * 60)) % 24);
     const days = Math.floor(countdown / (60 * 60 * 24));
@@ -55,13 +55,13 @@ export default function CountdownForm({initialCount}) {
     }
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}>
-            <div style={{position: 'absolute', textAlign: 'center'}}>
-                <h2 style={{color: 'black'}}>
-                    <span style={{fontWeight: 'bold'}}>{days}</span> dni<br/>
-                    <span style={{fontWeight: 'bold'}}>{hours}</span> godzin |
-                    <span style={{fontWeight: 'bold'}}>{minutes}</span> minut |
-                    <span style={{fontWeight: 'bold'}}>{seconds}</span> sekund
+        <div className="flex justify-center items-center relative">
+            <div className="text-center">
+                <h2 className="text-black">
+                    <span className="mr-1">{days} dni </span>
+                    <span className="mr-1">{hours} godzin </span>
+                    <span className="mr-1">{minutes} minut </span>
+                    <span className="mr-1">{seconds} sekund </span>
                 </h2>
             </div>
         </div>
