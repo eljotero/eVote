@@ -17,7 +17,7 @@ public class Vote {
     private Long voteId;
 
     @ManyToOne
-    @JoinColumn(name = "candidateId")
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
     private Date voterBirthdate;

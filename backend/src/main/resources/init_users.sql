@@ -1,178 +1,178 @@
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (10,'', 'Wrocław', 'Polska', 'Dolnośląskie', '45-573')
+VALUES (1,'', 'Wrocław', 'Polska', 'Dolnośląskie', '45-573')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (20,'', 'Bydgoszcz', 'Polska', 'Kujawsko-Pomorskie', '12-000')
+VALUES (2,'', 'Bydgoszcz', 'Polska', 'Kujawsko-Pomorskie', '12-000')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (30,'', 'Lublin', 'Polska', 'Lubelskie', '20-000')
+VALUES (3,'', 'Lublin', 'Polska', 'Lubelskie', '20-000')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (40,'', 'Gorzów Wielkopolski', 'Polska', 'Lubuskie', '66-400')
+VALUES (4,'', 'Gorzów Wielkopolski', 'Polska', 'Lubuskie', '66-400')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (50, '', 'Łódź', 'Polska', 'Łódzkie', '90-001')
+VALUES (5, '', 'Łódź', 'Polska', 'Łódzkie', '90-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (60, '', 'Kraków', 'Polska', 'Małopolskie', '30-001')
+VALUES (6, '', 'Kraków', 'Polska', 'Małopolskie', '30-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (70, '', 'Warszawa', 'Polska', 'Mazowieckie', '00-001')
+VALUES (7, '', 'Warszawa', 'Polska', 'Mazowieckie', '00-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (80, '', 'Opole', 'Polska', 'Opolskie', '45-001')
+VALUES (8, '', 'Opole', 'Polska', 'Opolskie', '45-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (90, '', 'Rzeszów', 'Polska', 'Podkarpackie', '35-001')
+VALUES (9, '', 'Rzeszów', 'Polska', 'Podkarpackie', '35-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (100, '', 'Białystok', 'Polska', 'Podlaskie', '15-001')
+VALUES (10, '', 'Białystok', 'Polska', 'Podlaskie', '15-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (110, '', 'Gdańsk', 'Polska', 'Pomorskie', '80-001')
+VALUES (11, '', 'Gdańsk', 'Polska', 'Pomorskie', '80-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (120, '', 'Katowice', 'Polska', 'Śląskie', '40-001')
+VALUES (12, '', 'Katowice', 'Polska', 'Śląskie', '40-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (130, '', 'Kielce', 'Polska', 'Świętokrzyskie', '25-001')
+VALUES (13, '', 'Kielce', 'Polska', 'Świętokrzyskie', '25-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (140, '', 'Olsztyn', 'Polska', 'Warmińsko-Mazurskie', '10-001')
+VALUES (14, '', 'Olsztyn', 'Polska', 'Warmińsko-Mazurskie', '10-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (150, '', 'Poznań', 'Polska', 'Wielkopolskie', '60-001')
+VALUES (15, '', 'Poznań', 'Polska', 'Wielkopolskie', '60-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO address (address_id, address_line, city, country, voivodeship, zip_code)
-VALUES (160, '', 'Szczecin', 'Polska', 'Zachodniopomorskie', '70-001')
+VALUES (16, '', 'Szczecin', 'Polska', 'Zachodniopomorskie', '70-001')
     ON CONFLICT (address_id) DO NOTHING;
 
 --sejm
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 10, 3 , 10)
+VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 3 , 1)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 20, 3 , 10)
+VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 2, 3 , 1)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 30, 3 , 10)
+VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 3, 3 , 1)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 40, 3, 20 )
+VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 4, 3, 2 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 50, 3, 20 )
+VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 5, 3, 2 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 60, 3, 30 )
+VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 6, 3, 3 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 70, 3, 30 )
+VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 7, 3, 3 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 80, 3, 40 )
+VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 8, 3, 4 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 90, 3, 50 )
+VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 9, 3, 5 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 100, 3, 50 )
+VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 10, 3, 5 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 110, 3, 50 )
+VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 11, 3, 5 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 120, 3, 60 )
+VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 12, 3, 6 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 130, 3, 60 )
+VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 13, 3, 6 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 140, 3, 60 )
+VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 14, 3, 6 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 150, 3, 60 )
+VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 15, 3, 6 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 160, 3, 70 )
+VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 16, 3, 7 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('675b586e-a54d-46ab-9304-6d266997314b', 170, 3, 70 )
+VALUES('675b586e-a54d-46ab-9304-6d266997314b', 17, 3, 7 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 180, 3, 70 )
+VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 18, 3, 7 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 190, 3, 70 )
+VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 19, 3, 7 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 200, 3, 70 )
+VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 20, 3, 7 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 210, 3, 80 )
+VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 21, 3, 8 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 220, 3, 90 )
+VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 22, 3, 9 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 230, 3, 90 )
+VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 23, 3, 9 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 240, 3, 100 )
+VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 24, 3, 10 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 250, 3, 110 )
+VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 3, 11 )
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 --senat
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 30, 4 , 10)
+VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 4 , 1)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
-VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 250, 4, 50)
+VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 25, 4, 5)
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
