@@ -9,6 +9,7 @@ import org.evote.backend.votes.vote.entity.Vote;
 import org.evote.backend.votes.vote.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashMap;
@@ -119,14 +120,16 @@ public class StatisticsService {
         Map<String, Map<String, Integer>> ageVotes = new HashMap<>();
         for (Vote vote : votes) {
             if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
-                int age = LocalDate.now().getYear() - vote.getVoterBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear();
+                java.util.Date utilDate = new java.util.Date(vote.getVoterBirthdate().getTime());
+                Instant birthdateInstant = utilDate.toInstant();
+                int age = LocalDate.now().getYear() - birthdateInstant.atZone(ZoneId.systemDefault()).toLocalDate().getYear();
                 String ageGroup = getAgeGroup(age);
                 groupByParam(ageVotes, vote, ageGroup);
-
             }
         }
         return ageVotes;
     }
+
 
     public Map<String, Map<String, Integer>> getResultsByEducation(Integer electionId) {
         if (electionRepository.findById(electionId).isEmpty()) {
@@ -143,109 +146,8 @@ public class StatisticsService {
         return educationVotes;
     }
 
-    public Map<String, Object> getDetailedResults(Integer electionId) {
-        if (electionRepository.findById(electionId).isEmpty()) {
-            throw new ElectionNotFoundException("Election not found");
-        }
-        List<Vote> votes = voteRepository.findAll();
-        Map<String, Object> detailedResults = new HashMap<>();
 
-        Map<String, Integer> partyVotes = new HashMap<>();
-        Map<String, Map<String, Integer>> cityTypeVotes = new HashMap<>();
-        Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
-
-        for (Vote vote : votes) {
-            if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
-                PoliticalParty party = vote.getCandidate().getPoliticalParty();
-                partyVotes.merge(party.getName(), 1, Integer::sum);
-                CityType cityType = vote.getVoterCityType();
-                cityTypeVotes.computeIfAbsent(cityType.name(), k -> new HashMap<>())
-                        .merge(party.getName(), 1, Integer::sum);
-                String education = vote.getVoterEducation();
-                educationVotes.computeIfAbsent(education, k -> new HashMap<>())
-                        .merge(party.getName(), 1, Integer::sum);
-            }
-        }
-
-        detailedResults.put("partyVotes", partyVotes);
-        detailedResults.put("cityTypeVotes", cityTypeVotes);
-        detailedResults.put("educationVotes", educationVotes);
-
-        return detailedResults;
-    }
-
-    public Map<String, Map<String, Integer>> getDetailedVotesByParty(int electionId, int politicalPartyId) {
-        if (electionRepository.findById(electionId).isEmpty()) {
-            throw new ElectionNotFoundException("Election not found");
-        }
-        List<Vote> votes = voteRepository.findAll();
-        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
-
-        Map<String, Integer> cityTypeVotes = new HashMap<>();
-        Map<String, Integer> educationVotes = new HashMap<>();
-
-        for (Vote vote : votes) {
-            if (vote.getCandidate().getElection().getElectionId().equals(electionId) && vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
-                CityType cityType = vote.getVoterCityType();
-                cityTypeVotes.merge(cityType.name(), 1, Integer::sum);
-                String education = vote.getVoterEducation();
-                educationVotes.merge(education, 1, Integer::sum);
-            }
-        }
-
-        detailedResults.put("cityTypeVotes", cityTypeVotes);
-        detailedResults.put("educationVotes", educationVotes);
-
-        return detailedResults;
-    }
-
-    public Map<String, Map<String, Integer>> getDetailedEducationVotesByParty(int electionId, int politicalPartyId) {
-        if (electionRepository.findById(electionId).isEmpty()) {
-            throw new ElectionNotFoundException("Election not found");
-        }
-        List<Vote> votes = voteRepository.findAll();
-        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
-
-        Map<String, Integer> educationVotes = new HashMap<>();
-
-        for (Vote vote : votes) {
-            if (vote.getCandidate().getElection().getElectionId().equals(electionId) &&
-                    vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
-
-                String education = vote.getVoterEducation();
-                educationVotes.merge(education, 1, Integer::sum);
-            }
-        }
-
-        detailedResults.put("educationVotes", educationVotes);
-
-        return detailedResults;
-    }
-
-    public Map<String, Map<String, Integer>> getDetailedCityTypeVotesByParty(int electionId, int politicalPartyId) {
-        if (electionRepository.findById(electionId).isEmpty()) {
-            throw new ElectionNotFoundException("Election not found");
-        }
-        List<Vote> votes = voteRepository.findAll();
-        Map<String, Map<String, Integer>> detailedResults = new HashMap<>();
-
-        Map<String, Integer> cityTypeVotes = new HashMap<>();
-
-        for (Vote vote : votes) {
-            if (vote.getCandidate().getElection().getElectionId().equals(electionId) &&
-                    vote.getCandidate().getPoliticalParty().getPoliticalPartyId().equals(politicalPartyId)) {
-
-                CityType cityType = vote.getVoterCityType();
-                cityTypeVotes.merge(cityType.name(), 1, Integer::sum);
-            }
-        }
-
-        detailedResults.put("cityTypeVotes", cityTypeVotes);
-
-        return detailedResults;
-    }
-
-    private String getAgeGroup(int age) {
+    public String getAgeGroup(int age) {
         if (age >= 18 && age <= 29) {
             return "18-29";
         } else if (age >= 30 && age <= 39) {
@@ -259,7 +161,7 @@ public class StatisticsService {
         }
     }
 
-    private void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
+    public void groupByParam(Map<String, Map<String, Integer>> educationVotes, Vote vote, String education) {
         PoliticalParty party = vote.getCandidate().getPoliticalParty();
         if (educationVotes.containsKey(education)) {
             Map<String, Integer> partyVotes = educationVotes.get(education);

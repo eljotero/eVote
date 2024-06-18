@@ -1,19 +1,26 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {Bar, Pie, PolarArea} from 'react-chartjs-2';
+import {Bar, Doughnut, Pie, PolarArea} from 'react-chartjs-2';
 import { Chart } from 'chart.js/auto';
 
 
 
 const StatsPage = () => {
-    const [sejmPartyStats, setSejmPartyStats] = useState([]);
     const [ageGroupResults, setAgeGroupResults] = useState([]);
     const [educationGroupResults, setEducationGroupResults] = useState([]);
     const [sexGroupResults, setSexGroupResults] = useState([]);
     const [cityGroupResults, setCityGroupResults] = useState([]);
     const [countryGroupResults, setCountryGroupResults] = useState([]);
     const [sejmGroupResults, setSejmGroupResults] = useState([]);
+
+    const [ageGroupResultsSenat, setAgeGroupResultsSenat] = useState([]);
+    const [educationGroupResultsSenat, setEducationGroupResultsSenat] = useState([]);
+    const [sexGroupResultsSenat, setSexGroupResultsSenat] = useState([]);
+    const [cityGroupResultsSenat, setCityGroupResultsSenat] = useState([]);
+    const [countryGroupResultsSenat, setCountryGroupResultsSenat] = useState([]);
+    const [groupResultsSenat, setGroupResultsSenat] = useState([]);
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -27,7 +34,13 @@ const StatsPage = () => {
                 setCityGroupResults(response.data.resultsByCityType);
                 setCountryGroupResults(response.data.resultsByCountry);
                 setSejmGroupResults(response.data.results);
-
+                const response2 = await axios.get('http://localhost:8080/api/stats/allResults/2');
+                setAgeGroupResultsSenat(response2.data.resultsByAgeGroup);
+                setEducationGroupResultsSenat(response2.data.resultsByEducation);
+                setSexGroupResultsSenat(response2.data.resultsBySex);
+                setCityGroupResultsSenat(response2.data.resultsByCityType);
+                setCountryGroupResultsSenat(response2.data.resultsByCountry);
+                setGroupResultsSenat(response2.data.results);
 
                 setLoading(false);
             } catch (err) {
@@ -55,6 +68,21 @@ const StatsPage = () => {
     const cityGroups = Object.keys(cityGroupResults);
     const countryGroups = Object.keys(countryGroupResults);
 
+    const ageGroups2 = Object.keys(ageGroupResultsSenat);
+    const educationGroups2 = Object.keys(educationGroupResultsSenat);
+    const sexGroups2 = Object.keys(sexGroupResultsSenat);
+    const cityGroups2 = Object.keys(cityGroupResultsSenat);
+    const countryGroups2 = Object.keys(countryGroupResultsSenat);
+
+
+    const countryGroupCharts2 = countryGroups2.map((countryGroup2, index) => (
+        <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold">Głosy dla danego kraju {countryGroup2}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <PolarAreaChart data={countryGroupResultsSenat[countryGroup2]} partyName={`Grupa krajów ${countryGroup2}`} />
+            </div>
+        </div>
+    ));
 
     const countryGroupCharts = countryGroups.map((countryGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
@@ -64,6 +92,43 @@ const StatsPage = () => {
             </div>
         </div>
     ));
+
+    const cityGroupCharts2 = cityGroups2.map((cityGroup2, index) => (
+        <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold">Głosy dla grupy {cityGroup2}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <PolarAreaChart data={cityGroupResultsSenat[cityGroup2]} partyName={`Grupa miast ${cityGroup2}`} />
+            </div>
+        </div>
+    ));
+
+    const sexGroupCharts2 = sexGroups2.map((sexGroup2, index) => (
+        <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold">Głosy dla grupy {sexGroup2}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <DoughnutChart data={sexGroupResultsSenat[sexGroup2]} partyName={`Grupa płci ${sexGroup2}`} />
+            </div>
+        </div>
+    ));
+
+    const ageGroupCharts2 = ageGroups2.map((ageGroup2, index) => (
+        <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {ageGroup2}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <PolarAreaChart data={ageGroupResultsSenat[ageGroup2]} partyName={`Grupa wiekowa ${ageGroup2}`} />
+            </div>
+        </div>
+    ));
+    const educationGroupCharts2 = educationGroups2.map((educationGroup2, index) => (
+        <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {educationGroup2}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <PolarAreaChart data={educationGroupResultsSenat[educationGroup2]} partyName={`Grupa społeczna ${educationGroup2}`} />
+            </div>
+        </div>
+    ));
+
+
 
     const cityGroupCharts = cityGroups.map((cityGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
@@ -78,7 +143,7 @@ const StatsPage = () => {
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
             <h3 className="text-lg font-semibold">Głosy dla grupy {sexGroup}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={sexGroupResults[sexGroup]} partyName={`Grupa płci ${sexGroup}`} />
+                <DoughnutChart data={sexGroupResults[sexGroup]} partyName={`Grupa płci ${sexGroup}`} />
             </div>
         </div>
     ));
@@ -122,7 +187,6 @@ const StatsPage = () => {
                         {ageGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <hr className="my-8" />
                         <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według grup społecznych</h2>
                         <hr className="my-8" />
                         {educationGroupCharts}
@@ -145,22 +209,54 @@ const StatsPage = () => {
                         <hr className="my-8" />
                         <hr className="my-8" />
                         <hr className="my-8" />
-
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-200">
-                <div className="container mx-auto p-4">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Senat</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                    </div>
-                </div>
-            </div>
-            <div className="bg-gray-200">
-                <div className="container mx-auto p-4">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według grup wiekowych</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                        {ageGroupCharts}
+            <div className="container mx-auto p-4">
+                <div className="bg-gray-200 mb-8">
+                    <div className="container mx-auto p-4">
+                        <h2 className="text-3xl font-semibold mb-4 text-center">Senat</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki ogólne wyborcze</h2>
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <div className="p-4 bg-white rounded-lg shadow-md">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <BarChart data={groupResultsSenat} />
+                                </div>
+                            </div>
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze - grupy wiekowe</h2>
+                            <hr className="my-8" />
+                            {ageGroupCharts2}
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według grup społecznych</h2>
+                            <hr className="my-8" />
+                            {educationGroupCharts2}
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według płci</h2>
+                            <hr className="my-8" />
+                            {sexGroupCharts2}
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według typów miast</h2>
+                            <hr className="my-8" />
+                            {cityGroupCharts2}
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według krajów</h2>
+                            <hr className="my-8" />
+                            {countryGroupCharts2}
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -318,5 +414,68 @@ const PieChart = ({ data, partyName }) => {
     };
 
     return <Pie data={chartData} options={chartOptions} />;
+};
+
+const DoughnutChart = ({ data, partyName }) => {
+    const chartData = {
+        labels: Object.keys(data),
+        datasets: [
+            {
+                label: `Głosy dla ${partyName}`,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+                hoverBackgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                ],
+                hoverBorderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                data: Object.values(data),
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: (tooltipItem) => {
+                        return `${tooltipItem.label}: ${tooltipItem.formattedValue}`;
+                    },
+                },
+            },
+        },
+    };
+
+    return <Doughnut data={chartData} options={chartOptions} />;
 };
 export default StatsPage;
