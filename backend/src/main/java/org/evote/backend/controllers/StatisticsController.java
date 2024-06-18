@@ -32,6 +32,6 @@ public class StatisticsController {
 
     @GetMapping("/prediction/{electionType}")
     public ResponseEntity<?> getPrediction(@PathVariable String electionType) {
-        return ResponseEntity.ok(statisticsService.getPrediction(electionType));
+        return ResponseEntity.ok(statisticsService.getPredictions(electionType));
     }
 }

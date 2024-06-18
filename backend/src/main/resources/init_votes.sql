@@ -43,11 +43,11 @@ VALUES (6, 'Wybory samorządowe - województwo','2025-09-26','2025-09-25', 1)
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (7, 'Wybory parlamentarne - sejm','2020-09-26','2020-09-25', 1)
+VALUES (7, 'Wybory parlamentarne - sejm','2020-09-26','2020-09-25', 3)
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (8, 'Wybory parlamentarne - sejm','2016-09-26','2016-09-25', 1)
+VALUES (8, 'Wybory parlamentarne - sejm','2016-09-26','2016-09-25', 3)
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO political_party (politicalpartyid, name, address_id)
