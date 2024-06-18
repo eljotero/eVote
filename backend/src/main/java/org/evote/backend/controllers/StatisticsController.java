@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -17,36 +18,17 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
-    @GetMapping("/results/{electionId}")
-    public ResponseEntity<?> getResults(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResults(electionId));
+    @GetMapping("/allResults/{electionId}")
+    public ResponseEntity<?> getAllResults(@PathVariable int electionId) {
+        Map<String, Object> allResults = new HashMap<>();
+        allResults.put("results", statisticsService.getResults(electionId));
+        allResults.put("resultsByEducation", statisticsService.getResultsByEducation(electionId));
+        allResults.put("resultsBySex", statisticsService.getResultsBySex(electionId));
+        allResults.put("resultsByCountry", statisticsService.getResultsByCountry(electionId));
+        allResults.put("resultsByAgeGroup", statisticsService.getResultsByAgeGroup(electionId));
+        allResults.put("resultsByCityType", statisticsService.getResultsByCityType(electionId));
+        return ResponseEntity.ok(allResults);
     }
-
-    @GetMapping("/resultsByEducation/{electionId}")
-    public ResponseEntity<?> getResultsByEducation(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResultsByEducation(electionId));
-    }
-
-    @GetMapping("/resultsBySex/{electionId}")
-    public ResponseEntity<?> getResultsBySex(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResultsBySex(electionId));
-    }
-
-    @GetMapping("/resultsByCountry/{electionId}")
-    public ResponseEntity<?> getResultsByCountry(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResultsByCountry(electionId));
-    }
-
-    @GetMapping("/resultsByAgeGroup/{electionId}")
-    public ResponseEntity<?> getResultsByAgeGroup(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResultsByAgeGroup(electionId));
-    }
-
-    @GetMapping("/resultsByCityType/{electionId}")
-    public ResponseEntity<?> getResultsByCityType(@PathVariable int electionId) {
-        return ResponseEntity.ok(statisticsService.getResultsByCityType(electionId));
-    }
-
     @GetMapping("/detailedResults/{electionId}")
     public ResponseEntity<?> getDetailedResults(@PathVariable int electionId) {
         return ResponseEntity.ok(statisticsService.getDetailedResults(electionId));
