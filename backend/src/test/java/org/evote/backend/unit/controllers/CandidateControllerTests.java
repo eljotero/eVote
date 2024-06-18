@@ -21,8 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CandidateControllerTests {
 
@@ -116,6 +115,21 @@ public class CandidateControllerTests {
         ResponseEntity<?> responseEntity = candidateController.deleteCandidate(id);
 
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteCandidate_fail() {
+        Integer candidateId = 1;
+        doThrow(new RuntimeException()).when(candidateService).deleteCandidate(candidateId);
+
+        try {
+            candidateController.deleteCandidate(candidateId);
+        } catch (RuntimeException e) {
+            System.out.println("Deleted failed: " + e.getMessage());
+        }
+
+        verify(candidateService, times(1)).deleteCandidate(candidateId);
+        verifyNoMoreInteractions(candidateService);
     }
 
     @Test

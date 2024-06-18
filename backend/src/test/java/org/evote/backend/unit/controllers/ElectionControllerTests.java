@@ -12,11 +12,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.*;
 
 public class ElectionControllerTests {
 
@@ -75,11 +77,16 @@ public class ElectionControllerTests {
 
     @Test
     public void testDeleteElection() {
+        doNothing().when(electionService).deleteElection(anyInt());
+
         ResponseEntity<Void> response = electionController.deleteElection(1);
 
-        Assertions.assertEquals(response.getStatusCode().value(), 200);
-        Assertions.assertNull(response.getBody());
+        assert response != null;
+        assert response.getStatusCodeValue() == 200;
+
+        verify(electionService, times(1)).deleteElection(1);
     }
+
 
     @Test
     public void testAddElection() {

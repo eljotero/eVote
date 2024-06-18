@@ -87,13 +87,20 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.16.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
         </dependency>
-
-
-
 
     </dependencies>
     <build>
@@ -151,6 +158,26 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.16.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.arcmutate</groupId>
+                        <artifactId>arcmutate-spring</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>org.evote.backend.controllers.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>org.evote.backend.unit.controllers.*</param>
+                    </targetTests>
+                </configuration>
             </plugin>
         </plugins>
 
