@@ -15,10 +15,11 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "candidate")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidateId")
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "candidate_id")
     private Integer candidateId;
     private String name;
     private String surname;

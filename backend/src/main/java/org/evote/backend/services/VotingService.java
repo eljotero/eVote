@@ -116,5 +116,5 @@ public class VotingService {
     private boolean isDataValid(Account account) {
         return userService.isUserDataComplete(account.getUser().getUser_id()) && addressService.isAddressDataComplete(account.getUser().getAddress().getAddress_id()) && !accountService.hasUserVoted(account);
     }
-
+    
 }
