@@ -1,10 +1,7 @@
 package org.evote.backend.integration;
 
 import org.evote.backend.BackendApplication;
-import org.evote.backend.services.CandidateService;
 import org.evote.backend.services.ElectionService;
-import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.CandidateDTO;
 import org.evote.backend.votes.election.dtos.ElectionCreateDTO;
 import org.evote.backend.votes.election.dtos.ElectionDTO;
 import org.evote.backend.votes.enums.ElectionType;
@@ -29,7 +26,7 @@ import static io.restassured.specification.ProxySpecification.port;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EletionControllerIntegrationTest {
+public class ElectionControllerIntegrationTest {
     @LocalServerPort
     private int port;
 
