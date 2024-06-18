@@ -13,9 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.SSLConfig;
 import static io.restassured.RestAssured.*;
 import static io.restassured.specification.ProxySpecification.port;
 
@@ -35,9 +39,19 @@ public class AuthenticationControllerIntegrationTest {
 
     @BeforeEach
     public void setup() {
-        baseURI = "http://localhost";
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resourceURL = classLoader.getResource("keystore.p12");
+
+        RestAssured.config = RestAssuredConfig.newConfig().sslConfig(
+                new SSLConfig().trustStore(resourceURL.getPath(), "password")
+                        .and()
+                        .allowAllHostnames()
+        );
+
+        baseURI = "https://localhost";
         port(port);
     }
+
 
     @AfterEach
     public void tearDown() {
