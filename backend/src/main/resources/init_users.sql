@@ -173,6 +173,7 @@ VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 4 , 1)
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype, address_id)
 VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 4, 5)
+
     ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
