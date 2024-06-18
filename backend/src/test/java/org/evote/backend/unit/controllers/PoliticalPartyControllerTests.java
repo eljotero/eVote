@@ -32,6 +32,7 @@ public class PoliticalPartyControllerTests {
 
     @BeforeEach
     public void setup() {
+        MockitoAnnotations.openMocks(this);
         PoliticalParty politicalParty1 = new PoliticalParty();
         PoliticalParty politicalParty2 = new PoliticalParty();
         Address address1 = new Address();
@@ -54,7 +55,6 @@ public class PoliticalPartyControllerTests {
         politicalParty2.setAddress(address2);
 
         politicalParties = Arrays.asList(politicalParty1, politicalParty2);
-        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -95,6 +95,21 @@ public class PoliticalPartyControllerTests {
         when(politicalPartyService.addPoliticalParty(politicalPartyCreateDTO)).thenReturn(politicalParties.get(0));
 
         ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.addPoliticalParty(politicalPartyCreateDTO);
+
+        Assertions.assertEquals(response.getStatusCode().value(), 200);
+        Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");
+    }
+
+    @Test
+    public void updatePoliticalParty() {
+        Integer id = 1;
+        PoliticalPartyCreateDTO politicalPartyCreateDTO = new PoliticalPartyCreateDTO();
+        politicalPartyCreateDTO.setName("Political Party 1");
+        politicalPartyCreateDTO.setAddress_id(1);
+
+        when(politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO)).thenReturn(politicalParties.get(0));
+
+        ResponseEntity<PoliticalPartyDTO> response = politicalPartyController.updatePoliticalParty(id, politicalPartyCreateDTO);
 
         Assertions.assertEquals(response.getStatusCode().value(), 200);
         Assertions.assertEquals(Objects.requireNonNull(response.getBody()).getName(), "Political Party 1");

@@ -11,6 +11,7 @@ import org.evote.backend.users.enums.ElectionType;
 import org.evote.backend.users.precinct.entity.Precinct;
 import org.evote.backend.users.precinct.repository.UsersPrecinctRepository;
 import org.evote.backend.users.user.entity.User;
+import org.evote.backend.users.user.exceptions.UserAlreadyAssignedException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -92,7 +94,7 @@ public class UserService {
                     existingPrecinct.getUsers().add(userToUpdate);
                     usersPrecinctRepository.save(existingPrecinct);
                 } else {
-                    throw new RuntimeException("User already assigned to this precinct");
+                    throw new UserAlreadyAssignedException("User already assigned to this precinct");
                 }
             }
         }
@@ -104,17 +106,14 @@ public class UserService {
         addressUpdateDTO.setCity(userUpdateDTO.getCity());
         addressUpdateDTO.setCountry(userUpdateDTO.getCountry());
         addressUpdateDTO.setAddress_line(userUpdateDTO.getAddress_line());
-        try {
-            addressService.updateAddress(account.getAccount_id(), addressUpdateDTO);
-            usersRepository.save(userToUpdate);
-        } catch (Exception e) {
-            throw new RuntimeException("Error while updating user");
-        }
-        try {
-            accountRepository.save(accountToUpdate);
-        } catch (Exception e) {
-            throw new AccountNotFoundException("Account with id " + id + " not found");
-        }
+        addressService.updateAddress(account.getAccount_id(), addressUpdateDTO);
+        usersRepository.save(userToUpdate);
+        accountRepository.save(accountToUpdate);
         return "User updated successfully";
+    }
+
+    public Boolean isUserDataComplete(UUID id) {
+        User user = usersRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+        return user.getName() != null && user.getSurname() != null && user.getPersonalIdNumber() != null && user.getSex() != null && user.getBirthDate() != null && user.getEducation() != null && user.getCityType() != null && user.getProfession() != null && user.getAddress() != null;
     }
 }

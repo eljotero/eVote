@@ -3,8 +3,12 @@ package org.evote.backend.exception;
 import org.evote.backend.users.account.exceptions.*;
 import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
+import org.evote.backend.users.user.exceptions.CodeAlreadySent;
+import org.evote.backend.users.user.exceptions.CodeMismatchException;
+import org.evote.backend.users.user.exceptions.UserAlreadyAssignedException;
 import org.evote.backend.votes.candidate.exception.CandidateAlreadyExistsException;
 import org.evote.backend.votes.candidate.exception.CandidateNotFoundException;
+import org.evote.backend.votes.candidate.exception.CandidateWrongPrecinctException;
 import org.evote.backend.votes.election.exception.ElectionAlreadyExistsException;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.political_party.exception.PoliticalPartyAlreadyExistsException;
@@ -91,5 +95,25 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = PrecinctNotFoundException.class)
     public ResponseEntity<ErrorResponse> handlePrecinctNotFoundException(PrecinctNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = CodeAlreadySent.class)
+    public ResponseEntity<ErrorResponse> handleCodeAlreadySent(CodeAlreadySent e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(HttpStatus.CONFLICT.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = UserAlreadyAssignedException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyAssigned(UserAlreadyAssignedException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(HttpStatus.CONFLICT.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = CandidateWrongPrecinctException.class)
+    public ResponseEntity<ErrorResponse> handleCandidateWrongPrecinctException(CandidateWrongPrecinctException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(value = CodeMismatchException.class)
+    public ResponseEntity<ErrorResponse> handleCodeMismatchException(CodeMismatchException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
 }

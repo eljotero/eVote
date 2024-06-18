@@ -1,5 +1,6 @@
 package org.evote.backend.services;
 
+import lombok.AllArgsConstructor;
 import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
 import org.evote.backend.votes.candidate.dtos.CandidateMapper;
 import org.evote.backend.votes.candidate.entity.Candidate;
@@ -15,7 +16,6 @@ import org.evote.backend.votes.political_party.repository.PoliticalPartyReposito
 import org.evote.backend.votes.precinct.entity.Precinct;
 import org.evote.backend.votes.precinct.exception.PrecinctNotFoundException;
 import org.evote.backend.votes.precinct.repository.VotesPrecinctRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,15 +23,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CandidateService {
-    @Autowired
-    private CandidateRepository candidateRepository;
-    @Autowired
-    private PoliticalPartyRepository politicalPartyRepository;
-    @Autowired
-    private ElectionRepository electionRepository;
-    @Autowired
-    private VotesPrecinctRepository precinctRepository;
+
+    private final CandidateRepository candidateRepository;
+    private final PoliticalPartyRepository politicalPartyRepository;
+    private final ElectionRepository electionRepository;
+    private final VotesPrecinctRepository precinctRepository;
+
 
     public List<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
