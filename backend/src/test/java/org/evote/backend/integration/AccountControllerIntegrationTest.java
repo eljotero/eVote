@@ -24,6 +24,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.specification.ProxySpecification.port;
+import static org.hamcrest.Matchers.greaterThan;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -60,10 +61,18 @@ public class AccountControllerIntegrationTest {
         createdAccounts.clear();
     }
 
+    //TODO: rola admina tu musi być
 //    @Test
-//    public void testGetAllAccountsReturn200() {
-//        given().port(port).when().get(BASE_PATH + "/all").then().statusCode(200);
+//    public void testGetAllAccounts() {
+//        given()
+//                .when()
+//                .get(BASE_PATH + "/all")
+//                .then()
+//                .statusCode(200)
+//                .body("size()", greaterThan(0));
 //    }
+
+
 //
 //    @Test
 //    public void testAddAccountReturn201() {
