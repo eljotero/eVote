@@ -19,6 +19,7 @@ export default function Vote() {
     const [candidatesByElection, setCandidatesByElection] = useState({});
     const [user, setUser] = useState({});
     const [selectedCandidateId, setSelectedCandidateId] = useState(null);
+    const [selectedElectionId, setSelectedElectionId] = useState(null);
     const upcomingElectionStartDate = elections.map(election => new Date(election.startDate).toLocaleDateString());
 
     useEffect(() => {
@@ -35,7 +36,6 @@ export default function Vote() {
 
     useEffect(() => {
         const fetchPrecincts = async () => {
-            console.log(user);
             try {
                 const response = await axios.get('https://localhost:8080/api/precinct/all');
                 const precincts = response.data;
@@ -77,7 +77,6 @@ export default function Vote() {
                         }
                     }
                 }
-                console.log(newCandidatesByElection);
                 setCandidatesByElection(newCandidatesByElection);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
@@ -130,7 +129,7 @@ export default function Vote() {
               "votes": [
                     {
                         "candidateId": selectedCandidateId,
-                        "electionId": candidates.find(candidate => candidate.candidate_id === selectedCandidateId).election_id,
+                        "electionId": selectedElectionId,
                     }
                 ]
             }, {
@@ -149,16 +148,9 @@ export default function Vote() {
         }
     }
 
-    const handleVoteClick = (candidateId) => {
-        console.log(candidateId)
-        const selectedCandidateElection = candidates.find(candidate => candidate.candidate_id === candidateId);
-        const electionStartDate = new Date(selectedCandidateElection.startDate);
-
-        if (new Date() < electionStartDate) {
-            return;
-        }
-
+    const handleVoteClick = (candidateId, electionId) => {
         setSelectedCandidateId(candidateId);
+        setSelectedElectionId(electionId);
         setShowForm(true);
     }
 
@@ -236,7 +228,7 @@ export default function Vote() {
                                     'bg-gray-400 cursor-not-allowed' : 
                                     'bg-blue-500 hover:bg-blue-600 text-white'
                                 }`}
-                                onClick={() => handleVoteClick(candidate.candidate_id)}
+                                onClick={() => handleVoteClick(candidate.candidate_id, electionId)}
                                 disabled={new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate)}
                             >
                                 Zagłosuj
