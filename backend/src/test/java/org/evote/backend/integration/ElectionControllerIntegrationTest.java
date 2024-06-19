@@ -1,10 +1,10 @@
 package org.evote.backend.integration;
 
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.SSLConfig;
 import org.evote.backend.BackendApplication;
-import org.evote.backend.services.CandidateService;
 import org.evote.backend.services.ElectionService;
-import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.CandidateDTO;
 import org.evote.backend.votes.election.dtos.ElectionCreateDTO;
 import org.evote.backend.votes.election.dtos.ElectionDTO;
 import org.evote.backend.votes.enums.ElectionType;
@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,7 +30,7 @@ import static io.restassured.specification.ProxySpecification.port;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EletionControllerIntegrationTest {
+public class ElectionControllerIntegrationTest {
     @LocalServerPort
     private int port;
 
@@ -42,7 +43,16 @@ public class EletionControllerIntegrationTest {
 
     @BeforeEach
     public void setup() {
-        baseURI = "http://localhost";
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resourceURL = classLoader.getResource("keystore.p12");
+
+        RestAssured.config = RestAssuredConfig.newConfig().sslConfig(
+                new SSLConfig().trustStore(resourceURL.getPath(), "password")
+                        .and()
+                        .allowAllHostnames()
+        );
+
+        baseURI = "https://localhost";
         port(port);
     }
 

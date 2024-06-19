@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:https": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
@@ -40,6 +42,7 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.2",
     "@types/jest": "^29.5.12",
+    "cypress": "^13.11.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "html-loader": "^5.0.0",

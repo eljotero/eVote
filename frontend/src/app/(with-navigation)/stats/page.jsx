@@ -21,6 +21,8 @@ const StatsPage = () => {
     const [countryGroupResultsSenat, setCountryGroupResultsSenat] = useState([]);
     const [groupResultsSenat, setGroupResultsSenat] = useState([]);
 
+    const [groupMandates, setGroupMandates] = useState([]);
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -41,6 +43,9 @@ const StatsPage = () => {
                 setCityGroupResultsSenat(response2.data.resultsByCityType);
                 setCountryGroupResultsSenat(response2.data.resultsByCountry);
                 setGroupResultsSenat(response2.data.results);
+
+                const response3 = await axios.get('http://localhost:8080/api/stats/mandates/1');
+                setGroupMandates(response3.data);
 
                 setLoading(false);
             } catch (err) {
@@ -79,7 +84,7 @@ const StatsPage = () => {
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
             <h3 className="text-lg font-semibold">Głosy dla danego kraju {countryGroup2}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={countryGroupResultsSenat[countryGroup2]} partyName={`Grupa krajów ${countryGroup2}`} />
+                <PolarAreaChart data={countryGroupResultsSenat[countryGroup2]} partyName={`Kraj: ${countryGroup2}`} />
             </div>
         </div>
     ));
@@ -88,42 +93,42 @@ const StatsPage = () => {
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
             <h3 className="text-lg font-semibold">Głosy dla danego kraju {countryGroup}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={countryGroupResults[countryGroup]} partyName={`Grupa krajów ${countryGroup}`} />
+                <PolarAreaChart data={countryGroupResults[countryGroup]} partyName={`Kraj: ${countryGroup}`} />
             </div>
         </div>
     ));
 
     const cityGroupCharts2 = cityGroups2.map((cityGroup2, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy {cityGroup2}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla typu miasta: {cityGroup2} mieszkańców</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={cityGroupResultsSenat[cityGroup2]} partyName={`Grupa miast ${cityGroup2}`} />
+                <PolarAreaChart data={cityGroupResultsSenat[cityGroup2]} partyName={`Miasto: ${cityGroup2} mieszkańców`} />
             </div>
         </div>
     ));
 
     const sexGroupCharts2 = sexGroups2.map((sexGroup2, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy {sexGroup2}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla płci: {sexGroup2}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <DoughnutChart data={sexGroupResultsSenat[sexGroup2]} partyName={`Grupa płci ${sexGroup2}`} />
+                <DoughnutChart data={sexGroupResultsSenat[sexGroup2]} partyName={`Płeć: ${sexGroup2}`} />
             </div>
         </div>
     ));
 
     const ageGroupCharts2 = ageGroups2.map((ageGroup2, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {ageGroup2}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej: {ageGroup2} lat</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={ageGroupResultsSenat[ageGroup2]} partyName={`Grupa wiekowa ${ageGroup2}`} />
+                <PolarAreaChart data={ageGroupResultsSenat[ageGroup2]} partyName={`Grupa wiekowa: ${ageGroup2} lat`} />
             </div>
         </div>
     ));
     const educationGroupCharts2 = educationGroups2.map((educationGroup2, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {educationGroup2}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla wykształcenia wyborców: {educationGroup2}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={educationGroupResultsSenat[educationGroup2]} partyName={`Grupa społeczna ${educationGroup2}`} />
+                <PolarAreaChart data={educationGroupResultsSenat[educationGroup2]} partyName={`Wykształcenie: ${educationGroup2}`} />
             </div>
         </div>
     ));
@@ -132,35 +137,35 @@ const StatsPage = () => {
 
     const cityGroupCharts = cityGroups.map((cityGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy {cityGroup}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla typu miasta: {cityGroup} mieszkańców</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={cityGroupResults[cityGroup]} partyName={`Grupa miast ${cityGroup}`} />
+                <PolarAreaChart data={cityGroupResults[cityGroup]} partyName={`Typ miasta: ${cityGroup} mieszkańców`} />
             </div>
         </div>
     ));
 
     const sexGroupCharts = sexGroups.map((sexGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy {sexGroup}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla płci: {sexGroup}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <DoughnutChart data={sexGroupResults[sexGroup]} partyName={`Grupa płci ${sexGroup}`} />
+                <DoughnutChart data={sexGroupResults[sexGroup]} partyName={`Płeć: ${sexGroup}`} />
             </div>
         </div>
     ));
 
     const ageGroupCharts = ageGroups.map((ageGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {ageGroup}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {ageGroup} lat</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={ageGroupResults[ageGroup]} partyName={`Grupa wiekowa ${ageGroup}`} />
+                <PolarAreaChart data={ageGroupResults[ageGroup]} partyName={`Grupa wiekowa ${ageGroup} lat`} />
             </div>
         </div>
     ));
     const educationGroupCharts = educationGroups.map((educationGroup, index) => (
         <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">Głosy dla grupy wiekowej {educationGroup}</h3>
+            <h3 className="text-lg font-semibold">Głosy dla wykształcenia wyborców: {educationGroup}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <PolarAreaChart data={educationGroupResults[educationGroup]} partyName={`Grupa społeczna ${educationGroup}`} />
+                <PolarAreaChart data={educationGroupResults[educationGroup]} partyName={`Wykształcenie wyborcy: ${educationGroup}`} />
             </div>
         </div>
     ));
@@ -171,38 +176,43 @@ const StatsPage = () => {
                 <div className="container mx-auto p-4">
                     <h2 className="text-3xl font-semibold mb-4 text-center">Sejm</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                        <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki ogólne wyborcze</h2>
-                        <hr className="my-8" />
-                        <hr className="my-8" />
                         <div className="p-4 bg-white rounded-lg shadow-md">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <h3 className="text-lg font-semibold mb-4 text-center">Wyniki głosowania</h3>
+                            <hr className="my-8" />
+                            <hr className="my-8" />
+                            <div className="grid grid-cols-2 gap-4">
                                 <BarChart data={sejmGroupResults} />
+                            </div>
+                        </div>
+                        <div className="p-4 bg-white rounded-lg shadow-md">
+                            <h3 className="text-lg font-semibold mb-4 text-center">Podział mandatów</h3>
+                            <div className="grid grid-cols-2 gap-4">
+                                    <PieChart data={groupMandates} />
                             </div>
                         </div>
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze - grupy wiekowe</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
                         <hr className="my-8" />
                         {ageGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według grup społecznych</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
                         <hr className="my-8" />
                         {educationGroupCharts}
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według płci</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
                         <hr className="my-8" />
                         {sexGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według typów miast</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
                         <hr className="my-8" />
                         {cityGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według krajów</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na kraj</h2>
                         <hr className="my-8" />
                         {countryGroupCharts}
                         <hr className="my-8" />
@@ -218,38 +228,36 @@ const StatsPage = () => {
                         <h2 className="text-3xl font-semibold mb-4 text-center">Senat</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki ogólne wyborcze</h2>
-                            <hr className="my-8" />
-                            <hr className="my-8" />
                             <div className="p-4 bg-white rounded-lg shadow-md">
+                                <hr className="my-8" />
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <BarChart data={groupResultsSenat} />
                                 </div>
                             </div>
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze - grupy wiekowe</h2>
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
                             <hr className="my-8" />
                             {ageGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według grup społecznych</h2>
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
                             <hr className="my-8" />
                             {educationGroupCharts2}
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według płci</h2>
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
                             <hr className="my-8" />
                             {sexGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według typów miast</h2>
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
                             <hr className="my-8" />
                             {cityGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki wyborcze według krajów</h2>
+                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na kraj</h2>
                             <hr className="my-8" />
                             {countryGroupCharts2}
                             <hr className="my-8" />
@@ -353,12 +361,12 @@ const PolarAreaChart = ({ data, partyName }) => {
     return <PolarArea data={chartData} options={chartOptions} />;
 };
 
-const PieChart = ({ data, partyName }) => {
+const PieChart = ({ data}) => {
     const chartData = {
         labels: Object.keys(data),
         datasets: [
             {
-                label: `Głosy dla ${partyName}`,
+                label: `Liczba mandatów`,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)',
                     'rgba(54, 162, 235, 0.6)',
@@ -401,7 +409,7 @@ const PieChart = ({ data, partyName }) => {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
+                position: 'left',
             },
             tooltip: {
                 callbacks: {
