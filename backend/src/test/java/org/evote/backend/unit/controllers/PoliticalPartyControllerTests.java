@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PoliticalPartyControllerTests {
@@ -82,8 +83,12 @@ public class PoliticalPartyControllerTests {
     @Test
     public void testDeletePoliticalParty() {
         Integer id = 1;
+
         ResponseEntity<Void> response = politicalPartyController.deletePoliticalParty(id);
+
         Assertions.assertNull(response.getBody());
+
+        verify(politicalPartyService).deletePoliticalParty(id);
     }
 
     @Test

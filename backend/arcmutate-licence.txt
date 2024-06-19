@@ -1,0 +1,8 @@
+#Latest licence for this subscription available at https://subscriptions.arcmutate.com/08a21158-5faa-458a-bc90-0a3c428bfef0/arcmutate-licence.txt
+#Tue Jun 18 20:23:35 UTC 2024
+expires=18/07/2024
+signature=XnOhcFThZOMzYtzb3xU+vy5qyW5XW1ZOjTTlKWJbh/3eepBIew2FO1S4rgfH+uwja0UiEIVlXKaqMXXIMeGlZ2pBjVzE8nurWPOKm/g8xfydj5ZkIixLancRkcfNfcn+KQa63zUBNmvQ5mfWpDS+GmFH6BtLga2vnG/9tp775qE\=
+packages=org.evote.*
+type=EVALUATION
+users=1
+keyVersion=1
