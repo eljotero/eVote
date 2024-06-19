@@ -65,9 +65,15 @@ export default function Account() {
         });
         setData(res.data);
     };
-
+    useEffect(() => {
+        fetchAccount();
+    }, []);
     useEffect(() => {
         if (data) {
+            setValue('email', data.email);
+            setValue('name', data.name);
+            setValue('surname', data.surname);
+            setValue('sex', data.sex);
             const date = new Date(data.birthDate);
             const formattedDate = `${date.getFullYear()}-${(
                 '0' +
@@ -84,7 +90,7 @@ export default function Account() {
             setValue('addressLine', data.addressLine);
             setValue('voivodeship', data.voivodeship);
         }
-    }, [data, setValue]);
+    }, [data]);
 
 
     const onSubmit = async (data) => {
@@ -103,8 +109,6 @@ export default function Account() {
             country: data.country,
             address_line: data.addressLine,
         };
-        console.log(id);
-        console.log(token);
         axios
             .put(`user/${id}`, formData, {
                 headers: {

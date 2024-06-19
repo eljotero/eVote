@@ -32,7 +32,7 @@ export default function RegisterForm() {
             password,
         };
         try {
-            const response = await axios.post('/auth/register', formData);
+            const response = await axios.post('https://localhost:8080/api/auth/register', formData);
             if (response.status === 201) {
                 toast.success('Konto zostało utworzone. Zaloguj się.');
                 reset();
