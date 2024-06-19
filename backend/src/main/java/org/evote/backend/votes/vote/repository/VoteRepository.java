@@ -1,6 +1,5 @@
 package org.evote.backend.votes.vote.repository;
 
-import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.vote.entity.Vote;
 import org.springframework.data.jpa.repository.JpaRepository;
 

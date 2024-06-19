@@ -13,7 +13,8 @@ import java.util.Date;
 @Table(name = "vote")
 public class Vote {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_seq")
+    @SequenceGenerator(name = "vote_seq", sequenceName = "vote_sequence", initialValue = 338, allocationSize = 1)
     private Long voteId;
 
     @ManyToOne
