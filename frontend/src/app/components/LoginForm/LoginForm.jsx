@@ -34,7 +34,7 @@ export default function LoginForm() {
             password,
         };
         try {
-            const response = await axios.post('auth/login', formData);
+            const response = await axios.post('https://localhost:8080/api/auth/login', formData);
             if (response.status === 200) {
                 dispatch(setToken(response.data.token));
                 dispatch(setID(response.data.id));

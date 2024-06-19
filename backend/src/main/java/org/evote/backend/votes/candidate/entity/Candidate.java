@@ -19,6 +19,7 @@ import java.util.Date;
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "candidate_id")
     private Integer candidateId;
     private String name;
     private String surname;

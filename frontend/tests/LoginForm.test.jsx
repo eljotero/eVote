@@ -89,7 +89,7 @@ describe('LoginForm', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(axios.post).toHaveBeenCalledWith('auth/login', {
+        expect(axios.post).toHaveBeenCalledWith('https://localhost:8080/api/auth/login', {
             email: TEST_EMAIL,
             password: TEST_PASSWORD,
         });
