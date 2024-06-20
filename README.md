@@ -1,6 +1,8 @@
 # eVote
 The eVote system is an advanced election management system designed to comprehensively organize and conduct various types of elections. The system is designed to be easy to use, secure, and flexible, meeting the needs of state institutions.
 
+<img src='https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fobraz_2024-06-20_022513527.png?alt=media&token=b60a41d4-3f67-4f3b-89dc-7601fb92eeb7' alt='Strona główna'>
+
 ## Features of the eVote System
 
 ### 1. Creating and Managing Elections
@@ -43,6 +45,10 @@ The eVote system offers all these functionalities to create a secure, efficient,
 
 ## Frontend
 The eVote application's frontend is built using [Next.js](https://nextjs.org/), a framework based on [React](https://reactjs.org/). We use [Tailwind CSS](https://tailwindcss.com/) for styling, configured in the [tailwind.config.js](frontend/tailwind.config.js) file.
+
+<img src='https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fobraz_2024-06-20_022709031.png?alt=media&token=d62b1b2f-827e-4110-8134-c28dfd2e846e' alt='Rejestracja'>
+<img src='https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fobraz_2024-06-20_023211012.png?alt=media&token=c46398dc-d3ae-4ad2-8390-ce6c30d6a73a' alt='Moje konto'>
+<img src='https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fobraz_2024-06-20_023426390.png?alt=media&token=d037ff54-3cbc-4516-9e2b-a76892931f41' alt='Instrukcja korzystania z aplikacji'>
 
 The frontend uses [axios](https://axios-http.com/) for making HTTP requests to the backend. We use [Redux Toolkit](https://redux-toolkit.js.org/) for state management.
 
