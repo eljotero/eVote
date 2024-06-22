@@ -12,7 +12,10 @@ import java.util.UUID;
 
 @Entity(name = "UsersPrecinct")
 @Data
-@Table(name = "precinct")
+@Table(name = "precinct", indexes = {
+        @Index(name = "idx_city_electionType", columnList = "availableCities, electionType"),
+        @Index(name = "idx_voivodeship_electionType", columnList = "address.voivodeship, electionType")
+})
 public class Precinct {
 
     @Id

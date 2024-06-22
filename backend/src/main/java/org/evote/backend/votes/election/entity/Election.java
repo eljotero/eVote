@@ -9,7 +9,10 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "election")
+@Table(name = "election",
+indexes = {
+        @Index(name = "idx_electionName_startDate", columnList = "electionName, startDate")
+})
 public class Election {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "election_seq")

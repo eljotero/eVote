@@ -1,7 +1,7 @@
 package org.evote.backend.services;
 
 import lombok.RequiredArgsConstructor;
-import org.evote.backend.users.enums.Education;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
@@ -11,7 +11,6 @@ import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.vote.entity.Vote;
 import org.evote.backend.votes.vote.repository.VoteRepository;
 import org.springframework.stereotype.Service;
-import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -274,7 +273,7 @@ public class StatisticsService {
 
     private String convertEducationToString(String education) {
         return switch (education) {
-            case  "PRIMARY" -> "podstawowe";
+            case "PRIMARY" -> "podstawowe";
             case "VOCATIONAL" -> "zawodowe";
             case "SECONDARY" -> "średnie";
             case "POST_SECONDARY" -> "wyższe";

@@ -7,8 +7,6 @@ import org.evote.backend.users.address.entity.Address;
 import org.evote.backend.users.enums.CityType;
 import org.evote.backend.users.enums.Education;
 import org.evote.backend.users.precinct.entity.Precinct;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.util.Date;
 import java.util.List;

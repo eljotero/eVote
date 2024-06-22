@@ -1,6 +1,5 @@
 package org.evote.backend.votes.precinct.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.evote.backend.votes.address.entity.Address;

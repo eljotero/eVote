@@ -10,7 +10,9 @@ import java.util.List;
 
 @Entity(name = "UsersAddress")
 @Data
-@Table(name = "address")
+@Table(name = "address", indexes = {
+        @Index(name = "idx_zip_city_country_voivodeship_addressLine", columnList = "zip_code, city, country, voivodeship, address_line", unique = true),
+})
 public class Address {
 
     @Id

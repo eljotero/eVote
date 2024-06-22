@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.evote.backend.votes.precinct.entity.Precinct;
@@ -14,7 +14,10 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "candidate")
+@Table(name = "candidate", indexes = {
+        @Index(name = "idx_surname_birthDate_education", columnList = "surname,birthDate,education")
+}
+)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {
 

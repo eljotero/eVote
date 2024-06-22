@@ -9,7 +9,10 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "political_party")
+@Table(name = "political_party",
+indexes = {
+        @Index(name = "political_party_name_index", columnList = "name")
+})
 public class PoliticalParty {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "party_seq")
