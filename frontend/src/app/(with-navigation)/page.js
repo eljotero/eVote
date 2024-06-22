@@ -60,8 +60,7 @@ export default function Home() {
                         <div className="relative w-full">
                             <div aria-hidden="true"
                                  className="absolute scale-75 md:scale-110 inset-0 m-auto w-full h-full md:w-96 md:h-96 rounded-full rotate-45 bg-gradient-to-r from-blue-500 to-sky-300 blur-3xl animate-blob"></div>
-                            <Image src="https://storage.googleapis.com/evote_c/evote-home.png" width={810} height={913}  alt="Dwoje ludzi zachęcających do głosowania" className="relative w-full max-w-[50em]" loading='lazy'
-                                   layout='responsive'/>
+                            <Image src="https://storage.googleapis.com/evote_c/evote-home.png" width={810} height={913}  alt="Dwoje ludzi zachęcających do głosowania" className="relative w-full max-w-[50em]" priority={true}/>
                         </div>
                     </div>
                 </div>

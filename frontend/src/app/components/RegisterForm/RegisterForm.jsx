@@ -2,8 +2,12 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
+import { setToken } from '@/store/tokenSlice';
+import { setID } from '@/store/idSlice';
 import axios from '../../../../lib/axios';
 import '../input.css';
+import {useDispatch} from "react-redux";
+import {useRouter} from "next/navigation";
 
 const registerSchema = z.object({
     email: z.string().email({ message: 'Nieprawidłowy adres email' }),
@@ -15,6 +19,9 @@ const registerSchema = z.object({
 });
 
 export default function RegisterForm() {
+    const dispatch = useDispatch();
+    const router = useRouter();
+
     const {
         register,
         handleSubmit,
@@ -32,10 +39,15 @@ export default function RegisterForm() {
             password,
         };
         try {
-            const response = await axios.post('https://localhost:8080/api/auth/register', formData);
-            if (response.status === 201) {
-                toast.success('Konto zostało utworzone. Zaloguj się.');
-                reset();
+            const registerResponse = await axios.post('https://localhost:8080/api/auth/register', formData);
+            if (registerResponse.status === 201) {
+                const loginResponse = await axios.post('https://localhost:8080/api/auth/login', formData);
+                if (loginResponse.status === 200) {
+                    dispatch(setToken(loginResponse.data.token));
+                    dispatch(setID(loginResponse.data.id));
+                    router.push('/');
+                    toast.success('Rejestracja zakończona sukcesem. Zalogowano.');
+                }
             }
         } catch (error) {
             console.error(error);

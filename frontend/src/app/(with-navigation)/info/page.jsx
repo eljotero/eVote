@@ -55,8 +55,8 @@ export default function Contact() {
                         <div className="relative w-full">
                             <Image src="https://storage.googleapis.com/evote_c/evote-info.png" width={810} height={913}
                                    alt="Ilustracja kobiety zaznaczającej swój wybór na karcie głosowań"
-                                   className="relative w-full max-w-[40em]" loading='lazy'
-                                   layout='responsive'/>
+                                   className="relative w-full max-w-[40em]"
+                                   priority={true}/>
                         </div>
                     </div>
                 </div>

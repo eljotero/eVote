@@ -152,6 +152,8 @@ describe('Account', () => {
         });
         expect(toast.error).toHaveBeenCalledWith('Email został już wysłany. Sprawdź swoją skrzynkę odbiorczą.');
     });
+
+
     it('shows toast error if backend returns 500', async () => {
         axios.post.mockRejectedValue({
             response: {

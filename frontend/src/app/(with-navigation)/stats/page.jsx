@@ -60,11 +60,11 @@ const StatsPage = () => {
 
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Wczytywanie...</div>;
     }
 
     if (error) {
-        return <div>Error loading stats: {error.message}</div>;
+        return <div>Błąd wczytywania statystyk: {error.message}</div>;
     }
 
     const ageGroups = Object.keys(ageGroupResults);
@@ -174,7 +174,7 @@ const StatsPage = () => {
             <h1 className="text-4xl font-bold mb-8 text-center">Aktualne statystyki wyborcze</h1>
             <div className="bg-gray-200 mb-8">
                 <div className="container mx-auto p-4">
-                    <h2 className="text-3xl font-semibold mb-4 text-center">Sejm</h2>
+                    <h2 className="text-3xl font-semibold mt-4 mb-2 text-center">Sejm</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                         <div className="p-4 bg-white rounded-lg shadow-md">
                             <h3 className="text-lg font-semibold mb-4 text-center">Wyniki głosowania</h3>
@@ -197,27 +197,27 @@ const StatsPage = () => {
                             </div>
                         </div>
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
+                        <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
                         <hr className="my-8" />
                         {ageGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
+                        <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
                         <hr className="my-8" />
                         {educationGroupCharts}
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
+                        <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
                         <hr className="my-8" />
                         {sexGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
+                        <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
                         <hr className="my-8" />
                         {cityGroupCharts}
                         <hr className="my-8" />
                         <hr className="my-8" />
                         <hr className="my-8" />
-                        <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na kraj</h2>
+                        <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na kraj</h2>
                         <hr className="my-8" />
                         {countryGroupCharts}
                         <hr className="my-8" />
@@ -230,7 +230,7 @@ const StatsPage = () => {
             <div className="container mx-auto p-4">
                 <div className="bg-gray-200 mb-8">
                     <div className="container mx-auto p-4">
-                        <h2 className="text-3xl font-semibold mb-4 text-center">Senat</h2>
+                        <h2 className="text-3xl font-semibold mt-4 mb-2 text-center">Senat</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                             <hr className="my-8" />
                             <div className="p-4 bg-white rounded-lg shadow-md">
@@ -241,28 +241,28 @@ const StatsPage = () => {
                             </div>
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
+                            <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
                             <hr className="my-8" />
                             {ageGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
+                            <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na wykształcenie wyborców</h2>
                             <hr className="my-8" />
                             {educationGroupCharts2}
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
+                            <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
                             <hr className="my-8" />
                             {sexGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
+                            <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na typy miast wyborców</h2>
                             <hr className="my-8" />
                             {cityGroupCharts2}
                             <hr className="my-8" />
                             <hr className="my-8" />
                             <hr className="my-8" />
-                            <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na kraj</h2>
+                            <h2 className="text-xl font-semibold mt-4 mb-2 text-center">Wyniki głosowania z podziałem na kraj</h2>
                             <hr className="my-8" />
                             {countryGroupCharts2}
                             <hr className="my-8" />

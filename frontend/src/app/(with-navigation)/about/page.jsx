@@ -14,8 +14,8 @@ export default function About() {
                 <div className="lg:absolute lg:top-20 lg:right-20 lg:mb-8 lg:mr-8 hidden sm:hidden md:hidden lg:block">
                     <Image
                         src="https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fevote-about2.png?alt=media&token=1cdcf4f7-7089-461b-b94f-36cef059a75b"
-                        alt="Waga" width="600" height="600" loading='lazy'
-                        layout='responsive'/>
+                        alt="Waga" width="600" height="600"
+                        priority={true}/>
                 </div>
 
                 <div className="relative w-full max-w-2xl">
@@ -114,8 +114,8 @@ export default function About() {
             </section>
             <div className="lg:fixed bottom-0 lg:left-0 lg:mr-8 hidden sm:hidden md:hidden lg:block ">
                 <Image src="https://storage.googleapis.com/evote_c/evote-about.png" width="810" height="409"
-                       alt="Troje ludzi zachęcających do głosowania" className="max-w-[50em]" loading='lazy'
-                       layout='responsive'/>
+                       alt="Troje ludzi zachęcających do głosowania" className="max-w-[50em]"
+                       priority={true}/>
             </div>
         </>
     );
