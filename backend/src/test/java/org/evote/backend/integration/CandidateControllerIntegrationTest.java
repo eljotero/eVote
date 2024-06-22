@@ -1,43 +1,43 @@
 package org.evote.backend.integration;
+
 import io.restassured.RestAssured;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.config.SSLConfig;
 import org.evote.backend.BackendApplication;
-import org.evote.backend.services.CandidateService;
-import org.evote.backend.votes.candidate.dtos.CandidateCreateDTO;
-import org.evote.backend.votes.candidate.dtos.CandidateDTO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.specification.ProxySpecification.port;
+import static io.restassured.RestAssured.baseURI;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class CandidateControllerIntegrationTest {
+
+    private final MockMvc mockMvc;
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private CandidateService candidateService;
-
-    private List<Integer> createdCandidates = new ArrayList<>();
-
-    private static final String BASE_PATH = "/api/candidates";
+    public CandidateControllerIntegrationTest(MockMvc mockMvc) {
+        this.mockMvc = mockMvc;
+    }
 
     @BeforeEach
     public void setup() {
@@ -51,95 +51,54 @@ public class CandidateControllerIntegrationTest {
         );
 
         baseURI = "https://localhost";
-        port(port);
+        RestAssured.port = port;
     }
 
-    @AfterEach
-    public void tearDown() {
-        createdCandidates.forEach(candidateId -> candidateService.deleteCandidate(candidateId));
-        createdCandidates.clear();
+    @Test
+    public void testGetAllCandidates() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/candidates/all")).andExpect(jsonPath("$", hasSize(2)));
+    }
+
+    @Test
+    public void testGetFilteredCandidates() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/candidates/filtered?electionId=1&precinctId=1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].candidate_id", is(1)))
+                .andExpect(jsonPath("$[0].name", is("Michał")))
+                .andExpect(jsonPath("$[0].surname", is("Kot")))
+                .andExpect(jsonPath("$[0].birthDate", is("1988-04-19T22:00:00.000+00:00")))
+                .andExpect(jsonPath("$[0].education", is("inżynier informatyki")))
+                .andExpect(jsonPath("$[0].profession", is("Szefunio")))
+                .andExpect(jsonPath("$[0].political_party_id", is(1)))
+                .andExpect(jsonPath("$[0].precinct_id", is(1)))
+                .andExpect(jsonPath("$[0].info", is("Cos tam cos tam.")))
+                .andExpect(jsonPath("$[0].image", is("https://storage.googleapis.com/evote_c/obraz_2024-06-11_211139026.png")));
+    }
+
+    @Test
+    public void testUnauthenticatedAddCandidate() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/candidates/add").contentType(MediaType.APPLICATION_JSON).content(
+                "{\n" +
+                        "    \"name\": \"Jan\",\n" +
+                        "    \"surname\": \"Kowalski\",\n" +
+                        "    \"birthDate\": \"1988-04-19T22:00:00.000+00:00\",\n" +
+                        "    \"education\": \"inżynier informatyki\",\n" +
+                        "    \"profession\": \"Szefunio\",\n" +
+                        "    \"political_party_id\": 1,\n" +
+                        "    \"precinct_id\": 3,\n" +
+                        "    \"info\": \"Cos tam cos tam.\",\n" +
+                        "    \"image\": \"https://storage.googleapis.com/evote_c/obraz_2024-06-11_211139026.png\"\n" +
+                        "}")).andExpect(status().isForbidden());
     }
 
 
     @Test
-    public void testGetAllCandidates() {
-        given().port(port).when().get(BASE_PATH + "/all").then().statusCode(200);
-    }
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    public void testAuthenticatedAddAndDeleteCandidate() throws Exception {
 
-//    @Test
-//    public void addCandidate() {
-//
-//        CandidateDTO candidateDTO = given().port(port).contentType("application/json").body(createExampleCandidateCreateDTO())
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(201).extract().as(CandidateDTO.class);
-//
-//        createdCandidates.add(candidateDTO.getCandidate_id());
-//
-//        Assertions.assertNotNull(candidateDTO);
-//
-//    }
-
-    @Test
-    public void addCandidateThatAlreadyExists() {
-//        CandidateCreateDTO candidateCreateDTO = createExampleCandidateCreateDTO();
-//
-//        CandidateDTO candidateDTO = given().port(port).contentType("application/json").body(candidateCreateDTO)
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(201).extract().as(CandidateDTO.class);
-//
-//        createdCandidates.add(candidateDTO.getCandidate_id());
-
-//        given().port(port).contentType("application/json").body(candidateCreateDTO)
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(400);
-    }
-
-//    @Test
-//    public void testAddCandidateWithNonExistentPoliticalParty() {
-//        CandidateCreateDTO candidateCreateDTO = createExampleCandidateCreateDTO();
-//
-//        candidateCreateDTO.setPolitical_party_id(9999);
-//
-//        given().port(port).contentType("application/json").body(candidateCreateDTO)
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(404);
-//    }
-
-//    @Test
-//    public void testAddCandidateWithNonExistentElection() {
-//        CandidateCreateDTO candidateCreateDTO = createExampleCandidateCreateDTO();
-//
-//        candidateCreateDTO.setElection_id(9999);
-//
-//        given().port(port).contentType("application/json").body(candidateCreateDTO)
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(400);
-//    }
-
-//    @Test
-//    public void testAddCandidateWithNonExistentPrecinct() {
-//        CandidateCreateDTO candidateCreateDTO = createExampleCandidateCreateDTO();
-//
-//        candidateCreateDTO.setPrecinct_id(9999);
-//
-//        given().port(port).contentType("application/json").body(candidateCreateDTO)
-//                .when().post(BASE_PATH + "/add")
-//                .then().statusCode(400);
-//    }
-
-    public CandidateCreateDTO createExampleCandidateCreateDTO() {
-        CandidateCreateDTO candidateCreateDTO = new CandidateCreateDTO();
-        candidateCreateDTO.setName("John");
-        candidateCreateDTO.setSurname("Doe");
-        candidateCreateDTO.setPrecinct_id(10);
-        candidateCreateDTO.setElection_id(1);
-        candidateCreateDTO.setPolitical_party_id(10);
-        candidateCreateDTO.setProfession("Software Engineer");
-        candidateCreateDTO.setEducation("BSc Computer Science");
-        candidateCreateDTO.setBirthDate(new Date());
-        candidateCreateDTO.setImage("image.jpg");
-        candidateCreateDTO.setInfo("I am José Mourinho");
-        return candidateCreateDTO;
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/candidates/delete/2"))
+                .andExpect(status().isNoContent());
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/candidates/all")).andExpect(jsonPath("$", hasSize(1)));
     }
 
 

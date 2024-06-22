@@ -104,17 +104,17 @@ public class DatabaseInitializationConfig {
         return initializer;
     }
 
-//    @Profile("dev")
-//    @Bean
-//    public DataSourceInitializer dataSourceInitializer4() {
-//        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-//        databasePopulator.addScript(initDataScript4);
-//
-//        DataSourceInitializer initializer = new DataSourceInitializer();
-//        initializer.setDataSource(votesDataSourceInit());
-//        initializer.setDatabasePopulator(databasePopulator);
-//
-//        return initializer;
-//    }
+    @Profile("dev")
+    @Bean
+    public DataSourceInitializer dataSourceInitializer4() {
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.addScript(initDataScript4);
+
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(votesDataSourceInit());
+        initializer.setDatabasePopulator(databasePopulator);
+
+        return initializer;
+    }
 
 }
