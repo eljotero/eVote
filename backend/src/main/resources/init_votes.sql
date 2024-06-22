@@ -187,7 +187,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            1,
            '1988-04-20',
-           'inżynier informatyki',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-11_211139026.png',
            'Cos tam cos tam.',
            'Michał',
@@ -237,7 +237,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            4,
            '1960-01-22',
-           'wykształcenie POST_SECONDARY',
+           'inżynier budownictwa',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025042065.png',
            'Oczywiście Polska tylko dla Polaków. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Krzysztof',
@@ -253,7 +253,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            5,
            '1989-06-22',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025451889.png',
            'Dodatki socjalne dla rodzin z dziećmi, zwiększenie dostępu do opieki medycznej oraz walka z korupcją w administracji publicznej.',
            'Maria',
@@ -269,7 +269,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            6,
            '1974-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_030253175.png',
            'Zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Piotr',
@@ -285,7 +285,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            7,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Michał',
@@ -301,7 +301,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            7,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Michał',
@@ -317,7 +317,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            8,
            '1980-07-11',
-           'wykształcenie POST_SECONDARY',
+           'średnie',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031806775.png',
            'Wolna i suwerenna Polska. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Wojciech',
@@ -333,7 +333,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            9,
            '1970-02-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032105345.png',
            'Stop korupcji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Aleksander',
@@ -349,7 +349,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            10,
            '1960-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032345581.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Elżbieta',
@@ -366,7 +366,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            11,
            '1977-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033522952.png',
            'Wszystko dla Polski. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Michał',
@@ -382,7 +382,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            12,
            '1979-01-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033752771.png',
            'Podatki tylko dla bogatych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Szymon',
@@ -398,7 +398,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            13,
            '1989-01-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034045514.png',
            'Ograniczenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo.',
            'Michalina',
@@ -414,7 +414,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            14,
            '1982-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034305890.png',
            'Polska powinna wystąpić z Unii Europejskiej. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Piotr',
@@ -431,7 +431,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            15,
            '1972-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034631231.png',
            'Głosuj na mnie a Polska będzie silna. Bóg, Honor, Ojczyzna.',
            'Jakub',
@@ -448,7 +448,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            16,
            '1988-09-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034840978.png',
            'Podać Polskę w ręce młodych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Anna',
@@ -464,7 +464,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            17,
            '1982-03-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035135548.png',
            'Ta Polska to nasza Polska. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
@@ -480,7 +480,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            18,
            '1987-07-04',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035445767.png',
            'Jeszcze Polska nie zginęła. Unia Europejska to zło. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Krzysztof',
@@ -496,7 +496,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            19,
            '1985-09-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035842525.png',
            'Już czas na zmiany. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Anita',
@@ -512,7 +512,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            20,
            '1990-09-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_040705009.png',
            'Polska dla Polaków. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
@@ -530,7 +530,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            21,
            '1962-03-19',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_041232980.png',
            'Zakaz handlu w niedziele. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Adam',
@@ -546,7 +546,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            22,
            '1972-03-19',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_041526081.png',
            'Nowe miejsca pracy. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Karolina',
@@ -562,7 +562,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            23,
            '1982-03-19',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_041838954.png',
            'Nie dla Unii Europejskiej. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Mikołaj',
@@ -579,7 +579,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            24,
            '1982-05-19',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_041838954.png',
            'Nie dla Unii Europejskiej. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
@@ -596,7 +596,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            25,
            '1989-05-19',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_043828059.png',
            'Podatki tylko dla bogatych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Marta',
@@ -612,7 +612,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            26,
            '1979-09-29',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_044124541.png',
            'Uniwersalne 500+ dla wszystkich. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Krzysztof',
@@ -678,7 +678,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            30,
            '1960-01-22',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025042065.png',
            'Oczywiście Polska tylko dla Polaków. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Krzysztof',
@@ -694,7 +694,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            31,
            '1989-06-22',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025451889.png',
            'Dodatki socjalne dla rodzin z dziećmi, zwiększenie dostępu do opieki medycznej oraz walka z korupcją w administracji publicznej.',
            'Maria',
@@ -710,7 +710,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            31,
            '1974-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_030253175.png',
            'Zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Piotr',
@@ -726,7 +726,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            32,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Michał',
@@ -742,7 +742,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            33,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Michał',
@@ -758,7 +758,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            34,
            '1980-07-11',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031806775.png',
            'Wolna i suwerenna Polska. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Wojciech',
@@ -774,7 +774,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            35,
            '1970-02-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032105345.png',
            'Stop korupcji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Aleksander',
@@ -790,7 +790,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            36,
            '1960-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032345581.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Elżbieta',
@@ -807,7 +807,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            37,
            '1977-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033522952.png',
            'Wszystko dla Polski. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Michał',
@@ -823,7 +823,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            38,
            '1979-01-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033752771.png',
            'Podatki tylko dla bogatych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Szymon',
@@ -839,7 +839,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            39,
            '1989-01-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034045514.png',
            'Ograniczenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo.',
            'Michalina',
@@ -855,7 +855,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            40,
            '1982-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034305890.png',
            'Polska powinna wystąpić z Unii Europejskiej. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Piotr',
@@ -872,7 +872,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            41,
            '1972-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034631231.png',
            'Głosuj na mnie a Polska będzie silna. Bóg, Honor, Ojczyzna.',
            'Jakub',
@@ -889,7 +889,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            42,
            '1988-09-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034840978.png',
            'Podać Polskę w ręce młodych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Anna',
@@ -905,7 +905,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            43,
            '1982-03-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035135548.png',
            'Ta Polska to nasza Polska. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
@@ -921,7 +921,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            44,
            '1987-07-04',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035445767.png',
            'Jeszcze Polska nie zginęła. Unia Europejska to zło. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Krzysztof',
@@ -937,7 +937,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            45,
            '1985-09-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035842525.png',
            'Już czas na zmiany. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Anita',
@@ -953,7 +953,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            46,
            '1990-09-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_040705009.png',
            'Polska dla Polaków. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
@@ -1020,7 +1020,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            50,
            '1960-01-22',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025042065.png',
            'Oczywiście Polska tylko dla Polaków. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Krzysztof',
@@ -1036,7 +1036,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            51,
            '1989-06-22',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_025451889.png',
            'Dodatki socjalne dla rodzin z dziećmi, zwiększenie dostępu do opieki medycznej oraz walka z korupcją w administracji publicznej.',
            'Maria',
@@ -1052,7 +1052,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            52,
            '1974-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_030253175.png',
            'Zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Piotr',
@@ -1068,7 +1068,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            53,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Michał',
@@ -1084,7 +1084,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            54,
            '1984-04-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031428363.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach. ',
            'Michał',
@@ -1100,7 +1100,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            55,
            '1980-07-11',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_031806775.png',
            'Wolna i suwerenna Polska. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Wojciech',
@@ -1116,7 +1116,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            56,
            '1970-02-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032105345.png',
            'Stop korupcji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Aleksander',
@@ -1132,7 +1132,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            57,
            '1960-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_032345581.png',
            'Zmniejszenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo publiczne oraz wsparcie dla uczniów z rodzin o niższych dochodach.',
            'Elżbieta',
@@ -1149,7 +1149,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            58,
            '1977-11-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033522952.png',
            'Wszystko dla Polski. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Michał',
@@ -1165,7 +1165,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            59,
            '1979-01-14',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_033752771.png',
            'Podatki tylko dla bogatych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Szymon',
@@ -1181,7 +1181,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            60,
            '1989-01-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034045514.png',
            'Ograniczenie biurokracji, zwiększenie dostępu do edukacji poprzez inwestycje w szkolnictwo.',
            'Michalina',
@@ -1197,7 +1197,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            61,
            '1982-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034305890.png',
            'Polska powinna wystąpić z Unii Europejskiej. Wprowadzenie surowych kar dla przestępców oraz zaostrzenie kar dla handlarzy narkotyków.',
            'Piotr',
@@ -1214,7 +1214,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            62,
            '1972-06-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034631231.png',
            'Głosuj na mnie a Polska będzie silna. Bóg, Honor, Ojczyzna.',
            'Jakub',
@@ -1231,7 +1231,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            63,
            '1988-09-24',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_034840978.png',
            'Podać Polskę w ręce młodych. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Anna',
@@ -1247,7 +1247,7 @@ INSERT INTO candidate (candidate_id, birthdate, education,image, info, name, sur
 VALUES (
            64,
            '1982-03-21',
-           'wykształcenie POST_SECONDARY',
+           'wyższe',
            'https://storage.googleapis.com/evote_c/obraz_2024-06-12_035135548.png',
            'Ta Polska to nasza Polska. Polska powinna opierać się na wartościach chrześcijańskich oraz tradycyjnych wartościach polskiej rodziny.',
            'Piotr',
