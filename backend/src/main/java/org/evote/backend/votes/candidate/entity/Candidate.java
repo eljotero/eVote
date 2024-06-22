@@ -17,8 +17,10 @@ import java.util.Date;
 @Table(name = "candidate")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "candidate_id")
 public class Candidate {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "candidate_seq")
+    @SequenceGenerator(name = "candidate_seq", sequenceName = "candidate_sequence", initialValue = 65, allocationSize = 1)
     @Column(name = "candidate_id")
     private Integer candidateId;
     private String name;
