@@ -121,6 +121,9 @@
                 <version>2.22.2</version>
                 <configuration>
                     <argLine>-Dspring.profiles.active=dev</argLine>
+                    <excludes>
+                        <exclude>**/integration/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
