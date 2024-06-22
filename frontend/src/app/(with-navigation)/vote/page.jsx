@@ -187,7 +187,7 @@ export default function Vote() {
                 />
             </div>
 
-            <div className='space-y-8'>
+            <div className='space-y-8 flex justify-center flex-col'>
                 {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
                     <div key={electionId} className='mx-auto'>
                         <h2 className="text-3xl font-bold mb-4 text-center">
