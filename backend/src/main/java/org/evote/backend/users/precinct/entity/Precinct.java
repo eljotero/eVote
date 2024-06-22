@@ -16,7 +16,8 @@ import java.util.UUID;
 public class Precinct {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "precinct_seq")
+    @SequenceGenerator(name = "precinct_seq", sequenceName = "precinct_sequence", initialValue = 28, allocationSize = 1)
     private UUID precinct_uuid;
 
     private Integer precinct_id;
@@ -31,7 +32,7 @@ public class Precinct {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ElectionType electionType;
 
     @ManyToMany

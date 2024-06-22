@@ -1,9 +1,10 @@
 package org.evote.backend.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.dtos.AccountDTO;
 import org.evote.backend.users.account.dtos.AccountMapper;
 import org.evote.backend.users.account.dtos.AccountUserDTO;
-import org.evote.backend.services.AccountService;
 import org.evote.backend.users.account.entity.Account;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,15 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/account")
 public class AccountController {
 
-
     private final AccountService accountService;
-
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
 
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -39,8 +36,8 @@ public class AccountController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN') or @authenticationService.hasAccount(#id)")
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('Admin') or @authenticationService.hasAccount(#id)")
     public ResponseEntity<AccountUserDTO> getAccountById(@PathVariable Integer id) {
         Account account = accountService.getAccountById(id);
         return ResponseEntity.ok(AccountMapper.toAccountUserDTO(account));

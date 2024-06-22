@@ -19,35 +19,35 @@ VALUES (5, 'Marii Konopnickiej 6', 'Warszawa', 'Polska', '00-491')
 ON CONFLICT (address_id) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (1, 'Wybory parlamentarne - sejm','2024-06-24','2024-06-24', 3)
+VALUES (1, 'Wybory parlamentarne - sejm','2024-06-24','2024-06-24', 'Parliamentary')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (2, 'Wybory parlamentarne - senat','2024-06-24','2024-06-24', 4)
+VALUES (2, 'Wybory parlamentarne - senat','2024-06-24','2024-06-24', 'Senate')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (3, 'Wybory prezydenckie','2024-09-26','2024-09-25', 2)
+VALUES (3, 'Wybory prezydenckie','2024-09-26','2024-09-25', 'Presidential')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (4, 'Wybory samorządowe - gimna','2025-09-26','2025-09-25', 1)
+VALUES (4, 'Wybory samorządowe - gimna','2025-09-26','2025-09-25', 'LocalGovernment')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (5, 'Wybory samorządowe - powiat','2025-09-26','2025-09-25', 1)
+VALUES (5, 'Wybory samorządowe - powiat','2025-09-26','2025-09-25', 'LocalGovernment')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (6, 'Wybory samorządowe - województwo','2025-09-26','2025-09-25', 1)
+VALUES (6, 'Wybory samorządowe - województwo','2025-09-26','2025-09-25', 'LocalGovernment')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (7, 'Wybory parlamentarne - sejm','2020-09-26','2020-09-25', 3)
+VALUES (7, 'Wybory parlamentarne - sejm','2020-09-26','2020-09-25', 'Parliamentary')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO election (electionid, electionname, enddate, startdate, type)
-VALUES (8, 'Wybory parlamentarne - sejm','2016-09-26','2016-09-25', 3)
+VALUES (8, 'Wybory parlamentarne - sejm','2016-09-26','2016-09-25', 'Parliamentary')
 ON CONFLICT (electionid) DO NOTHING;
 
 INSERT INTO political_party (politicalpartyid, name, address_id)
@@ -72,114 +72,114 @@ ON CONFLICT (politicalpartyid) DO NOTHING;
 
 --sejm1
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 3)
+VALUES('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 2, 3 )
+VALUES('2ef5a787-fcc3-4f07-93e4-5e91ee051b9a', 2, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 3, 3)
+VALUES('77bd481c-abd3-4f2a-a9ed-6b7cc6af5678', 3, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 4, 3)
+VALUES('5c6ca58c-e19d-48ba-a6bb-57331ee91cf3', 4, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 5, 3)
+VALUES('4c7509bd-e9da-4d49-ac83-7ad1503b2bbe', 5, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 6, 3)
+VALUES('8d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 6, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 7, 3)
+VALUES('9d7ee2bf-0aa3-4152-8003-e8602c0fbffb', 7, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 8, 3)
+VALUES('60e87cd2-a46b-4fb8-8e72-0d0e9e63d8b0', 8, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 9, 3)
+VALUES('0c2cdf82-08e1-410c-bc41-55ae53171391', 9, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 10, 3)
+VALUES('8df0ef8d-38a7-42f9-b618-6915f78e08d3', 10, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 11, 3)
+VALUES('f13020af-f4d8-43e9-a00c-089442db4729', 11, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 12, 3)
+VALUES('ff51e390-70e4-4fdc-8f32-d68c8dd83482', 12, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 13, 3)
+VALUES('de81eba0-a8f7-48a6-bdb6-71ebb52bed8e', 13, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 14, 3)
+VALUES('bca10d4e-8f17-4995-9efb-69e69e1393d5', 14, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 15, 3)
+VALUES('cd887a30-cfbd-466a-acd4-5ce4a26568b2', 15, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 16, 3)
+VALUES('17680e70-46b8-4c7f-b23d-4af75f5b50f3', 16, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('675b586e-a54d-46ab-9304-6d266997314b', 17, 3)
+VALUES('675b586e-a54d-46ab-9304-6d266997314b', 17, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 18, 3)
+VALUES('e9b8ffa6-cd4a-4625-b65f-e6e25d3fa946', 18, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 19, 3)
+VALUES('eb7aaa86-4d89-42e2-835c-5d423b7067b1', 19, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 20, 3)
+VALUES('0bd6f193-e8e1-4a5f-bd81-ecaee4bda9ec', 20, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 21, 3)
+VALUES('1b6e832e-481f-48e1-a20a-0e323c34321e', 21, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 22, 3)
+VALUES('b7f832dc-f3eb-4fd8-9a2b-5a74d6b4ac3a', 22, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 23, 3)
+VALUES('6a054862-015e-4e10-8c24-4215beec5d3e', 23, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 24, 3)
+VALUES('5944cb14-ca9a-426b-ae94-95cd99334d2f', 24, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 3)
+VALUES('681d5c6d-3830-4d33-9bd9-1b2e0165dda0', 25, 'Parliamentary')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 
 --senat1
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 4)
+VALUES('ec4144e5-5df2-40de-9a01-c39b60d98764', 3, 'Senate')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
-VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 4)
+VALUES('174857a5-cb83-413c-bfe6-f652e66c4923', 23, 'Senate')
 ON CONFLICT (precinct_uuid) DO NOTHING;
 
 --sejm1kandydaci
@@ -1262,1356 +1262,1356 @@ ON CONFLICT (candidate_id) DO NOTHING;
 --sejmsenatglosy
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (1,true, '10:34:56', '2024-06-015', 0, 'Polska', 'POST_SECONDARY', 1)
+VALUES (1,true, '10:34:56', '2024-06-015', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (2,true, '10:34:56', '2024-06-015', 2, 'Polska', 'SECONDARY', 1)
+VALUES (2,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (3,true, '10:34:56', '2024-06-015', 2, 'Polska', 'PRIMARY', 3)
+VALUES (3,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 3)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (4,true, '10:34:56', '2024-06-015', 2, 'Polska', 'POST_SECONDARY', 4)
+VALUES (4,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (5, false, '08:25:47', '1988-02-28', 1, 'Polska', 'SECONDARY', 5)
+VALUES (5, false, '08:25:47', '1988-02-28', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (6, true, '16:05:38', '1995-07-17', 2, 'Polska', 'PRIMARY', 6)
+VALUES (6, true, '16:05:38', '1995-07-17', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 6)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (7, false, '12:30:22', '1982-09-30', 3, 'Polska', 'POST_SECONDARY', 7)
+VALUES (7, false, '12:30:22', '1982-09-30', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 7)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (8, true, '15:12:18', '1991-05-10', 3, 'Polska', 'SECONDARY', 8)
+VALUES (8, true, '15:12:18', '1991-05-10', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 8)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (9, false, '10:45:50', '1984-08-25', 1, 'Polska', 'PRIMARY', 9)
+VALUES (9, false, '10:45:50', '1984-08-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 9)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (10, true, '11:55:33', '1976-04-14', 2, 'Polska', 'POST_SECONDARY', 10)
+VALUES (10, true, '11:55:33', '1976-04-14', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 10)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (11, false, '09:05:12', '1980-01-06', 3, 'Polska', 'SECONDARY', 11)
+VALUES (11, false, '09:05:12', '1980-01-06', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 11)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (12, true, '14:30:45', '1993-03-18', 0, 'Polska', 'PRIMARY', 12)
+VALUES (12, true, '14:30:45', '1993-03-18', 'OVER500THOUSAND', 'Polska', 'PRIMARY', 12)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (13, false, '16:40:27', '1987-10-21', 1, 'Polska', 'POST_SECONDARY', 13)
+VALUES (13, false, '16:40:27', '1987-10-21', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 13)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (14, true, '12:15:36', '1975-07-12', 2, 'Polska', 'SECONDARY', 14)
+VALUES (14, true, '12:15:36', '1975-07-12', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 14)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (15, false, '08:50:48', '1994-06-03', 3, 'Polska', 'PRIMARY', 15)
+VALUES (15, false, '08:50:48', '1994-06-03', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 15)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (16, true, '17:20:59', '1989-02-11', 0, 'Polska', 'POST_SECONDARY', 16)
+VALUES (16, true, '17:20:59', '1989-02-11', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 16)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (17, false, '11:05:12', '1977-05-29', 1, 'Polska', 'SECONDARY', 17)
+VALUES (17, false, '11:05:12', '1977-05-29', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 17)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (18, true, '13:40:23', '1986-09-18', 2, 'Polska', 'PRIMARY', 18)
+VALUES (18, true, '13:40:23', '1986-09-18', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 18)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (19, false, '10:15:48', '1992-11-14', 3, 'Polska', 'POST_SECONDARY', 19)
+VALUES (19, false, '10:15:48', '1992-11-14', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 19)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (20, true, '14:10:36', '1983-08-09', 3, 'Polska', 'SECONDARY', 20)
+VALUES (20, true, '14:10:36', '1983-08-09', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 20)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (21, false, '09:25:17', '1979-04-23', 1, 'Polska', 'PRIMARY', 21)
+VALUES (21, false, '09:25:17', '1979-04-23', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (22, true, '15:30:29', '1990-07-06', 2, 'Polska', 'POST_SECONDARY', 22)
+VALUES (22, true, '15:30:29', '1990-07-06', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (23, false, '12:45:38', '1996-12-17', 3, 'Polska', 'SECONDARY', 23)
+VALUES (23, false, '12:45:38', '1996-12-17', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (24, true, '08:05:42', '1981-01-19', 1, 'Polska', 'PRIMARY', 24)
+VALUES (24, true, '08:05:42', '1981-01-19', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (25, false, '13:20:13', '1985-06-25', 1, 'Polska', 'POST_SECONDARY', 25)
+VALUES (25, false, '13:20:13', '1985-06-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (26, true, '16:50:31', '1993-10-08', 2, 'Polska', 'SECONDARY', 26)
+VALUES (26, true, '16:50:31', '1993-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (27, true, '16:50:31', '1993-10-08', 1, 'Polska', 'POST_SECONDARY', 25)
+VALUES (27, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (28, true, '16:50:31', '1993-10-08', 1, 'Polska', 'PRIMARY', 22)
+VALUES (28, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (29, true, '16:50:31', '1993-10-08', 0, 'Polska', 'POST_SECONDARY', 23)
+VALUES (29, true, '16:50:31', '1993-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 23)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (30, false, '16:50:31', '1953-10-08', 2, 'Niemcy', 'PRIMARY', 23)
+VALUES (30, false, '16:50:31', '1953-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (31, false, '16:50:31', '1956-10-08', 2, 'Irlandia', 'POST_SECONDARY', 22)
+VALUES (31, false, '16:50:31', '1956-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (32, false, '16:50:31', '1996-10-08', 3, 'Niemcy', 'POST_SECONDARY', 26)
+VALUES (32, false, '16:50:31', '1996-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (33, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 25)
+VALUES (33, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (33, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 24)
+VALUES (33, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (34, true, '16:50:31', '1956-10-08', 1, 'Irlandia', 'SECONDARY', 4)
+VALUES (34, true, '16:50:31', '1956-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (35, false, '16:50:31', '1956-10-08', 3, 'Niemcy', 'SECONDARY', 5)
+VALUES (35, false, '16:50:31', '1956-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY', 5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (36, false, '16:50:31', '2000-10-08', 2, 'Irlandia', 'PRIMARY', 2)
+VALUES (36, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'PRIMARY', 2)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (37, false, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 1)
+VALUES (37, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (38, true, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 1)
+VALUES (38, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (39, true, '16:50:31', '2001-10-08', 2, 'Polska', 'PRIMARY', 2)
+VALUES (39, true, '16:50:31', '2001-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 2)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (40, true, '16:50:31', '1951-10-08', 2, 'Niemcy', 'PRIMARY', 3)
+VALUES (40, true, '16:50:31', '1951-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 3)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (41, true, '16:50:31', '1971-10-08', 2, 'Irlandia', 'POST_SECONDARY', 5)
+VALUES (41, true, '16:50:31', '1971-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (42, true, '16:50:31', '2000-10-08', 2, 'Irlandia', 'POST_SECONDARY', 4)
+VALUES (42, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (43, true, '16:50:31', '1952-10-08', 2, 'Polska', 'POST_SECONDARY', 1)
+VALUES (43, true, '16:50:31', '1952-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (44, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 2)
+VALUES (44, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 2)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (45, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 3)
+VALUES (45, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 3)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (46, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 4)
+VALUES (46, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (47, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 4)
+VALUES (47, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (48, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 5)
+VALUES (48, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (49, true, '16:50:31', '1952-10-08', 3, 'Irlandia', 'POST_SECONDARY', 1)
+VALUES (49, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (50, true, '16:50:31', '1952-10-08', 3, 'Niemcy', 'POST_SECONDARY', 2)
+VALUES (50, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 2)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (51, true, '16:50:31', '1968-10-08', 3, 'Polska', 'PRIMARY', 1)
+VALUES (51, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (52, false, '16:50:31', '1968-10-08', 3, 'Irlandia', 'POST_SECONDARY', 2)
+VALUES (52, false, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 2)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (53, true, '16:50:31', '1968-10-08', 3, 'Polska', 'POST_SECONDARY', 3)
+VALUES (53, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 3)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (54, false, '16:50:31', '1968-10-08', 2, 'Polska', 'POST_SECONDARY', 3)
+VALUES (54, false, '16:50:31', '1968-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 3)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (55, false, '16:50:31', '1968-10-08', 0, 'Polska', 'PRIMARY',4)
+VALUES (55, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY',4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (56, false, '16:50:31', '1968-10-08', 0, 'Irlandia', 'SECONDARY',5)
+VALUES (56, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (57, false, '16:50:31', '1978-10-08', 2, 'Polska', 'SECONDARY',4)
+VALUES (57, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (58, false, '16:50:31', '1978-10-08', 2, 'Niemcy', 'SECONDARY',4)
+VALUES (58, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (59, false, '16:50:31', '1978-10-08', 3, 'Irlandia', 'POST_SECONDARY',5)
+VALUES (59, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY',5)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (60, false, '16:50:31', '1978-10-08', 3, 'Polska', 'PRIMARY',1)
+VALUES (60, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',1)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (61, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',3)
+VALUES (61, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',3)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (62, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',4)
+VALUES (62, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',4)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (63, false, '16:50:31', '2000-10-08', 3, 'Polska', 'SECONDARY',21)
+VALUES (63, false, '16:50:31', '2000-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (64, true, '16:50:31', '2000-10-08', 0, 'Irlandia', 'SECONDARY',22)
+VALUES (64, true, '16:50:31', '2000-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (65, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',23)
+VALUES (65, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (66, true, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',24)
+VALUES (66, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (67, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',25)
+VALUES (67, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (68, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',25)
+VALUES (68, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (69, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',26)
+VALUES (69, true, '16:50:31', '1950-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (70, true, '16:50:31', '1955-10-08', 1, 'Polska', 'PRIMARY',21)
+VALUES (70, true, '16:50:31', '1955-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (71, true, '16:50:31', '1955-10-08', 2, 'Niemcy', 'SECONDARY',22)
+VALUES (71, true, '16:50:31', '1955-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (72, true, '16:50:31', '1955-10-08', 3, 'Polska', 'POST_SECONDARY',23)
+VALUES (72, true, '16:50:31', '1955-10-08',  'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (73, false, '16:50:31', '1955-10-08', 0, 'Polska', 'SECONDARY',24)
+VALUES (73, false, '16:50:31', '1955-10-08', 'OVER500THOUSAND', 'Polska', 'SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (74, false, '16:50:31', '1958-10-08', 1, 'Polska', 'PRIMARY',25)
+VALUES (74, false, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (75, false, '16:50:31', '1958-10-08', 2, 'Polska', 'PRIMARY',26)
+VALUES (75, false, '16:50:31', '1958-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (76, false, '16:50:31', '1958-10-08', 3, 'Niemcy', 'POST_SECONDARY',21)
+VALUES (76, false, '16:50:31', '1958-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (77, true, '16:50:31', '1958-10-08', 1, 'Irlandia', 'POST_SECONDARY',23)
+VALUES (77, true, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (78, true, '16:50:31', '1989-10-08', 0, 'Irlandia', 'POST_SECONDARY',21)
+VALUES (78, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Irlandia', 'POST_SECONDARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (79, false, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',22)
+VALUES (79, false, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (80, false, '16:50:31', '1989-10-08', 2, 'Polska', 'SECONDARY',23)
+VALUES (80, false, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (81, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',24)
+VALUES (81, true, '16:50:31', '1989-10-08',  'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (82, false, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',25)
+VALUES (82, false, '16:50:31', '1989-10-08',  'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (83, true, '16:50:31', '1989-10-08', 0, 'Polska', 'PRIMARY',26)
+VALUES (83, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (84, true, '16:50:31', '1989-10-08', 1, 'Irlandia', 'POST_SECONDARY',21)
+VALUES (84, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (85, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',22)
+VALUES (85, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (86, true, '16:50:31', '1989-10-08', 0, 'Niemcy', 'SECONDARY',23)
+VALUES (86, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Niemcy', 'SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (87, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',24)
+VALUES (87, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (88, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',25)
+VALUES (88, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (89, true, '16:50:31', '1989-10-08', 2, 'Polska', 'POST_SECONDARY',26)
+VALUES (89, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (90, true, '16:50:31', '1989-10-08', 3, 'Polska', 'PRIMARY',21)
+VALUES (90, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (91, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',22)
+VALUES (91, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (92, true, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',23)
+VALUES (92, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (93, true, '16:50:31', '1989-10-08', 2, 'Irlandia', 'POST_SECONDARY',24)
+VALUES (93, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (94, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',25)
+VALUES (94, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (95, true, '16:50:31', '1989-10-08', 1, 'Niemcy', 'PRIMARY',26)
+VALUES (95, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (96, true, '16:50:31', '1979-10-08', 2, 'Polska', 'PRIMARY',21)
+VALUES (96, true, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (97, true, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',22)
+VALUES (97, true, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',22)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (98, false, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',23)
+VALUES (98, false, '16:50:31', '1979-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',23)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (99, false, '16:50:31', '1979-10-08', 1, 'Polska', 'SECONDARY',24)
+VALUES (99, false, '16:50:31', '1979-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',24)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (100, false, '16:50:31', '1979-10-08', 2, 'Polska', 'POST_SECONDARY',25)
+VALUES (100, false, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',25)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (101, false, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',26)
+VALUES (101, false, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',26)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (102, true, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',15)
+VALUES (102, true, '16:50:31', '1979-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',15)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (103, true, '16:50:31', '1950-10-08', 1, 'Niemcy', 'PRIMARY',16)
+VALUES (103, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',16)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (104, false, '16:50:31', '1950-10-08', 2, 'Polska', 'PRIMARY',17)
+VALUES (104, false, '16:50:31', '1950-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',17)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (105, false, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',18)
+VALUES (105, false, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',18)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (106, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',18)
+VALUES (106, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',18)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (107, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',19)
+VALUES (107, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',19)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (108, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',20)
+VALUES (108, true, '16:50:31', '1950-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',20)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (109, true, '16:50:31', '1950-10-08', 1, 'Polska', 'SECONDARY',21)
+VALUES (109, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',21)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (110, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',7)
+VALUES (110, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',7)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (111, false, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',8)
+VALUES (111, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',8)
 ON CONFLICT (voteid) DO NOTHING;
 
 --sejm2glosy
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (112,true, '10:34:56', '2024-06-015', 0, 'Polska', 'POST_SECONDARY', 44)
+VALUES (112,true, '10:34:56', '2024-06-015', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (113,true, '10:34:56', '2024-06-015', 2, 'Polska', 'SECONDARY', 29)
+VALUES (113,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 29)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (114,true, '10:34:56', '2024-06-015', 2, 'Polska', 'PRIMARY', 35)
+VALUES (114,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 35)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (115,true, '10:34:56', '2024-06-015', 2, 'Polska', 'POST_SECONDARY', 41)
+VALUES (115,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (116, false, '08:25:47', '1988-02-28', 1, 'Polska', 'SECONDARY', 44)
+VALUES (116, false, '08:25:47', '1988-02-28', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (117, true, '16:05:38', '1995-07-17', 2, 'Polska', 'PRIMARY',44 )
+VALUES (117, true, '16:05:38', '1995-07-17', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',44 )
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (118, false, '12:30:22', '1982-09-30', 3, 'Polska', 'POST_SECONDARY', 39)
+VALUES (118, false, '12:30:22', '1982-09-30', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (119, true, '15:12:18', '1991-05-10', 3, 'Polska', 'SECONDARY', 37)
+VALUES (119, true, '15:12:18', '1991-05-10', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 37)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (120, false, '10:45:50', '1984-08-25', 1, 'Polska', 'PRIMARY', 44)
+VALUES (120, false, '10:45:50', '1984-08-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (121, true, '11:55:33', '1976-04-14', 2, 'Polska', 'POST_SECONDARY', 32)
+VALUES (121, true, '11:55:33', '1976-04-14', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (122, false, '09:05:12', '1980-01-06', 3, 'Polska', 'SECONDARY', 33)
+VALUES (122, false, '09:05:12', '1980-01-06', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (123, true, '14:30:45', '1993-03-18', 0, 'Polska', 'PRIMARY', 46)
+VALUES (123, true, '14:30:45', '1993-03-18', 'OVER500THOUSAND', 'Polska', 'PRIMARY', 46)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (124, false, '16:40:27', '1987-10-21', 1, 'Polska', 'POST_SECONDARY', 35)
+VALUES (124, false, '16:40:27', '1987-10-21',  'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 35)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (125, true, '12:15:36', '1975-07-12', 2, 'Polska', 'SECONDARY', 29)
+VALUES (125, true, '12:15:36', '1975-07-12', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 29)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (126, false, '08:50:48', '1994-06-03', 3, 'Polska', 'PRIMARY', 34)
+VALUES (126, false, '08:50:48', '1994-06-03', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (127, true, '17:20:59', '1989-02-11', 0, 'Polska', 'POST_SECONDARY', 42)
+VALUES (127, true, '17:20:59', '1989-02-11', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (128, false, '11:05:12', '1977-05-29', 1, 'Polska', 'SECONDARY', 37)
+VALUES (128, false, '11:05:12', '1977-05-29',  'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 37)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (129, true, '13:40:23', '1986-09-18', 2, 'Polska', 'PRIMARY', 42)
+VALUES (129, true, '13:40:23', '1986-09-18', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (130, false, '10:15:48', '1992-11-14', 3, 'Polska', 'POST_SECONDARY', 42)
+VALUES (130, false, '10:15:48', '1992-11-14', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (131, true, '14:10:36', '1983-08-09', 3, 'Polska', 'SECONDARY', 45)
+VALUES (131, true, '14:10:36', '1983-08-09', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (132, false, '09:25:17', '1979-04-23', 1, 'Polska', 'PRIMARY', 31)
+VALUES (132, false, '09:25:17', '1979-04-23', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (133, true, '15:30:29', '1990-07-06', 2, 'Polska', 'POST_SECONDARY', 42)
+VALUES (133, true, '15:30:29', '1990-07-06', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (134, false, '12:45:38', '1996-12-17', 3, 'Polska', 'SECONDARY', 32)
+VALUES (134, false, '12:45:38', '1996-12-17', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (135, true, '08:05:42', '1981-01-19', 1, 'Polska', 'PRIMARY', 42)
+VALUES (135, true, '08:05:42', '1981-01-19', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (136, false, '13:20:13', '1985-06-25', 1, 'Polska', 'POST_SECONDARY', 42)
+VALUES (136, false, '13:20:13', '1985-06-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (137, true, '16:50:31', '1993-10-08', 2, 'Polska', 'SECONDARY', 43)
+VALUES (137, true, '16:50:31', '1993-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 43)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (138, true, '16:50:31', '1993-10-08', 1, 'Polska', 'POST_SECONDARY', 35)
+VALUES (138, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 35)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (139, true, '16:50:31', '1993-10-08', 1, 'Polska', 'PRIMARY', 31)
+VALUES (139, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (140, true, '16:50:31', '1993-10-08', 0, 'Polska', 'POST_SECONDARY', 37)
+VALUES (140, true, '16:50:31', '1993-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 37)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (141, false, '16:50:31', '1953-10-08', 2, 'Niemcy', 'PRIMARY', 34)
+VALUES (141, false, '16:50:31', '1953-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (142, false, '16:50:31', '1956-10-08', 2, 'Irlandia', 'POST_SECONDARY', 37)
+VALUES (142, false, '16:50:31', '1956-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 37)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (143, false, '16:50:31', '1996-10-08', 3, 'Niemcy', 'POST_SECONDARY', 34)
+VALUES (143, false, '16:50:31', '1996-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (144, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 36)
+VALUES (144, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 36)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (145, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 30)
+VALUES (145, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (146, true, '16:50:31', '1956-10-08', 1, 'Irlandia', 'SECONDARY', 44)
+VALUES (146, true, '16:50:31', '1956-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (147, false, '16:50:31', '1956-10-08', 3, 'Niemcy', 'SECONDARY', 45)
+VALUES (147, false, '16:50:31', '1956-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY', 45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (148, false, '16:50:31', '2000-10-08', 2, 'Irlandia', 'PRIMARY', 33)
+VALUES (148, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'PRIMARY', 33)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (149, false, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 44)
+VALUES (149, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (150, true, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 45)
+VALUES (150, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (151, true, '16:50:31', '2001-10-08', 2, 'Polska', 'PRIMARY', 31)
+VALUES (151, true, '16:50:31', '2001-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (152, true, '16:50:31', '1951-10-08', 2, 'Niemcy', 'PRIMARY', 30)
+VALUES (152, true, '16:50:31', '1951-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (153, true, '16:50:31', '1971-10-08', 2, 'Irlandia', 'POST_SECONDARY', 33)
+VALUES (153, true, '16:50:31', '1971-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (154, true, '16:50:31', '2000-10-08', 2, 'Irlandia', 'POST_SECONDARY', 41)
+VALUES (154, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (155, true, '16:50:31', '1952-10-08', 2, 'Polska', 'POST_SECONDARY', 33)
+VALUES (155, true, '16:50:31', '1952-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (156, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 42)
+VALUES (156, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (157, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 32)
+VALUES (157, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (158, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 40)
+VALUES (158, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 40)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (159, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 29)
+VALUES (159, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 29)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (160, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 34)
+VALUES (160, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (161, true, '16:50:31', '1952-10-08', 3, 'Irlandia', 'POST_SECONDARY', 29)
+VALUES (161, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 29)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (162, true, '16:50:31', '1952-10-08', 3, 'Niemcy', 'POST_SECONDARY', 30)
+VALUES (162, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (163, true, '16:50:31', '1968-10-08', 3, 'Polska', 'PRIMARY', 43)
+VALUES (163, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 43)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (164, false, '16:50:31', '1968-10-08', 3, 'Irlandia', 'POST_SECONDARY', 39)
+VALUES (164, false, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (165, true, '16:50:31', '1968-10-08', 3, 'Polska', 'POST_SECONDARY', 41)
+VALUES (165, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (166, false, '16:50:31', '1968-10-08', 2, 'Polska', 'POST_SECONDARY', 41)
+VALUES (166, false, '16:50:31', '1968-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (167, false, '16:50:31', '1968-10-08', 0, 'Polska', 'PRIMARY', 34)
+VALUES (167, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY', 34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (168, false, '16:50:31', '1968-10-08', 0, 'Irlandia', 'SECONDARY',31)
+VALUES (168, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (169, false, '16:50:31', '1978-10-08', 2, 'Polska', 'SECONDARY',35)
+VALUES (169, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',35)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (170, false, '16:50:31', '1978-10-08', 2, 'Niemcy', 'SECONDARY',31)
+VALUES (170, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (171, false, '16:50:31', '1978-10-08', 3, 'Irlandia', 'POST_SECONDARY',39)
+VALUES (171, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY',39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (172, false, '16:50:31', '1978-10-08', 3, 'Polska', 'PRIMARY',42)
+VALUES (172, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (173, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',46)
+VALUES (173, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',46)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (174, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',38)
+VALUES (174, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (175, false, '16:50:31', '2000-10-08', 3, 'Polska', 'SECONDARY',39)
+VALUES (175, false, '16:50:31', '2000-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (176, true, '16:50:31', '2000-10-08', 0, 'Irlandia', 'SECONDARY',43)
+VALUES (176, true, '16:50:31', '2000-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',43)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (177, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',42)
+VALUES (177, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (178, true, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',45)
+VALUES (178, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (179, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',30)
+VALUES (179, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (180, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',32)
+VALUES (180, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (181, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',29)
+VALUES (181, true, '16:50:31', '1950-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',29)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (182, true, '16:50:31', '1955-10-08', 1, 'Polska', 'PRIMARY',42)
+VALUES (182, true, '16:50:31', '1955-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',42)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (183, true, '16:50:31', '1955-10-08', 2, 'Niemcy', 'SECONDARY',30)
+VALUES (183, true, '16:50:31', '1955-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (184, true, '16:50:31', '1955-10-08', 3, 'Polska', 'POST_SECONDARY',32)
+VALUES (184, true, '16:50:31', '1955-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (185, false, '16:50:31', '1955-10-08', 0, 'Polska', 'SECONDARY',44)
+VALUES (185, false, '16:50:31', '1955-10-08', 'OVER500THOUSAND', 'Polska', 'SECONDARY',44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (186, false, '16:50:31', '1958-10-08', 1, 'Polska', 'PRIMARY',45)
+VALUES (186, false, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (187, false, '16:50:31', '1958-10-08', 2, 'Polska', 'PRIMARY',37)
+VALUES (187, false, '16:50:31', '1958-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',37)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (188, false, '16:50:31', '1958-10-08', 3, 'Niemcy', 'POST_SECONDARY',45)
+VALUES (188, false, '16:50:31', '1958-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (189, true, '16:50:31', '1958-10-08', 1, 'Irlandia', 'POST_SECONDARY',38)
+VALUES (189, true, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (190, true, '16:50:31', '1989-10-08', 0, 'Irlandia', 'POST_SECONDARY',31)
+VALUES (190, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Irlandia', 'POST_SECONDARY',31)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (191, false, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',41)
+VALUES (191, false, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (192, false, '16:50:31', '1989-10-08', 2, 'Polska', 'SECONDARY',44)
+VALUES (192, false, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (193, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',34)
+VALUES (193, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (194, false, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',41)
+VALUES (194, false, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',41)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (195, true, '16:50:31', '1989-10-08', 0, 'Polska', 'PRIMARY',33)
+VALUES (195, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY',33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (196, true, '16:50:31', '1989-10-08', 1, 'Irlandia', 'POST_SECONDARY',45)
+VALUES (196, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (197, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',36)
+VALUES (197, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',36)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (198, true, '16:50:31', '1989-10-08', 0, 'Niemcy', 'SECONDARY',45)
+VALUES (198, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Niemcy', 'SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (199, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',38)
+VALUES (199, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (200, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',30)
+VALUES (200, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (201, true, '16:50:31', '1989-10-08', 2, 'Polska', 'POST_SECONDARY',38)
+VALUES (201, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (202, true, '16:50:31', '1989-10-08', 3, 'Polska', 'PRIMARY',39)
+VALUES (202, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (203, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',30)
+VALUES (203, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (204, true, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',38)
+VALUES (204, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (205, true, '16:50:31', '1989-10-08', 2, 'Irlandia', 'POST_SECONDARY',30)
+VALUES (205, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY',30)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (206, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',45)
+VALUES (206, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (207, true, '16:50:31', '1989-10-08', 1, 'Niemcy', 'PRIMARY',39)
+VALUES (207, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (208, true, '16:50:31', '1979-10-08', 2, 'Polska', 'PRIMARY',39)
+VALUES (208, true, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',39)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (209, true, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',45)
+VALUES (209, true, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (210, false, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',33)
+VALUES (210, false, '16:50:31', '1979-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (211, false, '16:50:31', '1979-10-08', 1, 'Polska', 'SECONDARY',32)
+VALUES (211, false, '16:50:31', '1979-10-08',  'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (212, false, '16:50:31', '1979-10-08', 2, 'Polska', 'POST_SECONDARY',36)
+VALUES (212, false, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',36)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (213, false, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',34)
+VALUES (213, false, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (214, true, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',33)
+VALUES (214, true, '16:50:31', '1979-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',33)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (215, true, '16:50:31', '1950-10-08', 1, 'Niemcy', 'PRIMARY',45)
+VALUES (215, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',45)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (216, false, '16:50:31', '1950-10-08', 2, 'Polska', 'PRIMARY',34)
+VALUES (216, false, '16:50:31', '1950-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (217, false, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',34)
+VALUES (217, false, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',34)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (218, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',44)
+VALUES (218, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (219, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',38)
+VALUES (219, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',38)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (220, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',40)
+VALUES (220, true, '16:50:31', '1950-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',40)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (221, true, '16:50:31', '1950-10-08', 1, 'Polska', 'SECONDARY',44)
+VALUES (221, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',44)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (222, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',32)
+VALUES (222, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',32)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (223, false, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',41)
+VALUES (223, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',41)
 ON CONFLICT (voteid) DO NOTHING;
 
 --sejm3glosy
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (224,true, '10:34:56', '2024-06-015', 0, 'Polska', 'POST_SECONDARY', 47)
+VALUES (224,true, '10:34:56', '2024-06-015', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (225,true, '10:34:56', '2024-06-015', 2, 'Polska', 'SECONDARY', 55)
+VALUES (225,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (226,true, '10:34:56', '2024-06-015', 2, 'Polska', 'PRIMARY', 54)
+VALUES (226,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 54)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (227,true, '10:34:56', '2024-06-015', 2, 'Polska', 'POST_SECONDARY', 52)
+VALUES (227,true, '10:34:56', '2024-06-015', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 52)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (228, false, '08:25:47', '1988-02-28', 1, 'Polska', 'SECONDARY', 47)
+VALUES (228, false, '08:25:47', '1988-02-28', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (229, true, '16:05:38', '1995-07-17', 2, 'Polska', 'PRIMARY', 64)
+VALUES (229, true, '16:05:38', '1995-07-17', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (230, false, '12:30:22', '1982-09-30', 3, 'Polska', 'POST_SECONDARY', 53)
+VALUES (230, false, '12:30:22', '1982-09-30', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (231, true, '15:12:18', '1991-05-10', 3, 'Polska', 'SECONDARY', 58)
+VALUES (231, true, '15:12:18', '1991-05-10', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (232, false, '10:45:50', '1984-08-25', 1, 'Polska', 'PRIMARY', 52)
+VALUES (232, false, '10:45:50', '1984-08-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 52)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (233, true, '11:55:33', '1976-04-14', 2, 'Polska', 'POST_SECONDARY', 55)
+VALUES (233, true, '11:55:33', '1976-04-14', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (234, false, '09:05:12', '1980-01-06', 3, 'Polska', 'SECONDARY', 60)
+VALUES (234, false, '09:05:12', '1980-01-06', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 60)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (235, true, '14:30:45', '1993-03-18', 0, 'Polska', 'PRIMARY', 47)
+VALUES (235, true, '14:30:45', '1993-03-18', 'OVER500THOUSAND', 'Polska', 'PRIMARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (236, false, '16:40:27', '1987-10-21', 1, 'Polska', 'POST_SECONDARY', 57)
+VALUES (236, false, '16:40:27', '1987-10-21', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (237, true, '12:15:36', '1975-07-12', 2, 'Polska', 'SECONDARY', 64)
+VALUES (237, true, '12:15:36', '1975-07-12', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (238, false, '08:50:48', '1994-06-03', 3, 'Polska', 'PRIMARY', 64)
+VALUES (238, false, '08:50:48', '1994-06-03', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (239, true, '17:20:59', '1989-02-11', 0, 'Polska', 'POST_SECONDARY', 55)
+VALUES (239, true, '17:20:59', '1989-02-11', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (240, false, '11:05:12', '1977-05-29', 1, 'Polska', 'SECONDARY', 53)
+VALUES (240, false, '11:05:12', '1977-05-29', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY', 53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (241, true, '13:40:23', '1986-09-18', 2, 'Polska', 'PRIMARY', 63)
+VALUES (241, true, '13:40:23', '1986-09-18', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (242, false, '10:15:48', '1992-11-14', 3, 'Polska', 'POST_SECONDARY', 57)
+VALUES (242, false, '10:15:48', '1992-11-14', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (245, true, '14:10:36', '1983-08-09', 3, 'Polska', 'SECONDARY', 51)
+VALUES (245, true, '14:10:36', '1983-08-09', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 51)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (246, false, '09:25:17', '1979-04-23', 1, 'Polska', 'PRIMARY', 49)
+VALUES (246, false, '09:25:17', '1979-04-23', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 49)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (247, true, '15:30:29', '1990-07-06', 2, 'Polska', 'POST_SECONDARY', 58)
+VALUES (247, true, '15:30:29', '1990-07-06', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (248, false, '12:45:38', '1996-12-17', 3, 'Polska', 'SECONDARY', 62)
+VALUES (248, false, '12:45:38', '1996-12-17', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY', 62)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (249, true, '08:05:42', '1981-01-19', 1, 'Polska', 'PRIMARY', 56)
+VALUES (249, true, '08:05:42', '1981-01-19', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (250, false, '13:20:13', '1985-06-25', 1, 'Polska', 'POST_SECONDARY', 47)
+VALUES (250, false, '13:20:13', '1985-06-25', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (251, true, '16:50:31', '1993-10-08', 2, 'Polska', 'SECONDARY', 47)
+VALUES (251, true, '16:50:31', '1993-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (252, true, '16:50:31', '1993-10-08', 1, 'Polska', 'POST_SECONDARY', 47)
+VALUES (252, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (253, true, '16:50:31', '1993-10-08', 1, 'Polska', 'PRIMARY', 57)
+VALUES (253, true, '16:50:31', '1993-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY', 57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (254, true, '16:50:31', '1993-10-08', 0, 'Polska', 'POST_SECONDARY', 62)
+VALUES (254, true, '16:50:31', '1993-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 62)
 ON CONFLICT (voteid) DO NOTHING;
 
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (255, false, '16:50:31', '1953-10-08', 2, 'Niemcy', 'PRIMARY', 63)
+VALUES (255, false, '16:50:31', '1953-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (256, false, '16:50:31', '1956-10-08', 2, 'Irlandia', 'POST_SECONDARY', 60)
+VALUES (256, false, '16:50:31', '1956-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 60)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (257, false, '16:50:31', '1996-10-08', 3, 'Niemcy', 'POST_SECONDARY', 50)
+VALUES (257, false, '16:50:31', '1996-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (258, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 53)
+VALUES (258, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (259, true, '16:50:31', '1996-10-08', 1, 'Irlandia', 'SECONDARY', 57)
+VALUES (259, true, '16:50:31', '1996-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (260, true, '16:50:31', '1956-10-08', 1, 'Irlandia', 'SECONDARY', 56)
+VALUES (260, true, '16:50:31', '1956-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'SECONDARY', 56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (261, false, '16:50:31', '1956-10-08', 3, 'Niemcy', 'SECONDARY', 59)
+VALUES (261, false, '16:50:31', '1956-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY', 59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (262, false, '16:50:31', '2000-10-08', 2, 'Irlandia', 'PRIMARY', 50)
+VALUES (262, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'PRIMARY', 50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (263, false, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 50)
+VALUES (263, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (264, true, '16:50:31', '2000-10-08', 2, 'Polska', 'PRIMARY', 61)
+VALUES (264, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 61)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (265, true, '16:50:31', '2001-10-08', 2, 'Polska', 'PRIMARY', 47)
+VALUES (265, true, '16:50:31', '2001-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (266, true, '16:50:31', '1951-10-08', 2, 'Niemcy', 'PRIMARY', 61)
+VALUES (266, true, '16:50:31', '1951-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'PRIMARY', 61)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (267, true, '16:50:31', '1971-10-08', 2, 'Irlandia', 'POST_SECONDARY', 47)
+VALUES (267, true, '16:50:31', '1971-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (268, true, '16:50:31', '2000-10-08', 2, 'Irlandia', 'POST_SECONDARY', 58)
+VALUES (268, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY', 58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (269, true, '16:50:31', '1952-10-08', 2, 'Polska', 'POST_SECONDARY', 55)
+VALUES (269, true, '16:50:31', '1952-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (270, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 58)
+VALUES (270, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (271, true, '16:50:31', '1952-10-08', 0, 'Polska', 'POST_SECONDARY', 60)
+VALUES (271, true, '16:50:31', '1952-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY', 60)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (272, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 53)
+VALUES (272, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (273, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 58)
+VALUES (273, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (274, true, '16:50:31', '1952-10-08', 3, 'Polska', 'POST_SECONDARY', 59)
+VALUES (274, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (275, true, '16:50:31', '1952-10-08', 3, 'Irlandia', 'POST_SECONDARY', 51)
+VALUES (275, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 51)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (276, true, '16:50:31', '1952-10-08', 3, 'Niemcy', 'POST_SECONDARY', 56)
+VALUES (276, true, '16:50:31', '1952-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY', 56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (277, true, '16:50:31', '1968-10-08', 3, 'Polska', 'PRIMARY', 52)
+VALUES (277, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY', 52)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (278, false, '16:50:31', '1968-10-08', 3, 'Irlandia', 'POST_SECONDARY', 50)
+VALUES (278, false, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY', 50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (279, true, '16:50:31', '1968-10-08', 3, 'Polska', 'POST_SECONDARY', 56)
+VALUES (279, true, '16:50:31', '1968-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY', 56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (280, false, '16:50:31', '1968-10-08', 2, 'Polska', 'POST_SECONDARY', 55)
+VALUES (280, false, '16:50:31', '1968-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY', 55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (281, false, '16:50:31', '1968-10-08', 0, 'Polska', 'PRIMARY',55)
+VALUES (281, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY',55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (282, false, '16:50:31', '1968-10-08', 0, 'Irlandia', 'SECONDARY',55)
+VALUES (282, false, '16:50:31', '1968-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (283, false, '16:50:31', '1978-10-08', 2, 'Polska', 'SECONDARY',58)
+VALUES (283, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (284, false, '16:50:31', '1978-10-08', 2, 'Niemcy', 'SECONDARY',63)
+VALUES (284, false, '16:50:31', '1978-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (285, false, '16:50:31', '1978-10-08', 3, 'Irlandia', 'POST_SECONDARY',57)
+VALUES (285, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Irlandia', 'POST_SECONDARY',57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (286, false, '16:50:31', '1978-10-08', 3, 'Polska', 'PRIMARY',49)
+VALUES (286, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',49)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (287, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',62)
+VALUES (287, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',62)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (288, false, '16:50:31', '1978-10-08', 3, 'Polska', 'SECONDARY',64)
+VALUES (288, false, '16:50:31', '1978-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (289, false, '16:50:31', '2000-10-08', 3, 'Polska', 'SECONDARY',48)
+VALUES (289, false, '16:50:31', '2000-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'SECONDARY',48)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (290, true, '16:50:31', '2000-10-08', 0, 'Irlandia', 'SECONDARY',53)
+VALUES (290, true, '16:50:31', '2000-10-08', 'OVER500THOUSAND', 'Irlandia', 'SECONDARY',53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (291, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',62)
+VALUES (291, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',62)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (292, true, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',48)
+VALUES (292, true, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',48)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (293, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',54)
+VALUES (293, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',54)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (294, true, '16:50:31', '2001-10-08', 3, 'Niemcy', 'SECONDARY',63)
+VALUES (294, true, '16:50:31', '2001-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'SECONDARY',63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (295, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',59)
+VALUES (295, true, '16:50:31', '1950-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (296, true, '16:50:31', '1955-10-08', 1, 'Polska', 'PRIMARY',54)
+VALUES (296, true, '16:50:31', '1955-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',54)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (297, true, '16:50:31', '1955-10-08', 2, 'Niemcy', 'SECONDARY',48)
+VALUES (297, true, '16:50:31', '1955-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Niemcy', 'SECONDARY',48)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (298, true, '16:50:31', '1955-10-08', 3, 'Polska', 'POST_SECONDARY',50)
+VALUES (298, true, '16:50:31', '1955-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (299, false, '16:50:31', '1955-10-08', 0, 'Polska', 'SECONDARY',56)
+VALUES (299, false, '16:50:31', '1955-10-08', 'OVER500THOUSAND', 'Polska', 'SECONDARY',56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (300, false, '16:50:31', '1958-10-08', 1, 'Polska', 'PRIMARY',56)
+VALUES (300, false, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (301, false, '16:50:31', '1958-10-08', 2, 'Polska', 'PRIMARY',59)
+VALUES (301, false, '16:50:31', '1958-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (302, false, '16:50:31', '1958-10-08', 3, 'Niemcy', 'POST_SECONDARY',56)
+VALUES (302, false, '16:50:31', '1958-10-08', 'BELOWFIFTYTHOUSAND', 'Niemcy', 'POST_SECONDARY',56)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (303, true, '16:50:31', '1958-10-08', 1, 'Irlandia', 'POST_SECONDARY',48)
+VALUES (303, true, '16:50:31', '1958-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',48)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (304, true, '16:50:31', '1989-10-08', 0, 'Irlandia', 'POST_SECONDARY',52)
+VALUES (304, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Irlandia', 'POST_SECONDARY',52)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (305, false, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',60)
+VALUES (305, false, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',60)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (306, false, '16:50:31', '1989-10-08', 2, 'Polska', 'SECONDARY',50)
+VALUES (306, false, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'SECONDARY',50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (307, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',64)
+VALUES (307, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (308, false, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',62)
+VALUES (308, false, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',62)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (309, true, '16:50:31', '1989-10-08', 0, 'Polska', 'PRIMARY',60)
+VALUES (309, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'PRIMARY',60)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (310, true, '16:50:31', '1989-10-08', 1, 'Irlandia', 'POST_SECONDARY',55)
+VALUES (310, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Irlandia', 'POST_SECONDARY',55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (311, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',54)
+VALUES (311, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',54)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (312, true, '16:50:31', '1989-10-08', 0, 'Niemcy', 'SECONDARY',49)
+VALUES (312, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Niemcy', 'SECONDARY',49)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (313, true, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',62)
+VALUES (313, true, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',62)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (314, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',61)
+VALUES (314, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',61)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (315, true, '16:50:31', '1989-10-08', 2, 'Polska', 'POST_SECONDARY',63)
+VALUES (315, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (316, true, '16:50:31', '1989-10-08', 3, 'Polska', 'PRIMARY',58)
+VALUES (316, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (317, false, '16:50:31', '1989-10-08', 0, 'Polska', 'POST_SECONDARY',53)
+VALUES (317, false, '16:50:31', '1989-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (318, true, '16:50:31', '1989-10-08', 1, 'Polska', 'PRIMARY',47)
+VALUES (318, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'PRIMARY',47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (319, true, '16:50:31', '1989-10-08', 2, 'Irlandia', 'POST_SECONDARY',53)
+VALUES (319, true, '16:50:31', '1989-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Irlandia', 'POST_SECONDARY',53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (320, true, '16:50:31', '1989-10-08', 3, 'Polska', 'POST_SECONDARY',51)
+VALUES (320, true, '16:50:31', '1989-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',51)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (321, true, '16:50:31', '1989-10-08', 1, 'Niemcy', 'PRIMARY',55)
+VALUES (321, true, '16:50:31', '1989-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',55)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (322, true, '16:50:31', '1979-10-08', 2, 'Polska', 'PRIMARY',57)
+VALUES (322, true, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (323, true, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',58)
+VALUES (323, true, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (324, false, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',47)
+VALUES (324, false, '16:50:31', '1979-10-08', 'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',47)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (325, false, '16:50:31', '1979-10-08', 1, 'Polska', 'SECONDARY',50)
+VALUES (325, false, '16:50:31', '1979-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',50)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (326, false, '16:50:31', '1979-10-08', 2, 'Polska', 'POST_SECONDARY',64)
+VALUES (326, false, '16:50:31', '1979-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',64)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (327, false, '16:50:31', '1979-10-08', 3, 'Polska', 'POST_SECONDARY',59)
+VALUES (327, false, '16:50:31', '1979-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'POST_SECONDARY',59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (328, true, '16:50:31', '1979-10-08', 0, 'Polska', 'POST_SECONDARY',48)
+VALUES (328, true, '16:50:31', '1979-10-08',  'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',48)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (329, true, '16:50:31', '1950-10-08', 1, 'Niemcy', 'PRIMARY',63)
+VALUES (329, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Niemcy', 'PRIMARY',63)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (330, false, '16:50:31', '1950-10-08', 2, 'Polska', 'PRIMARY',58)
+VALUES (330, false, '16:50:31', '1950-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'PRIMARY',58)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (331, false, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',59)
+VALUES (331, false, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',59)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (332, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',52)
+VALUES (332, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',52)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (333, true, '16:50:31', '1950-10-08', 3, 'Polska', 'PRIMARY',61)
+VALUES (333, true, '16:50:31', '1950-10-08', 'BELOWFIFTYTHOUSAND', 'Polska', 'PRIMARY',61)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (334, true, '16:50:31', '1950-10-08', 0, 'Polska', 'POST_SECONDARY',51)
+VALUES (334, true, '16:50:31', '1950-10-08',  'OVER500THOUSAND', 'Polska', 'POST_SECONDARY',51)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (335, true, '16:50:31', '1950-10-08', 1, 'Polska', 'SECONDARY',53)
+VALUES (335, true, '16:50:31', '1950-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'SECONDARY',53)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (336, true, '16:50:31', '2000-10-08', 1, 'Polska', 'POST_SECONDARY',57)
+VALUES (336, true, '16:50:31', '2000-10-08', 'TWOHUNDREDTO500THOUSAND', 'Polska', 'POST_SECONDARY',57)
 ON CONFLICT (voteid) DO NOTHING;
 
 INSERT INTO vote (voteid, sex, votetime, voterbirthdate, votercitytype, votercountry, votereducation, candidate_id)
-VALUES (337, false, '16:50:31', '2000-10-08', 2, 'Polska', 'POST_SECONDARY',51)
+VALUES (337, false, '16:50:31', '2000-10-08', 'FIFTYTOTWOHUNDREDTHOUSAND', 'Polska', 'POST_SECONDARY',51)
 ON CONFLICT (voteid) DO NOTHING;

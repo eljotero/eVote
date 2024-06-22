@@ -12,7 +12,8 @@ import java.util.List;
 @Table(name = "political_party")
 public class PoliticalParty {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "party_seq")
+    @SequenceGenerator(name = "party_seq", sequenceName = "party_sequence", initialValue = 6, allocationSize = 1)
     private Integer politicalPartyId;
     private String name;
     @OneToOne

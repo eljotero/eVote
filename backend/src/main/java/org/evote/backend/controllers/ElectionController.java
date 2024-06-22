@@ -7,6 +7,7 @@ import org.evote.backend.votes.election.dtos.ElectionMapper;
 import org.evote.backend.votes.election.entity.Election;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +33,14 @@ public class ElectionController {
         return ResponseEntity.ok(electionDTOs);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<ElectionDTO> addElection(@RequestBody ElectionCreateDTO electionCreateDTO) {
         Election election = electionService.addElection(electionCreateDTO);
         return ResponseEntity.ok(ElectionMapper.toElectionDTO(election));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteElection(@PathVariable Integer id) {
         electionService.deleteElection(id);

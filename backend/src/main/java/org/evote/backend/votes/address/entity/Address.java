@@ -10,7 +10,8 @@ import org.evote.backend.votes.precinct.entity.Precinct;
 @Table(name = "address")
 public class Address {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
+    @SequenceGenerator(name = "address_seq", sequenceName = "address_sequence", initialValue = 6, allocationSize = 1)
     private Integer address_id;
 
     private String zip_code;
