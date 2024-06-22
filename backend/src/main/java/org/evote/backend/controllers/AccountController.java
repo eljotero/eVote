@@ -36,8 +36,8 @@ public class AccountController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN') or @authenticationService.hasAccount(#id)")
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('Admin') or @authenticationService.hasAccount(#id)")
     public ResponseEntity<AccountUserDTO> getAccountById(@PathVariable Integer id) {
         Account account = accountService.getAccountById(id);
         return ResponseEntity.ok(AccountMapper.toAccountUserDTO(account));

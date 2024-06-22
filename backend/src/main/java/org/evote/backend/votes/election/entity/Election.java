@@ -21,6 +21,7 @@ public class Election {
 
     private Date endDate;
 
+    @Enumerated(EnumType.STRING)
     private ElectionType type;
 
     @ManyToOne

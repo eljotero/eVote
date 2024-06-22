@@ -24,6 +24,12 @@ public class DatabaseInitializationConfig {
     @Value("classpath:init_votes.sql")
     private Resource initDataScript2;
 
+    @Value("classpath:init_users_test.sql")
+    private Resource initDataScript3;
+
+    @Value("classpath:init_votes_test.sql")
+    private Resource initDataScript4;
+
     @Autowired
     private Environment env;
 
@@ -50,10 +56,6 @@ public class DatabaseInitializationConfig {
 
     @Bean
     public JavaMailSender javaMailSender() {
-        System.out.println("host: " + env.getProperty("spring.mail.host"));
-        System.out.println("port: " + env.getProperty("spring.mail.port"));
-        System.out.println("username: " + env.getProperty("spring.mail.username"));
-        System.out.println("password: " + env.getProperty("spring.mail.password"));
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(env.getProperty("spring.mail.host"));
         mailSender.setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
@@ -87,4 +89,32 @@ public class DatabaseInitializationConfig {
 
         return initializer;
     }
+
+    @Profile("dev")
+    @Bean
+    public DataSourceInitializer dataSourceInitializer3() {
+        System.out.println("LOOOL");
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.addScript(initDataScript3);
+
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(usersDataSourceInit());
+        initializer.setDatabasePopulator(databasePopulator);
+        System.out.println("LOOOL2");
+        return initializer;
+    }
+
+//    @Profile("dev")
+//    @Bean
+//    public DataSourceInitializer dataSourceInitializer4() {
+//        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+//        databasePopulator.addScript(initDataScript4);
+//
+//        DataSourceInitializer initializer = new DataSourceInitializer();
+//        initializer.setDataSource(votesDataSourceInit());
+//        initializer.setDatabasePopulator(databasePopulator);
+//
+//        return initializer;
+//    }
+
 }

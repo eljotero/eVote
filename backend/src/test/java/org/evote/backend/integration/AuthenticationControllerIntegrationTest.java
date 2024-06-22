@@ -71,5 +71,14 @@ public class AuthenticationControllerIntegrationTest {
                 .andReturn();
     }
 
+    @Test
+    public void testLoginAccountNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                .andExpect(status().isNotFound())
+                .andReturn();
+    }
+
 
 }
