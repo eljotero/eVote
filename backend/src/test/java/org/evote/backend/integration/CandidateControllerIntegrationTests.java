@@ -69,7 +69,7 @@ public class CandidateControllerIntegrationTests {
                 .andExpect(jsonPath("$[0].birthDate", is("1988-04-19T22:00:00.000+00:00")))
                 .andExpect(jsonPath("$[0].education", is("inżynier informatyki")))
                 .andExpect(jsonPath("$[0].profession", is("Szefunio")))
-                .andExpect(jsonPath("$[0].political_party_id", is(1)))
+                .andExpect(jsonPath("$[0].political_party_id", is(10)))
                 .andExpect(jsonPath("$[0].precinct_id", is(1)))
                 .andExpect(jsonPath("$[0].info", is("Cos tam cos tam.")))
                 .andExpect(jsonPath("$[0].image", is("https://storage.googleapis.com/evote_c/obraz_2024-06-11_211139026.png")));

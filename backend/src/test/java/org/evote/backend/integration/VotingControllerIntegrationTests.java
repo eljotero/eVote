@@ -71,6 +71,6 @@ public class VotingControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/vote/voteToken"))
                 .andExpect(status().isBadRequest());
     }
-    
+
 
 }

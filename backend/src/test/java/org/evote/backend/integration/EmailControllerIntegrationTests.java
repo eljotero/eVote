@@ -63,16 +63,16 @@ public class EmailControllerIntegrationTests {
     public void testLoginAndGetToken() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"test5@mail.com\",\"password\":\"password123\"}"))
+                        .content("{\"email\":\"test1500@mail.com\",\"password\":\"password123\"}"))
                 .andExpect(status().isCreated())
                 .andReturn();
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\":\"test5@mail.com\",\"password\":\"password123\"}")).andReturn();
+                .content("{\"email\":\"test1500@mail.com\",\"password\":\"password123\"}")).andReturn();
         String content = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(content);
         String token = jsonObject.getString("token");
-        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/1")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/2")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
