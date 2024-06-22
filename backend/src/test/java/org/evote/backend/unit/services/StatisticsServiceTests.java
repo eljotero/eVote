@@ -241,14 +241,14 @@ public class StatisticsServiceTests {
         party1.setName("Party1");
         Election election = new Election();
         election.setElectionId(electionId);
-        Vote vote1 = createVote2(election, party1, "Wyższe");
-        Vote vote2 = createVote2(election, party1, "Średnie");
+        Vote vote1 = createVote2(election, party1, "POST_SECONDARY");
+        Vote vote2 = createVote2(election, party1, "SECONDARY");
         List<Vote> votes = Arrays.asList(vote1, vote2);
         when(electionRepository.findById(electionId)).thenReturn(Optional.of(election));
         when(voteRepository.findAll()).thenReturn(votes);
         Map<String, Map<String, Integer>> results = statisticsService.getResultsByEducation(electionId);
-        assertEquals(1, (int) results.get("Wyższe").get("Party1"));
-        assertEquals(1, (int) results.get("Średnie").get("Party1"));
+        assertEquals(1, (int) results.get("wyższe").get("Party1"));
+        assertEquals(1, (int) results.get("średnie").get("Party1"));
     }
 
     private Vote createVote2(Election election, PoliticalParty party, String education) {
