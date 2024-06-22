@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.evote.backend.users.enums.Role;
 import org.evote.backend.users.user.entity.User;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

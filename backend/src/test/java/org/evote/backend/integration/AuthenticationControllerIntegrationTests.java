@@ -24,12 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class AuthenticationControllerIntegrationTest {
+public class AuthenticationControllerIntegrationTests {
 
     private final MockMvc mockMvc;
 
     @Autowired
-    public AuthenticationControllerIntegrationTest(MockMvc mockMvc) {
+    public AuthenticationControllerIntegrationTests(MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
 
@@ -52,12 +52,12 @@ public class AuthenticationControllerIntegrationTest {
     public void testAddAccountAndLogin() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                        .content("{\"email\":\"test5@mail.com\",\"password\":\"password123\"}"))
                 .andExpect(status().isCreated())
                 .andReturn();
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                        .content("{\"email\":\"test5@mail.com\",\"password\":\"password123\"}"))
                 .andExpect(status().isOk())
                 .andReturn();
     }
@@ -75,7 +75,7 @@ public class AuthenticationControllerIntegrationTest {
     public void testLoginAccountNotFound() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                        .content("{\"email\":\"test500@mail.com\",\"password\":\"password123\"}"))
                 .andExpect(status().isNotFound())
                 .andReturn();
     }

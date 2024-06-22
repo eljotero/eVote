@@ -4,11 +4,14 @@ VALUES (1, 'Nowogrodzka 84/86', 'Warszawa', 'Polska', '02-018');
 INSERT INTO address (address_id, address_line, city, country, zip_code)
 VALUES (2, 'Wiejska 12a', 'Warszawa', 'Polska', '00-490');
 
-INSERT INTO political_party (politicalpartyid, name, address_id)
-VALUES (1, 'Prawo i Sprawiedliwość', 1);
+INSERT INTO address (address_id, address_line, city, country, zip_code)
+VALUES (3, 'Wiejska 12a', 'Warszawa', 'Polska', '00-490');
 
 INSERT INTO political_party (politicalpartyid, name, address_id)
-VALUES (2, 'Koalicja Obywatelska', 2);
+VALUES (10, 'Prawo i Sprawiedliwość', 1);
+
+INSERT INTO political_party (politicalpartyid, name, address_id)
+VALUES (11, 'Koalicja Obywatelska', 2);
 
 INSERT INTO precinct (precinct_uuid, precinct_id, electiontype)
 VALUES ('7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc', 1, 'Parliamentary');
@@ -33,7 +36,7 @@ VALUES (1,
         'Kot',
         'Szefunio',
         1,
-        1,
+        10,
         '7d47bf12-1e1b-4c4e-9f62-aa669e17bcfc');
 
 INSERT INTO candidate (candidate_id, birthdate, education, image, info, name, surname, profession, election_id,
@@ -47,5 +50,5 @@ VALUES (2,
         'Kaczmarek',
         'przedsiębiorca',
         2,
-        1,
+        11,
         'ec4144e5-5df2-40de-9a01-c39b60d98764');

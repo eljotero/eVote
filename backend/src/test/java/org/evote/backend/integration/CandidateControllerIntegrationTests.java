@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class CandidateControllerIntegrationTest {
+public class CandidateControllerIntegrationTests {
 
     private final MockMvc mockMvc;
 
@@ -35,7 +35,7 @@ public class CandidateControllerIntegrationTest {
     private int port;
 
     @Autowired
-    public CandidateControllerIntegrationTest(MockMvc mockMvc) {
+    public CandidateControllerIntegrationTests(MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
 
