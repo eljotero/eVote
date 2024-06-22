@@ -124,14 +124,6 @@ export default function Account() {
     };
 
     function sendEmail() {
-        const requiredFields = ['email', 'name', 'surname', 'sex', 'birthDate', 'education', 'profession', 'cityType', 'personalIdNumber', 'zipCode', 'city', 'country', 'addressLine', 'voivodeship'];
-        const missingFields = requiredFields.filter(field => !data[field]);
-
-        if (missingFields.length > 0) {
-            toast.error('Wypełnij wszystkie wymagane pola, żeby odblokować możliwość zagłosowania.');
-            return;
-        }
-
         axios
             .post(
                 'email/sendEmail',
@@ -148,7 +140,7 @@ export default function Account() {
                 }
             })
             .catch((error) => {
-                if (error.response.status === 400) {
+                if (error.response && error.response.status === 400) {
                     toast.error(
                         'Email został już wysłany. Sprawdź swoją skrzynkę odbiorczą.'
                     );

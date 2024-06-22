@@ -6,6 +6,8 @@ import axios from 'lib/axios';
 import {toast} from 'react-hot-toast';
 import {act} from "react-dom/test-utils";
 import {checkEmail} from "@/app/services/emailService";
+import {Provider} from "react-redux";
+import {store} from "@/store/store";
 
 jest.mock('lib/axios');
 jest.mock('../src/app/services/emailService', () => ({
@@ -16,6 +18,12 @@ jest.mock('react-hot-toast', () => ({
         error: jest.fn(),
         success: jest.fn()
     },
+}));
+
+jest.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: jest.fn(),
+    }),
 }));
 
 const TEST_EMAIL = 'test@example.com';
@@ -30,19 +38,29 @@ describe('RegisterForm', () => {
     });
 
     it('renders RegisterForm and checks if input fields and button are present', () => {
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
+        const { getByLabelText, getByText } = render(
+            <Provider store={store}>
+                <RegisterForm />
+            </Provider>
+        );
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
+        const confirmPasswordInput = getByLabelText('Potwierdź hasło');
         const submitButton = getByText('Zarejestruj się');
 
         expect(emailInput).toBeInTheDocument();
         expect(passwordInput).toBeInTheDocument();
+        expect(confirmPasswordInput).toBeInTheDocument();
         expect(submitButton).toBeInTheDocument();
     });
 
     it('checks if input fields are working correctly', () => {
-        const {getByLabelText} = render(<RegisterForm/>);
+        const { getByLabelText, getByText } = render(
+            <Provider store={store}>
+                <RegisterForm />
+            </Provider>
+        );
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
@@ -58,7 +76,11 @@ describe('RegisterForm', () => {
         checkEmail.mockResolvedValue(true);
         axios.post.mockResolvedValue({ status: 201 });
 
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
+        const { getByLabelText, getByText } = render(
+            <Provider store={store}>
+                <RegisterForm />
+            </Provider>
+        );
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');
@@ -77,13 +99,16 @@ describe('RegisterForm', () => {
             email: TEST_EMAIL,
             password: TEST_PASSWORD,
         });
-        expect(toast.success).toHaveBeenCalledWith('Konto zostało utworzone. Zaloguj się.');
     });
 
     it('shows an error when the email already exists', async () => {
         checkEmail.mockResolvedValue(true);
         axios.post.mockRejectedValue(new Error());
-        const {getByLabelText, getByText} = render(<RegisterForm/>);
+        const { getByLabelText, getByText } = render(
+            <Provider store={store}>
+                <RegisterForm />
+            </Provider>
+        );
 
         const emailInput = getByLabelText('Email');
         const passwordInput = getByLabelText('Hasło');

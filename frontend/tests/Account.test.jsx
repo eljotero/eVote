@@ -34,38 +34,38 @@ const testData = {
 };
 
 const inputLabels = [
-    'Email', 'Imię', 'Nazwisko', 'Płeć', 'Data urodzenia',
-    'Wykształcenie', 'Zawód', 'Numer PESEL', 'Kod pocztowy',
-    'Adres', 'Miasto', 'Typ miejscowości', 'Kraj', 'Województwo'
+    'Email', 'Imię*', 'Nazwisko*', 'Płeć*', 'Data urodzenia*',
+    'Wykształcenie*', 'Zawód*', 'Numer PESEL*', 'Kod pocztowy*',
+    'Adres*', 'Miasto*', 'Typ miejscowości*', 'Kraj*', 'Województwo*'
 ];
 
 const testDataArray = [
-    {label: 'Imię', value: testData.name},
-    {label: 'Nazwisko', value: testData.surname},
-    {label: 'Płeć', value: testData.sex},
+    {label: 'Imię*', value: testData.name},
+    {label: 'Nazwisko*', value: testData.surname},
+    {label: 'Płeć*', value: testData.sex},
     {
-        label: 'Data urodzenia',
+        label: 'Data urodzenia*',
         value: testData.birthDate
     },
     {
-        label: 'Wykształcenie',
+        label: 'Wykształcenie*',
         value: testData.education
     },
-    {label: 'Zawód', value: testData.profession},
+    {label: 'Zawód*', value: testData.profession},
     {
-        label: 'Numer PESEL',
+        label: 'Numer PESEL*',
         value: testData.personalIdNumber
     },
-    {label: 'Kod pocztowy', value: testData.zip_code},
-    {label: 'Adres', value: testData.address_line},
-    {label: 'Miasto', value: testData.city},
+    {label: 'Kod pocztowy*', value: testData.zip_code},
+    {label: 'Adres*', value: testData.address_line},
+    {label: 'Miasto*', value: testData.city},
     {
-        label: 'Typ miejscowości',
+        label: 'Typ miejscowości*',
         value: testData.cityType
     },
-    {label: 'Kraj', value: testData.country},
+    {label: 'Kraj*', value: testData.country},
     {
-        label: 'Województwo',
+        label: 'Województwo*',
         value: testData.voivodeship
     }
 ];
