@@ -73,7 +73,7 @@ describe('RegisterForm', () => {
             fireEvent.click(submitButton);
         });
 
-        expect(axios.post).toHaveBeenCalledWith('/auth/register', {
+        expect(axios.post).toHaveBeenCalledWith('https://localhost:8080/api/auth/register', {
             email: TEST_EMAIL,
             password: TEST_PASSWORD,
         });

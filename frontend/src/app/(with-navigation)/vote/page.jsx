@@ -19,11 +19,12 @@ export default function Vote() {
     const [candidatesByElection, setCandidatesByElection] = useState({});
     const [user, setUser] = useState({});
     const [selectedCandidateId, setSelectedCandidateId] = useState(null);
+    const [selectedElectionId, setSelectedElectionId] = useState(null);
     const upcomingElectionStartDate = elections.map(election => new Date(election.startDate).toLocaleDateString());
 
     useEffect(() => {
         const fetchAccount = async () => {
-            const res = await axios.get(`account/${id}`, { 
+            const res = await axios.get(`account/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -32,12 +33,11 @@ export default function Vote() {
         };
         fetchAccount();
     }, [id, token]);
-    
+
     useEffect(() => {
         const fetchPrecincts = async () => {
-            console.log(user);
             try {
-                const response = await axios.get('http://localhost:8080/api/precinct/all');
+                const response = await axios.get('https://localhost:8080/api/precinct/all');
                 const precincts = response.data;
                 const matchingPrecinctIds = precincts
                   .filter(precinct => precinct.availableCities.includes(user.city))
@@ -53,7 +53,7 @@ export default function Vote() {
     useEffect(() => {
         const fetchPoliticalParties = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/political_parties/all');
+                const response = await axios.get('https://localhost:8080/api/political_parties/all');
                 setPoliticalParties(response.data);
             } catch (error) {
                 console.error('Error fetching political parties:', error);
@@ -68,7 +68,7 @@ export default function Vote() {
                 let newCandidatesByElection = {};
                 for (const precinctId of precincts) {
                     for (const election of elections) {
-                        const response = await axios.get(`http://localhost:8080/api/candidates/filtered?electionId=${election.election_id}&precinctId=${precinctId}`);
+                        const response = await axios.get(`https://localhost:8080/api/candidates/filtered?electionId=${election.election_id}&precinctId=${precinctId}`);
                         const candidates = response.data;
                         if (newCandidatesByElection[election.election_id]) {
                             newCandidatesByElection[election.election_id] = [...newCandidatesByElection[election.election_id], ...candidates];
@@ -77,7 +77,6 @@ export default function Vote() {
                         }
                     }
                 }
-                console.log(newCandidatesByElection);
                 setCandidatesByElection(newCandidatesByElection);
             } catch (error) {
                 console.error('Error fetching candidates:', error);
@@ -97,7 +96,7 @@ export default function Vote() {
         };
         fetchElections();
     }, []);
-    
+
     const verifyVotingCode = async () => {
         if (votingCode === '') {
             toast.error("Błąd głosowania. Wymagane jest podanie kodu.");
@@ -122,23 +121,23 @@ export default function Vote() {
     const submitVote = async (votingToken) => {
         if (!votingToken || votingToken === '') {
             toast.error("Nie można głosować bez autoryzacji.");
-            return; 
+            return;
         }
-    
+
         try {
             const response = await axios.post(`vote/vote`, {
               "votes": [
                     {
-                        "candidate_id": selectedCandidateId,
-                        "electionId": candidates.find(candidate => candidate.candidate_id === selectedCandidateId).election_id,
+                        "candidateId": selectedCandidateId,
+                        "electionId": selectedElectionId,
                     }
                 ]
             }, {
                 headers: {
-                    Authorization: `Bearer ${token}`, 
+                    Authorization: `Bearer ${token}`,
                 },
             });
-    
+
             if (response.status === 200) {
                 toast.success("Głos został oddany pomyślnie.");
             } else {
@@ -148,19 +147,13 @@ export default function Vote() {
             toast.error("Wystąpił błąd podczas głosowania.");
         }
     }
-    
-    const handleVoteClick = (candidateId) => {
-        const selectedCandidateElection = candidates.find(candidate => candidate.candidate_id === candidateId);
-        const electionStartDate = new Date(selectedCandidateElection.startDate);
-    
-        if (new Date() < electionStartDate) {
-            return;
-        }
-    
+
+    const handleVoteClick = (candidateId, electionId) => {
         setSelectedCandidateId(candidateId);
+        setSelectedElectionId(electionId);
         setShowForm(true);
     }
-    
+
  return (
     <>
         <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
@@ -211,7 +204,6 @@ export default function Vote() {
             )}
         </div>
         <div className='space-y-8'>
-        {console.log(candidatesByElection)}
         {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
             <div key={electionId}>
                 <h2 className="text-3xl font-bold mb-4 text-center">
@@ -224,10 +216,10 @@ export default function Vote() {
                             className='p-2 bg-white shadow-md rounded-xl'
                         >
                             <Image src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} width={500} height={200} className="rounded-t-xl" />
-                            <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2> 
-                            <p className='text-md'>{candidate.education}</p> 
-                            <p className='text-md'>{candidate.profession}</p> 
-                            <p className='text-md'>     
+                            <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2>
+                            <p className='text-md'>{candidate.education}</p>
+                            <p className='text-md'>{candidate.profession}</p>
+                            <p className='text-md'>
                                 {politicalParties.find(politicalParty => politicalParty.politicalPartyId === candidate.political_party_id).name}
                             </p>
                             <button
@@ -236,7 +228,7 @@ export default function Vote() {
                                     'bg-gray-400 cursor-not-allowed' : 
                                     'bg-blue-500 hover:bg-blue-600 text-white'
                                 }`}
-                                onClick={() => handleVoteClick(candidate.candidate_id)}
+                                onClick={() => handleVoteClick(candidate.candidate_id, electionId)}
                                 disabled={new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate)}
                             >
                                 Zagłosuj

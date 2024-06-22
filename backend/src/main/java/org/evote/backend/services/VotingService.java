@@ -89,16 +89,16 @@ public class VotingService {
                 if (startDate.isAfter(today) || today.isAfter(endDate)) {
                     throw new ElectionInvalidDateException("Election is not active");
                 }
-                Vote newVote = new Vote() {{
-                    setCandidate(candidate);
-                    setVoterBirthdate(user.getBirthDate());
-                    setVoterCityType(CityType.valueOf(user.getCityType().toString()));
-                    setVoterEducation(user.getEducation().toString());
-                    setSex(user.getSex());
-                    setVoterCountry(user.getAddress().getCountry());
-                    setVoteTime(Time.valueOf(LocalTime.now()));
-                }};
+                Vote newVote = new Vote();
+                newVote.setCandidate(candidate);
+                newVote.setVoterBirthdate(user.getBirthDate());
+                newVote.setVoterCityType(CityType.valueOf(user.getCityType().toString()));
+                newVote.setVoterEducation(user.getEducation().toString());
+                newVote.setSex(user.getSex());
+                newVote.setVoterCountry(user.getAddress().getCountry());
+                newVote.setVoteTime(Time.valueOf(LocalTime.now()));
                 voteRepository.save(newVote);
+
             }
             dbAccount.setHasVoted(true);
             accountRepository.save(dbAccount);

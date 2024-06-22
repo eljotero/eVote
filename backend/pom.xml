@@ -111,11 +111,6 @@
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math3</artifactId>
-            <version>3.6.1</version>
-        </dependency>
 
     </dependencies>
     <build>
@@ -187,10 +182,10 @@
                 </dependencies>
                 <configuration>
                     <targetClasses>
-                        <param>org.evote.backend.services.*</param>
+                        <param>org.evote.backend.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.evote.backend.unit.services.*</param>
+                        <param>org.evote.backend.unit.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

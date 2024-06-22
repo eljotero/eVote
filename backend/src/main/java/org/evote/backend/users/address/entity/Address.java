@@ -14,7 +14,8 @@ import java.util.List;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_seq")
+    @SequenceGenerator(name = "vote_seq", sequenceName = "address_sequence", initialValue = 17, allocationSize = 1)
     private Integer address_id;
 
     private String zip_code;

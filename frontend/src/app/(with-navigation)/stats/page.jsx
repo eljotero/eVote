@@ -13,15 +13,14 @@ const StatsPage = () => {
     const [cityGroupResults, setCityGroupResults] = useState([]);
     const [countryGroupResults, setCountryGroupResults] = useState([]);
     const [sejmGroupResults, setSejmGroupResults] = useState([]);
-
     const [ageGroupResultsSenat, setAgeGroupResultsSenat] = useState([]);
     const [educationGroupResultsSenat, setEducationGroupResultsSenat] = useState([]);
     const [sexGroupResultsSenat, setSexGroupResultsSenat] = useState([]);
     const [cityGroupResultsSenat, setCityGroupResultsSenat] = useState([]);
     const [countryGroupResultsSenat, setCountryGroupResultsSenat] = useState([]);
     const [groupResultsSenat, setGroupResultsSenat] = useState([]);
-
     const [groupMandates, setGroupMandates] = useState([]);
+    const [prediction, setPrediction] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -29,23 +28,24 @@ const StatsPage = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/stats/allResults/1');
+                const response = await axios.get('https://localhost:8080/api/stats/allResults/1');
                 setAgeGroupResults(response.data.resultsByAgeGroup);
                 setEducationGroupResults(response.data.resultsByEducation);
                 setSexGroupResults(response.data.resultsBySex);
                 setCityGroupResults(response.data.resultsByCityType);
                 setCountryGroupResults(response.data.resultsByCountry);
                 setSejmGroupResults(response.data.results);
-                const response2 = await axios.get('http://localhost:8080/api/stats/allResults/2');
+                const response2 = await axios.get('https://localhost:8080/api/stats/allResults/2');
                 setAgeGroupResultsSenat(response2.data.resultsByAgeGroup);
                 setEducationGroupResultsSenat(response2.data.resultsByEducation);
                 setSexGroupResultsSenat(response2.data.resultsBySex);
                 setCityGroupResultsSenat(response2.data.resultsByCityType);
                 setCountryGroupResultsSenat(response2.data.resultsByCountry);
                 setGroupResultsSenat(response2.data.results);
-
-                const response3 = await axios.get('http://localhost:8080/api/stats/mandates/1');
+                const response3 = await axios.get('https://localhost:8080/api/stats/mandates/1');
                 setGroupMandates(response3.data);
+                const response4 = await axios.get('https://localhost:8080/api/stats/prediction/Parliamentary');
+                setPrediction(response4.data);
 
                 setLoading(false);
             } catch (err) {
@@ -187,10 +187,15 @@ const StatsPage = () => {
                         <div className="p-4 bg-white rounded-lg shadow-md">
                             <h3 className="text-lg font-semibold mb-4 text-center">Podział mandatów</h3>
                             <div className="grid grid-cols-2 gap-4">
-                                    <PieChart data={groupMandates} />
+                                <PieChart data={groupMandates} />
                             </div>
                         </div>
-                        <hr className="my-8" />
+                        <div className="p-4 bg-white rounded-lg shadow-md">
+                            <h3 className="text-lg font-semibold mb-4 text-center">Predykcja na następne wybory</h3>
+                            <div className="grid grid-cols-2 gap-4">
+                                <PieChart data={prediction} />
+                            </div>
+                        </div>
                         <hr className="my-8" />
                         <h2 className="text-xl font-semibold mb-4 text-center">Wynik głosowania z podziałem na grupy wiekowe</h2>
                         <hr className="my-8" />

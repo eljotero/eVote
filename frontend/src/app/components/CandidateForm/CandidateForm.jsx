@@ -19,7 +19,7 @@ export default function CandidateForm({ candidate, onVote }) {
   const [politicalPartyName, setPoliticalPartyName] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/political_parties/all')
+    fetch('https://localhost:8080/api/political_parties/all')
         .then((response) => response.json())
         .then((data) => {
           const politicalParty = data.find(

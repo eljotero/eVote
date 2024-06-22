@@ -15,7 +15,6 @@ import evote from '../../../../public/images/evote-account.png';
 import evote2 from '../../../../public/images/evote-account2.png';
 
 const personInfoSchema = z.object({
-    email: z.string({message: 'Pole wymagane'}).email({ message: 'Nieprawidłowy adres email' }),
     name: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
     surname: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
     sex: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
@@ -66,9 +65,15 @@ export default function Account() {
         });
         setData(res.data);
     };
-
+    useEffect(() => {
+        fetchAccount();
+    }, []);
     useEffect(() => {
         if (data) {
+            setValue('email', data.email);
+            setValue('name', data.name);
+            setValue('surname', data.surname);
+            setValue('sex', data.sex);
             const date = new Date(data.birthDate);
             const formattedDate = `${date.getFullYear()}-${(
                 '0' +
@@ -85,7 +90,7 @@ export default function Account() {
             setValue('addressLine', data.addressLine);
             setValue('voivodeship', data.voivodeship);
         }
-    }, [data, setValue]);
+    }, [data]);
 
 
     const onSubmit = async (data) => {
@@ -104,8 +109,6 @@ export default function Account() {
             country: data.country,
             address_line: data.addressLine,
         };
-        console.log(id);
-        console.log(token);
         axios
             .put(`user/${id}`, formData, {
                 headers: {

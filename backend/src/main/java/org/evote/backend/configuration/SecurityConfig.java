@@ -80,7 +80,7 @@ public class SecurityConfig {
                 HttpHeaders.CONTENT_TYPE,
                 HttpHeaders.IF_MATCH,
                 HttpHeaders.ACCEPT));
-        corsConfiguration.setAllowedOriginPatterns(List.of("http://localhost:3000"));
+        corsConfiguration.setAllowedOriginPatterns(List.of("https://localhost:3000"));
         corsConfiguration.addExposedHeader("Access-Token");
         corsConfiguration.addExposedHeader("Uid");
         corsConfiguration.addExposedHeader("ETag");

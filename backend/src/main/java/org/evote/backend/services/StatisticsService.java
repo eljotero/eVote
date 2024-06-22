@@ -1,6 +1,7 @@
 package org.evote.backend.services;
 
 import lombok.RequiredArgsConstructor;
+import org.evote.backend.users.enums.Education;
 import org.evote.backend.votes.election.entity.Election;
 import org.evote.backend.votes.election.exception.ElectionNotFoundException;
 import org.evote.backend.votes.election.repository.ElectionRepository;
@@ -141,7 +142,7 @@ public class StatisticsService {
         Map<String, Map<String, Integer>> educationVotes = new HashMap<>();
         for (Vote vote : votes) {
             if (vote.getCandidate().getElection().getElectionId().equals(electionId)) {
-                String education = vote.getVoterEducation();
+                String education = convertEducationToString(vote.getVoterEducation());
                 groupByParam(educationVotes, vote, education);
             }
         }
@@ -268,6 +269,16 @@ public class StatisticsService {
             case TWOHUNDREDTO500THOUSAND -> "Pomiędzy 200 a 500 tysięcy";
             case FIFTYTOTWOHUNDREDTHOUSAND -> "Pomiędzy 50 a 200 tysięcy";
             default -> "Poniżej 50 tysięcy";
+        };
+    }
+
+    private String convertEducationToString(String education) {
+        return switch (education) {
+            case  "PRIMARY" -> "podstawowe";
+            case "VOCATIONAL" -> "zawodowe";
+            case "SECONDARY" -> "średnie";
+            case "POST_SECONDARY" -> "wyższe";
+            default -> "Brak";
         };
     }
 
