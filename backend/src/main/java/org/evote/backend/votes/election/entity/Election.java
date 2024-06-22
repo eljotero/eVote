@@ -12,7 +12,8 @@ import java.util.Date;
 @Table(name = "election")
 public class Election {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "election_seq")
+    @SequenceGenerator(name = "election_seq", sequenceName = "election_sequence", initialValue = 9, allocationSize = 1)
     private Integer electionId;
 
     private String electionName;
