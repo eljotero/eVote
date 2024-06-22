@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import Image from 'next/image';
-import evote from '../../../../public/images/evote.png';
 import './page.css';
 import Link from "next/link";
 
@@ -24,7 +23,7 @@ export default function Login() {
                         whileHover={{scale: 1.1}}
                         transition={{type: 'spring', stiffness: 400, damping: 10}}
                     >
-                        <Image src={evote} alt='Evote' width={500} height={300} loading='lazy'/>
+                        <Image src="https://storage.googleapis.com/evote_c/evote.png" alt='Evote' width={500} height={300} loading='lazy' layout='responsive'/>
                     </motion.div>
                 </div>
             </div>

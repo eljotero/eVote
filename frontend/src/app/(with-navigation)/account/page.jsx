@@ -11,8 +11,6 @@ import LabeledSelect
     from "@/app/components/Account/LabeledSelect";
 import {toast} from "react-hot-toast";
 import Image from 'next/image';
-import evote from '../../../../public/images/evote-account.png';
-import evote2 from '../../../../public/images/evote-account2.png';
 
 const personInfoSchema = z.object({
     name: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
@@ -155,11 +153,11 @@ export default function Account() {
     return (
         <section className="py-1 h-auto flex items-center relative" aria-label="Sekcja informacji o koncie">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote2} alt="Megafon" className="relative" loading='lazy'
+                <Image src="https://storage.googleapis.com/evote_c/evote-account2.png" height={100} width={100} alt="Megafon" className="relative max-w-[30em]" loading='lazy'
                        layout='responsive'/>
             </div>
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote} alt="Dłoń trzymająca telefon" className="relative" loading='lazy'
+                <Image src="https://storage.googleapis.com/evote_c/evote-account.png" height={100} width={100} alt="Dłoń trzymająca telefon" className="relative max-w-[30em]" loading='lazy'
                        layout='responsive'/>
             </div>
 
