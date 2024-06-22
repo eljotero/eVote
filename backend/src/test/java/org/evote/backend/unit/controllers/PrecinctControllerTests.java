@@ -11,8 +11,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PrecinctControllerTests {
@@ -33,9 +35,13 @@ public class PrecinctControllerTests {
 
     @Test
     public void testGetAllPrecincts() {
-        when(precinctService.findAllPrecincts()).thenReturn(precincts);
+        when(precinctService.findAllPrecincts()).thenReturn(Collections.emptyList());
+
         List<Precinct> result = precinctController.getAllPrecincts();
-        Assertions.assertEquals(precincts, result);
+
+        Assertions.assertEquals(Collections.emptyList(), result);
+
+        verify(precinctService).findAllPrecincts();
     }
 
 }

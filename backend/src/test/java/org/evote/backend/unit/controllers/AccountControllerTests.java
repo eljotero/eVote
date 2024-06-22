@@ -22,6 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 
 public class AccountControllerTests {
@@ -65,11 +66,13 @@ public class AccountControllerTests {
     public void testSetAccountToInactiveAccountById() {
         Integer accountId = 1;
 
-        accountController.setAccountToInactive(accountId);
-
         ResponseEntity<Void> responseEntity = accountController.setAccountToInactive(accountId);
+
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+
+        verify(accountService).deleteAccount(accountId);
     }
+
 
     @Test
     public void testGetAccountById() {

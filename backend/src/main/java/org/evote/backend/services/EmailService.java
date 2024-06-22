@@ -7,7 +7,6 @@ import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeAlreadySent;
 import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
-import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
