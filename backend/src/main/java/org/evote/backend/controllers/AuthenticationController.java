@@ -1,6 +1,5 @@
 package org.evote.backend.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.evote.backend.services.AuthenticationService;
 import org.evote.backend.users.account.dtos.*;
 import org.evote.backend.users.account.entity.Account;
@@ -13,10 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
+
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
 
     @PostMapping("/register")

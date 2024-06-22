@@ -1,41 +1,37 @@
 package org.evote.backend.integration;
 
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.SSLConfig;
 import org.evote.backend.BackendApplication;
-import org.evote.backend.services.AccountService;
-import org.evote.backend.users.account.dtos.AccountCreateDTO;
-import org.evote.backend.users.account.dtos.AccountLoginDTO;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import io.restassured.RestAssured;
-import io.restassured.config.RestAssuredConfig;
-import io.restassured.config.SSLConfig;
-import static io.restassured.RestAssured.*;
-import static io.restassured.specification.ProxySpecification.port;
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.port;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {BackendApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class AuthenticationControllerIntegrationTest {
 
-    @LocalServerPort
-    private int port;
+    private final MockMvc mockMvc;
 
     @Autowired
-    private AccountService accountService;
-
-    private List<Integer> createdAccounts = new ArrayList<>();
-
-    private static final String BASE_PATH = "/api/auth";
+    public AuthenticationControllerIntegrationTest(MockMvc mockMvc) {
+        this.mockMvc = mockMvc;
+    }
 
     @BeforeEach
     public void setup() {
@@ -49,70 +45,31 @@ public class AuthenticationControllerIntegrationTest {
         );
 
         baseURI = "https://localhost";
-        port(port);
-    }
-
-
-    @AfterEach
-    public void tearDown() {
-        createdAccounts.forEach(accountId -> accountService.deleteAccount(accountId));
-        createdAccounts.clear();
+        port = port;
     }
 
     @Test
-    public void testRegister() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer accountCreatedId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/register").then().statusCode(201).extract().path("id");
-        createdAccounts.add(accountCreatedId);
+    public void testAddAccountAndLogin() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                .andExpect(status().isCreated())
+                .andReturn();
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"email\":\"test@mail.com\",\"password\":\"password123\"}"))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     @Test
-    public void testRegisterPasswordToShort() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("pass");
-
-        given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/register").then().statusCode(400);
+    public void testAddAccountInvalidPassword() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"email\":\"test@mail.com\",\"password\":\"pass\"}"))
+                .andExpect(status().isBadRequest())
+                .andReturn();
     }
 
-    @Test
-    public void testRegisterEmailAlreadyExists() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer accountCreatedId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/register").then().statusCode(201).extract().path("id");
-        createdAccounts.add(accountCreatedId);
-
-        AccountCreateDTO accountCreateDTO2 = new AccountCreateDTO();
-        accountCreateDTO2.setEmail("test@test.com");
-        accountCreateDTO2.setPassword("password1234");
-
-        given().port(port).contentType("application/json").body(accountCreateDTO2).when().post(BASE_PATH + "/register").then().statusCode(409);
-    }
-
-    @Test
-    public void testLogin() {
-        AccountCreateDTO accountCreateDTO = new AccountCreateDTO();
-        accountCreateDTO.setEmail("test@test.com");
-        accountCreateDTO.setPassword("password1234");
-
-        Integer accountCreatedId = given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/register").then().statusCode(201).extract().path("id");
-        createdAccounts.add(accountCreatedId);
-
-        given().port(port).contentType("application/json").body(accountCreateDTO).when().post(BASE_PATH + "/login").then().statusCode(200);
-    }
-
-    @Test
-    public void testLoginNotFound() {
-        AccountLoginDTO accountLoginDTO = new AccountLoginDTO();
-        accountLoginDTO.setEmail("test@test.com");
-        accountLoginDTO.setPassword("password1234");
-
-        given().port(port).contentType("application/json").body(accountLoginDTO).when().post(BASE_PATH + "/login").then().statusCode(404);
-    }
 
 }

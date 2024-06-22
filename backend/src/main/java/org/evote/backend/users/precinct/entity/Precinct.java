@@ -32,7 +32,7 @@ public class Precinct {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ElectionType electionType;
 
     @ManyToMany

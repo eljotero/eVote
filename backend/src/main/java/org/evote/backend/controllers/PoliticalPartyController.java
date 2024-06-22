@@ -7,6 +7,7 @@ import org.evote.backend.votes.political_party.dtos.PoliticalPartyMapper;
 import org.evote.backend.votes.political_party.entity.PoliticalParty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,18 +34,21 @@ public class PoliticalPartyController {
         return ResponseEntity.ok(political_partyDTO);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<PoliticalPartyDTO> addPoliticalParty(@RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
         PoliticalParty politicalParty = politicalPartyService.addPoliticalParty(politicalPartyCreateDTO);
         return ResponseEntity.ok(PoliticalPartyMapper.toPolitical_partyDTO(politicalParty));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePoliticalParty(@PathVariable Integer id) {
         politicalPartyService.deletePoliticalParty(id);
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<PoliticalPartyDTO> updatePoliticalParty(@PathVariable Integer id, @RequestBody PoliticalPartyCreateDTO politicalPartyCreateDTO) {
         PoliticalParty politicalParty = politicalPartyService.updatePoliticalParty(id, politicalPartyCreateDTO);

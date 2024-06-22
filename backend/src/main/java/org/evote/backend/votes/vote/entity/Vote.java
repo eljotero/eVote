@@ -25,7 +25,7 @@ public class Vote {
 
     private String voterEducation;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private CityType voterCityType;
 
     private Time voteTime;

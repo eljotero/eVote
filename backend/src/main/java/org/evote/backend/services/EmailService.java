@@ -8,6 +8,7 @@ import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.CodeAlreadySent;
 import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
 import org.evote.backend.users.user.repository.UserRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
