@@ -206,8 +206,6 @@ const StatsPage = () => {
                         <hr className="my-8" />
                         {educationGroupCharts}
                         <hr className="my-8" />
-                        <hr className="my-8" />
-                        <hr className="my-8" />
                         <h2 className="text-xl font-semibold mb-4 text-center">Wyniki głosowania z podziałem na płeć wyborców</h2>
                         <hr className="my-8" />
                         {sexGroupCharts}

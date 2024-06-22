@@ -1,9 +1,7 @@
 package org.evote.backend.services;
 
-import com.mailersend.sdk.MailerSend;
-import com.mailersend.sdk.MailerSendResponse;
-import com.mailersend.sdk.emails.Email;
-import com.mailersend.sdk.exceptions.MailerSendException;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.evote.backend.users.account.entity.Account;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.user.entity.User;
@@ -12,6 +10,9 @@ import org.evote.backend.users.user.exceptions.UserIncompleteDataException;
 import org.evote.backend.users.user.repository.UserRepository;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +26,12 @@ import java.util.Random;
 @Service
 public class EmailService {
 
+    private final JavaMailSender mailSender;
     private final UserRepository userRepository;
     private final AccountService accountService;
 
-    public EmailService(UserRepository userRepository, AccountService accountService) {
+    public EmailService(JavaMailSender mailSender, UserRepository userRepository, AccountService accountService) {
+        this.mailSender = mailSender;
         this.userRepository = userRepository;
         this.accountService = accountService;
     }
@@ -39,6 +42,7 @@ public class EmailService {
         return String.format("%06d", code);
     }
 
+    @Async
     @Transactional
     public String sendEmail(String userEmail) {
         Optional<Account> account = accountService.getAccountByEmail(userEmail);
@@ -54,48 +58,35 @@ public class EmailService {
                 || user.getEducation() == null || user.getCityType() == null || user.getProfession() == null) {
             throw new UserIncompleteDataException("Uzupełnij dane użytkownika!");
         }
-
         String code = generateOneTimeCode();
-        sendEmailWithCode(userEmail, code);
-        user.setCode(code);
-        userRepository.save(user);
-
+        try {
+            String htmlBody = readHtmlTemplate("mail_template.html");
+            htmlBody = htmlBody.replace("{$code}", code);
+            htmlBody = htmlBody.replace("{$to}", userEmail);
+            String subject = "Twój jednorazowy kod do głosowania!";
+            sendHtmlEmail(userEmail, subject, htmlBody);
+            user.setCode(code);
+            userRepository.save(user);
+        } catch (IOException | MessagingException e) {
+            throw new RuntimeException("Wystąpił błąd podczas wysyłania emaila!");
+        }
         return "Kod został wysłany!";
     }
 
-    private void sendEmailWithCode(String userEmail, String code) {
-        Email email = new Email();
-        email.setFrom("evote.support", "MS_LRjWwk@trial-3yxj6ljv0p7ldo2r.mlsender.net");
-        email.addRecipient(userEmail, userEmail);
-        email.setSubject("Twój jednorazowy kod do głosowania!");
-        String htmlBody = generateHtmlBody(code, userEmail);
-        email.setHtml(htmlBody);
-        MailerSend ms = new MailerSend();
-        ms.setToken("mlsn.fb93e420c92cf81723b2ca30ca6252aacf100fa2ccd0a95714a3f73dd44cb64d");
-
-        try {
-            MailerSendResponse response = ms.emails().send(email);
-            System.out.println("Email sent successfully. Message ID: " + response.messageId);
-        } catch (MailerSendException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Wystąpił błąd podczas wysyłania emaila!");
-        }
-    }
-
-    private String generateHtmlBody(String code, String userEmail) {
-        try {
-            String htmlTemplate = readHtmlTemplate("mail_template.html");
-            htmlTemplate = htmlTemplate.replace("{$code}", code);
-            htmlTemplate = htmlTemplate.replace("{$to}", userEmail);
-            return htmlTemplate;
-        } catch (IOException e) {
-            throw new RuntimeException("Błąd podczas wczytywania szablonu HTML!");
-        }
-    }
 
     private String readHtmlTemplate(String templateName) throws IOException {
         Resource resource = new ClassPathResource(templateName);
         byte[] bytes = Files.readAllBytes(Paths.get(resource.getURI()));
         return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    private void sendHtmlEmail(String to, String subject, String htmlBody) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
+        helper.setTo(to);
+        helper.setFrom("evote-support@example.com");
+        helper.setSubject(subject);
+        helper.setText(htmlBody, true);
+        mailSender.send(message);
     }
 }

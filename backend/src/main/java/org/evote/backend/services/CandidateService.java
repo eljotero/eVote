@@ -94,7 +94,6 @@ public class CandidateService {
                 .orElseThrow(() -> new PrecinctNotFoundException("Precinct with id " + candidateNewInfo.getPrecinct_id() + " not found"));
         Election election = electionRepository.findById(candidateNewInfo.getElection_id())
                 .orElseThrow(() -> new ElectionNotFoundException("Election with id " + candidateNewInfo.getElection_id() + " not found"));
-
         candidateToUpdate.setCandidateId(candidateToUpdate.getCandidateId());
         candidateToUpdate.setPoliticalParty(politicalParty);
         candidateToUpdate.setPrecinct(precinct);
