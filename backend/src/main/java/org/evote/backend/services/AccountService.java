@@ -5,6 +5,7 @@ import org.evote.backend.users.account.exceptions.AccountAlreadyExistsException;
 import org.evote.backend.users.account.exceptions.AccountNotFoundException;
 import org.evote.backend.users.account.exceptions.UserAlreadyVotedException;
 import org.evote.backend.users.account.repository.AccountRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
+    @Cacheable(value = "accounts")
     public Account getAccountById(Integer id) {
         return accountRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account with id " + id + " not found"));
