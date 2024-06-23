@@ -281,7 +281,7 @@ export default function Candidates() {
 
     return (
         <div className='container mx-auto mt-10'>
-            <div className='relative xl:container m-auto px-6 md:px-12 lg:px-6 text-center py-4 mb-8' style={{backgroundColor: '#ffffff', borderRadius: '15px'}}>
+            <div className='relative xl:container m-auto px-6 md:px-12 lg:px-6 text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
                 <h2 className='sm:mx-auto sm:w-full md:w-full font-black text-blue-900 text-2xl text-center sm:text-3xl md:text-4xl lg:w-auto lg:text-center xl:text-5xl'>
                     <br className="lg:block hidden"/>
                     <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
