@@ -281,20 +281,24 @@ export default function Candidates() {
 
     return (
         <div className='container mx-auto mt-10'>
-            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
-                <h1 className='text-4xl font-bold' style={{color: '#333'}}>Poznaj swoich kandydatów!</h1>
-                <h2 className='text-2xl font-bold' style={{color: '#555'}}>Region: {selectedRegion} </h2> {}
-            </div>
-            <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0'}}>
-            <table className="min-w-full bg-white">
-                <thead>
-                    <tr>
+            <div className='relative xl:container m-auto px-6 md:px-12 lg:px-6 text-center py-4 mb-8' style={{backgroundColor: '#ffffff', borderRadius: '15px'}}>
+                <h2 className='sm:mx-auto sm:w-full md:w-full font-black text-blue-900 text-2xl text-center sm:text-3xl md:text-4xl lg:w-auto lg:text-center xl:text-5xl'>
+                    <br className="lg:block hidden"/>
+                    <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+    {selectedRegion}
+</span>
+                    </h2>
+                </div>
+            <div className='text-center py-4 mb-8' style={{backgroundColor: '#dadaf1'}}>
+                <table className="min-w-full bg-white">
+                    <thead>
+                    <tr className="bg-blue-200"> {}
                         <th className="py-2">Nazwa Wyborów</th>
                         <th className="py-2">Data Rozpoczęcia</th>
                         <th className="py-2">Odliczanie</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody className="bg-blue-200"> {}
                     {elections.map((election, index) => (
                         <tr key={election.election_id} className="text-center">
                             <td className="py-2">{election.election_name}</td>
@@ -304,8 +308,8 @@ export default function Candidates() {
                             </td>
                         </tr>
                     ))}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             </div>
             <h2 className='text-2xl font-bold mb-4' style={{color: '#333'}}>Kandydaci do sejmu</h2>
             <div className='flex justify-center mb-4'>
