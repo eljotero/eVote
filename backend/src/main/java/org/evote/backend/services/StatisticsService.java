@@ -163,18 +163,24 @@ public class StatisticsService {
             if (election.getType() == type) {
                 Integer electionId = election.getElectionId();
                 Map<String, Integer> electionResults = getResults(electionId);
+                int totalVotes = electionResults.values().stream().mapToInt(Integer::intValue).sum();
+
                 for (Map.Entry<String, Integer> entry : electionResults.entrySet()) {
                     String party = entry.getKey();
                     Integer votes = entry.getValue();
+                    int percentage = (int) Math.floor((votes * 100.0) / totalVotes);
+
                     if (!partyVotes.containsKey(party)) {
                         partyVotes.put(party, new ArrayList<>());
                     }
-                    partyVotes.get(party).add(votes);
+                    partyVotes.get(party).add(percentage);
                 }
             }
         }
 
-        Map<String, Integer> predictedResults = new HashMap<>();
+        Map<String, Double> predictedResults = new HashMap<>();
+        double totalPredictedPercentage = 0.0;
+
         for (Map.Entry<String, List<Integer>> entry : partyVotes.entrySet()) {
             String party = entry.getKey();
             List<Integer> votesList = entry.getValue();
@@ -185,12 +191,19 @@ public class StatisticsService {
                 regression.addData(i, votesList.get(i));
             }
 
-            int predictedVotes = (int) Math.floor(regression.predict(votesList.size()));
-
-            predictedResults.put(party, predictedVotes);
+            double predictedPercentage = regression.predict(votesList.size());
+            predictedResults.put(party, predictedPercentage);
+            totalPredictedPercentage += predictedPercentage;
         }
 
-        return predictedResults;
+        Map<String, Integer> normalizedResults = new HashMap<>();
+        for (Map.Entry<String, Double> entry : predictedResults.entrySet()) {
+            String party = entry.getKey();
+            double normalizedPercentage = (entry.getValue() * 100.0) / totalPredictedPercentage;
+            normalizedResults.put(party, (int) Math.round(normalizedPercentage));
+        }
+
+        return normalizedResults;
     }
 
     public Map<String, Integer> distributeSejmMandates(Integer electionId) {
