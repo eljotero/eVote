@@ -157,16 +157,19 @@ export default function Vote() {
 
     return (
         <section aria-label="Sekcja głosowania" className="mx-auto">
+            <Image
+                src="https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fevote-vote3.png?alt=media&token=b51ef52f-be56-41c5-a9bd-1a153fa171d7"
+                alt="Kobieta wrzucająca kartkę żeby zagłosować" width={800} height={400} className="mx-auto"/>
             <div className='text-center mx-auto py-4' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
                 <table className="min-w-[70%] bg-white mx-auto">
                     <thead>
-                    <tr>
+                    <tr className="bg-blue-200">
                         <th className="py-2">Nazwa Wyborów</th>
                         <th className="py-2">Data Rozpoczęcia</th>
                         <th className="py-2">Odliczanie</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="bg-blue-200">
                     {elections.map((election, index) => (
                         <tr key={election.election_id} className="text-center">
                             <td className="py-2">{election.election_name}</td>
@@ -190,8 +193,10 @@ export default function Vote() {
             <div className='space-y-8 flex justify-center flex-col'>
                 {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
                     <div key={electionId} className='mx-auto'>
-                        <h2 className="text-3xl font-bold mb-4 text-center">
-                            {elections.find(election => election.election_id === Number(electionId)).election_name}
+                        <h2 className="mb-4 text-center">
+                            <span
+                                className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                                {elections.find(election => election.election_id === Number(electionId)).election_name}</span>
                         </h2>
                         <div
                             className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center'>
