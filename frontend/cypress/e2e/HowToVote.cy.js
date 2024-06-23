@@ -1,7 +1,9 @@
 describe('The Main Page', () => {
     beforeEach(() => {
       cy.visit('/about')
+      cy.viewport(1920, 1080);
     })
+
   
     it('successfully loads', () => {
       cy.url().should('include', '/about')
@@ -16,7 +18,7 @@ describe('The Main Page', () => {
     })
 
     it('has third step', () => {
-        cy.get('p').contains('Następnie rzejdź do sekcji "Kandydaci". Tam znajdziesz listę dostępnych wyborów oraz kandydatów. Możesz przeglądać profile kandydatów, czytać ich programy wyborcze i zapoznać się z ich priorytetami.').should('exist')
+        cy.get('p').contains('Następnie przejdź do sekcji "Kandydaci". Tam znajdziesz listę dostępnych wyborów oraz kandydatów. Możesz przeglądać profile kandydatów, czytać ich programy wyborcze i zapoznać się z ich priorytetami.').should('exist')
     })
   
     it('has forth step', () => {

@@ -1,0 +1,281 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1719155128624,1263,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-18,text,true,,597,264,20,220,https://localhost:8080/api/auth/register,1246,0,550
+1719155128122,1781,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-8,text,true,,597,264,20,220,https://localhost:8080/api/auth/register,1781,0,1199
+1719155128323,1610,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-12,text,true,,597,264,20,220,https://localhost:8080/api/auth/register,1610,0,842
+1719155127874,2111,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-3,text,true,,597,264,20,220,https://localhost:8080/api/auth/register,2110,0,1275
+1719155127870,2213,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-2,text,true,,597,264,20,220,https://localhost:8080/api/auth/register,2212,0,1250
+1719155128222,1867,Get Filtered Candidates,200,,Get Candidates Thread Group 1-108,text,true,,4921,167,200,220,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1865,0,963
+1719155128297,1795,Get Filtered Candidates,200,,Get Candidates Thread Group 1-122,text,true,,4921,167,200,220,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1795,0,1184
+1719155127993,2100,Get Filtered Candidates,200,,Get Candidates Thread Group 1-63,text,true,,4921,167,200,220,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2099,0,1102
+1719155128608,1496,Get Filtered Candidates,200,,Get Candidates Thread Group 1-185,text,true,,4921,167,200,220,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1496,0,884
+1719155127974,2166,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-5,text,true,,597,264,20,216,https://localhost:8080/api/auth/register,2164,0,1154
+1719155128283,1867,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-11,text,true,,597,264,20,216,https://localhost:8080/api/auth/register,1867,0,1121
+1719155127870,2320,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-1,text,true,,597,264,20,216,https://localhost:8080/api/auth/register,2319,0,1418
+1719155128072,2141,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-7,text,true,,597,264,20,216,https://localhost:8080/api/auth/register,2141,0,1040
+1719155128708,1551,Get Filtered Candidates,200,,Get Candidates Thread Group 1-136,text,true,,4921,167,196,216,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1546,0,819
+1719155128066,2200,Get Filtered Candidates,200,,Get Candidates Thread Group 1-77,text,true,,4921,167,195,215,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2198,0,1211
+1719155127948,2321,Get Filtered Candidates,200,,Get Candidates Thread Group 1-54,text,true,,4921,167,195,215,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2321,0,1354
+1719155127870,2401,Get Filtered Candidates,200,,Get Candidates Thread Group 1-7,text,true,,4921,167,193,213,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2401,0,1265
+1719155127911,2395,Get Filtered Candidates,200,,Get Candidates Thread Group 1-47,text,true,,4921,167,192,212,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2394,0,1223
+1719155129166,1155,Get Filtered Candidates,200,,Get Candidates Thread Group 1-144,text,true,,4921,167,191,211,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1155,0,485
+1719155127963,2408,Get Filtered Candidates,200,,Get Candidates Thread Group 1-57,text,true,,4921,167,190,210,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2408,0,1293
+1719155129228,1149,Get Filtered Candidates,200,,Get Candidates Thread Group 1-184,text,true,,4921,167,189,209,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1149,0,748
+1719155129180,1204,Get Filtered Candidates,200,,Get Candidates Thread Group 1-160,text,true,,4921,167,188,208,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1204,0,811
+1719155128323,2071,Get Filtered Candidates,200,,Get Candidates Thread Group 1-129,text,true,,4921,167,187,207,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2070,0,826
+1719155127870,2542,Get Filtered Candidates,200,,Get Candidates Thread Group 1-30,text,true,,4921,167,186,206,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2542,0,1614
+1719155128526,1886,Get Filtered Candidates,200,,Get Candidates Thread Group 1-167,text,true,,4921,167,186,206,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1886,0,798
+1719155128140,2303,Get Filtered Candidates,200,,Get Candidates Thread Group 1-92,text,true,,4921,167,184,204,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2303,0,1016
+1719155129934,368,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-12,text,true,,715,261,20,212,https://localhost:8080/api/auth/login,368,0,0
+1719155129894,346,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-18,text,true,,715,261,20,216,https://localhost:8080/api/auth/login,345,0,0
+1719155129986,277,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-3,text,true,,715,261,20,215,https://localhost:8080/api/auth/login,277,0,0
+1719155129904,453,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-8,text,true,,715,261,20,210,https://localhost:8080/api/auth/login,452,0,0
+1719155128524,1960,Get Filtered Candidates,200,,Get Candidates Thread Group 1-164,text,true,,4921,167,183,203,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1960,0,663
+1719155128013,2485,Get Filtered Candidates,200,,Get Candidates Thread Group 1-67,text,true,,4921,167,182,202,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2476,0,1954
+1719155130104,396,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-2,text,true,,715,261,20,202,https://localhost:8080/api/auth/login,396,0,0
+1719155129199,1344,Get Filtered Candidates,200,,Get Candidates Thread Group 1-166,text,true,,4921,167,181,201,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1343,0,772
+1719155130152,394,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-11,text,true,,715,261,20,200,https://localhost:8080/api/auth/login,393,0,0
+1719155128367,2184,Get Filtered Candidates,200,,Get Candidates Thread Group 1-124,text,true,,4921,167,180,200,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2184,0,920
+1719155127869,2693,Get Filtered Candidates,200,,Get Candidates Thread Group 1-4,text,true,,4921,167,179,199,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2693,0,1418
+1719155128085,2500,Get Filtered Candidates,200,,Get Candidates Thread Group 1-81,text,true,,4921,167,178,198,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2500,0,1089
+1719155130191,401,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-1,text,true,,715,261,20,197,https://localhost:8080/api/auth/login,401,0,0
+1719155128123,2474,Get Filtered Candidates,200,,Get Candidates Thread Group 1-89,text,true,,4921,167,177,197,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2473,0,1019
+1719155128236,2376,Get Filtered Candidates,200,,Get Candidates Thread Group 1-111,text,true,,4921,167,176,196,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2374,0,1063
+1719155127968,2647,Get Filtered Candidates,200,,Get Candidates Thread Group 1-58,text,true,,4921,167,175,195,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2646,0,1335
+1719155130214,406,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-7,text,true,,715,261,20,194,https://localhost:8080/api/auth/login,406,0,0
+1719155127907,2714,Get Filtered Candidates,200,,Get Candidates Thread Group 1-46,text,true,,4921,167,174,194,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2714,0,1274
+1719155128112,2521,Get Filtered Candidates,200,,Get Candidates Thread Group 1-87,text,true,,4921,167,173,193,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2521,0,1072
+1719155129166,1481,Get Filtered Candidates,200,,Get Candidates Thread Group 1-142,text,true,,4921,167,172,192,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1480,0,878
+1719155128173,2484,Get Filtered Candidates,200,,Get Candidates Thread Group 1-99,text,true,,4921,167,171,191,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2484,0,1117
+1719155128309,2350,Get Filtered Candidates,200,,Get Candidates Thread Group 1-126,text,true,,4921,167,170,190,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2347,0,980
+1719155127870,2798,Get Filtered Candidates,200,,Get Candidates Thread Group 1-31,text,true,,4921,167,169,189,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2797,0,1391
+1719155127869,2811,Get Filtered Candidates,200,,Get Candidates Thread Group 1-3,text,true,,4921,167,168,188,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2810,0,1308
+1719155130140,540,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-5,text,true,,715,261,20,188,https://localhost:8080/api/auth/login,526,0,0
+1719155128152,2545,Get Filtered Candidates,200,,Get Candidates Thread Group 1-95,text,true,,4921,167,167,187,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2540,0,992
+1719155127982,2722,Get Filtered Candidates,200,,Get Candidates Thread Group 1-61,text,true,,4921,167,167,187,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2722,0,1449
+1719155128043,2666,Get Filtered Candidates,200,,Get Candidates Thread Group 1-73,text,true,,4921,167,165,185,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2665,0,1270
+1719155127870,2856,Get Filtered Candidates,200,,Get Candidates Thread Group 1-1,text,true,,4921,167,164,184,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2855,0,1285
+1719155128280,2485,Get Filtered Candidates,200,,Get Candidates Thread Group 1-120,text,true,,4921,167,163,183,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2484,0,1164
+1719155128614,2161,Get Filtered Candidates,200,,Get Candidates Thread Group 1-134,text,true,,4921,167,162,182,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2161,0,545
+1719155128266,2511,Get Filtered Candidates,200,,Get Candidates Thread Group 1-115,text,true,,4921,167,162,182,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2510,0,892
+1719155127869,2911,Get Filtered Candidates,200,,Get Candidates Thread Group 1-17,text,true,,4921,167,160,180,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2911,0,1285
+1719155128281,2505,Get Filtered Candidates,200,,Get Candidates Thread Group 1-118,text,true,,4921,167,159,179,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2505,0,1126
+1719155128369,2417,Get Filtered Candidates,200,,Get Candidates Thread Group 1-138,text,true,,4921,167,159,179,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2415,0,1046
+1719155127870,2924,Get Filtered Candidates,200,,Get Candidates Thread Group 1-27,text,true,,4921,167,157,177,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2924,0,1291
+1719155128167,2661,Get Filtered Candidates,200,,Get Candidates Thread Group 1-98,text,true,,4921,167,156,176,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2658,0,1154
+1719155127870,2966,Get Filtered Candidates,200,,Get Candidates Thread Group 1-13,text,true,,4921,167,155,175,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2966,0,1394
+1719155127870,2978,Get Filtered Candidates,200,,Get Candidates Thread Group 1-9,text,true,,4921,167,154,174,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2977,0,1418
+1719155128058,2792,Get Filtered Candidates,200,,Get Candidates Thread Group 1-76,text,true,,4921,167,153,173,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2792,0,1475
+1719155127934,2920,Get Filtered Candidates,200,,Get Candidates Thread Group 1-51,text,true,,4921,167,152,172,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2919,0,1591
+1719155127869,2989,Get Filtered Candidates,200,,Get Candidates Thread Group 1-16,text,true,,4921,167,151,171,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2989,0,1662
+1719155127943,2927,Get Filtered Candidates,200,,Get Candidates Thread Group 1-52,text,true,,4921,167,150,170,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2927,0,1615
+1719155127988,2888,Get Filtered Candidates,200,,Get Candidates Thread Group 1-62,text,true,,4921,167,149,169,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2887,0,1138
+1719155128120,2759,Get Filtered Candidates,200,,Get Candidates Thread Group 1-88,text,true,,4921,167,148,168,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2759,0,1433
+1719155128024,2876,Get Filtered Candidates,200,,Get Candidates Thread Group 1-69,text,true,,4921,167,147,167,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2876,0,1543
+1719155127869,3038,Get Filtered Candidates,200,,Get Candidates Thread Group 1-8,text,true,,4921,167,146,166,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3037,0,1660
+1719155127869,3049,Get Filtered Candidates,200,,Get Candidates Thread Group 1-10,text,true,,4921,167,145,165,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3047,0,1658
+1719155127870,3050,Get Filtered Candidates,200,,Get Candidates Thread Group 1-14,text,true,,4921,167,144,164,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3048,0,1663
+1719155127903,3018,Get Filtered Candidates,200,,Get Candidates Thread Group 1-45,text,true,,4921,167,144,164,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3018,0,1668
+1719155129184,1743,Get Filtered Candidates,200,,Get Candidates Thread Group 1-165,text,true,,4921,167,142,162,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1742,0,531
+1719155129155,1780,Get Filtered Candidates,200,,Get Candidates Thread Group 1-137,text,true,,4921,167,141,161,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1780,0,560
+1719155129229,1723,Get Filtered Candidates,200,,Get Candidates Thread Group 1-192,text,true,,4921,167,140,160,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1723,0,499
+1719155128564,2416,Get Filtered Candidates,200,,Get Candidates Thread Group 1-176,text,true,,4921,167,139,159,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2415,0,749
+1719155128291,2697,Get Filtered Candidates,200,,Get Candidates Thread Group 1-119,text,true,,4921,167,138,158,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2697,0,1266
+1719155128148,2841,Get Filtered Candidates,200,,Get Candidates Thread Group 1-94,text,true,,4921,167,138,158,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2841,0,1573
+1719155128364,2632,Get Filtered Candidates,200,,Get Candidates Thread Group 1-128,text,true,,4921,167,136,156,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2632,0,1193
+1719155129175,1828,Get Filtered Candidates,200,,Get Candidates Thread Group 1-150,text,true,,4921,167,135,155,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1828,0,555
+1719155128210,2794,Get Filtered Candidates,200,,Get Candidates Thread Group 1-104,text,true,,4921,167,135,155,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2786,0,1532
+1719155129206,1809,Get Filtered Candidates,200,,Get Candidates Thread Group 1-169,text,true,,4921,167,133,153,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1808,0,507
+1719155128073,2963,Get Filtered Candidates,200,,Get Candidates Thread Group 1-79,text,true,,4921,167,132,152,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2962,0,1514
+1719155128423,2635,Get Filtered Candidates,200,,Get Candidates Thread Group 1-143,text,true,,4921,167,131,151,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2635,0,1077
+1719155129243,1816,Get Filtered Candidates,200,,Get Candidates Thread Group 1-199,text,true,,4921,167,131,151,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,1815,0,418
+1719155127870,3194,Get Filtered Candidates,200,,Get Candidates Thread Group 1-5,text,true,,4921,167,129,149,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3194,0,1631
+1719155127870,3213,Get Filtered Candidates,200,,Get Candidates Thread Group 1-25,text,true,,4921,167,128,148,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3213,0,1434
+1719155128022,3073,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-6,text,true,,597,264,20,147,https://localhost:8080/api/auth/register,3072,0,1569
+1719155127997,3100,Get Filtered Candidates,200,,Get Candidates Thread Group 1-64,text,true,,4921,167,127,147,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3100,0,1134
+1719155128144,2971,Get Filtered Candidates,200,,Get Candidates Thread Group 1-93,text,true,,4921,167,126,146,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2970,0,983
+1719155128579,2548,Get Filtered Candidates,200,,Get Candidates Thread Group 1-179,text,true,,4921,167,125,145,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2547,0,525
+1719155127869,3265,Get Filtered Candidates,200,,Get Candidates Thread Group 1-24,text,true,,4921,167,124,144,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3264,0,1326
+1719155127870,3276,Get Filtered Candidates,200,,Get Candidates Thread Group 1-6,text,true,,4921,167,123,143,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3275,0,1481
+1719155127899,3259,Get Filtered Candidates,200,,Get Candidates Thread Group 1-44,text,true,,4921,167,122,142,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3259,0,1404
+1719155128102,3059,Get Filtered Candidates,200,,Get Candidates Thread Group 1-85,text,true,,4921,167,121,141,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3059,0,1189
+1719155129212,1965,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-17,text,true,,597,264,20,140,https://localhost:8080/api/auth/register,1964,0,469
+1719155128129,3050,Get Filtered Candidates,200,,Get Candidates Thread Group 1-90,text,true,,4921,167,120,140,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3050,0,966
+1719155128521,2675,Get Filtered Candidates,200,,Get Candidates Thread Group 1-161,text,true,,4921,167,119,139,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2674,0,881
+1719155127870,3329,Get Filtered Candidates,200,,Get Candidates Thread Group 1-18,text,true,,4921,167,118,138,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3328,0,1680
+1719155129172,2031,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-14,text,true,,597,264,20,137,https://localhost:8080/api/auth/register,2029,0,500
+1719155127923,3287,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-4,text,true,,597,264,20,137,https://localhost:8080/api/auth/register,3286,0,1632
+1719155128035,3177,Get Filtered Candidates,200,,Get Candidates Thread Group 1-71,text,true,,4921,167,117,137,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3176,0,1445
+1719155128252,2990,Get Filtered Candidates,200,,Get Candidates Thread Group 1-110,text,true,,4921,167,116,136,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2990,0,868
+1719155128048,3201,Get Filtered Candidates,200,,Get Candidates Thread Group 1-74,text,true,,4921,167,115,135,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3201,0,1139
+1719155128189,3067,Get Filtered Candidates,200,,Get Candidates Thread Group 1-102,text,true,,4921,167,114,134,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3067,0,994
+1719155128360,2913,Get Filtered Candidates,200,,Get Candidates Thread Group 1-130,text,true,,4921,167,113,133,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2911,0,773
+1719155131095,178,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-6,text,true,,715,261,20,133,https://localhost:8080/api/auth/login,178,0,0
+1719155128679,2620,Get Filtered Candidates,200,,Get Candidates Thread Group 1-197,text,true,,4921,167,112,132,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2620,0,635
+1719155128272,3034,Get Filtered Candidates,200,,Get Candidates Thread Group 1-113,text,true,,4921,167,111,131,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3034,0,888
+1719155130478,831,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-8,text,true,,511,809,20,130,https://localhost:8080/api/user/154,830,0,0
+1719155128361,2961,Get Filtered Candidates,200,,Get Candidates Thread Group 1-131,text,true,,4921,167,110,130,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2960,0,785
+1719155127870,3453,Get Filtered Candidates,200,,Get Candidates Thread Group 1-35,text,true,,4921,167,110,130,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3453,0,1262
+1719155127870,3477,Get Filtered Candidates,200,,Get Candidates Thread Group 1-11,text,true,,4921,167,108,128,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3476,0,1259
+1719155128229,3119,Get Filtered Candidates,200,,Get Candidates Thread Group 1-106,text,true,,4921,167,108,128,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3119,0,1035
+1719155128190,3163,Get Filtered Candidates,200,,Get Candidates Thread Group 1-100,text,true,,4921,167,106,126,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3163,0,997
+1719155128678,2682,Get Filtered Candidates,200,,Get Candidates Thread Group 1-194,text,true,,4921,167,105,125,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2682,0,498
+1719155131179,191,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-17,text,true,,715,261,20,124,https://localhost:8080/api/auth/login,191,0,0
+1719155131211,174,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-4,text,true,,715,261,20,124,https://localhost:8080/api/auth/login,174,0,0
+1719155131204,182,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-14,text,true,,715,261,20,124,https://localhost:8080/api/auth/login,182,0,0
+1719155127917,3473,Get Filtered Candidates,200,,Get Candidates Thread Group 1-48,text,true,,4921,167,104,124,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3473,0,1633
+1719155128251,3152,Get Filtered Candidates,200,,Get Candidates Thread Group 1-114,text,true,,4921,167,103,123,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3151,0,910
+1719155128096,3312,Get Filtered Candidates,200,,Get Candidates Thread Group 1-83,text,true,,4921,167,102,122,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3312,0,1060
+1719155127870,3545,Get Filtered Candidates,200,,Get Candidates Thread Group 1-26,text,true,,4921,167,101,121,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3545,0,1438
+1719155128679,2739,Get Filtered Candidates,200,,Get Candidates Thread Group 1-200,text,true,,4921,167,101,121,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2739,0,500
+1719155127887,3538,Get Filtered Candidates,200,,Get Candidates Thread Group 1-42,text,true,,4921,167,99,119,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3536,0,1293
+1719155131310,132,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-8,text,true,,504,491,20,118,https://localhost:8080/api/vote/vote,132,0,0
+1719155128528,2918,Get Filtered Candidates,200,,Get Candidates Thread Group 1-170,text,true,,4921,167,98,117,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2917,0,672
+1719155128496,2951,Get Filtered Candidates,200,,Get Candidates Thread Group 1-155,text,true,,4921,167,97,116,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2950,0,1018
+1719155129175,2285,Get Filtered Candidates,200,,Get Candidates Thread Group 1-153,text,true,,4921,167,96,115,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2284,0,633
+1719155127936,3540,Get Filtered Candidates,200,,Get Candidates Thread Group 1-50,text,true,,4921,167,95,114,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3540,0,1165
+1719155128591,2890,Get Filtered Candidates,200,,Get Candidates Thread Group 1-182,text,true,,4921,167,94,113,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2889,0,588
+1719155128366,3131,Get Filtered Candidates,200,,Get Candidates Thread Group 1-125,text,true,,4921,167,93,112,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3131,0,1440
+1719155128053,3446,Get Filtered Candidates,200,,Get Candidates Thread Group 1-75,text,true,,4921,167,93,112,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3445,0,1492
+1719155128070,3438,Get Filtered Candidates,200,,Get Candidates Thread Group 1-78,text,true,,4921,167,91,110,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3438,0,1252
+1719155129240,2268,Get Filtered Candidates,200,,Get Candidates Thread Group 1-189,text,true,,4921,167,91,110,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2268,0,584
+1719155129172,2341,Get Filtered Candidates,200,,Get Candidates Thread Group 1-147,text,true,,4921,167,89,108,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2341,0,543
+1719155128424,3100,Get Filtered Candidates,200,,Get Candidates Thread Group 1-149,text,true,,4921,167,88,107,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3100,0,1069
+1719155127923,3611,Get Filtered Candidates,200,,Get Candidates Thread Group 1-49,text,true,,4921,167,87,106,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3611,0,1633
+1719155127870,3670,Get Filtered Candidates,200,,Get Candidates Thread Group 1-23,text,true,,4921,167,86,105,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3669,0,1935
+1719155129238,2321,Get Filtered Candidates,200,,Get Candidates Thread Group 1-196,text,true,,4921,167,85,104,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2321,0,592
+1719155127959,3608,Get Filtered Candidates,200,,Get Candidates Thread Group 1-56,text,true,,4921,167,84,103,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3607,0,1610
+1719155128302,3268,Get Filtered Candidates,200,,Get Candidates Thread Group 1-121,text,true,,4921,167,83,102,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3268,0,869
+1719155128246,3328,Get Filtered Candidates,200,,Get Candidates Thread Group 1-107,text,true,,4921,167,82,101,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3327,0,1000
+1719155128134,3447,Get Filtered Candidates,200,,Get Candidates Thread Group 1-91,text,true,,4921,167,81,100,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3446,0,1132
+1719155129198,2390,Get Filtered Candidates,200,,Get Candidates Thread Group 1-168,text,true,,4921,167,80,99,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2389,0,634
+1719155128362,3228,Get Filtered Candidates,200,,Get Candidates Thread Group 1-127,text,true,,4921,167,80,99,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3228,0,1475
+1719155129219,2383,Get Filtered Candidates,200,,Get Candidates Thread Group 1-180,text,true,,4921,167,78,97,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2383,0,616
+1719155128078,3541,Get Filtered Candidates,200,,Get Candidates Thread Group 1-80,text,true,,4921,167,77,96,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3541,0,1067
+1719155127974,3655,Get Filtered Candidates,200,,Get Candidates Thread Group 1-59,text,true,,4921,167,76,95,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3654,0,1862
+1719155127870,3761,Get Filtered Candidates,200,,Get Candidates Thread Group 1-29,text,true,,4921,167,75,94,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3761,0,1245
+1719155127873,3759,Get Filtered Candidates,200,,Get Candidates Thread Group 1-39,text,true,,4921,167,75,94,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3758,0,1579
+1719155127952,3690,Get Filtered Candidates,200,,Get Candidates Thread Group 1-55,text,true,,4921,167,73,92,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3689,0,1546
+1719155129211,2444,Get Filtered Candidates,200,,Get Candidates Thread Group 1-177,text,true,,4921,167,72,91,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2443,0,626
+1719155127870,3785,Get Filtered Candidates,200,,Get Candidates Thread Group 1-34,text,true,,4921,167,72,91,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3784,0,1275
+1719155127878,3788,Get Filtered Candidates,200,,Get Candidates Thread Group 1-40,text,true,,4921,167,70,89,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3787,0,1274
+1719155129211,2471,Get Filtered Candidates,200,,Get Candidates Thread Group 1-178,text,true,,4921,167,69,88,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2471,0,611
+1719155129212,2489,Get Filtered Candidates,200,,Get Candidates Thread Group 1-175,text,true,,4921,167,68,87,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2489,0,605
+1719155128087,3619,Get Filtered Candidates,200,,Get Candidates Thread Group 1-82,text,true,,4921,167,67,86,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3619,0,1020
+1719155128264,3447,Get Filtered Candidates,200,,Get Candidates Thread Group 1-117,text,true,,4921,167,66,85,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3447,0,906
+1719155127870,3849,Get Filtered Candidates,200,,Get Candidates Thread Group 1-2,text,true,,4921,167,65,84,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3849,0,1713
+1719155128244,3481,Get Filtered Candidates,200,,Get Candidates Thread Group 1-109,text,true,,4921,167,64,83,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3481,0,1044
+1719155131373,362,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-17,text,true,,511,809,19,82,https://localhost:8080/api/user/163,362,0,0
+1719155128018,3723,Get Filtered Candidates,200,,Get Candidates Thread Group 1-68,text,true,,4921,167,63,82,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3723,0,1824
+1719155128204,3546,Get Filtered Candidates,200,,Get Candidates Thread Group 1-105,text,true,,4921,167,62,81,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3546,0,1085
+1719155128520,3257,Get Filtered Candidates,200,,Get Candidates Thread Group 1-158,text,true,,4921,167,61,80,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3257,0,980
+1719155129179,2600,Get Filtered Candidates,200,,Get Candidates Thread Group 1-157,text,true,,4921,167,60,79,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2599,0,663
+1719155129228,2560,Get Filtered Candidates,200,,Get Candidates Thread Group 1-186,text,true,,4921,167,59,78,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2560,0,616
+1719155127870,3920,Get Filtered Candidates,200,,Get Candidates Thread Group 1-22,text,true,,4921,167,58,77,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3919,0,1435
+1719155127869,3931,Get Filtered Candidates,200,,Get Candidates Thread Group 1-19,text,true,,4921,167,57,76,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3931,0,1633
+1719155127870,3935,Get Filtered Candidates,200,,Get Candidates Thread Group 1-37,text,true,,4921,167,56,75,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3934,0,1426
+1719155131387,427,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-14,text,true,,511,809,19,74,https://localhost:8080/api/user/164,427,0,0
+1719155129212,2604,Get Filtered Candidates,200,,Get Candidates Thread Group 1-181,text,true,,4921,167,55,74,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2604,0,639
+1719155127870,3987,Get Filtered Candidates,200,,Get Candidates Thread Group 1-36,text,true,,4921,167,54,73,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3987,0,1225
+1719155128626,3235,Get Filtered Candidates,200,,Get Candidates Thread Group 1-188,text,true,,4921,167,53,72,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3235,0,568
+1719155127883,3987,Get Filtered Candidates,200,,Get Candidates Thread Group 1-41,text,true,,4921,167,52,71,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3987,0,1378
+1719155129210,2666,Get Filtered Candidates,200,,Get Candidates Thread Group 1-172,text,true,,4921,167,51,70,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2661,0,641
+1719155128258,3618,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-10,text,true,,597,264,19,70,https://localhost:8080/api/auth/register,3618,0,1578
+1719155129178,2704,Get Filtered Candidates,200,,Get Candidates Thread Group 1-159,text,true,,4921,167,50,69,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2704,0,673
+1719155128273,3611,Get Filtered Candidates,200,,Get Candidates Thread Group 1-112,text,true,,4921,167,49,68,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3610,0,1321
+1719155128354,3533,Get Filtered Candidates,200,,Get Candidates Thread Group 1-135,text,true,,4921,167,48,67,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3532,0,1243
+1719155127870,4031,Get Filtered Candidates,200,,Get Candidates Thread Group 1-28,text,true,,4921,167,47,66,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4030,0,1981
+1719155128027,3903,Get Filtered Candidates,200,,Get Candidates Thread Group 1-70,text,true,,4921,167,46,65,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3903,0,1575
+1719155129243,2693,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-19,text,true,,597,264,19,64,https://localhost:8080/api/auth/register,2691,0,599
+1719155128010,3928,Get Filtered Candidates,200,,Get Candidates Thread Group 1-66,text,true,,4921,167,45,64,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3927,0,1183
+1719155129172,2773,Get Filtered Candidates,200,,Get Candidates Thread Group 1-148,text,true,,4921,167,44,63,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2772,0,690
+1719155127869,4083,Get Filtered Candidates,200,,Get Candidates Thread Group 1-12,text,true,,4921,167,43,62,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4082,0,1733
+1719155128037,3919,Get Filtered Candidates,200,,Get Candidates Thread Group 1-72,text,true,,4921,167,42,61,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3919,0,1058
+1719155128338,3621,Get Filtered Candidates,200,,Get Candidates Thread Group 1-132,text,true,,4921,167,41,60,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3618,0,1266
+1719155129226,2739,Get Filtered Candidates,200,,Get Candidates Thread Group 1-190,text,true,,4921,167,40,59,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2739,0,644
+1719155127943,4026,Get Filtered Candidates,200,,Get Candidates Thread Group 1-53,text,true,,4921,167,39,58,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4026,0,1304
+1719155128206,3784,Get Filtered Candidates,200,,Get Candidates Thread Group 1-103,text,true,,4921,167,38,57,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3783,0,1196
+1719155127977,4035,Get Filtered Candidates,200,,Get Candidates Thread Group 1-60,text,true,,4921,167,37,56,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4034,0,1198
+1719155128295,3727,Get Filtered Candidates,200,,Get Candidates Thread Group 1-123,text,true,,4921,167,36,55,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3727,0,866
+1719155128500,3527,Get Filtered Candidates,200,,Get Candidates Thread Group 1-152,text,true,,4921,167,35,54,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3526,0,896
+1719155129160,2874,Get Filtered Candidates,200,,Get Candidates Thread Group 1-140,text,true,,4921,167,34,53,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2874,0,710
+1719155128633,3402,Get Filtered Candidates,200,,Get Candidates Thread Group 1-191,text,true,,4921,167,34,53,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3401,0,542
+1719155127892,4147,Get Filtered Candidates,200,,Get Candidates Thread Group 1-43,text,true,,4921,167,32,51,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4146,0,1614
+1719155129181,2862,Get Filtered Candidates,200,,Get Candidates Thread Group 1-162,text,true,,4921,167,31,50,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2861,0,696
+1719155127870,4176,Get Filtered Candidates,200,,Get Candidates Thread Group 1-15,text,true,,4921,167,30,49,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4176,0,2005
+1719155129157,2890,Get Filtered Candidates,200,,Get Candidates Thread Group 1-139,text,true,,4921,167,30,49,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2889,0,721
+1719155127870,4197,Get Filtered Candidates,200,,Get Candidates Thread Group 1-32,text,true,,4921,167,28,47,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4197,0,2024
+1719155127870,4236,Get Filtered Candidates,200,,Get Candidates Thread Group 1-33,text,true,,4921,167,27,46,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4235,0,2040
+1719155128003,4112,Get Filtered Candidates,200,,Get Candidates Thread Group 1-65,text,true,,4921,167,26,45,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4112,0,1923
+1719155129245,2870,Get Filtered Candidates,200,,Get Candidates Thread Group 1-198,text,true,,4921,167,26,45,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2870,0,397
+1719155129177,2938,Get Filtered Candidates,200,,Get Candidates Thread Group 1-154,text,true,,4921,167,26,45,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2938,0,486
+1719155127870,4252,Get Filtered Candidates,200,,Get Candidates Thread Group 1-38,text,true,,4921,167,23,42,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4252,0,1663
+1719155127870,4253,Get Filtered Candidates,200,,Get Candidates Thread Group 1-20,text,true,,4921,167,22,41,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4253,0,1657
+1719155129169,2956,Get Filtered Candidates,200,,Get Candidates Thread Group 1-145,text,true,,4921,167,21,40,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2956,0,474
+1719155131936,201,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-19,text,true,,715,261,19,39,https://localhost:8080/api/auth/login,201,0,0
+1719155129241,2919,Get Filtered Candidates,200,,Get Candidates Thread Group 1-195,text,true,,4921,167,20,39,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2919,0,713
+1719155128198,3998,Get Filtered Candidates,200,,Get Candidates Thread Group 1-101,text,true,,4921,167,19,38,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3998,0,1762
+1719155128385,3818,Get Filtered Candidates,200,,Get Candidates Thread Group 1-141,text,true,,4921,167,18,37,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3818,0,714
+1719155129221,2998,Get Filtered Candidates,200,,Get Candidates Thread Group 1-187,text,true,,4921,167,17,36,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,2997,0,450
+1719155128160,4059,Get Filtered Candidates,200,,Get Candidates Thread Group 1-96,text,true,,4921,167,17,36,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4058,0,1129
+1719155129206,3023,Get Filtered Candidates,200,,Get Candidates Thread Group 1-171,text,true,,4921,167,15,34,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3023,0,764
+1719155131877,365,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-10,text,true,,715,261,19,33,https://localhost:8080/api/auth/login,365,0,0
+1719155129175,3071,Get Filtered Candidates,200,,Get Candidates Thread Group 1-151,text,true,,4921,167,14,33,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3071,0,496
+1719155129205,3062,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-16,text,true,,597,264,19,32,https://localhost:8080/api/auth/register,3061,0,682
+1719155129177,3100,Get Filtered Candidates,200,,Get Candidates Thread Group 1-156,text,true,,4921,167,13,32,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3100,0,814
+1719155128542,3738,Get Filtered Candidates,200,,Get Candidates Thread Group 1-173,text,true,,4921,167,12,31,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3737,0,635
+1719155129183,3104,Get Filtered Candidates,200,,Get Candidates Thread Group 1-163,text,true,,4921,167,11,30,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3103,0,830
+1719155128173,4118,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-9,text,true,,597,264,19,29,https://localhost:8080/api/auth/register,4117,0,1349
+1719155128522,3772,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-15,text,true,,597,264,19,29,https://localhost:8080/api/auth/register,3772,0,998
+1719155128281,4033,Get Filtered Candidates,200,,Get Candidates Thread Group 1-116,text,true,,4921,167,10,29,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4033,0,849
+1719155129212,3115,Get Filtered Candidates,200,,Get Candidates Thread Group 1-174,text,true,,4921,167,9,28,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3112,0,802
+1719155128099,4230,Get Filtered Candidates,200,,Get Candidates Thread Group 1-84,text,true,,4921,167,9,28,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4230,0,1148
+1719155129242,3092,Get Filtered Candidates,200,,Get Candidates Thread Group 1-193,text,true,,4921,167,7,26,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3092,0,779
+1719155128423,3933,Get Filtered Candidates,200,,Get Candidates Thread Group 1-146,text,true,,4921,167,6,25,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3933,0,901
+1719155129219,3138,Get Filtered Candidates,200,,Get Candidates Thread Group 1-183,text,true,,4921,167,6,25,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3137,0,822
+1719155128163,4275,Get Filtered Candidates,200,,Get Candidates Thread Group 1-97,text,true,,4921,167,4,23,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4275,0,983
+1719155132291,173,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-9,text,true,,715,261,19,22,https://localhost:8080/api/auth/login,172,0,0
+1719155129157,3331,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-13,text,true,,597,264,19,22,https://localhost:8080/api/auth/register,3331,0,517
+1719155129246,3255,Register,201,,Register -> Complete User Data -> Submit Vote Thread Group 2-20,text,true,,597,264,19,22,https://localhost:8080/api/auth/register,3255,0,765
+1719155132269,256,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-16,text,true,,715,261,19,22,https://localhost:8080/api/auth/login,255,0,0
+1719155132296,240,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-15,text,true,,715,261,19,22,https://localhost:8080/api/auth/login,240,0,0
+1719155128108,4451,Get Filtered Candidates,200,,Get Candidates Thread Group 1-86,text,true,,4921,167,3,22,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4451,0,1455
+1719155128654,3942,Get Filtered Candidates,200,,Get Candidates Thread Group 1-133,text,true,,4921,167,2,21,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,3942,0,473
+1719155127870,4759,Get Filtered Candidates,200,,Get Candidates Thread Group 1-21,text,true,,4921,167,1,20,https://localhost:8080/api/candidates/filtered?electionId=1&precinctId=1,4759,0,1637
+1719155132489,141,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-13,text,true,,715,261,19,20,https://localhost:8080/api/auth/login,140,0,0
+1719155132502,152,Login,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-20,text,true,,715,261,19,19,https://localhost:8080/api/auth/login,152,0,0
+1719155131736,30091,Submit Vote,500,,Register -> Complete User Data -> Submit Vote Thread Group 2-17,text,false,,582,491,19,19,https://localhost:8080/api/vote/vote,30089,0,0
+1719155131815,30032,Submit Vote,500,,Register -> Complete User Data -> Submit Vote Thread Group 2-14,text,false,,582,491,18,18,https://localhost:8080/api/vote/vote,30030,0,0
+1719155132140,30050,Submit User's Data,500,,Register -> Complete User Data -> Submit Vote Thread Group 2-19,text,false,,581,809,17,17,https://localhost:8080/api/user/167,30049,0,0
+1719155132246,30049,Submit User's Data,500,,Register -> Complete User Data -> Submit Vote Thread Group 2-10,text,false,,581,809,17,17,https://localhost:8080/api/user/166,30049,0,0
+1719155130477,31916,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-12,text,true,,511,809,17,17,https://localhost:8080/api/user/155,31916,0,0
+1719155130477,31940,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-3,text,true,,511,809,17,17,https://localhost:8080/api/user/156,31940,0,0
+1719155130477,31977,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-18,text,true,,511,809,17,17,https://localhost:8080/api/user/153,31977,0,0
+1719155130551,31913,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-11,text,true,,511,809,17,17,https://localhost:8080/api/user/158,31913,0,0
+1719155130622,31853,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-7,text,true,,511,809,17,17,https://localhost:8080/api/user/161,31853,0,0
+1719155162191,30248,Submit Vote,500,,Register -> Complete User Data -> Submit Vote Thread Group 2-19,text,false,,582,491,17,17,https://localhost:8080/api/vote/vote,30247,0,27
+1719155130594,61872,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-1,text,true,,511,809,16,16,https://localhost:8080/api/user/160,61872,0,0
+1719155162296,30182,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-10,text,true,,499,491,16,16,https://localhost:8080/api/vote/vote,30181,0,13
+1719155130502,61981,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-2,text,true,,511,809,15,15,https://localhost:8080/api/user/157,61981,0,0
+1719155131276,61231,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-6,text,true,,511,809,15,15,https://localhost:8080/api/user/162,61231,0,0
+1719155130684,61831,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-5,text,true,,511,809,15,15,https://localhost:8080/api/user/159,61831,0,0
+1719155162394,30161,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-12,text,true,,504,491,15,15,https://localhost:8080/api/vote/vote,30161,0,0
+1719155162464,30102,Submit Vote,400,,Register -> Complete User Data -> Submit Vote Thread Group 2-11,text,false,,514,491,14,14,https://localhost:8080/api/vote/vote,30101,0,0
+1719155162418,30162,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-3,text,true,,504,491,13,13,https://localhost:8080/api/vote/vote,30162,0,0
+1719155162454,30152,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-18,text,true,,504,491,12,12,https://localhost:8080/api/vote/vote,30152,0,0
+1719155131388,61224,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-4,text,true,,511,809,11,11,https://localhost:8080/api/user/165,61224,0,0
+1719155192467,149,Submit Vote,400,,Register -> Complete User Data -> Submit Vote Thread Group 2-1,text,false,,514,491,11,11,https://localhost:8080/api/vote/vote,148,0,12
+1719155162476,30172,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-7,text,true,,504,491,10,10,https://localhost:8080/api/vote/vote,30172,0,0
+1719155192515,135,Submit Vote,400,,Register -> Complete User Data -> Submit Vote Thread Group 2-5,text,false,,514,491,9,9,https://localhost:8080/api/vote/vote,134,0,23
+1719155192484,185,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-2,text,true,,504,491,8,8,https://localhost:8080/api/vote/vote,185,0,16
+1719155192508,171,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-6,text,true,,504,491,7,7,https://localhost:8080/api/vote/vote,171,0,17
+1719155192613,92,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-4,text,true,,504,491,6,6,https://localhost:8080/api/vote/vote,92,0,17
+1719155132466,60295,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-9,text,true,,511,809,5,5,https://localhost:8080/api/user/170,60295,0,0
+1719155132526,60294,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-16,text,true,,511,809,5,5,https://localhost:8080/api/user/168,60294,0,0
+1719155192762,67,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-9,text,true,,504,491,5,5,https://localhost:8080/api/vote/vote,67,0,16
+1719155132631,60235,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-13,text,true,,511,809,4,4,https://localhost:8080/api/user/171,60235,0,0
+1719155192821,59,Submit Vote,400,,Register -> Complete User Data -> Submit Vote Thread Group 2-16,text,false,,514,491,4,4,https://localhost:8080/api/vote/vote,58,0,20
+1719155132537,60370,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-15,text,true,,511,809,3,3,https://localhost:8080/api/user/169,60370,0,0
+1719155132655,60257,Submit User's Data,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-20,text,true,,511,809,3,3,https://localhost:8080/api/user/172,60257,0,0
+1719155192867,69,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-13,text,true,,504,491,3,3,https://localhost:8080/api/vote/vote,69,0,13
+1719155192908,62,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-15,text,true,,504,491,2,2,https://localhost:8080/api/vote/vote,62,0,11
+1719155192912,64,Submit Vote,200,,Register -> Complete User Data -> Submit Vote Thread Group 2-20,text,true,,504,491,1,1,https://localhost:8080/api/vote/vote,64,0,15

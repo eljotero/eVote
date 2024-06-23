@@ -14,7 +14,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "accounts", indexes = {
-        @Index(name = "idx_email", columnList = "email", unique = true)
+        @Index(name = "idx_email", columnList = "email", unique = true),
+        @Index(name = "idx_email_user", columnList = "email, user_id", unique = true)
 })
 public class Account implements UserDetails {
 
@@ -29,7 +30,7 @@ public class Account implements UserDetails {
     private Boolean hasVoted = false;
     private Boolean isAccountActive;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

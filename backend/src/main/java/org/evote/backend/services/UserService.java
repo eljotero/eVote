@@ -14,6 +14,7 @@ import org.evote.backend.users.user.entity.User;
 import org.evote.backend.users.user.exceptions.UserAlreadyAssignedException;
 import org.evote.backend.users.user.exceptions.UserNotFoundException;
 import org.evote.backend.users.user.repository.UserRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +47,7 @@ public class UserService {
         this.precinctService = precinctService;
         this.usersPrecinctRepository = usersPrecinctRepository;
     }
-
+    @Async
     @Transactional
     public String updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
         Account accountToUpdate;

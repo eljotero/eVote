@@ -1,14 +1,15 @@
 describe('User Register and Login E2E Tests', () => {
     beforeEach(() => {
+        cy.viewport(1920, 1080);
+    })
+
+    it ('contains all fields', () => {
         cy.visit('/login');
         cy.url().should('include', '/login');
         cy.get('#email').type('test1234@test.com');
         cy.get('#password').type('test1234');
         cy.get('button').contains('Zaloguj').click({ force: true });
         cy.get('nav').contains('Moje konto').click({ force: true });
-    })
-
-    it ('contains all fields', () => {
         cy.get('#email').should('exist');
         cy.get('#name').should('exist');
         cy.get('#surname').should('exist');
@@ -26,6 +27,12 @@ describe('User Register and Login E2E Tests', () => {
     })
 
     it ('can type into inputs', () => {
+        cy.visit('/login');
+        cy.url().should('include', '/login');
+        cy.get('#email').type('test1234@test.com');
+        cy.get('#password').type('test1234');
+        cy.get('button').contains('Zaloguj').click({ force: true });
+        cy.get('nav').contains('Moje konto').click({ force: true });
         cy.get('#name').type('IMIE');
         cy.get('#surname').type('NAZWISKO');
         cy.get('#sex').select('Mężczyzna');
@@ -42,6 +49,12 @@ describe('User Register and Login E2E Tests', () => {
     })
 
     it ('can save inputs values', () => {
+        cy.visit('/login');
+        cy.url().should('include', '/login');
+        cy.get('#email').type('test1234@test.com');
+        cy.get('#password').type('test1234');
+        cy.get('button').contains('Zaloguj').click({ force: true });
+        cy.get('nav').contains('Moje konto').click({ force: true });
         cy.get('#name').clear();
         cy.get('#name').type('IMIE');
 
@@ -89,6 +102,13 @@ describe('User Register and Login E2E Tests', () => {
     })
 
     it ('can logout', () => {
+        cy.visit('/login');
+        cy.url().should('include', '/login');
+        cy.get('#email').type('test1234@test.com');
+        cy.get('#password').type('test1234');
+        cy.get('button').contains('Zaloguj').click({ force: true });
+        cy.get('nav').contains('Moje konto').click({ force: true });
+
         cy.get('nav').contains('Wyloguj').click({ force: true });
         cy.url().should('include', '/');
     })

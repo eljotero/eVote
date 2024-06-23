@@ -1,4 +1,8 @@
 describe('User can look through candidates', () => {
+    beforeEach(() => {
+        cy.viewport(1920, 1080);
+      });
+
     it('successfully check candidates in selected ', () => {
         cy.visit('/candidates?woj=%C5%81%C3%B3dzkie');
       

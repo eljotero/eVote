@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-06-23T17:22:28.863Z",
+    "end": "2024-06-23T17:22:34.619Z",
+    "duration": 5756,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c044531e-9515-470a-9e2d-811877aa7af2",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Info.cy.js",
+      "file": "cypress\\e2e\\Info.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "39cf5056-ee2b-42e2-9450-7c491b8525f6",
+          "title": "The Info page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "successfully loads",
+              "fullTitle": "The Info page successfully loads",
+              "timedOut": null,
+              "duration": 1510,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.url().should('include', '/info');",
+              "err": {},
+              "uuid": "2546a120-ca5e-45bb-bd1f-a229049aabcf",
+              "parentUUID": "39cf5056-ee2b-42e2-9450-7c491b8525f6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has info about authors",
+              "fullTitle": "The Info page has info about authors",
+              "timedOut": null,
+              "duration": 1462,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('span').contains('Michał Ferdzyn (242383)').should('exist');\ncy.get('span').contains('Aleksander Janicki (242405)').should('exist');\ncy.get('span').contains('Grzegorz Kempa (224325)').should('exist');\ncy.get('span').contains('Szymon Wydmuch (242568)').should('exist');\ncy.get('span').contains('Michalina Wysocka (230043)').should('exist');",
+              "err": {},
+              "uuid": "7eb77cba-fe02-4aff-837b-41515926da73",
+              "parentUUID": "39cf5056-ee2b-42e2-9450-7c491b8525f6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has info about subject",
+              "fullTitle": "The Info page has info about subject",
+              "timedOut": null,
+              "duration": 1289,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('p').contains('Projekt stworzony w ramach przedmiotu Moduł sumatywny').should('exist');",
+              "err": {},
+              "uuid": "c2ac7ab3-f4c1-4ffa-9fce-21df1b1f8874",
+              "parentUUID": "39cf5056-ee2b-42e2-9450-7c491b8525f6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has info about used pictures source",
+              "fullTitle": "The Info page has info about used pictures source",
+              "timedOut": null,
+              "duration": 1212,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('span').contains('Obrazy zostały pobrane ze strony Canva, utworzone przez zespół Canvy na darmowej licencji i użyte w celach niekomercyjnych.').should('exist');",
+              "err": {},
+              "uuid": "b688a87e-1881-4a5d-bbdc-259b21945839",
+              "parentUUID": "39cf5056-ee2b-42e2-9450-7c491b8525f6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2546a120-ca5e-45bb-bd1f-a229049aabcf",
+            "7eb77cba-fe02-4aff-837b-41515926da73",
+            "c2ac7ab3-f4c1-4ffa-9fce-21df1b1f8874",
+            "b688a87e-1881-4a5d-bbdc-259b21945839"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5473,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

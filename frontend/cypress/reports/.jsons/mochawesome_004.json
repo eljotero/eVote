@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-06-23T17:22:16.696Z",
+    "end": "2024-06-23T17:22:26.583Z",
+    "duration": 9887,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "15e7f738-0d4a-4744-96eb-716d00a4c9cd",
+      "title": "",
+      "fullFile": "cypress\\e2e\\HowToVote.cy.js",
+      "file": "cypress\\e2e\\HowToVote.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9dcd2455-520e-45f9-85de-4714713595d9",
+          "title": "The Main Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "successfully loads",
+              "fullTitle": "The Main Page successfully loads",
+              "timedOut": null,
+              "duration": 1689,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.url().should('include', '/about');",
+              "err": {},
+              "uuid": "fe045a50-6af6-4adb-be01-023c6188c420",
+              "parentUUID": "9dcd2455-520e-45f9-85de-4714713595d9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has first step",
+              "fullTitle": "The Main Page has first step",
+              "timedOut": null,
+              "duration": 2250,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('p').contains('Aby rozpocząć, załóż konto na naszej platformie. Kliknij przycisk \"Zaloguj się\", a następnie \"Rejestracja\" i podaj swój adres e-mail oraz hasło.').should('exist');",
+              "err": {},
+              "uuid": "a6b06da4-706c-4339-bc0a-5f5916864525",
+              "parentUUID": "9dcd2455-520e-45f9-85de-4714713595d9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has second step",
+              "fullTitle": "The Main Page has second step",
+              "timedOut": null,
+              "duration": 2022,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('p').contains('Po zalogowaniu się, wejdź w zakładkę \"Moje konto\" i wypełnij dodatkowe informacje potrzebne do weryfikacji tożsamości. Wprowadź swoje dane osobowe, takie jak PESEL czy adres zamieszkania. Wszystkie dane są zabezpieczone i przetwarzane zgodnie z przepisami o ochronie danych osobowych.').should('exist');",
+              "err": {},
+              "uuid": "1811caed-e200-4c7a-9d9c-249189c9c38b",
+              "parentUUID": "9dcd2455-520e-45f9-85de-4714713595d9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has third step",
+              "fullTitle": "The Main Page has third step",
+              "timedOut": null,
+              "duration": 1840,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('p').contains('Następnie przejdź do sekcji \"Kandydaci\". Tam znajdziesz listę dostępnych wyborów oraz kandydatów. Możesz przeglądać profile kandydatów, czytać ich programy wyborcze i zapoznać się z ich priorytetami.').should('exist');",
+              "err": {},
+              "uuid": "812269dd-ff6a-4da3-8c75-202c3e69e768",
+              "parentUUID": "9dcd2455-520e-45f9-85de-4714713595d9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "has forth step",
+              "fullTitle": "The Main Page has forth step",
+              "timedOut": null,
+              "duration": 1620,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('p').contains('Gdy już zdecydujesz, na kogo chcesz oddać głos, w sekcji \"Moje konto\" wygeneruj kod umożliwiający zagłosowanie. Po otrzymaniu go na podany adres e-mail, przejdź do sekcji \"Zagłosuj\" i wpisz kod. Twój głos na wybranego kandydata zostanie zarejestrowany i możesz być pewny, że jest bezpieczny i anonimowy.').should('exist');",
+              "err": {},
+              "uuid": "b98db4e5-49ce-441c-8020-0301ffdd280b",
+              "parentUUID": "9dcd2455-520e-45f9-85de-4714713595d9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fe045a50-6af6-4adb-be01-023c6188c420",
+            "a6b06da4-706c-4339-bc0a-5f5916864525",
+            "1811caed-e200-4c7a-9d9c-249189c9c38b",
+            "812269dd-ff6a-4da3-8c75-202c3e69e768",
+            "b98db4e5-49ce-441c-8020-0301ffdd280b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9421,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

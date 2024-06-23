@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-06-23T17:21:35.337Z",
+    "end": "2024-06-23T17:21:56.856Z",
+    "duration": 21519,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "eb6cd21a-3c74-4cac-bc4a-bc3809ad653b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Account.cy.js",
+      "file": "cypress\\e2e\\Account.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6c2d6b9e-73c7-4890-ab69-bdc5477dfb09",
+          "title": "User Register and Login E2E Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "contains all fields",
+              "fullTitle": "User Register and Login E2E Tests contains all fields",
+              "timedOut": null,
+              "duration": 3989,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/login');\ncy.url().should('include', '/login');\ncy.get('#email').type('test1234@test.com');\ncy.get('#password').type('test1234');\ncy.get('button').contains('Zaloguj').click({\n  force: true\n});\ncy.get('nav').contains('Moje konto').click({\n  force: true\n});\ncy.get('#email').should('exist');\ncy.get('#name').should('exist');\ncy.get('#surname').should('exist');\ncy.get('#sex').should('exist');\ncy.get('#birthDate').should('exist');\ncy.get('#education').should('exist');\ncy.get('#profession').should('exist');\ncy.get('#personalIdNumber').should('exist');\ncy.get('#zipCode').should('exist');\ncy.get('#addressLine').should('exist');\ncy.get('#city').should('exist');\ncy.get('#cityType').should('exist');\ncy.get('#country').should('exist');\ncy.get('#voivodeship').should('exist');",
+              "err": {},
+              "uuid": "be23c893-aaba-448f-862e-d5834f71c047",
+              "parentUUID": "6c2d6b9e-73c7-4890-ab69-bdc5477dfb09",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can type into inputs",
+              "fullTitle": "User Register and Login E2E Tests can type into inputs",
+              "timedOut": null,
+              "duration": 6161,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/login');\ncy.url().should('include', '/login');\ncy.get('#email').type('test1234@test.com');\ncy.get('#password').type('test1234');\ncy.get('button').contains('Zaloguj').click({\n  force: true\n});\ncy.get('nav').contains('Moje konto').click({\n  force: true\n});\ncy.get('#name').type('IMIE');\ncy.get('#surname').type('NAZWISKO');\ncy.get('#sex').select('Mężczyzna');\ncy.get('#birthDate').type('1999-01-01');\ncy.get('#education').select('Wyższe');\ncy.get('#profession').type('ZAWÓD');\ncy.get('#personalIdNumber').type(12345578911);\ncy.get('#zipCode').type('90-001');\ncy.get('#addressLine').type('Politechniki 21/37');\ncy.get('#city').type('Łódź');\ncy.get('#cityType').select('Pomiędzy 200 a 500 tysięcy');\ncy.get('#country').select('Poland');\ncy.get('#voivodeship').select('Łódzkie');",
+              "err": {},
+              "uuid": "159c5412-07a2-4cb5-bbcb-0040bd2546bf",
+              "parentUUID": "6c2d6b9e-73c7-4890-ab69-bdc5477dfb09",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can save inputs values",
+              "fullTitle": "User Register and Login E2E Tests can save inputs values",
+              "timedOut": null,
+              "duration": 7303,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/login');\ncy.url().should('include', '/login');\ncy.get('#email').type('test1234@test.com');\ncy.get('#password').type('test1234');\ncy.get('button').contains('Zaloguj').click({\n  force: true\n});\ncy.get('nav').contains('Moje konto').click({\n  force: true\n});\ncy.get('#name').clear();\ncy.get('#name').type('IMIE');\ncy.get('#surname').clear();\ncy.get('#surname').type('NAZWISKO');\ncy.get('#sex').select('Mężczyzna');\ncy.get('#birthDate').clear();\ncy.get('#birthDate').type('1999-01-01');\ncy.get('#education').select('Wyższe');\ncy.get('#profession').clear();\ncy.get('#profession').type('ZAWÓD');\ncy.get('#personalIdNumber').clear();\ncy.get('#personalIdNumber').type(12345578911);\ncy.get('#zipCode').clear();\ncy.get('#zipCode').type('90-001');\ncy.get('#addressLine').clear();\ncy.get('#addressLine').type('Politechniki 21/37');\ncy.get('#city').clear();\ncy.get('#city').type('Łódź');\ncy.get('#cityType').select('Pomiędzy 200 a 500 tysięcy');\ncy.get('#country').select('Poland');\ncy.get('#voivodeship').select('Łódzkie');\ncy.get('button').contains('Zapisz').click({\n  force: true\n});\ncy.get('nav').contains('Strona główna').click({\n  force: true\n});\ncy.get('nav').contains('Moje konto').click({\n  force: true\n});\ncy.get('#name').should('have.value', 'IMIE');\ncy.get('#surname').should('have.value', 'NAZWISKO');\ncy.get('#birthDate').should('have.value', '1999-01-01');\ncy.get('#profession').should('have.value', 'ZAWÓD');\ncy.get('#zipCode').should('have.value', '90-001');\ncy.get('#addressLine').should('have.value', 'Politechniki 21/37');\ncy.get('#city').should('have.value', 'Łódź');",
+              "err": {},
+              "uuid": "3ec70d1a-f858-43f4-8119-31da6225274d",
+              "parentUUID": "6c2d6b9e-73c7-4890-ab69-bdc5477dfb09",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can logout",
+              "fullTitle": "User Register and Login E2E Tests can logout",
+              "timedOut": null,
+              "duration": 3728,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/login');\ncy.url().should('include', '/login');\ncy.get('#email').type('test1234@test.com');\ncy.get('#password').type('test1234');\ncy.get('button').contains('Zaloguj').click({\n  force: true\n});\ncy.get('nav').contains('Moje konto').click({\n  force: true\n});\ncy.get('nav').contains('Wyloguj').click({\n  force: true\n});\ncy.url().should('include', '/');",
+              "err": {},
+              "uuid": "702eae5d-15e1-4cb7-bf75-d680346d161f",
+              "parentUUID": "6c2d6b9e-73c7-4890-ab69-bdc5477dfb09",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "be23c893-aaba-448f-862e-d5834f71c047",
+            "159c5412-07a2-4cb5-bbcb-0040bd2546bf",
+            "3ec70d1a-f858-43f4-8119-31da6225274d",
+            "702eae5d-15e1-4cb7-bf75-d680346d161f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 21181,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
