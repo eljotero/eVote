@@ -1,6 +1,6 @@
 describe('The Main Page', () => {
   beforeEach(() => {
-    // Visit the MainPage before each test
+    cy.viewport(1920, 1080);
     cy.visit('/')
   })
 

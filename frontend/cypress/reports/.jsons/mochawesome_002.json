@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-06-23T17:21:59.356Z",
+    "end": "2024-06-23T17:22:02.497Z",
+    "duration": 3141,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bb7e8f90-45e1-485a-a6fc-5a73824e24a7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Candidates.cy.js",
+      "file": "cypress\\e2e\\Candidates.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ae99e2b1-c1d7-4350-b4df-cc02c9177ae6",
+          "title": "User can look through candidates",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "successfully check candidates in selected ",
+              "fullTitle": "User can look through candidates successfully check candidates in selected ",
+              "timedOut": null,
+              "duration": 3001,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/candidates?woj=%C5%81%C3%B3dzkie');\ncy.get('#district-select').should('exist');\ncy.get('#district-select2').should('exist');\ncy.get('#district-select').select('Okręg wyborczy nr 10 - Piotrków Trybunalskich');\ncy.get('#district-select2').select('Okręg wyborczy nr 24 - Łódź II');\ncy.get('#district-select').select('Okręg wyborczy nr 9 - Łódź');\ncy.get('#district-select2').select('Okręg wyborczy nr 23 - Łódź I');\ncy.get('#showPlanButton').click({\n  force: true\n});\ncy.get('h2').should('contain.text', 'Krótki plan polityczny');\ncy.get('#closePlanButton').click({\n  force: true\n});",
+              "err": {},
+              "uuid": "ea7b5ce5-dafd-48fb-ac35-fed34a6e7a36",
+              "parentUUID": "ae99e2b1-c1d7-4350-b4df-cc02c9177ae6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ea7b5ce5-dafd-48fb-ac35-fed34a6e7a36"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3001,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
