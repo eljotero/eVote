@@ -1,11 +1,12 @@
 'use client';
 import {useDispatch, useSelector} from "react-redux";
-import React, {use, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {toast} from "react-hot-toast";
 import {setVotingToken} from "@/store/votingTokenSlice";
 import CountdownForm from "@/app/components/Countdown/CountdownForm";
 import axios from "../../../../lib/axios";
 import Image from "next/image";
+import Modal from "@/app/components/Modal/Modal";
 
 export default function Vote() {
     const id = useSelector((state) => state.id.value);
@@ -40,8 +41,8 @@ export default function Vote() {
                 const response = await axios.get('https://localhost:8080/api/precinct/all');
                 const precincts = response.data;
                 const matchingPrecinctIds = precincts
-                  .filter(precinct => precinct.availableCities.includes(user.city))
-                  .map(precinct => precinct.precinct_id);
+                    .filter(precinct => precinct.availableCities.includes(user.city))
+                    .map(precinct => precinct.precinct_id);
                 setPrecincts(matchingPrecinctIds)
             } catch (error) {
                 console.error('Error fetching precincts:', error);
@@ -103,7 +104,7 @@ export default function Vote() {
             return;
         }
         try {
-            const response = await axios.post(`vote/voteToken`, { code: votingCode }, {
+            const response = await axios.post(`vote/voteToken`, {code: votingCode}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -126,7 +127,7 @@ export default function Vote() {
 
         try {
             const response = await axios.post(`vote/vote`, {
-              "votes": [
+                "votes": [
                     {
                         "candidateId": selectedCandidateId,
                         "electionId": selectedElectionId,
@@ -154,18 +155,21 @@ export default function Vote() {
         setShowForm(true);
     }
 
- return (
-    <>
-        <div className='text-center py-4 mb-8' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
-            <table className="min-w-full bg-white">
-                <thead>
-                    <tr>
+    return (
+        <section aria-label="Sekcja głosowania" className="mx-auto">
+            <Image
+                src="https://firebasestorage.googleapis.com/v0/b/gnomenciaga.appspot.com/o/evote%2Fevote-vote3.png?alt=media&token=b51ef52f-be56-41c5-a9bd-1a153fa171d7"
+                alt="Kobieta wrzucająca kartkę żeby zagłosować" width={800} height={400} className="mx-auto"/>
+            <div className='text-center mx-auto py-4' style={{backgroundColor: '#f0f0f0', borderRadius: '15px'}}>
+                <table className="min-w-[70%] bg-white mx-auto">
+                    <thead>
+                    <tr className="bg-blue-200">
                         <th className="py-2">Nazwa Wyborów</th>
                         <th className="py-2">Data Rozpoczęcia</th>
                         <th className="py-2">Odliczanie</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody className="bg-blue-200">
                     {elections.map((election, index) => (
                         <tr key={election.election_id} className="text-center">
                             <td className="py-2">{election.election_name}</td>
@@ -175,70 +179,61 @@ export default function Vote() {
                             </td>
                         </tr>
                     ))}
-                </tbody>
-            </table>
-            {showForm && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <button className="inherit top-0 right-0 p-4" onClick={() => setShowForm(false)}>
-                        X
-                    </button>
-                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full relative">
-                        <h1 className="text-xl font-semibold mb-4">Wpisz kod otrzymany w mailu</h1>
-                        <div className="mb-4">
-                            <input
-                                type="text"
-                                placeholder="Twój kod"
-                                value={votingCode}
-                                onChange={(e) => setVotingCode(e.target.value)}
-                                className="email-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500"
-                            />
-                        </div>
-                        <button
-                            className='mt-2 py-1 px-4 bg-blue-500 hover:bg-blue-600 text-xs text-white font-bold rounded-xl transition duration-200'
-                            onClick={verifyVotingCode}
-                        >
-                            Zweryfikuj kod i oddaj głos
-                        </button>
-                    </div>
-                </div>
-            )}
-        </div>
-        <div className='space-y-8'>
-        {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
-            <div key={electionId}>
-                <h2 className="text-3xl font-bold mb-4 text-center">
-                    {elections.find(election => election.election_id === Number(electionId)).election_name}
-                </h2>
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                    {candidates.map((candidate) => (
-                        <div
-                            key={candidate.candidate_id}
-                            className='p-2 bg-white shadow-md rounded-xl'
-                        >
-                            <Image src={candidate.image} alt={`${candidate.name} ${candidate.surname}`} width={500} height={200} className="rounded-t-xl" />
-                            <h2 className='text-lg font-semibold'>{candidate.name} {candidate.surname}</h2>
-                            <p className='text-md'>{candidate.education}</p>
-                            <p className='text-md'>{candidate.profession}</p>
-                            <p className='text-md'>
-                                {politicalParties.find(politicalParty => politicalParty.politicalPartyId === candidate.political_party_id).name}
-                            </p>
-                            <button
-                                className={`mt-2 py-1 px-4 text-xs font-bold rounded-xl transition duration-200 ${
-                                    new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate) ? 
-                                    'bg-gray-400 cursor-not-allowed' : 
-                                    'bg-blue-500 hover:bg-blue-600 text-white'
-                                }`}
-                                onClick={() => handleVoteClick(candidate.candidate_id, electionId)}
-                                disabled={new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate)}
-                            >
-                                Zagłosuj
-                            </button>
-                        </div>
-                    ))}
-                </div>
+                    </tbody>
+                </table>
+                <Modal
+                    showForm={showForm}
+                    setShowForm={setShowForm}
+                    votingCode={votingCode}
+                    setVotingCode={setVotingCode}
+                    verifyVotingCode={verifyVotingCode}
+                />
             </div>
-        ))}
-    </div>
-    </>
-);
+
+            <div className='space-y-8 flex justify-center flex-col'>
+                {Object.entries(candidatesByElection).map(([electionId, candidates]) => (
+                    <div key={electionId} className='mx-auto'>
+                        <h2 className="mb-4 text-center">
+                            <span
+                                className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                                {elections.find(election => election.election_id === Number(electionId)).election_name}</span>
+                        </h2>
+                        <div
+                            className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center'>
+                            {candidates.map((candidate) => (
+                                <div
+                                    key={candidate.candidate_id}
+                                    className='p-4 bg-gray-100 shadow-lg rounded-lg hover:shadow-blue-400 hover:scale-95 hover:z-[1] hover:shadow-lg duration-300 mb-4'
+                                >
+                                    <Image src={candidate.image} alt={`${candidate.name} ${candidate.surname}`}
+                                           width={500} height={200}
+                                           className="rounded-t-xl"/>
+                                    <h2 className='text-lg font-bold mt-2'>{candidate.name} {candidate.surname}</h2>
+                                    <p className='text-md'><span
+                                        className="font-semibold">Wykształcenie:</span> {candidate.education}</p>
+                                    <p className='text-md'><span
+                                        className="font-semibold">Zawód:</span> {candidate.profession}</p>
+                                    <p className='text-md'>
+                                        {politicalParties.find(politicalParty => politicalParty.politicalPartyId === candidate.political_party_id).name}
+                                    </p>
+                                    <button
+                                        className={`mt-2 py-1 px-4 text-md font-bold rounded transition duration-300 hover:shadow-lg hover:shadow-blue-500/20 text-white ${
+                                            new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate) ?
+                                                'bg-gray-500 cursor-not-allowed' :
+                                                'bg-blue-400 hover:bg-blue-500'
+                                        }`}
+                                        onClick={() => handleVoteClick(candidate.candidate_id, electionId)}
+                                        aria-label='Zagłosuj'
+                                        disabled={new Date() < new Date(elections.find(election => election.election_id === Number(electionId)).startDate)}
+                                    >
+                                        Zagłosuj
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
 }

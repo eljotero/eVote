@@ -11,8 +11,6 @@ import LabeledSelect
     from "@/app/components/Account/LabeledSelect";
 import {toast} from "react-hot-toast";
 import Image from 'next/image';
-import evote from '../../../../public/images/evote-account.png';
-import evote2 from '../../../../public/images/evote-account2.png';
 
 const personInfoSchema = z.object({
     name: z.string({message: 'Pole wymagane'}).min(1, {message: 'Pole wymagane'}),
@@ -142,7 +140,7 @@ export default function Account() {
                 }
             })
             .catch((error) => {
-                if (error.response.status === 400) {
+                if (error.response && error.response.status === 400) {
                     toast.error(
                         'Email został już wysłany. Sprawdź swoją skrzynkę odbiorczą.'
                     );
@@ -155,12 +153,12 @@ export default function Account() {
     return (
         <section className="py-1 h-auto flex items-center relative" aria-label="Sekcja informacji o koncie">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote2} alt="Megafon" className="relative" loading='lazy'
-                       layout='responsive'/>
+                <Image src="https://storage.googleapis.com/evote_c/evote-account2.png" height={600} width={600} alt="Megafon" className="relative"
+                       priority={true}/>
             </div>
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/4">
-                <Image src={evote} alt="Dłoń trzymająca telefon" className="relative" loading='lazy'
-                       layout='responsive'/>
+                <Image src="https://storage.googleapis.com/evote_c/evote-account.png" height={600} width={600} alt="Dłoń trzymająca telefon" className="relative"
+                       priority={true}/>
             </div>
 
             <div className="sm:w-8/12 lg:w-6/12 px-4 mx-auto mt-16">
@@ -194,7 +192,7 @@ export default function Account() {
                                     placeholder={'Podaj swój email'}
                                 />
                                 <LabeledInput
-                                    label='Imię'
+                                    label='Imię*'
                                     register={register}
                                     name='name'
                                     type='text'
@@ -203,7 +201,7 @@ export default function Account() {
                                     placeholder={'Podaj swoje imię'}
                                 />
                                 <LabeledInput
-                                    label='Nazwisko'
+                                    label='Nazwisko*'
                                     register={register}
                                     name='surname'
                                     type='text'
@@ -212,7 +210,7 @@ export default function Account() {
                                     placeholder={'Podaj swoje nazwisko'}
                                 />
                                 <LabeledSelect
-                                    label="Płeć"
+                                    label="Płeć*"
                                     register={register}
                                     name="sex"
                                     options={[
@@ -224,7 +222,7 @@ export default function Account() {
                                 />
 
                                 <LabeledInput
-                                    label='Data urodzenia'
+                                    label='Data urodzenia*'
                                     register={register}
                                     name='birthDate'
                                     type='date'
@@ -233,7 +231,7 @@ export default function Account() {
                                     placeholder={'Podaj swoją datę urodzenia'}
                                 />
                                 <LabeledSelect
-                                    label="Wykształcenie"
+                                    label="Wykształcenie*"
                                     register={register}
                                     name="education"
                                     options={[
@@ -247,7 +245,7 @@ export default function Account() {
                                 />
 
                                 <LabeledInput
-                                    label='Zawód'
+                                    label='Zawód*'
                                     register={register}
                                     name='profession'
                                     type='text'
@@ -256,7 +254,7 @@ export default function Account() {
                                     placeholder={'Podaj swój zawód'}
                                 />
                                 <LabeledInput
-                                    label='Numer PESEL'
+                                    label='Numer PESEL*'
                                     register={register}
                                     name='personalIdNumber'
                                     type='number'
@@ -271,7 +269,7 @@ export default function Account() {
                             </h6>
                             <div className="grid grid-cols-2 gap-4 mt-6">
                                 <LabeledInput
-                                    label='Kod pocztowy'
+                                    label='Kod pocztowy*'
                                     register={register}
                                     name='zipCode'
                                     type='text'
@@ -280,7 +278,7 @@ export default function Account() {
                                     placeholder={'Podaj swój kod pocztowy'}
                                 />
                                 <LabeledInput
-                                    label='Adres'
+                                    label='Adres*'
                                     register={register}
                                     name='addressLine'
                                     type='text'
@@ -289,7 +287,7 @@ export default function Account() {
                                     placeholder={'Podaj swój adres'}
                                 />
                                 <LabeledInput
-                                    label='Miasto'
+                                    label='Miasto*'
                                     register={register}
                                     name='city'
                                     type='text'
@@ -298,7 +296,7 @@ export default function Account() {
                                     placeholder={'Podaj swoje miasto'}
                                 />
                                 <LabeledSelect
-                                    label='Typ miejscowości'
+                                    label='Typ miejscowości*'
                                     register={register}
                                     name='cityType'
                                     options={[
@@ -323,7 +321,7 @@ export default function Account() {
                                     title={'Jaki jest typ Twojej miejscowości?'}
                                 />
                                 <LabeledSelect
-                                    label='Kraj'
+                                    label='Kraj*'
                                     register={register}
                                     name='country'
                                     options={[
@@ -1308,7 +1306,7 @@ export default function Account() {
                                     title={'Z jakiego kraju pochodzisz?'}
                                 />
                                 <LabeledSelect
-                                    label='Województwo'
+                                    label='Województwo*'
                                     register={register}
                                     name='voivodeship'
                                     options={[
@@ -1390,6 +1388,7 @@ export default function Account() {
                                 >
                                     Zapisz
                                 </button>
+                                <p className="text-sm">* Pola wymagane.</p>
                             </div>
                         </form>
                     </div>
