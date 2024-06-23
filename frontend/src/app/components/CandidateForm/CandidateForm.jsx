@@ -61,26 +61,26 @@ export default function CandidateForm({ candidate, onVote }) {
         <p className='text-gray-700 mb-2'>Zawód: {profession}</p>
         <p className='text-gray-700 mb-2'>
           Partia polityczna: {politicalPartyName}
-        </p>
-        <button
+        </p><button
           onClick={handleShowPlan}
-          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+          className='py-2 px-4 font-bold rounded bg-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 text-white duration-300'
           id='showPlanButton'
-        >
-          {showPlan ? 'Hide Plan' : 'Pokaż plan polityczny'}
-        </button>
+      >
+        {showPlan ? 'Hide Plan' : 'Pokaż plan polityczny'}
+      </button>
         {showPlan && (
-          <div className='absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex items-center justify-center z-10'>
-            <div className='bg-white p-8 rounded shadow-lg text-center'>
-              <h2 className='text-2xl mb-4'>Krótki plan polityczny</h2>
-              <p>{info}</p>
-              <button
-                onClick={handleShowPlan}
-                className='mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-                id='closePlanButton'
-              >
-                Zamknij
-              </button>
+            <div className='absolute top-0 left-0 w-full h-full bg-white bg-opacity-75 flex items-center justify-center z-10'>
+
+              <div className='bg-white p-8 rounded shadow-lg text-center'>
+                <h2 className='text-2xl mb-4'>Krótki plan polityczny</h2>
+                <p>{info}</p>
+                <button
+                    onClick={handleShowPlan}
+                    className='py-2 px-4 font-bold rounded bg-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 text-white duration-300'
+                    id='closePlanButton'
+                >
+                  Zamknij
+                </button>
             </div>
           </div>
         )}
